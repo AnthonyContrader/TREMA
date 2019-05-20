@@ -51,7 +51,7 @@ ad es "console-java"
 	- git checkout console-java
 - copiare manualmente tutti i file di un vecchio progetto ad eccezione di cartella
 out, file readme.md, cartella .git
-- fare il push
+- fare il pull
 	- git add .
 	- git commit -m "msg"
 	- git push 
