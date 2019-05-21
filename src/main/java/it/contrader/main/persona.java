@@ -14,6 +14,8 @@ public class persona {
 	private String sesso;
 	private String dataNascita;
 	
+	//inizio set
+	
 	public void set_nome(String nome) {
 		this.nome=nome;
 	}
@@ -44,6 +46,8 @@ public class persona {
 	public void set_dataNascita(String dataNascita) {
 		this.dataNascita=dataNascita;
 	}
+	
+	//fine set
 	
 	public String get_nome() {	return this.nome;	}
 	public String get_cognome() {	return this.cognome;	}
