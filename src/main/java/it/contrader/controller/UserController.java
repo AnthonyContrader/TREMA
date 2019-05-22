@@ -2,7 +2,7 @@ package it.contrader.controller;
 
 import java.util.List;
 
-import it.contrader.dto.UserDTO;
+import it.contrader.dao.UserDAO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
 import it.contrader.service.UserService;
@@ -21,15 +21,15 @@ public class UserController implements Controller {
 		return this.usersService.getAllUser();
 	}
 
-	public UserDTO readUser(int userId) {
+	public UserDAO readUser(int userId) {
 		return this.usersService.readUser(userId);
 	}
 
-	public boolean insertUser(UserDTO usersDTO) {
+	public boolean insertUser(UserDAO usersDTO) {
 		return this.usersService.insertUser(usersDTO);
 	}
 
-	public boolean updateUser(UserDTO usersDTO) {
+	public boolean updateUser(UserDAO usersDTO) {
 		return this.usersService.updateUser(usersDTO);
 	}
 

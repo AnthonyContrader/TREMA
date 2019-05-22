@@ -1,31 +1,46 @@
 package it.contrader.model;
 
-import java.sql.Timestamp;
 
 public class Project {
 
-	private int id;
+	private int idProject;
 	private String category;
-	private Timestamp dataInizio;
+	private String dataInizio;
+	private String name;
 	
-	public Project(int id, String category,Timestamp dataInizio) {
+	public Project(int idProject, String name,String category,String dataInizio) {
 		
-		this.id=id;
+		this.idProject=idProject;
+		this.name=name;
 		this.category=category;
 		this.dataInizio=dataInizio;
 	}
-	public int getID() {
-		return id;
+	
+	public void setName(String name) {
+		this.name=name;
 	}
+	
+	public int getIdProject() {
+		return idProject;
+	}
+
+	public void setIdProject(int idProject) {
+		this.idProject = idProject;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+	
 	public String getCategory() {
 		return category;
 	}
 	
-	public void dataInizio(Timestamp dataInizio) {
+	public void dataInizio(String dataInizio) {
 		this.dataInizio=dataInizio;
 	}
 	
-	public Timestamp getdataInizio() {
+	public String getdataInizio() {
 		return dataInizio;
 	}
 	
@@ -35,6 +50,6 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "Categoria: "+category+ "\n Data: "+dataInizio +"\n Id: "+id;
+		return "Categoria: "+category+"\n Nome: "+name+ "\n Data: "+dataInizio +"\n Id: "+idProject;
 	}
 }

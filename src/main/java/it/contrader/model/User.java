@@ -1,24 +1,21 @@
 package it.contrader.model;
 
 public class User {
-	private int userId;
+	private int idUser;
 	private String username;
 	private String usertype;
 
-	public User() {
-	}
-
-	public User(String username, String usertype) {
+public User(String username, String usertype) {
 		this.username = username;
 		this.usertype = usertype;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getidUser() {
+		return idUser;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setidUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	public void setUsername(String username) {
@@ -39,7 +36,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return this.getUserId() + "\t" + this.getUsername() + "\t" + this.getUsertype();
+		return this.getidUser() + "\t" + this.getUsername() + "\t" + this.getUsertype();
 	}
 
 	public boolean equals(User userCompare) {

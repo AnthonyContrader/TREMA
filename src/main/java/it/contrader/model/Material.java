@@ -2,34 +2,34 @@ package it.contrader.model;
 
 public class Material {
 	
-	private String nome;
+	private int idMaterial;
+	private String name;
 	private String modello;
 	private String category;
 	private int inventory;
-	
-	public Material(int id,String nome,String modello,int inventory, String category){
-		this.id=id;
-		this.nome=nome;
+		
+	public Material(int idMaterial,String name,String modello,int inventory, String category){
+		this.idMaterial=idMaterial;
+		this.name=name;
 		this.modello=modello;
 		this.inventory=inventory;
 		this.category=category;
 	}
 	
-	private int id;
-	public int getId() {
-		return id;
+	public int getidMaterial() {
+		return idMaterial;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setidMaterial(int idMaterial) {
+		this.idMaterial = idMaterial;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getModello() {
@@ -58,7 +58,7 @@ public class Material {
 
 	@Override
 	public String toString() {
-		return "Material [nome=" + nome + ", modello=" + modello + ", inventory=" + inventory + ", id=" + id + "categoria" +"]";
+		return "Material [nome=" + name + ", modello=" + modello + ", inventory=" + inventory + ", id=" + idMaterial + "categoria" +"]";
 	}
 
 

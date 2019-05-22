@@ -2,19 +2,17 @@ package it.contrader.model;
 
 public class HumanResource {
 
-	private int id;
-    private String username;
-    private String password;
+	private int idHR;
+	private int idUser;
     private String name;
     private String surname;
     private String email;
     private String phone;
     private int speciality;
 
-    public HumanResource(int id, String username, String password,String name, String surname, String email, String phone, int speciality) {
-    	this.id = id;
-        this.username = username;
-        this.password = password;
+    public HumanResource(int idHR, int idUser,  String name, String surname, String email, String phone, int speciality) {
+    	this.idHR = idHR;
+    	this.idUser=idUser;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -22,28 +20,20 @@ public class HumanResource {
         this.speciality = speciality;
     }
     
-    public int getID() {
-        return id;
+    public int getidHR() {
+        return idHR;
     }
 
-    public void setID(int id) {
-        this.id = id;
+    public void setidHR(int idHR) {
+        this.idHR = idHR;
     }
-
-    public String getUsername() {
-        return username;
+    
+    public int getidUser() {
+    	return this.idUser;
     }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    
+    public void setidUser(int idUser) {
+    	this.idUser=idUser;
     }
     
     public String getName() {
@@ -91,6 +81,6 @@ public class HumanResource {
     }
     @Override
     public String toString() {
-        return "ID: " + id + "\nNome: "+name+"\nCognome: "+surname+"\nEmail: "+email+"\nTelefono: "+phone+"\nRank: "+speciality+"\n";
+        return "ID: " + idHR + "\nNome: "+name+"\nCognome: "+surname+"\nEmail: "+email+"\nTelefono: "+phone+"\nRank: "+speciality+"\n";
     }
 }

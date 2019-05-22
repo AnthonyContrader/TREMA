@@ -30,11 +30,10 @@ public class UserDAO {
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			User user;
 			while (resultSet.next()) {
-				int userId = resultSet.getInt("user_id");
-				String username = resultSet.getString("user_user");
-				String usertype = resultSet.getString("user_type");
+				int idUser = resultSet.getInt("idUser");
+//				String username = resultSet.getString("user_user");  da fare con l'aiuto del db
 				user = new User(username, usertype);
-				user.setUserId(userId);
+			    user.setidUser(idUser);
 				usersList.add(user);
 			}
 		} catch (SQLException e) {
