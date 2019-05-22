@@ -1,9 +1,11 @@
 package it.contrader.main;
 
+import it.contrader.model.*;
+
 public class inserimento {
 	
-	persona person=new persona();
-	materiale material= new materiale();
+	HumanResource person=new HumanResource();
+	Material material= new Material();
 	
 	public void inserimento_HR() {
 		//per eseguire l'inserimento hr
