@@ -1,52 +1,51 @@
 package it.contrader.view.user;
 
-import java.util.Scanner;
-
 import it.contrader.controller.Request;
-import it.contrader.controller.UserController;
-import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
-import it.contrader.view.View;
+import it.contrader.view.AbstractView;
 
-public class UserInsertView implements View {
-
-	private UserController usersController;
+public class UserInsertView extends AbstractView{
 	private Request request;
 
+	private String username;
+	private String password;
+	private String usertype;
+	private final String mode = "INSERT";
+
 	public UserInsertView() {
-		this.usersController = new UserController();
 	}
 
 	@Override
 	public void showResults(Request request) {
-	}
-
-	@Override
-	public void showOptions() {
-		String username, usertype;
-
-		System.out.println("Inserisci i campi dell'utente:");
-		System.out.println("Digita l'username: ");
-		username = getInput();
-		System.out.println("Inserisci la tipologia utente");
-		usertype=getInput();
-		if (!username.equals("") && !usertype.equals("")) {
-			usersController.insertUser(new UserDTO(username, usertype));
+		if (request!=null) {
+			System.out.println("L'inserimento è andato a buon fine.\n");
+			MainDispatcher.getInstance().callView("User", null);
 		}
 	}
 
 	@Override
-	public String getInput() {
-		Scanner scanner = new Scanner(System.in);
-		return scanner.nextLine().trim();
+	public void showOptions() {
+		try {
+			System.out.println("Inserisci username dell'utente:");
+			username = getInput();
+			System.out.println("Inserisci password dell'utente:");
+			password = getInput();
+			System.out.println("Inserisci tipo dell'utente:");
+			usertype = getInput();
+		} catch (Exception e) {
+
+		}
 	}
 
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("mode", "menu");
-		request.put("choice", "");
+		request.put("username", username);
+		request.put("password", password);
+		request.put("usertype", usertype);
+		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("User", "doControl", request);
 	}
+
 
 }

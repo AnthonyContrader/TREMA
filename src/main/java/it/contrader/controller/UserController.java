@@ -2,14 +2,14 @@ package it.contrader.controller;
 
 import java.util.List;
 
-import it.contrader.dao.UserDAO;
+import it.contrader.dao.*;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
 import it.contrader.service.UserService;
 
 public class UserController implements Controller {
 
-	private static String sub_package = "user.";
+	private static String sub_package = "User.";
 	private UserService usersService;
 	private Request request;
 
@@ -21,8 +21,8 @@ public class UserController implements Controller {
 		return this.usersService.getAllUser();
 	}
 
-	public UserDAO readUser(int userId) {
-		return this.usersService.readUser(userId);
+	public User readUser(int idUser) {
+		return this.usersService.readUser(idUser);
 	}
 
 	public boolean insertUser(UserDAO usersDAO) {
@@ -30,7 +30,7 @@ public class UserController implements Controller {
 	}
 
 	public boolean updateUser(UserDAO usersDAO) {
-		return this.usersService.updateUser(usersDAO);
+		return this.usersService.updateUser(usersDAO);  //da fare dopo il dao
 	}
 
 	public boolean deleteUser(Integer usersId) {

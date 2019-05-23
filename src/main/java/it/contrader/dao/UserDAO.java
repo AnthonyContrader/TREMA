@@ -42,12 +42,12 @@ public class UserDAO {
 		return usersList;
 	}
 
-	public boolean insertUser(User user) {
+	public boolean insertUser(UserDAO usersDAO) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, user.getUsername());
-			preparedStatement.setString(3, user.getUsertype());
+			preparedStatement.setString(1, usersDAO.getUsername());
+			preparedStatement.setString(3, usersDAO.getUsertype());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

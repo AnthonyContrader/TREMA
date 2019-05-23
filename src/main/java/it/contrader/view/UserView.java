@@ -27,7 +27,7 @@ public class UserView implements View {
 		
 		System.out.println("\n------ Gestione utenti -------\n");
 		
-		System.out.println("ID\tUsername\tTipoUtente");
+		System.out.println("ID\tUsername\tTipoUtente");  //System.out.println("ID\tUsername\tPassword\tTipoUtente");(si deve controlare dopo)
 		System.out.print("------------------------------------------------------");
 		List<User> users = usersController.getAllUser();
 		System.out.println();
