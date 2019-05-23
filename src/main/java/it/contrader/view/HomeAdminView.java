@@ -4,46 +4,50 @@
 
 package it.contrader.view;
 
-import java.util.Scanner;
-
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 
-public class HomeAdminView implements View {
+public class HomeAdminView extends AbstractView {
 
     private String choice;
+	private Request request;
 
     public void showResults(Request request) {
-    	System.out.println("Benvenuto in WMES "+request.get("nomeUtente").toString());
+    	if(request!=null) {
+    	System.out.println("\n Benvenuto in TREMA "+request.get("username").toString() + "\n");
+    	}
     }
 
 
     public void showOptions() {
-        System.out.println("-------MENU-------\n");
-        System.out.println("Seleziona cosa vuoi gestire:");
-        System.out.println("[U]tenti [E]sci");
-        this.choice = this.getInput();
+        System.out.println("-------------MENU------------\n");
+        System.out.println(" Seleziona cosa vuoi gestire:");
+        System.out.println("[U]tenti  [D]ipendenti   [M]ateriali   [E]sci");
+        choice = this.getInput();
     }
 
-    public void submit() {
-        if (choice.equalsIgnoreCase("U")) {
-        	MainDispatcher.getInstance().callView("User", null);
-        }
-        
-        if (choice.equalsIgnoreCase("L"))
-            MainDispatcher.getInstance().callAction("Login", "doControl", null);
-        else {
-            Request request = new Request();
+    public void submit() {    
+    	request = new Request();
+        switch (choice) {
+        case "u":
+        	this.request.put("mode", "USERLIST");
+        	MainDispatcher.getInstance().callAction("User", "doControl", request);
+        	break;
+        case "d":
+        	this.request.put("mode", "HRLIST");
+        	MainDispatcher.getInstance().callAction("HumanResourse", "doControl", request);
+        	break;
+        case "m":
+        	this.request.put("mode", "MATERIALS");
+        	MainDispatcher.getInstance().callAction("Material", "doControl", request);
+        	break;
+        case "e":
+        	MainDispatcher.getInstance().callAction("Login", "doControl", null);
+        	break;
+        default:
+        	
             request.put("choice", choice);
-            MainDispatcher.getInstance().callAction("Login", "doControl", request);
+        	MainDispatcher.getInstance().callAction("Login", "doControl", request);
         }
     }
-
-
-    public String getInput() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
-
-
 }
