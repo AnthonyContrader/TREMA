@@ -7,13 +7,19 @@ import java.sql.SQLException;
 
 import it.contrader.controller.GestoreEccezioni;
 import it.contrader.main.ConnectionSingleton;
-import it.contrader.model.User;
 
 public class LoginDAO {
 
-	private final String QUERY_LOGIN = "select * from users where Username = ? and Password = ?";
+	private final String QUERY_LOGIN = "select * from user where username = ? and password = ?";
 
-	public User login(String username, String password) {
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return the type of user of null if nothing is found
+	 */
+	
+	public String login (String username, String password) {
 
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
@@ -21,17 +27,20 @@ public class LoginDAO {
 			statement.setString(1, username);
 			statement.setString(2, password);
 
-			ResultSet rs = statement.executeQuery();
-
-			if (rs.next()) {
-				return new User(rs.getInt("idUser"), rs.getString("Username"), rs.getString("Password"));
-			} else {
-				return null;
+			String userType=null;
+			ResultSet rs;
+			if(statement.executeQuery().next()) {
+				rs = statement.executeQuery();
+				rs.next();
+				userType = rs.getString("usertype");
 			}
 
-		} catch (SQLException e) {
+			return userType;
+		}
+		catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return null;
 		}
 	}
+	
 }

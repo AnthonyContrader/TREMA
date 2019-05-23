@@ -1,17 +1,17 @@
 package it.contrader.model;
 
 public class Material {
-	
+
 	private int idMaterial;
 	private int idHR;
 	private String tipo;
-		
-	public Material(int idMaterial,int idHR, String tipo){
-		this.idMaterial=idMaterial;
-		this.idHR=idHR;
-		this.tipo=tipo;
+
+	public Material(int idMaterial, int idHR, String tipo) {
+		this.idMaterial = idMaterial;
+		this.idHR = idHR;
+		this.tipo = tipo;
 	}
-	
+
 	public int getidMaterial() {
 		return idMaterial;
 	}
@@ -40,8 +40,5 @@ public class Material {
 	public String toString() {
 		return "Material [idMaterial=" + idMaterial + ", idHR=" + idHR + ", tipo=" + tipo + "]";
 	}
-
-	
-
 
 }

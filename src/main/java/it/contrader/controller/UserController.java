@@ -4,7 +4,8 @@ import java.util.List;
 
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
-import it.contrader.service.UserService;
+import it.contrader.service.*;
+
 public class UserController implements Controller {
 
 	private static String sub_package = "User.";
@@ -19,7 +20,7 @@ public class UserController implements Controller {
 	public void doControl(Request request) {
 		String mode = (String) request.get("mode");
 		String choice = (String) request.get("choice");
-
+// da provare a creare il tipo user e usarlo in tutta la classe
 		int id;
 		String username;
 		String password;
@@ -33,10 +34,11 @@ public class UserController implements Controller {
 			MainDispatcher.getInstance().callView(sub_package + "UserRead", request);
 			break;
 		case "INSERT":
-			username = request.get("username").toString();
-			password = request.get("password").toString();
-			usertype = request.get("usertype").toString();
-			userService.insertUser(username, password, usertype);  //si devono fare in userservice
+			User userI = userService.readUser(id);
+			userI.setUsername(request.get("username").toString());
+			userI.setPassword(request.get("password").toString());
+			userI.setUserType(request.get("usertype").toString());
+			userService.insertUser(userI);  //si devono fare in userservice
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "UserInsert", request);
@@ -53,14 +55,14 @@ public class UserController implements Controller {
 			username = request.get("username").toString();
 			password = request.get("password").toString();
 			usertype = request.get("usertype").toString();
-			userService.updateUser(id, username, password, usertype);
+			userService.updateUser(user);
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "UserUpdate", request);
 			break;
 		case "USERLIST":
 			//MainDispatcher.getInstance().callView("User", null);
-			List<User> users = userService.getUserList();
+			List<User> users = userService.getAllUser();
 			request.put("users", users);
 			MainDispatcher.getInstance().callView("User", request);
 			break;

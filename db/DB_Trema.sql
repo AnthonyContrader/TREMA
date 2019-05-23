@@ -18,47 +18,47 @@ CREATE DATABASE IF NOT EXISTS `trema` DEFAULT CHARACTER SET utf8mb4 ;
 USE `trema` ;
 
 -- -----------------------------------------------------
--- Table `trema`.`User`
+-- Table `trema`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `trema`.`User` (
-  `idUser` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `trema`.`user` (
+  `iduser` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
   `usertype` VARCHAR(45) NULL,
-  PRIMARY KEY (`idUser`))
+  PRIMARY KEY (`iduser`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `trema`.`HumanResource`
+-- Table `trema`.`humanresource`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `trema`.`HumanResource` (
+CREATE TABLE IF NOT EXISTS `trema`.`humanresource` (
   `idHR` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `surname` VARCHAR(45) NULL,
-  `User_idUser` INT NOT NULL,
+  `user_iduser` INT NOT NULL,
   PRIMARY KEY (`idHR`),
-  INDEX `fk_HumanResource_User1_idx` (`User_idUser` ASC) VISIBLE,
+  INDEX `fk_HumanResource_User1_idx` (`user_iduser` ASC) VISIBLE,
   CONSTRAINT `fk_HumanResource_User1`
-    FOREIGN KEY (`User_idUser`)
-    REFERENCES `trema`.`User` (`idUser`)
+    FOREIGN KEY (`user_iduser`)
+    REFERENCES `trema`.`user` (`iduser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `trema`.`Material`
+-- Table `trema`.`material`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `trema`.`Material` (
-  `idMaterial` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `trema`.`material` (
+  `idmaterial` INT(11) NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(45) NULL,
-  `HumanResource_idHR` INT(11) NOT NULL,
-  PRIMARY KEY (`idMaterial`),
-  INDEX `fk_Material_HumanResource1_idx` (`HumanResource_idHR` ASC) VISIBLE,
+  `humanresource_idHR` INT(11) NOT NULL,
+  PRIMARY KEY (`idmaterial`),
+  INDEX `fk_Material_HumanResource1_idx` (`humanresource_idHR` ASC) VISIBLE,
   CONSTRAINT `fk_Material_HumanResource1`
-    FOREIGN KEY (`HumanResource_idHR`)
-    REFERENCES `trema`.`HumanResource` (`idHR`)
+    FOREIGN KEY (`humanresource_idHR`)
+    REFERENCES `trema`.`humanresource` (`idHR`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

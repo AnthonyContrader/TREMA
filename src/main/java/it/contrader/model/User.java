@@ -6,44 +6,44 @@ public class User {
 	private String password;
 	private String userType;
 
-public User(int idUser, String username, String password, String userType) {
-		this.idUser = idUser;	
+	public User(int idUser, String username, String password, String userType) {
+		this.idUser = idUser;
 		this.username = username;
 		this.password = password;
 		this.userType = userType;
 	}
-	
-public int getIdUser() {
-	return idUser;
-}
 
-public void setIdUser(int idUser) {
-	this.idUser = idUser;
-}
+	public int getIdUser() {
+		return idUser;
+	}
 
-public String getUsername() {
-	return username;
-}
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
 
-public void setUsername(String username) {
-	this.username = username;
-}
+	public String getUsername() {
+		return username;
+	}
 
-public String getPassword() {
-	return password;
-}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-public void setPassword(String password) {
-	this.password = password;
-}
+	public String getPassword() {
+		return password;
+	}
 
-public String getUserType() {
-	return userType;
-}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-public void setUserType(String userType) {
-	this.userType = userType;
-}
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
 	@Override
 	public String toString() {
