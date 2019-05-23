@@ -18,34 +18,37 @@ public class HumanResourceDAO {
 
 	public HumanResourceDAO() {}
 
-	public List<Building> getAllBuilding() {
-		List<Building> buildings = new ArrayList<>();
+	public List<HumanResource> getAllHR() {
+		List<HumanResource> hrs = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
+		
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
-			Building building;
+			HumanResource hr;
+			
 			while (resultSet.next()) {
-				int id = resultSet.getInt("id");
-				String indirizzo = resultSet.getString("indirizzo");
-				int userid = resultSet.getInt("user");
-				building = new Building(indirizzo, userid);
-				building.setBuildingId(id);
-
-				buildings.add(building);
+				int idhr = resultSet.getInt("idHR");
+				String name = resultSet.getString("name");
+				String surname = resultSet.getString("surname");
+				int iduser = resultSet.getInt("iduser");
+				hr = new HumanResource(name, surname, iduser);
+				hr.setIdHR(idhr);
+				
+				hrs.add(hr);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return buildings;
+		return hrs;
 	}
 
-	public boolean insertBuilding(Building building) {
+	public boolean insertHR(HumanResource hr) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, building.getIndirizzo());
-			preparedStatement.setInt(2, building.getUserid());
+			preparedStatement.setString(1, hr.getName());
+			preparedStatement.setInt(2, hr.getUserid());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -55,54 +58,57 @@ public class HumanResourceDAO {
 
 	}
 
-	public Building readBuilding(int id) {
+	public HumanResource readHR(int idhr) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, idhr);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			int userid;
-			String indirizzo;
+			
+			int userid = resultSet.getInt("user");
+			String name = resultSet.getString("name");
+			String surname = resultSet.getString("surname");
 
-			indirizzo = resultSet.getString("indirizzo");
-			userid = resultSet.getInt("user");
-			Building building = new Building(indirizzo, userid);
-			building.setBuildingId(resultSet.getInt("id"));
+			HumanResource hr = new HumanResource(name, surname, userid);
+			hr.setIdHR(resultSet.getInt("idHR"));
 
-			return building;
+			return hr;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return null;
 		}
-
 	}
 
-	public boolean updateBuilding(Building buildingToUpdate) {
+	public boolean updateBuilding(HumanResource hrToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present
-		if (buildingToUpdate.getBuildingId() == 0)
+		if (hrToUpdate.getIdHR() == 0)
 			return false;
 
-		Building userRead = readBuilding(buildingToUpdate.getBuildingId());
-		if (!userRead.equals(buildingToUpdate)) {
+		HumanResource userRead = readHR(hrToUpdate.getIdHR());
+		if (!userRead.equals(hrToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				if (buildingToUpdate.getIndirizzo() == null || buildingToUpdate.getIndirizzo().equals("")) {
-					buildingToUpdate.setIndirizzo(userRead.getIndirizzo());
+				if (hrToUpdate.getName() == null || hrToUpdate.getName().equals("")) {
+					hrToUpdate.setName(userRead.getName());
 				}
-
-
-				if (buildingToUpdate.getUserid() == 0 ) {
-					buildingToUpdate.setUserid(userRead.getUserid());
+				
+				if (hrToUpdate.getSurname() == null || hrToUpdate.getSurname().equals("")) {
+					hrToUpdate.setName(userRead.getSurname());
+				}
+				
+				if (hrToUpdate.getUserid() == 0 ) {
+					hrToUpdate.setUserid(userRead.getUserid());
 				}
 
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setString(1, buildingToUpdate.getIndirizzo());
-				preparedStatement.setInt(2, buildingToUpdate.getUserid());
-				preparedStatement.setInt(3, buildingToUpdate.getBuildingId());
+				preparedStatement.setString(1, hrToUpdate.getName());
+				preparedStatement.setString(2, hrToUpdate.getSurname());
+				preparedStatement.setInt(3, hrToUpdate.getUserid());
+				preparedStatement.setInt(4, hrToUpdate.getIdHR());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
@@ -118,12 +124,13 @@ public class HumanResourceDAO {
 
 	}
 
-	public boolean deleteBuilding(int id) {
+	public boolean deleteHR(int idhr) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, idhr);
 			int n = preparedStatement.executeUpdate();
+			
 			if (n != 0)
 				return true;
 		} catch (SQLException e) {
