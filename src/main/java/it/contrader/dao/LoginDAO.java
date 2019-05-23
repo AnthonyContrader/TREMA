@@ -7,37 +7,31 @@ import java.sql.SQLException;
 
 import it.contrader.controller.GestoreEccezioni;
 import it.contrader.main.ConnectionSingleton;
+import it.contrader.model.User;
 
 public class LoginDAO {
 
-    private final String QUERY_LOGIN = "select * from users where user_user = ?";
-    
-    /**
-     * 
-     * @param username
-     * @param password
-     * @return the type of user of null if nothing is found
-     */
-    public String login (String username, String password) {
+	private final String QUERY_LOGIN = "select * from users where Username = ? and Password = ?";
 
-        Connection connection = ConnectionSingleton.getInstance();
-        try {
-            PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
-            statement.setString(1, username);
-            
-            String userType=null;
-            ResultSet rs;
-            if(statement.executeQuery().next()) {
-            	rs = statement.executeQuery();
-            	rs.next();
-            	userType = rs.getString("user_type");
-            }
-            
-            return userType;
-        }
-        catch (SQLException e) {
-            GestoreEccezioni.getInstance().gestisciEccezione(e);
-            return null;
-        }
-    }
+	public User login(String username, String password) {
+
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
+			statement.setString(1, username);
+			statement.setString(2, password);
+
+			ResultSet rs = statement.executeQuery();
+
+			if (rs.next()) {
+				return new User(rs.getInt("idUser"), rs.getString("Username"), rs.getString("Password"));
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return null;
+		}
+	}
 }

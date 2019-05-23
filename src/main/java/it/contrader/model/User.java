@@ -1,42 +1,43 @@
 package it.contrader.model;
 
 public class User {
-	private int idUser;
+	private int iduser;
 	private String username;
-	private String usertype;
+	private String password;
 
-public User(String username, String usertype) {
+public User(int iduser, String username, String password) {
+		this.iduser = iduser;	
 		this.username = username;
-		this.usertype = usertype;
+		this.password = password;
 	}
 
 	public int getidUser() {
-		return idUser;
+		return iduser;
 	}
 
 	public void setidUser(int idUser) {
-		this.idUser = idUser;
+		this.iduser = idUser;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
+	
 	public String getUsername() {
 		return username;
 	}
-
-	public String getUsertype() {
-		return usertype;
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
+	
+	public String getPassword() {
+		return username;
 	}
-
+	
+	public void getPassword(String password) {
+		this.password = password;
+	}
+	
 	@Override
 	public String toString() {
-		return this.getidUser() + "\t" + this.getUsername() + "\t" + this.getUsertype();
+		return this.getidUser() + "\t" + this.getUsername() + "\t" + this.getPassword();
 	}
 
 	public boolean equals(User userCompare) {
@@ -44,7 +45,7 @@ public User(String username, String usertype) {
 			return false;
 		}
 
-		if (!this.getUsertype().equals(userCompare.getUsertype())) {
+		if (!this.getPassword().equals(userCompare.getPassword())) {
 			return false;
 		}
 
