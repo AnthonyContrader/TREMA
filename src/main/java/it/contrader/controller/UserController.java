@@ -25,12 +25,12 @@ public class UserController implements Controller {
 		return this.usersService.readUser(userId);
 	}
 
-	public boolean insertUser(UserDAO usersDTO) {
-		return this.usersService.insertUser(usersDTO);
+	public boolean insertUser(UserDAO usersDAO) {
+		return this.usersService.insertUser(usersDAO);
 	}
 
-	public boolean updateUser(UserDAO usersDTO) {
-		return this.usersService.updateUser(usersDTO);
+	public boolean updateUser(UserDAO usersDAO) {
+		return this.usersService.updateUser(usersDAO);
 	}
 
 	public boolean deleteUser(Integer usersId) {
