@@ -13,7 +13,7 @@ public class HumanResourceDAO {
 	private final String QUERY_ALL = "SELECT * FROM humanresource";
 	private final String QUERY_INSERT = "INSERT INTO humanresource (name, surname, iduser) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM humanresource WHERE idHR=?";
-	private final String QUERY_UPDATE = "UPDATE humanresource SET nome=?, surname=?, user=? WHERE idHR=?";
+	private final String QUERY_UPDATE = "UPDATE humanresource SET name=?, surname=?, user=? WHERE idHR=?";
 	private final String QUERY_DELETE = "DELETE FROM humanresource WHERE id=?";
 
 	public HumanResourceDAO() {}
