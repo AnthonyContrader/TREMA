@@ -1,29 +1,26 @@
 package it.contrader.model;
 
+import java.util.Date;
+
 public class User {
-	private int idUser;
-	private String username;
-	private String password;
+	protected int iduser;
+	protected String username;
+	protected String password;
+	protected String usertype;
 	
-	public User(String username, String password) {
-		this.username=username;
-		this.password=password;
-	}
+	public User() {}
 	
-	public int getidUser() {
-		return idUser;
-	}
-
-	public void idUser(int idUser) {
-		this.idUser = idUser;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUser(String username) {
+	public User (String username, String password, String usertype) {
 		this.username = username;
+		this.password = password;
+		this.usertype = usertype;
+	}
+
+	public int getUserId() {
+		return iduser;
+	}
+	public void setUserId(int userId) {
+		this.iduser = userId;
 	}
 
 	public String getPassword() {
@@ -33,24 +30,54 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+	
+	public String getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
 	
 	@Override
 	public String toString() {
-		return this.getidUser()+"\t"+this.getUsername()+"\t"+
-				this.getPassword();
+		return  iduser + "\t"  + username +"\t\t" +   password + "\t\t" + usertype;
 	}
-	
-	public boolean equals(User userCompare)  {
-		if (!this.getUsername().equals(userCompare.getUsername())) {
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
 		
-		if (!this.getPassword().equals(userCompare.getPassword())) {
+		User other = (User) obj;
+		
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
 			return false;
-		}
+		
+		if (iduser != other.iduser)
+			return false;
+		
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
 		
 		return true;
-				
 	}
 
 }

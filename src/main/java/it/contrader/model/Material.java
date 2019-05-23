@@ -1,65 +1,88 @@
 package it.contrader.model;
 
+import java.util.*;
+
 public class Material {
 	
-	private int idMaterial;
-	private String name;
-	private String modello;
-	private String category;
-	private int inventory;
-		
-	public Material(int idMaterial,String name,String modello,int inventory, String category){
-		this.idMaterial=idMaterial;
-		this.name=name;
-		this.modello=modello;
-		this.inventory=inventory;
-		this.category=category;
+	private int idmaterial;
+	private String descrizione;
+	private List<Item> items;
+	private int buildingid;
+
+	public Material() {}
+	
+	public Material(String descrizione, int buildingid) {
+		super ();
+		this.descrizione = descrizione;
+		this.buildingid = buildingid;
 	}
 	
 	public int getIdMaterial() {
-		return idMaterial;
+		return idmaterial;
 	}
 
-	public void setIdMaterial(int idMaterial) {
-		this.idMaterial = idMaterial;
+	public void setId(int idmaterial) {
+		this.idmaterial = idmaterial;
 	}
 
-	public String getName() {
-		return name;
+	public String getDescrizione() {
+		return descrizione;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
-	public String getModello() {
-		return modello;
+	public List <Item> getItems() {
+		return items;
 	}
 
-	public void setModello(String modello) {
-		this.modello = modello;
-	}
-
-	public int getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(int inventory) {
-		this.inventory = inventory;
+	public void setItems(List <Item> items) {
+		this.items = items;
 	}
 	
-	public void setCategory(String category) {
-		this.category=category;
-	}
-	
-	public String getCategory() {
-		return this.category;
-	}
-
 	@Override
 	public String toString() {
-		return "Material [nome=" + name + ", modello=" + modello + ", inventory=" + inventory + ", id=" + idMaterial + "categoria" +"]";
+		return   idmaterial + "\t\t" + descrizione + "\t\t\t" + buildingid ;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		
+		if (obj == null)
+			return false;
+		
+		if (getClass() != obj.getClass())
+			return false;
+		
+		Material other = (Material) obj;
+		
+		if (descrizione == null) {
+			if (other.descrizione != null)
+				return false;
+		} else if (!descrizione.equals(other.descrizione))
+			return false;
+		
+		if (idmaterial != other.idmaterial)
+			return false;
+		
+		if (items == null) {
+			if (other.items != null)
+				return false;
+		} else if (!items.equals(other.items))
+			return false;
+		
+		return true;
 	}
 
+	public int getBuildingid() {
+		return buildingid;
+	}
 
+	public void setBuildingid(int buildingid) {
+		this.buildingid = buildingid;
+	}
+	
 }
