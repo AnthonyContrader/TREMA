@@ -6,9 +6,11 @@ import it.contrader.model.*;
 import it.contrader.view.AbstractView;
 
 public class MaterialReadView extends AbstractView{
+	
 	private int idMaterial;
 	private Request request;
 	private final String mode="READ";
+	
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
@@ -27,7 +29,10 @@ public class MaterialReadView extends AbstractView{
 	}
 	@Override
 	public void submit() {
-		// TODO Auto-generated method stub
+		request = new Request();
+		request.put("idMaterial", idMaterial);
+		request.put("mode", mode);
+		MainDispatcher.getInstance().callAction("Material", "doControl", request);
 		
 	}
 }
