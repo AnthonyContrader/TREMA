@@ -3,17 +3,13 @@ package it.contrader.model;
 public class Material {
 	
 	private int idMaterial;
-	private String name;
-	private String modello;
-	private String category;
-	private int inventory;
+	private int idHR;
+	private String tipo;
 		
-	public Material(int idMaterial,String name,String modello,int inventory, String category){
+	public Material(int idMaterial,int idHR, String tipo){
 		this.idMaterial=idMaterial;
-		this.name=name;
-		this.modello=modello;
-		this.inventory=inventory;
-		this.category=category;
+		this.idHR=idHR;
+		this.tipo=tipo;
 	}
 	
 	public int getidMaterial() {
@@ -24,42 +20,28 @@ public class Material {
 		this.idMaterial = idMaterial;
 	}
 
-	public String getName() {
-		return name;
+	public int getIdHR() {
+		return idHR;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setIdHR(int idHR) {
+		this.idHR = idHR;
 	}
 
-	public String getModello() {
-		return modello;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setModello(String modello) {
-		this.modello = modello;
-	}
-
-	public int getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(int inventory) {
-		this.inventory = inventory;
-	}
-	
-	public void setCategory(String category) {
-		this.category=category;
-	}
-	
-	public String getCategory() {
-		return this.category;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
 	public String toString() {
-		return "Material [nome=" + name + ", modello=" + modello + ", inventory=" + inventory + ", id=" + idMaterial + "categoria" +"]";
+		return "Material [idMaterial=" + idMaterial + ", idHR=" + idHR + ", tipo=" + tipo + "]";
 	}
+
+	
 
 
 }

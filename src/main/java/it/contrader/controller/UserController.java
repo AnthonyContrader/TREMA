@@ -8,44 +8,65 @@ import it.contrader.service.UserService;
 public class UserController implements Controller {
 
 	private static String sub_package = "User.";
-	private UserService usersService;
+	private UserService userService;
 
 	public UserController() {
-		this.usersService = new UserService();
+		this.userService = new UserService();
 	}
 
-	public List<User> getAllUser() {
-		return this.usersService.getAllUser();
-	}
- /*
-	public User readUser(int idUser) {
-		return this.usersService.readUser(idUser);
-	}
 
-	public boolean insertUser(UserDAO usersDAO) {
-		return this.usersService.insertUser(usersDAO);
-	}
-
-	public boolean updateUser(UserDAO usersDAO) {
-		return this.usersService.updateUser(usersDAO);  //da fare dopo il dao
-	}
-
-	public boolean deleteUser(Integer usersId) {
-		return this.usersService.deleteUser(usersId);
-	}
-*/
 	@Override
 	public void doControl(Request request) {
 		String mode = (String) request.get("mode");
 		String choice = (String) request.get("choice");
-		
+
 		int id;
 		String username;
 		String password;
-		
-		if (mode == "menu") {
-			MainDispatcher.getInstance().callView("User", null);
-		} else {
+		String usertype;
+
+		switch (mode) {
+		case "READ":
+			id = Integer.parseInt(request.get("id").toString());
+			User user = userService.readUser(id);
+			request.put("user", user);
+			MainDispatcher.getInstance().callView(sub_package + "UserRead", request);
+			break;
+		case "INSERT":
+			username = request.get("username").toString();
+			password = request.get("password").toString();
+			usertype = request.get("usertype").toString();
+			userService.insertUser(username, password, usertype);  //si devono fare in userservice
+			request = new Request();
+			request.put("mode", "mode");
+			MainDispatcher.getInstance().callView(sub_package + "UserInsert", request);
+			break;
+		case "DELETE":
+			id = Integer.parseInt(request.get("id").toString());
+			userService.deleteUser(id);
+			request = new Request();
+			request.put("mode", "mode");
+			MainDispatcher.getInstance().callView(sub_package + "UserDelete", request);
+			break;
+		case "UPDATE":
+			id = Integer.parseInt(request.get("id").toString());
+			username = request.get("username").toString();
+			password = request.get("password").toString();
+			usertype = request.get("usertype").toString();
+			userService.updateUser(id, username, password, usertype);
+			request = new Request();
+			request.put("mode", "mode");
+			MainDispatcher.getInstance().callView(sub_package + "UserUpdate", request);
+			break;
+		case "USERLIST":
+			//MainDispatcher.getInstance().callView("User", null);
+			List<User> users = userService.getUserList();
+			request.put("users", users);
+			MainDispatcher.getInstance().callView("User", request);
+			break;
+
+		case "GETCHOICE":
+
 			switch (choice.toUpperCase()) {
 			case "L":
 				MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
@@ -62,10 +83,15 @@ public class UserController implements Controller {
 			case "E":
 				MainDispatcher.getInstance().callView("Login", null);
 				break;
+
+			case "B":
+				MainDispatcher.getInstance().callView("HomeAdmin", null);
+				break;
 			default:
 				MainDispatcher.getInstance().callView("Login", null);
-				break;
 			}
+		default:
+			MainDispatcher.getInstance().callView("Login", null);
 		}
 	}
 

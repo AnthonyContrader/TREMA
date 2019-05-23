@@ -1,43 +1,53 @@
 package it.contrader.model;
 
 public class User {
-	private int iduser;
+	private int idUser;
 	private String username;
 	private String password;
+	private String userType;
 
-public User(int iduser, String username, String password) {
-		this.iduser = iduser;	
+public User(int idUser, String username, String password, String userType) {
+		this.idUser = idUser;	
 		this.username = username;
 		this.password = password;
+		this.userType = userType;
 	}
+	
+public int getIdUser() {
+	return idUser;
+}
 
-	public int getidUser() {
-		return iduser;
-	}
+public void setIdUser(int idUser) {
+	this.idUser = idUser;
+}
 
-	public void setidUser(int idUser) {
-		this.iduser = idUser;
-	}
-	
-	public String getUsername() {
-		return username;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getPassword() {
-		return username;
-	}
-	
-	public void getPassword(String password) {
-		this.password = password;
-	}
-	
+public String getUsername() {
+	return username;
+}
+
+public void setUsername(String username) {
+	this.username = username;
+}
+
+public String getPassword() {
+	return password;
+}
+
+public void setPassword(String password) {
+	this.password = password;
+}
+
+public String getUserType() {
+	return userType;
+}
+
+public void setUserType(String userType) {
+	this.userType = userType;
+}
+
 	@Override
 	public String toString() {
-		return this.getidUser() + "\t" + this.getUsername() + "\t" + this.getPassword();
+		return this.getIdUser() + "\t" + this.getUsername() + "\t" + this.getPassword();
 	}
 
 	public boolean equals(User userCompare) {
