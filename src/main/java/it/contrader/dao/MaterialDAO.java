@@ -35,7 +35,7 @@ public class MaterialDAO {
 				int idhr = resultSet.getInt("idHR");
 				
 				material = new Material(descrizione, idhr);
-				material.setId(idmaterial);
+				material.setIdMaterial(idmaterial);
 				materials.add(material);
 			}
 		} catch (SQLException e) {
@@ -50,8 +50,8 @@ public class MaterialDAO {
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, material.getDescrizione());
-			preparedStatement.setInt(2, material.getBuildingid());
+			preparedStatement.setString(1, material.getDescription());
+			preparedStatement.setInt(2, material.getIdHR());
 			preparedStatement.execute();
 
 			return true;
@@ -77,7 +77,7 @@ public class MaterialDAO {
 			idhr = resultSet.getInt("idHR");
 
 			Material material = new Material (descrizione,idhr);
-			material.setId(resultSet.getInt("idmaterial"));
+			material.setIdMaterial(resultSet.getInt("idmaterial"));
 
 			return material;
 		} 
@@ -92,8 +92,8 @@ public class MaterialDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-			preparedStatement.setString(1, materialToUpdate.getDescrizione());
-			preparedStatement.setInt(2, materialToUpdate.getBuildingid());
+			preparedStatement.setString(1, materialToUpdate.getDescription());
+			preparedStatement.setInt(2, materialToUpdate.getIdHR());
 			preparedStatement.setInt(3, materialToUpdate.getIdMaterial());
 			preparedStatement.executeUpdate();
 		} 
