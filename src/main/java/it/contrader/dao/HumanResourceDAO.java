@@ -48,7 +48,8 @@ public class HumanResourceDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, hr.getName());
-			preparedStatement.setInt(2, hr.getUserid());
+			preparedStatement.setString(2, hr.getSurname());
+			preparedStatement.setInt(3, hr.getUserid());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
