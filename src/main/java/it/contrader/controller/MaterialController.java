@@ -39,69 +39,66 @@ public class MaterialController implements Controller{
 		case "READ":
 			hrid = Integer.parseInt(request.get("idHR").toString());
 			materialid =Integer.parseInt(request.get("materialid").toString());
-			Ambiente ambiente = mService.readAmbiente(hrid,materialid);
+			Material ambiente = mService.readMaterial(hrid,materialid);
 			request = new Request();
 			request.put("ambiente", ambiente);
-			MainDispatcher.getInstance().callView(sub_package + "AmbienteRead", request);
+			MainDispatcher.getInstance().callView(sub_package + "MaterialRead", request);
 
 			break;
 		case "INSERT":
 			hrid = Integer.parseInt(request.get("buildingid").toString());
 			tipo = request.get("tipo").toString();
-			Ambiente ambienteToInsert = new Ambiente(tipo,hrid);
-			mService.insertAmbiente(ambienteToInsert);
+			Material materialToInsert = new Material(materialid, hrid, tipo);
+			mService.insertMaterial(materialToInsert);
 			request = new Request();
 			request.put("mode", "ok");
-			MainDispatcher.getInstance().callView(sub_package + "AmbienteInsert", request);
+			MainDispatcher.getInstance().callView(sub_package + "MaterialInsert", request);
 
 			break;
 		case "DELETE":
 			materialid = Integer.parseInt(request.get("materialid").toString());
-			mService.deleteAmbiente(materialid);
+			mService.deleteMaterial(materialid);
 			request = new Request();
 			request.put("mode", "ok");
-			MainDispatcher.getInstance().callView(sub_package + "AmbienteDelete", request);
+			MainDispatcher.getInstance().callView(sub_package + "materialDelete", request);
 			break;
 
 		case "UPDATE":
-			hrid = Integer.parseInt(request.get("buildingid").toString());
+			hrid = Integer.parseInt(request.get("hrid").toString());
 			id = Integer.parseInt(request.get("id").toString());
 			tipo = (String) request.get("tipo");
-			Ambiente ambienteToUpdate = new Ambiente(tipo,hrid);
-			ambienteToUpdate.setId(id);
-			mService.updateAmbiente(ambienteToUpdate);
+			Material materialToUpdate = new Material(materialid, hrid, tipo);
+			materialToUpdate.setidMaterial(id);
+			mService.updateMaterial(materialToUpdate);
 			request = new Request();
 			request.put("mode", "ok");
-			MainDispatcher.getInstance().callView(sub_package +  "AmbienteUpdate", request);
+			MainDispatcher.getInstance().callView(sub_package +  "MaterialUpdate", request);
 			break;
 
-		case "LISTAMBIENTE":
-			hrid=Integer.parseInt(request.get("buildingid").toString());
-			List<Ambiente> listambiente =  mService.showAllAmbiente(hrid);
-			request.put("listambiente", listambiente);
+		case "Material":
+			hrid=Integer.parseInt(request.get("materialid").toString());
+			List<Material> listamaterial =  mService.showAllMaterial(hrid);
+			request.put("listamaterial", listamaterial);
 			request.put("mode", "ok");
-			MainDispatcher.getInstance().callView("Ambiente", request);
+			MainDispatcher.getInstance().callView("Material", request);
 			break;
 
 		case "GETCHOICE":
 			switch (choice.toUpperCase()) {
 			case "L":
-				MainDispatcher.getInstance().callView(sub_package + "AmbienteRead", null);
+				MainDispatcher.getInstance().callView(sub_package + "MaterialRead", null);
 				break;
 			case "I":
-				MainDispatcher.getInstance().callView(sub_package + "AmbienteInsert", null);
+				MainDispatcher.getInstance().callView(sub_package + "MaterialInsert", null);
 				break;
 			case "M":
-				MainDispatcher.getInstance().callView(sub_package + "AmbienteUpdate", null);
+				MainDispatcher.getInstance().callView(sub_package + "MaterialUpdate", null);
 				break;
 			case "C":
-				MainDispatcher.getInstance().callView(sub_package + "AmbienteDelete", null);
+				MainDispatcher.getInstance().callView(sub_package + "MaterialDelete", null);
 				break;
 			case "E":
 				MainDispatcher.getInstance().callView("Login", null);
-				break;
-			case "B":
-				MainDispatcher.getInstance().callView("HomeOperatore", null);
 				break;
 			default:
 				MainDispatcher.getInstance().callView("Login", null);
