@@ -24,13 +24,21 @@ public class UserService {
 		return this.userDAO.readUser(userId);
 	}
 	
-	public boolean updateUser(User user) {
-		return this.userDAO.updateUser(user);
+	public boolean deleteUser(int userId) {
+		return userDAO.deleteUser(userId);
 	}
 	
-	public boolean deleteUser(int userId) {
-		return this.userDAO.deleteUser(userId);
+	public boolean insertUser(int id, String username, String password, String usertype) {
+		User newUser = new User(id, username, password, usertype);
+		return userDAO.insertUser(newUser);
 	}
+
+	public boolean updateUser(int id, String username, String password, String usertype) {
+		User newUser = new User(id, username, password, usertype);
+		newUser.setIdUser(id);
+		return userDAO.updateUser(newUser);
+	}
+
 	
 	
 }
