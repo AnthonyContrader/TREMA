@@ -23,9 +23,9 @@ public class MaterialReadView extends AbstractView{
 
 	@Override
 	public void showOptions() {
-		System.out.println("Inserisci l'ID del building:");
+		System.out.println("Inserisci l'ID del materiale:");
 		idHR = Integer.parseInt(getInput());
-		System.out.println("Inserisci l'ID dell'ambiente");
+		System.out.println("Inserisci l'ID del dipendente");
 		idmaterial = Integer.parseInt(getInput());
 
 	}
@@ -36,7 +36,7 @@ public class MaterialReadView extends AbstractView{
 		request.put("idHR", idHR);
 		request.put("idmaterial", idmaterial);
 		request.put("mode", "READ");
-		MainDispatcher.getInstance().callAction("Matrial", "doControl", request);
+		MainDispatcher.getInstance().callAction("Material", "doControl", request);
 
 	}
 	

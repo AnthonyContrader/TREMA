@@ -39,9 +39,9 @@ public class MaterialController implements Controller{
 		case "READ":
 			hrid = Integer.parseInt(request.get("idHR").toString());
 			materialid =Integer.parseInt(request.get("materialid").toString());
-			Material ambiente = mService.readMaterial(hrid,materialid);
+			Material material = mService.readMaterial(hrid,materialid);
 			request = new Request();
-			request.put("ambiente", ambiente);
+			request.put("material", material);
 			MainDispatcher.getInstance().callView(sub_package + "MaterialRead", request);
 
 			break;

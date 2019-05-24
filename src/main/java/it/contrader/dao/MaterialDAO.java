@@ -30,10 +30,9 @@ public class MaterialDAO {
 			
 			while (resultSet.next()) {
 				int idmaterial = resultSet.getInt("idmaterial");
-				String descrizione = resultSet.getString("tipo");
+				String tipo = resultSet.getString("tipo");
 				int idhr = resultSet.getInt("idHR");
-				
-				material = new Material(idmaterial, idhr, descrizione);
+				material = new Material(idmaterial, idhr, tipo);
 				material.setidMaterial(idmaterial);
 				materials.add(material);
 			}
@@ -72,10 +71,10 @@ public class MaterialDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 
-			String descrizione= resultSet.getString("tipo");
+			String tipo= resultSet.getString("tipo");
 			idhr = resultSet.getInt("idHR");
 
-			Material material = new Material(idmaterial, idhr, descrizione);
+			Material material = new Material(idmaterial, idhr, tipo);
 			material.setidMaterial(resultSet.getInt("idmaterial"));
 
 			return material;
