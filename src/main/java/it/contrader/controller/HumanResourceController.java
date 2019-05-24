@@ -5,12 +5,12 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.model.*;
 import it.contrader.service.*;
 
-public class HRController implements Controller {
+public class HumanResourceController implements Controller {
 	private static String sub_package = "humanresource.";
 
 	private HRService HrService;//
 
-	public HRController() {
+	public HumanResourceController() {
 		this.HrService = new HRService();
 	}
 

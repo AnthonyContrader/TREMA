@@ -39,14 +39,15 @@ public class MaterialController implements Controller{
 		case "READ":
 			hrid = Integer.parseInt(request.get("idHR").toString());
 			materialid =Integer.parseInt(request.get("materialid").toString());
-			Material material = mService.readMaterial(hrid,materialid);
+			tipo=request.get("tipo").toString();
+			Material material = mService.readMaterial(hrid,materialid,tipo);
 			request = new Request();
 			request.put("material", material);
 			MainDispatcher.getInstance().callView(sub_package + "MaterialRead", request);
 
 			break;
 		case "INSERT":
-			hrid = Integer.parseInt(request.get("buildingid").toString());
+			hrid = Integer.parseInt(request.get("materialid").toString());
 			tipo = request.get("tipo").toString();
 			Material materialToInsert = new Material(materialid, hrid, tipo);
 			mService.insertMaterial(materialToInsert);
@@ -75,7 +76,7 @@ public class MaterialController implements Controller{
 			MainDispatcher.getInstance().callView(sub_package +  "MaterialUpdate", request);
 			break;
 
-		case "Material":
+		case "MATERIALLIST":
 			hrid=Integer.parseInt(request.get("materialid").toString());
 			List<Material> listamaterial =  mService.showAllMaterial(hrid);
 			request.put("listamaterial", listamaterial);

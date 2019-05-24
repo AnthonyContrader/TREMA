@@ -14,7 +14,7 @@ public class MaterialReadView extends AbstractView{
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
-			Material material = (Material) request.get("material");
+			Material material = (Material) request.get("Material");
 			System.out.println(material);
 			MainDispatcher.getInstance().callView("Material", null);
 		}

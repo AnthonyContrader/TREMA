@@ -47,7 +47,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return this.getIdUser() + "\t" + this.getUsername() + "\t" + this.getPassword();
+		return this.getIdUser() + "\t" + this.getUsername() + "\t\t" + this.getPassword() + "\t\t" + this.getUserType();
 	}
 
 	public boolean equals(User userCompare) {

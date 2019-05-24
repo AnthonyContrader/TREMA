@@ -38,7 +38,16 @@ public class Material {
 
 	@Override
 	public String toString() {
-		return "Material [idMaterial=" + idMaterial + ", idHR=" + idHR + ", tipo=" + tipo + "]";
+		return this.getidMaterial() + "\t" + this.getIdHR() + "\t" + this.getTipo();
+	}
+
+	public boolean equals(Material materialCompare) {
+		if (!this.getTipo().equals(materialCompare.getTipo())) {
+			return false;
+		}
+
+		return true;
+
 	}
 
 }

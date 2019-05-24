@@ -11,7 +11,7 @@ import it.contrader.model.*;
 public class MaterialDAO {
 	
 	private final String QUERY_ALL = "SELECT * FROM material WHERE idHR=?";
-	private final String QUERY_INSERT = "INSERT INTO material (tipo, building) VALUES (?,?)";
+	private final String QUERY_INSERT = "INSERT INTO material (tipo, material) VALUES (?,?)";
 	private final String QUERY_READ = "SELECT * FROM material WHERE idHR=? AND  idmaterial=?";
 	private final String QUERY_UPDATE = "UPDATE material SET tipo=?, idHR=? WHERE idmaterial=?";
 	private final String QUERY_DELETE = "DELETE FROM material WHERE idmaterial=?";
@@ -61,17 +61,18 @@ public class MaterialDAO {
 
 	}
 
-	public Material readMaterial(int idhr, int idmaterial) {
+	public Material readMaterial(int idhr, int idmaterial, String type) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
 			preparedStatement.setInt(1,idhr);
 			preparedStatement.setInt(2,idmaterial);
+			preparedStatement.setString(3,type);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 
-			String tipo= resultSet.getString("tipo");
+			String tipo= resultSet.getString("type");
 			idhr = resultSet.getInt("idHR");
 
 			Material material = new Material(idmaterial, idhr, tipo);

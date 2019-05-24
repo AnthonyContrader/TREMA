@@ -15,8 +15,8 @@ public class MaterialService {
 		return this.materialDAO.showAllMaterial(id);
 	}
 	
-	public Material readMaterial(int idHR, int id) {
-		return this.materialDAO.readMaterial(idHR, id);
+	public Material readMaterial(int idHR, int id, String tipo) {
+		return this.materialDAO.readMaterial(idHR, id, tipo);
 	}
 	
 	public boolean insertMaterial(Material materialid) {

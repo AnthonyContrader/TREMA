@@ -20,8 +20,8 @@ public class MaterialView extends AbstractView {
 			System.out.print("-----------------------------------------------------------------------------\n");
 
 			List<Material> materials = (List<Material>) request.get("material");
-			System.out.println();
-			
+			System.out.println("");
+
 			for (Material a : materials) {
 				System.out.println(a);
 				System.out.println();
