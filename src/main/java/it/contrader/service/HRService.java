@@ -2,7 +2,6 @@ package it.contrader.service;
 
 import java.util.List;
 
-import it.contrader.dao.HumanResourceDAO;
 import it.contrader.model.HumanResource;
 
 public class HRService {
@@ -20,12 +19,12 @@ public class HRService {
 		return this.hrserviceDAO.readHR(id);
 	}
 	
-	public boolean insertHR(HumanResource hr) {
-		return this.hrserviceDAO.insertHR(hr);
+	public boolean insertHR(HumanResource hrService) {
+		return this.hrserviceDAO.insertHR(hrService);
 	}
 	
-	public boolean deleteHR(HumanResource hr) {
-		return this.hrserviceDAO.deleteHR(hr);
+	public boolean deleteHR(int id) {
+		return this.hrserviceDAO.deleteHR(id);
 	}
 	
 	public boolean updateHR(HumanResource hr) {

@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import it.contrader.dto.UserDTO;
+import it.contrader.dao.*;
 import it.contrader.main.TestUtils;
 import it.contrader.model.User;
 import it.contrader.service.UserService;
@@ -14,13 +14,13 @@ import org.junit.Assert;
 
 public class UserServiceTest {
 
-	private UserDTO userTest;
+	private UserDAO userTest;
 	private UserService userService;
 	private int userIdTest;
 	
 	@Before
 	public void setUp() throws Exception {
-		userTest = new UserDTO("AdminTest", "admin");
+		userTest = new UserDAO();
 		userService = new UserService();
 		userService.insertUser(userTest);
 		userIdTest = TestUtils.getLastInsertedID("user");
@@ -34,7 +34,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testInsertUser() {
-		UserDTO userInsertTest = new UserDTO("insertTest","admin");
+		UserDAO userInsertTest = new UserDAO();
 		
 		//userService.insertUser(userInsertTest);
 		boolean userInsertedCheck = userService.insertUser(userInsertTest);
@@ -47,7 +47,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testReadtUser() {
-		UserDTO DBuser=userService.readUser(userIdTest);
+		UserDAO DBuser=userService.readUser(userIdTest);
 		Assert.assertTrue(DBuser.equals(userTest));
 	}
 

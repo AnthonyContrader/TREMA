@@ -5,9 +5,11 @@ import java.util.List;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
 import it.contrader.service.*;
+import it.contrader.controller.Controller;
+import it.contrader.controller.Request;
+import it.contrader.service.UserService;
 
 public class UserController implements Controller {
-
 
 	private static String sub_package = "user.";
 	private UserService usersService;
