@@ -53,13 +53,16 @@ public class UserController implements Controller {
 			MainDispatcher.getInstance().callView(sub_package + "UserDelete", request);
 			break;
 		case "UPDATE":
-			id = Integer.parseInt(request.get("id").toString());
+			
+			id = Integer.parseInt(request.get("iduser").toString());
+			
 			username = request.get("username").toString();
 			password = request.get("password").toString();
 			usertype = request.get("usertype").toString();
 			userService.updateUser(id, username, password, usertype);
 			request = new Request();
 			request.put("mode", "mode");
+			
 			MainDispatcher.getInstance().callView(sub_package + "UserUpdate", request);
 			break;
 		case "USERLIST":
