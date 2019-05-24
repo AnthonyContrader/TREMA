@@ -9,14 +9,13 @@ public class LoginView extends AbstractView {
 	private String password;
 
 	public void showResults(Request request) {
-
 	}
 
 	public void showOptions() {
 		System.out.println("----- .:LOGIN:. ----");
-		System.out.println(" Nome utente:");
+		System.out.print(" Nome utente:");
 		this.username = getInput();
-		System.out.println(" Password:");
+		System.out.print(" Password:");
 		this.password = getInput();
 	}
 

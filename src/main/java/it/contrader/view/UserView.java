@@ -10,8 +10,7 @@ public class UserView extends AbstractView {
 	private Request request;
 	private String choice;
 
-	public UserView() {
-		
+	public UserView() {	
 	}
 
 	@Override
@@ -20,7 +19,9 @@ public class UserView extends AbstractView {
 			System.out.println("\n------------------- Gestione utenti ----------------\n");
 			System.out.println("ID\tUsername\tPassword\tTipo Utente");
 			System.out.println("----------------------------------------------------\n");
+			
 			List<User> users = (List<User>) request.get("users");
+			
 			for (User u: users)
 				System.out.println(u);
 			System.out.println();

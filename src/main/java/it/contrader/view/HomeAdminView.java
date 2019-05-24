@@ -4,6 +4,7 @@
 
 package it.contrader.view;
 
+import java.io.IOException;
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 
@@ -17,7 +18,6 @@ public class HomeAdminView extends AbstractView {
     	System.out.println("\n Benvenuto in TREMA "+request.get("username").toString() + "\n");
     	}
     }
-
 
     public void showOptions() {
         System.out.println("-------------MENU------------\n");

@@ -6,7 +6,7 @@ import it.contrader.view.AbstractView;
 
 public class MaterialDeleteView extends AbstractView{
 	
-	int idMaterial;
+	int idmaterial;
 	private final String mode="DELETE";
 	@Override
 	public void showResults(Request request) {
@@ -20,7 +20,7 @@ public class MaterialDeleteView extends AbstractView{
 	@Override
 	public void showOptions() {
 		System.out.print("Inserire l'ID del materiale da eliminare:\n");
-		idMaterial=Integer.parseInt(getInput());
+		idmaterial=Integer.parseInt(getInput());
 		
 	}
 
@@ -28,7 +28,7 @@ public class MaterialDeleteView extends AbstractView{
 	public void submit() {
 		Request request = new Request();
 		request.put("mode", mode); //forse drop
-		request.put("idMaterial", idMaterial);
+		request.put("idmaterial", idmaterial);
 		MainDispatcher.getInstance().callAction("Material", "doControl", request);
 		
 	} //da creare nella cartella 

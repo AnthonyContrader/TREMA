@@ -7,7 +7,7 @@ import it.contrader.view.AbstractView;
 public class UserDeleteView extends AbstractView {
 	private Request request;
 
-	private int id;
+	private int iduser;
 	private final String mode = "DELETE";
 
 	public UserDeleteView() {
@@ -25,7 +25,7 @@ public class UserDeleteView extends AbstractView {
 	public void showOptions() {
 		try {
 			System.out.println("Inserisci id dell'utente:");
-			id = Integer.parseInt(getInput());
+			iduser = Integer.parseInt(getInput());
 		} catch (Exception e) {
 
 		}
@@ -34,7 +34,7 @@ public class UserDeleteView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("id", id);
+		request.put("iduser", iduser);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("User", "doControl", request);
 	}

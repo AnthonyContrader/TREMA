@@ -9,7 +9,7 @@ public class HRInsertView extends AbstractView {
 	private Request request;
 	private String name;
 	private String surname;
-	private int idUser;
+	private int iduser;
 
 	private  final String mode = "INSERT";
 
@@ -22,14 +22,13 @@ public class HRInsertView extends AbstractView {
 			System.out.println("L'inserimento è andato a buon fine.\n");
 			MainDispatcher.getInstance().callView("HumanResource", null);
 		}
-
 	}
 
 	@Override
 	public void showOptions() {
 		try {
 			System.out.println("Inserisci l'ID dell'User");
-			idUser = Integer.parseInt(getInput());
+			iduser = Integer.parseInt(getInput());
 			System.out.println("Inserisci il nome del dipendente");
 			name= getInput();
 			System.out.println("Inserisci il cognome del dipendente");
@@ -44,7 +43,7 @@ public class HRInsertView extends AbstractView {
 		request = new Request();
 		request.put("name", name);
 		request.put("surname", surname);
-		request.put("idUser", idUser);
+		request.put("iduser", iduser);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("HumanResource", "doControl", request);
 	}

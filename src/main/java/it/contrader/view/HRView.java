@@ -1,31 +1,31 @@
 package it.contrader.view;
 
 import java.util.List;
-
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.HumanResource;
 
 public class HRView extends AbstractView {
 
-
 	private Request request;
 	private String choice;
-
-
+	
+	public HRView() {
+	}
+	
 	@Override
 	public void showResults(Request request) {
 
 		if (request != null) {
-			int iduser = (int) request.get("iduser");
 			System.out.println("\n--------- Gestione dipendenti da parte degli user  " + iduser + " ----------\n");
 			System.out.println("idHR\t\tDipendente\tNome\tCognome\tID User ");
 			System.out.print("------------------------------------------------------\n");
 
-			List<HumanResource> list = (List<HumanResource>) request.get("listhumanresource");
-
-			for (HumanResource a : list) {
-				System.out.println(a);
+			List<HumanResource> humanresources = (List<HumanResource>) request.get("humanresources");
+			System.out.println();
+			
+			for (HumanResource x : humanresources) {
+				System.out.println(x);
 				System.out.println();
 			}
 		}

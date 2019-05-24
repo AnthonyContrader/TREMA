@@ -7,7 +7,7 @@ import it.contrader.view.AbstractView;
 public class HRDeleteView extends AbstractView {
 
 	private int idHR;
-	private Request request;
+	
 	@Override
 	public void showResults(Request request) {
 		if (request!=null) {
@@ -18,18 +18,16 @@ public class HRDeleteView extends AbstractView {
 
 	@Override
 	public void showOptions() {
-
 		System.out.print("Inserire l'ID della HR da eliminare:\n");
 		idHR=Integer.parseInt(getInput());
-
 	}
 
 	@Override
 	public void submit() {
-		request = new Request();
-		request.put("mode","DELETE" );
+		Request request = new Request();
+		request.put("mode", "DELETE");
 		request.put("idHR", idHR);
-		MainDispatcher.getInstance().callAction("HumanResource", "doControl", request);
+		MainDispatcher.getInstance().callAction("Building", "doControl", request);
 	}
 
 }
