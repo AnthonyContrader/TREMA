@@ -36,11 +36,11 @@ CREATE TABLE IF NOT EXISTS `trema`.`humanresource` (
   `idHR` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `surname` VARCHAR(45) NULL,
-  `user_iduser` INT NOT NULL,
+  `iduser` INT NOT NULL,
   PRIMARY KEY (`idHR`),
-  INDEX `fk_HumanResource_User1_idx` (`user_iduser` ASC) VISIBLE,
+  INDEX `fk_HumanResource_User1_idx` (`iduser` ASC) VISIBLE,
   CONSTRAINT `fk_HumanResource_User1`
-    FOREIGN KEY (`user_iduser`)
+    FOREIGN KEY (`iduser`)
     REFERENCES `trema`.`user` (`iduser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -53,11 +53,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `trema`.`material` (
   `idmaterial` INT(11) NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(45) NULL,
-  `humanresource_idHR` INT(11) NOT NULL,
+  `idHR` INT(11) NOT NULL,
   PRIMARY KEY (`idmaterial`),
-  INDEX `fk_Material_HumanResource1_idx` (`humanresource_idHR` ASC) VISIBLE,
+  INDEX `fk_Material_HumanResource1_idx` (`idHR` ASC) VISIBLE,
   CONSTRAINT `fk_Material_HumanResource1`
-    FOREIGN KEY (`humanresource_idHR`)
+    FOREIGN KEY (`idHR`)
     REFERENCES `trema`.`humanresource` (`idHR`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

@@ -1,6 +1,5 @@
 package it.contrader.main;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 
 import it.contrader.controller.Controller;
