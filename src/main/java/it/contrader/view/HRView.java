@@ -17,9 +17,9 @@ public class HRView extends AbstractView {
 	public void showResults(Request request) {
 
 		if (request != null) {
-			System.out.println("\n--------- Gestione dipendenti da parte degli user  " + iduser + " ----------\n");
+			System.out.println("\n--------- Gestione dipendenti da parte degli user: ----------\n");
 			System.out.println("idHR\t\tDipendente\tNome\tCognome\tID User ");
-			System.out.print("------------------------------------------------------\n");
+			System.out.print("-------------------------------------------------------------\n");
 
 			List<HumanResource> humanresources = (List<HumanResource>) request.get("humanresources");
 			System.out.println();
