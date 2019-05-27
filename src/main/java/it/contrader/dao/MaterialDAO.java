@@ -10,30 +10,33 @@ import it.contrader.model.*;
 
 public class MaterialDAO {
 	
-	private final String QUERY_ALL = "SELECT * FROM material WHERE idHR=?";
-	private final String QUERY_INSERT = "INSERT INTO material (tipo, material) VALUES (?,?)";
-	private final String QUERY_READ = "SELECT * FROM material WHERE idHR=? AND  idmaterial=?";
-	private final String QUERY_UPDATE = "UPDATE material SET tipo=?, idHR=? WHERE idmaterial=?";
+	private final String QUERY_ALL = "SELECT * FROM material";
+	private final String QUERY_INSERT = "INSERT INTO material (idmaterial, tipo, quantita, idHR) VALUES (?,?)";
+	private final String QUERY_READ = "SELECT * FROM material WHERE idmaterial=?";
+	private final String QUERY_UPDATE = "UPDATE material SET tipo=?, quantita=?, idHR=? WHERE idmaterial=?";
 	private final String QUERY_DELETE = "DELETE FROM material WHERE idmaterial=?";
 	
 	public MaterialDAO() {}
 	
-	public List<Material> showAllMaterial(int idHR) {
+	public List<Material> getAllMaterial() {
 		List<Material> materials = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
-			preparedStatement.setInt(1, idHR);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			Material material;
 			
 			while (resultSet.next()) {
 				int idmaterial = resultSet.getInt("idmaterial");
 				String tipo = resultSet.getString("tipo");
+				int quantita = resultSet.getInt("quantita");
 				int idhr = resultSet.getInt("idHR");
-				material = new Material(idmaterial, idhr, tipo);
+				material = new Material(idmaterial, tipo, quantita, idhr);
 				material.setidMaterial(idmaterial);
+				material.setIdHR(idhr);
+				material.setTipo(tipo);
+				material.setQuantita(quantita);
 				materials.add(material);
 			}
 		} catch (SQLException e) {
@@ -48,8 +51,10 @@ public class MaterialDAO {
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, material.getTipo());
-			preparedStatement.setInt(2, material.getidMaterial());
+			preparedStatement.setInt(1, material.getidMaterial());
+			preparedStatement.setString(2, material.getTipo());
+			preparedStatement.setInt(3, material.getQuantita());
+			preparedStatement.setInt(3, material.getIdHR());
 			preparedStatement.execute();
 
 			return true;
@@ -61,39 +66,36 @@ public class MaterialDAO {
 
 	}
 
-	public Material readMaterial(int idhr, int idmaterial, String type) {
+	public Material readMaterial(int idmateriale) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1,idhr);
-			preparedStatement.setInt(2,idmaterial);
-			preparedStatement.setString(3,type);
+			preparedStatement.setInt(1, idmateriale);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-
-			String tipo= resultSet.getString("type");
-			idhr = resultSet.getInt("idHR");
-
-			Material material = new Material(idmaterial, idhr, tipo);
+		
+			String tipo= resultSet.getString("tipo");
+			int quantita=resultSet.getInt("quantita");
+			int idhr = resultSet.getInt("idHR");
+			Material material = new Material(idmateriale, tipo, quantita, idhr);;
 			material.setidMaterial(resultSet.getInt("idmaterial"));
-
 			return material;
 		} 
 		catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
-
 			return null;
 		}
 	}
 
-	public boolean updateMaterial(Material materialToUpdate) {
+	public boolean updateMaterial(Material material) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-			preparedStatement.setString(1, materialToUpdate.getTipo());
-			preparedStatement.setInt(2, materialToUpdate.getIdHR());
-			preparedStatement.setInt(3, materialToUpdate.getidMaterial());
+			preparedStatement.setInt(3, material.getidMaterial());
+			preparedStatement.setString(1, material.getTipo());
+			preparedStatement.setInt(4, material.getQuantita());
+			preparedStatement.setInt(2, material.getIdHR());
 			preparedStatement.executeUpdate();
 		} 
 		catch (SQLException e) {

@@ -13,13 +13,13 @@ public class HumanResourceDAO {
 	private final String QUERY_ALL = "SELECT * FROM humanresource";
 	private final String QUERY_INSERT = "INSERT INTO humanresource (name, surname, iduser) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM humanresource WHERE idHR=?";
-	private final String QUERY_UPDATE = "UPDATE humanresource SET name=?, surname=?, user=? WHERE idHR=?";
-	private final String QUERY_DELETE = "DELETE FROM humanresource WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE humanresource SET name=?, surname=?, iduser=? WHERE idHR=?";
+	private final String QUERY_DELETE = "DELETE FROM humanresource WHERE idHR=?";
 
 	public HumanResourceDAO() {}
 
 	public List<HumanResource> getAllHR() {
-		List<HumanResource> hrs = new ArrayList<>();
+		List<HumanResource> hrlist = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
@@ -34,13 +34,15 @@ public class HumanResourceDAO {
 				int iduser = resultSet.getInt("iduser");
 				hr = new HumanResource(idhr, iduser, name, surname);
 				hr.setidHR(idhr);
-				
-				hrs.add(hr);
+				hr.setName(name);
+				hr.setSurname(surname);
+				hr.setidUser(iduser);
+				hrlist.add(hr);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return hrs;
+		return hrlist;
 	}
 
 	public boolean insertHR(HumanResource hr) {
@@ -67,7 +69,7 @@ public class HumanResourceDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
-			int userid = resultSet.getInt("user");
+			int userid = resultSet.getInt("iduser");
 			String name = resultSet.getString("name");
 			String surname = resultSet.getString("surname");
 

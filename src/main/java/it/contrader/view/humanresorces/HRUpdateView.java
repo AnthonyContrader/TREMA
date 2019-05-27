@@ -6,17 +6,19 @@ import it.contrader.view.AbstractView;
 
 public class HRUpdateView extends AbstractView {
 	
-	private int idHRtoupdate;
-	private String nametoupdate;
-	private String surnametoupdate;
-	private int idusertoupdate;
+	private int idHR;
+	private String name;
+	private String surname;
+	private int iduser;
 	private Request request;
+	
+	public HRUpdateView() {}
 	
 	@Override
 	public void showResults(Request request) {
 
 		if (request!=null) {
-			System.out.println("La modifica è andata a buon fine.\n");
+			System.out.println("La modifica e' andata a buon fine.\n");
 			MainDispatcher.getInstance().callView("HumanResource", null);
 		}
 	}
@@ -24,23 +26,23 @@ public class HRUpdateView extends AbstractView {
 	@Override
 	public void showOptions() {
 		System.out.println("Inserire l'ID del dipendente da modificare:");
-		idHRtoupdate=Integer.parseInt(getInput().toString());
+		idHR=Integer.parseInt(getInput().toString());
 		System.out.println("Inserire il nuovo nome:");
-		nametoupdate=getInput().toString();
+		name=getInput().toString();
 		System.out.println("Inserire il nuovo cognome:");
-		surnametoupdate=getInput().toString();
+		surname=getInput().toString();
 		System.out.println("Inserire il nuovo User ID");
-		idusertoupdate=Integer.parseInt(getInput().toString());
+		iduser=Integer.parseInt(getInput().toString());
 
 	}
 
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idHR", idHRtoupdate);
-		request.put("name", nametoupdate);
-		request.put("surname", surnametoupdate);
-		request.put("iduser", idusertoupdate);
+		request.put("idHR", idHR);
+		request.put("name", name);
+		request.put("surname", surname);
+		request.put("iduser", iduser);
 		request.put("mode", "UPDATE");
 		MainDispatcher.getInstance().callAction("HumanResource", "doControl", request);
 

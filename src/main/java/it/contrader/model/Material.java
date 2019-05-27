@@ -5,11 +5,14 @@ public class Material {
 	private int idMaterial;
 	private int idHR;
 	private String tipo;
+	private int quantita;
+	
 
-	public Material(int idMaterial, int idHR, String tipo) {
+	public Material(int idMaterial, String tipo, int quantita, int idHR) {
 		this.idMaterial = idMaterial;
 		this.idHR = idHR;
 		this.tipo = tipo;
+		this.quantita=quantita;
 	}
 
 	public int getidMaterial() {
@@ -35,10 +38,18 @@ public class Material {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	public void setQuantita(int quantita) {
+		this.quantita=quantita;
+	}
+	
+	public int getQuantita(){
+		return quantita;
+	}
 
 	@Override
 	public String toString() {
-		return this.getidMaterial() + "\t" + this.getIdHR() + "\t" + this.getTipo();
+		return "idMaterial= " + idMaterial + ", idHR= " + idHR + ", tipo= " + tipo + ", quantita= " + quantita;
 	}
 
 	public boolean equals(Material materialCompare) {

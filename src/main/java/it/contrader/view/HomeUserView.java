@@ -4,7 +4,6 @@
 
 package it.contrader.view;
 
-import java.io.IOException;
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 
@@ -30,11 +29,11 @@ public class HomeUserView extends AbstractView {
     	request = new Request();
         switch (choice) {
         case "d":
-        	this.request.put("mode", "HRLIST");
+        	this.request.put("mode", "HumanResource");
         	MainDispatcher.getInstance().callAction("HumanResource", "doControl", request);
         	break;
         case "m":
-        	this.request.put("mode", "MATERIALLIST");
+        	this.request.put("mode", "Material");
         	MainDispatcher.getInstance().callAction("Material", "doControl", request);
         	break;
         case "e":

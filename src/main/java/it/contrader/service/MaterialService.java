@@ -5,29 +5,37 @@ import it.contrader.model.*;
 import it.contrader.dao.*;
 
 public class MaterialService {
+	
 	private MaterialDAO materialDAO;
 	
 	public MaterialService() {
 		this.materialDAO=new MaterialDAO();
 	}
 	
-	public List<Material> showAllMaterial(int id){
-		return this.materialDAO.showAllMaterial(id);
+	public List<Material> getAllMaterial(){
+		return this.materialDAO.getAllMaterial();
 	}
 	
-	public Material readMaterial(int idHR, int id, String tipo) {
-		return this.materialDAO.readMaterial(idHR, id, tipo);
+	public Material readMaterial(int idmaterial) {
+		return this.materialDAO.readMaterial(idmaterial);
 	}
 	
-	public boolean insertMaterial(Material materialid) {
-		return this.materialDAO.insertMaterial(materialid);
+	public boolean insertMaterial(Material hrModel) {
+		return this.materialDAO.insertMaterial(hrModel);
 	}
-	
+		
 	public boolean deleteMaterial(int materialId) {
 		return this.materialDAO.deleteMaterial(materialId);
 	}
 	
-	public boolean updateMaterial(Material materialToUpdate) {
-		return this.materialDAO.updateMaterial(materialToUpdate);
+	public boolean insertMaterial(int idmaterial, String tipo, int quantita, int idHr){
+		Material mat=new Material(idmaterial, tipo, quantita, idHr);
+		return materialDAO.insertMaterial(mat);
+	}
+	
+	public boolean updateMaterial(int id, String tipo, int idHr, int quantita) {
+			Material mat=new Material(id, tipo, quantita, idHr);
+			mat.setidMaterial(id);
+			return materialDAO.updateMaterial(mat);			
 	}
 }

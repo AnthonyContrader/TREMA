@@ -9,21 +9,10 @@ import it.contrader.service.*;
 public class MaterialController implements Controller{
 
 	private static String sub_package = "material.";
-
-	private  MaterialService mService;//
-
-
-	private int hrid;//
-
-	private int materialid;//
-
-	private String tipo;//
-
-	int id;//
-
+	private MaterialService materialService;
 
 	public MaterialController() {
-		this.mService = new MaterialService();
+		this.materialService = new MaterialService();
 	}
 
 
@@ -32,59 +21,54 @@ public class MaterialController implements Controller{
 		String mode = (String) request.get("mode");
 		String choice = (String) request.get("choice");
 
+		int idMaterial;
+		int idHr = 0;
+		int quantita = 0;
+		String tipo = null;
 
-
-
-		switch(mode.toUpperCase()) {
+		switch (mode) {
 		case "READ":
-			hrid = Integer.parseInt(request.get("idHR").toString());
-			materialid =Integer.parseInt(request.get("materialid").toString());
-			tipo=request.get("tipo").toString();
-			Material material = mService.readMaterial(hrid,materialid,tipo);
-			request = new Request();
+			idMaterial = Integer.parseInt(request.get("idmaterial").toString());
+			Material material = materialService.readMaterial(idMaterial);
 			request.put("material", material);
 			MainDispatcher.getInstance().callView(sub_package + "MaterialRead", request);
-
 			break;
 		case "INSERT":
-			hrid = Integer.parseInt(request.get("materialid").toString());
+			idMaterial = Integer.parseInt(request.get("idmaterial").toString());
 			tipo = request.get("tipo").toString();
-			Material materialToInsert = new Material(materialid, hrid, tipo);
-			mService.insertMaterial(materialToInsert);
+			quantita= Integer.parseInt(request.get("quantita").toString());
+			idHr = Integer.parseInt(request.get("idHR").toString());
+			materialService.insertMaterial(idMaterial,tipo, quantita, idHr);
 			request = new Request();
-			request.put("mode", "ok");
+			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "MaterialInsert", request);
-
 			break;
 		case "DELETE":
-			materialid = Integer.parseInt(request.get("materialid").toString());
-			mService.deleteMaterial(materialid);
+			idMaterial = Integer.parseInt(request.get("idmaterial").toString());
+			materialService.deleteMaterial(idMaterial);
 			request = new Request();
-			request.put("mode", "ok");
-			MainDispatcher.getInstance().callView(sub_package + "materialDelete", request);
+			request.put("mode", "mode");
+			MainDispatcher.getInstance().callView(sub_package + "MaterialDelete", request);
 			break;
-
 		case "UPDATE":
-			hrid = Integer.parseInt(request.get("hrid").toString());
-			id = Integer.parseInt(request.get("id").toString());
-			tipo = (String) request.get("tipo");
-			Material materialToUpdate = new Material(materialid, hrid, tipo);
-			materialToUpdate.setidMaterial(id);
-			mService.updateMaterial(materialToUpdate);
+			idMaterial = Integer.parseInt(request.get("idmaterial").toString());
+			tipo = request.get("tipo").toString();
+			idHr = Integer.parseInt(request.get("idHR").toString());
+			quantita = Integer.parseInt(request.get("quantita").toString());
+			materialService.updateMaterial(idMaterial, tipo, idHr, quantita);
 			request = new Request();
-			request.put("mode", "ok");
-			MainDispatcher.getInstance().callView(sub_package +  "MaterialUpdate", request);
+			request.put("mode", "mode");
+			
+			MainDispatcher.getInstance().callView(sub_package + "MaterialUpdate", request);
 			break;
-
-		case "MATERIALLIST":
-			hrid=Integer.parseInt(request.get("materialid").toString());
-			List<Material> listamaterial =  mService.showAllMaterial(hrid);
-			request.put("listamaterial", listamaterial);
-			request.put("mode", "ok");
+		case "Material":
+			List<Material> mlist = materialService.getAllMaterial();
+			request.put("material", mlist);
 			MainDispatcher.getInstance().callView("Material", request);
 			break;
 
 		case "GETCHOICE":
+
 			switch (choice.toUpperCase()) {
 			case "L":
 				MainDispatcher.getInstance().callView(sub_package + "MaterialRead", null);
@@ -100,6 +84,9 @@ public class MaterialController implements Controller{
 				break;
 			case "E":
 				MainDispatcher.getInstance().callView("Login", null);
+				break;
+			case "B":
+				MainDispatcher.getInstance().callView("HomeAdmin", null);
 				break;
 			default:
 				MainDispatcher.getInstance().callView("Login", null);

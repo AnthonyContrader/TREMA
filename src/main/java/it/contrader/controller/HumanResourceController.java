@@ -1,74 +1,73 @@
 package it.contrader.controller;
 
 import java.util.List;
+
 import it.contrader.main.MainDispatcher;
+import it.contrader.controller.Controller;
+import it.contrader.controller.Request;
 import it.contrader.model.*;
 import it.contrader.service.*;
 
-public class HumanResourceController implements Controller {
-	private static String sub_package = "humanresource.";
+public class HumanResourceController implements Controller{
+		
 
-	private HRService HrService;//
+	private static String sub_package = "humanresorces.";
+	private HRService hrService;
 
 	public HumanResourceController() {
-		this.HrService = new HRService();
+		this.hrService = new HRService();
 	}
 
-
+  
 	@Override
 	public void doControl(Request request) {
-
 		String mode = (String) request.get("mode");
 		String choice = (String) request.get("choice");
 
-		int id = 0;
-		String name;//
-		String surname;//
-		int userid;//
-		HumanResource hr = null;//
-		
+		int idHr = 0;
+		String name;
+		String surname;
+		int idUser;
+
 		switch (mode) {
 		case "READ":
-			id = Integer.parseInt(request.get("id").toString());
-			HrService = HrService.readHR(id);
+			idHr = Integer.parseInt(request.get("idHR").toString());
+			HumanResource hr = hrService.readHR(idHr);
 			request.put("humanresource", hr);
-			MainDispatcher.getInstance().callView(sub_package + "HrRead", request);
+			MainDispatcher.getInstance().callView(sub_package + "HRRead", request);
 			break;
 		case "INSERT":
-			name = request.get("name").toString();
+			name  = request.get("name").toString();
 			surname = request.get("surname").toString();
-			userid = Integer.parseInt(request.get("id").toString());
-			hr = new HumanResource(id, userid, name, surname);
-			boolean result=HrService.insertHR(hr);
-			request.put("result", result);
+			idHr = Integer.parseInt(request.get("idHR").toString());
+			idUser = Integer.parseInt(request.get("iduser").toString());
+			hrService.insertHR(idHr, name, surname, idUser);
+			request = new Request();
+			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "HRInsert", request);
 			break;
 		case "DELETE":
-			id = Integer.parseInt(request.get("id").toString());
-			HrService.deleteHR(id);
+			idHr = Integer.parseInt(request.get("idHR").toString());
+			hrService.deleteHR(idHr);
 			request = new Request();
-			request.put("mode", "ok");
+			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "HRDelete", request);
 			break;
 		case "UPDATE":
-			id = Integer.parseInt(request.get("id").toString());
-			name = request.get("name").toString();
+			name  = request.get("name").toString();
 			surname = request.get("surname").toString();
-			userid = Integer.parseInt(request.get("userid").toString());
-			hr = new HumanResource(id, userid, name, surname);
-			hr.setidHR(id);
-			HrService.updateHR(hr);
+			idHr = Integer.parseInt(request.get("idHR").toString());
+			idUser = Integer.parseInt(request.get("iduser").toString());
+			hrService.updateHR(idHr, name, surname, idUser);
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "HRUpdate", request);
 			break;
 		case "HumanResource":
-			List<HumanResource> humanr =HrService.getAllHR();
-			request = new Request();
-			request.put("humanresources", humanr);
+			//MainDispatcher.getInstance().callView("User", null);
+			List<HumanResource> hrl = hrService.getAllHR();
+			request.put("humanresource", hrl);
 			MainDispatcher.getInstance().callView("HumanResource", request);
-
-
 			break;
 
 		case "GETCHOICE":
@@ -89,18 +88,14 @@ public class HumanResourceController implements Controller {
 			case "E":
 				MainDispatcher.getInstance().callView("Login", null);
 				break;
-
 			case "B":
-				MainDispatcher.getInstance().callView("HomeAdmin", null);
+				MainDispatcher.getInstance().callView("HomeUser", null);
 				break;
 			default:
 				MainDispatcher.getInstance().callView("Login", null);
 			}
 		default:
-			System.out.println("controller default \n");
-			MainDispatcher.getInstance().callView("Login", request);
+			MainDispatcher.getInstance().callView("Login", null);
 		}
-
 	}
-
 }

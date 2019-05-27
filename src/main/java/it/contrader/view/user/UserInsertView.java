@@ -18,7 +18,7 @@ public class UserInsertView extends AbstractView{
 	@Override
 	public void showResults(Request request) {
 		if (request!=null) {
-			System.out.println("L'inserimento è andato a buon fine.\n");
+			System.out.println("L'inserimento e' andato a buon fine.\n");
 			MainDispatcher.getInstance().callView("User", null);
 		}
 	}

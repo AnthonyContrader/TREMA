@@ -53,6 +53,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `trema`.`material` (
   `idmaterial` INT(11) NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(45) NULL,
+  `quantita` INT NULL,  
   `idHR` INT(11) NOT NULL,
   PRIMARY KEY (`idmaterial`),
   INDEX `fk_Material_HumanResource1_idx` (`idHR` ASC) VISIBLE,

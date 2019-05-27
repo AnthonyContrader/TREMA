@@ -7,7 +7,7 @@ import it.contrader.view.AbstractView;
 public class UserDeleteView extends AbstractView {
 	private Request request;
 
-	private int iduser;
+	private int id;
 	private final String mode = "DELETE";
 
 	public UserDeleteView() {
@@ -16,7 +16,7 @@ public class UserDeleteView extends AbstractView {
 	@Override
 	public void showResults(Request request) {
 		if (request!=null) {
-			System.out.println("La cancellazione è andata a buon fine.\n");
+			System.out.println("La cancellazione e' andata a buon fine.\n");
 			MainDispatcher.getInstance().callView("User", null);
 		}
 	}
@@ -25,7 +25,7 @@ public class UserDeleteView extends AbstractView {
 	public void showOptions() {
 		try {
 			System.out.println("Inserisci id dell'utente:");
-			iduser = Integer.parseInt(getInput());
+			id = Integer.parseInt(getInput());
 		} catch (Exception e) {
 
 		}
@@ -34,7 +34,7 @@ public class UserDeleteView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("iduser", iduser);
+		request.put("id", id);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("User", "doControl", request);
 	}

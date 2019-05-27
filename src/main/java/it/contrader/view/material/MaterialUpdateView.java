@@ -6,15 +6,18 @@ import it.contrader.view.AbstractView;
 
 public class MaterialUpdateView extends AbstractView{
 	
-	private int idmaterialtoupdate;
-	private String tipotoupdate;
-	private int idHRtoupdate;
+	private int idmaterial;
+	private String tipo;
+	private int quantita;
+	private int idHR;
 	private Request request;
+	
+	public MaterialUpdateView() {}
 	
 	@Override
 	public void showResults(Request request) {
 		if (request!=null) {
-			System.out.println("La modifica è andata a buon fine.\n");
+			System.out.println("La modifica e' andata a buon fine.\n");
 			MainDispatcher.getInstance().callView("Material", null);
 		}
 	}
@@ -22,19 +25,22 @@ public class MaterialUpdateView extends AbstractView{
 	@Override
 	public void showOptions() {
 		System.out.println("Inserire l'ID del materiale da modificare:");
-		idmaterialtoupdate=Integer.parseInt(getInput().toString());
+		idmaterial=Integer.parseInt(getInput().toString());
 		System.out.println("Inserire la nuova tipologia:");
-		tipotoupdate=getInput().toString();
+		tipo=getInput().toString();
+		System.out.println("Inserire la nuova quantita':");
+		quantita=Integer.parseInt(getInput().toString());
 		System.out.println("Inserire il nuovo ID del dipendente");
-		idHRtoupdate=Integer.parseInt(getInput().toString());
+		idHR=Integer.parseInt(getInput().toString());
 	}
 
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idMaterial", idmaterialtoupdate);
-		request.put("tipo", tipotoupdate);
-		request.put("idHR", idHRtoupdate);
+		request.put("idmaterial", idmaterial);
+		request.put("tipo", tipo);
+		request.put("quantita", quantita);
+		request.put("idHR", idHR);
 		request.put("mode", "UPDATE");
 		MainDispatcher.getInstance().callAction("Material", "doControl", request);
 

@@ -11,7 +11,7 @@ public class HRDeleteView extends AbstractView {
 	@Override
 	public void showResults(Request request) {
 		if (request!=null) {
-			System.out.println("La cancellazione è andata a buon fine.\n");
+			System.out.println("La cancellazione e' andata a buon fine.\n");
 			MainDispatcher.getInstance().callView("HumanResource", null);
 		}
 	}
@@ -27,7 +27,7 @@ public class HRDeleteView extends AbstractView {
 		Request request = new Request();
 		request.put("mode", "DELETE");
 		request.put("idHR", idHR);
-		MainDispatcher.getInstance().callAction("Building", "doControl", request);
+		MainDispatcher.getInstance().callAction("HumanResource", "doControl", request);
 	}
 
 }

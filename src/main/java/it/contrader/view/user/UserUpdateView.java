@@ -5,21 +5,18 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
 public class UserUpdateView extends AbstractView {
-	private Request request;
-
 	private int iduser;
 	private String username;
 	private String password;
 	private String usertype;
 	private final String mode = "UPDATE";
 
-	public UserUpdateView() {
-	}
+	public UserUpdateView() {}
 
 	@Override
 	public void showResults(Request request) {
 		if (request!=null) {
-			System.out.println("La modifica è andata a buon fine.\n");
+			System.out.println("La modifica e' andata a buon fine.\n");
 			MainDispatcher.getInstance().callView("User", null);
 		}
 	}

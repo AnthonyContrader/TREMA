@@ -46,11 +46,8 @@ public class HumanResource {
 		this.surname = surname;
 	}
 
-	/*
-	 * public boolean isAdmin() { return (getSpeciality() == 1 ? true : false); }
-	 */
 	@Override
 	public String toString() {
-		return "ID: " + idHR + "\nNome: " + name + "\nCognome: " + surname + "\nEmail: ";
+		return "ID Hr: " + idHR + "\nNome: " + name + "\nCognome: " + surname + "\nId User: "+ idUser;
 	}
 }

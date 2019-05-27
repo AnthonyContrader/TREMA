@@ -14,16 +14,15 @@ public class MaterialView extends AbstractView {
 	public void showResults(Request request) {
 
 		if(request!= null) {
-			int idHR = (int) request.get("idHR");
-			System.out.println("\\n-------------------- Gestione dei materiali " + idHR + "--------------------\\n");
-			System.out.println("ID\t\tTipo\t\tIdHR");
+			System.out.println("\\n-------------------- Gestione dei materiali " + "--------------------\\n");
+			System.out.println("ID\t\tTipo\t\tIdHR\t\tquantita");
 			System.out.print("-----------------------------------------------------------------------------\n");
 
 			List<Material> materials = (List<Material>) request.get("material");
-			System.out.println("");
+			System.out.println();
 
-			for (Material a : materials) {
-				System.out.println(a);
+			for (Material x : materials) {
+				System.out.println(x);
 				System.out.println();
 			}
 		}

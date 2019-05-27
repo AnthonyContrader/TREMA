@@ -1,20 +1,23 @@
 package it.contrader.view.material;
 
+import it.contrader.controller.*;
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.Material;
 import it.contrader.view.AbstractView;
 
 public class MaterialReadView extends AbstractView{
-	
-	private int idHR;
 	private int idmaterial;
 	private Request request;
+	
+	public MaterialReadView() {
+		new MaterialController();
+	}
 
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
-			Material material = (Material) request.get("Material");
+			Material material = (Material) request.get("material");
 			System.out.println(material);
 			MainDispatcher.getInstance().callView("Material", null);
 		}
@@ -23,8 +26,6 @@ public class MaterialReadView extends AbstractView{
 
 	@Override
 	public void showOptions() {
-		System.out.println("Inserisci l'ID del materiale:");
-		idHR = Integer.parseInt(getInput());
 		System.out.println("Inserisci l'ID del dipendente");
 		idmaterial = Integer.parseInt(getInput());
 
@@ -33,7 +34,6 @@ public class MaterialReadView extends AbstractView{
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idHR", idHR);
 		request.put("idmaterial", idmaterial);
 		request.put("mode", "READ");
 		MainDispatcher.getInstance().callAction("Material", "doControl", request);

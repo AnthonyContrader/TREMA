@@ -27,10 +27,10 @@ public class MaterialDeleteView extends AbstractView{
 	@Override
 	public void submit() {
 		Request request = new Request();
-		request.put("mode", mode); //forse drop
+		request.put("mode", mode); 
 		request.put("idmaterial", idmaterial);
 		MainDispatcher.getInstance().callAction("Material", "doControl", request);
 		
-	} //da creare nella cartella 
+	} 
 
 }

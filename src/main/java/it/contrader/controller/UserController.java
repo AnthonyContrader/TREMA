@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
-import it.contrader.service.*;
 import it.contrader.controller.Controller;
 import it.contrader.controller.Request;
 import it.contrader.service.UserService;
@@ -55,14 +54,12 @@ public class UserController implements Controller {
 		case "UPDATE":
 			
 			id = Integer.parseInt(request.get("iduser").toString());
-			
 			username = request.get("username").toString();
 			password = request.get("password").toString();
 			usertype = request.get("usertype").toString();
 			userService.updateUser(id, username, password, usertype);
 			request = new Request();
 			request.put("mode", "mode");
-			
 			MainDispatcher.getInstance().callView(sub_package + "UserUpdate", request);
 			break;
 		case "USERLIST":

@@ -3,14 +3,14 @@ package it.contrader.view;
 import java.util.List;
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
-import it.contrader.model.HumanResource;
+import it.contrader.model.*;
 
-public class HRView extends AbstractView {
+public class HumanResourceView extends AbstractView {
 
 	private Request request;
 	private String choice;
 	
-	public HRView() {
+	public HumanResourceView() {
 	}
 	
 	@Override
@@ -21,10 +21,10 @@ public class HRView extends AbstractView {
 			System.out.println("idHR\t\tDipendente\tNome\tCognome\tID User ");
 			System.out.print("-------------------------------------------------------------\n");
 
-			List<HumanResource> humanresources = (List<HumanResource>) request.get("humanresources");
+			List<HumanResource> hrs = (List<HumanResource>) request.get("humanresource");
 			System.out.println();
 			
-			for (HumanResource x : humanresources) {
+			for (HumanResource x : hrs) {
 				System.out.println(x);
 				System.out.println();
 			}
@@ -48,7 +48,5 @@ public class HRView extends AbstractView {
 		request.put("choice", choice);
 		request.put("mode", "GETCHOICE");
 		MainDispatcher.getInstance().callAction("HumanResource", "doControl", this.request);
-
 	}
-
 }
