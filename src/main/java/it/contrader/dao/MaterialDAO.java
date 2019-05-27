@@ -92,10 +92,10 @@ public class MaterialDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-			preparedStatement.setString(2, materialToUpdate.getTipo());
-			preparedStatement.setInt(3, materialToUpdate.getQuantita());
-			preparedStatement.setInt(4, materialToUpdate.getIdHR());
-			preparedStatement.setInt(1, materialToUpdate.getidMaterial());
+			preparedStatement.setString(1, materialToUpdate.getTipo());
+			preparedStatement.setInt(2, materialToUpdate.getQuantita());
+			preparedStatement.setInt(3, materialToUpdate.getIdHR());
+			preparedStatement.setInt(4, materialToUpdate.getidMaterial());
 			preparedStatement.executeUpdate();
 		} 
 		catch (SQLException e) {

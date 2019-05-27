@@ -33,7 +33,7 @@ public class MaterialService {
 		return materialDAO.insertMaterial(mat);
 	}
 	
-	public boolean updateMaterial(int idmaterial, String tipo, int idHr, int quantita) {
+	public boolean updateMaterial(int idmaterial, String tipo, int quantita, int idHr) {
 		Material mat=new Material(idmaterial, tipo, quantita, idHr);
 		mat.setidMaterial(idmaterial);
 		return materialDAO.updateMaterial(mat);			
