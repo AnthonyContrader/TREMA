@@ -15,7 +15,7 @@ public class MaterialView extends AbstractView {
 
 		if(request!= null) {
 			System.out.println("\n-------------------- Gestione dei materiali --------------------");
-			System.out.println("ID\t\tTipo\t\tIdHR\t\tquantita");
+			System.out.println("ID\tTipo\t\tquantita\tIdHR");
 			System.out.print("-----------------------------------------------------------------\n");
 
 			List<Material> materials = (List<Material>) request.get("material");

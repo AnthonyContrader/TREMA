@@ -12,7 +12,7 @@ public class LoginView extends AbstractView {
 	}
 
 	public void showOptions() {
-		System.out.println("----- .:LOGIN:. ----");
+		System.out.println("===== .:LOGIN:. =====");
 		System.out.print(" Nome utente:");
 		this.username = getInput();
 		System.out.print(" Password:");
