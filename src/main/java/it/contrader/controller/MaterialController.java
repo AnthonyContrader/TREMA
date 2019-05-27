@@ -3,6 +3,7 @@ package it.contrader.controller;
 import java.util.List;
 
 import it.contrader.main.MainDispatcher;
+import it.contrader.controller.Controller;
 import it.contrader.model.*;
 import it.contrader.service.*;
 
@@ -21,10 +22,10 @@ public class MaterialController implements Controller{
 		String mode = (String) request.get("mode");
 		String choice = (String) request.get("choice");
 
-		int idMaterial;
-		int idHr = 0;
-		int quantita = 0;
-		String tipo = null;
+		int idMaterial=0;
+		int idHr;
+		int quantita;
+		String tipo;
 
 		switch (mode) {
 		case "READ":
