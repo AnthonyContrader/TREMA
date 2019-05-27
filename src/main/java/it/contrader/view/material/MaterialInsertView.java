@@ -51,7 +51,7 @@ public class MaterialInsertView extends AbstractView{
 		request.put("quantita",quantita);
 		request.put("idHR", idHr);
 		request.put("mode", mode);
-		MainDispatcher.getInstance().callAction("material", "doControl", request);
+		MainDispatcher.getInstance().callAction("Material", "doControl", request);
 	}
 
 }

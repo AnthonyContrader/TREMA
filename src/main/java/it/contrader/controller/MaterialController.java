@@ -55,10 +55,9 @@ public class MaterialController implements Controller{
 			tipo = request.get("tipo").toString();
 			idHr = Integer.parseInt(request.get("idHR").toString());
 			quantita = Integer.parseInt(request.get("quantita").toString());
-			materialService.updateMaterial(idMaterial, tipo, idHr, quantita);
+			materialService.updateMaterial(idMaterial, tipo, quantita,  idHr);
 			request = new Request();
 			request.put("mode", "mode");
-			
 			MainDispatcher.getInstance().callView(sub_package + "MaterialUpdate", request);
 			break;
 		case "Material":
@@ -86,7 +85,7 @@ public class MaterialController implements Controller{
 				MainDispatcher.getInstance().callView("Login", null);
 				break;
 			case "B":
-				MainDispatcher.getInstance().callView("HomeAdmin", null);
+				MainDispatcher.getInstance().callView("HomeUser", null);
 				break;
 			default:
 				MainDispatcher.getInstance().callView("Login", null);

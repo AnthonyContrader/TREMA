@@ -26,7 +26,7 @@ public class MaterialReadView extends AbstractView{
 
 	@Override
 	public void showOptions() {
-		System.out.println("Inserisci l'ID del dipendente");
+		System.out.println("Inserisci l'ID del materiale");
 		idmaterial = Integer.parseInt(getInput());
 
 	}

@@ -45,8 +45,6 @@ public class HRUpdateView extends AbstractView {
 		request.put("iduser", iduser);
 		request.put("mode", "UPDATE");
 		MainDispatcher.getInstance().callAction("HumanResource", "doControl", request);
-
-
 	}
 
 }
