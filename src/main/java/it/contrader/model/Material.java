@@ -49,7 +49,7 @@ public class Material {
 
 	@Override
 	public String toString() {
-		return "idMaterial= " + idMaterial + ", idHR= " + idHR + ", tipo= " + tipo + ", quantita= " + quantita;
+		return this.getidMaterial() + "\t" + this.getTipo() + "\t\t" + this.getQuantita() + "\t\t" + this.getIdHR();
 	}
 
 	public boolean equals(Material materialCompare) {

@@ -48,6 +48,7 @@ public class HumanResource {
 
 	@Override
 	public String toString() {
-		return "ID Hr: " + idHR + "\nNome: " + name + "\nCognome: " + surname + "\nId User: "+ idUser;
+		//return "ID Hr: " + idHR + "\nNome: " + name + "\nCognome: " + surname + "\nId User: "+ idUser;
+		return this.getidHR() + "\t" + this.getName() + "\t\t" + this.getName() + "\t\t" + this.getidUser();
 	}
 }
