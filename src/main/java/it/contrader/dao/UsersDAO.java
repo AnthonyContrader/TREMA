@@ -15,7 +15,6 @@ import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
 
 public class UsersDAO {
-
 	/**
 	 * Qui possiamo se vogliamo dichiarare delle stringhe rappresentanti le query
 	 * che verranno utilizzate dai service, Non è obbligatorio ma è consigliato
@@ -35,7 +34,6 @@ public class UsersDAO {
 	 */
 
 	public Users login(String username, String password) {
-
 		Connection connection = ConnectionSingleton.getInstance();
 		Users utente = null;
 		try {
@@ -60,7 +58,6 @@ public class UsersDAO {
 	}
 
 	public List<Users> getAllUsers() {
-
 		final List<Users> users = new ArrayList<>();
 		final Connection connection = ConnectionSingleton.getInstance();
 
@@ -112,7 +109,6 @@ public class UsersDAO {
 	}
 
 	// Modifica Chat
-
 	public boolean updateUsers(Users users) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
@@ -123,10 +119,8 @@ public class UsersDAO {
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
-
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
-
 	}
 }

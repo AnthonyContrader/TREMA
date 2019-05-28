@@ -14,12 +14,12 @@ import it.contrader.converter.UsersConverter;
 import it.contrader.dto.UsersDTO;
 import it.contrader.service.UsersServiceDTO;
 
-
 /**
  * La servlet si occupa di parlare con la JSP e utilizza i servizi opportuni.
  * Per chi farà User dovrà anche occuparsi del Login che abbiamo lasciato come struttura e va modificata in modo opportuno
  *
  */
+
 public class UsersServlet extends HttpServlet {
 
 	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
@@ -55,14 +55,11 @@ public class UsersServlet extends HttpServlet {
 			System.out.println("password: "+request.getParameter("password"));
 			System.out.println("ruolo: "+request.getParameter("ruolo"));
 
-		     	
-			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
+		    final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
 			final String ruoloUpdate = request.getParameter("ruolo");
 			final UsersDTO user = new UsersDTO(idUpdate, usernameUpdate,passwordUpdate, ruoloUpdate);
-					
-				
 					
 			usersServiceDTO.updateUsers(user);
 			showAllUsers(request, response);
@@ -84,18 +81,14 @@ public class UsersServlet extends HttpServlet {
 			response.sendRedirect("homeLogs.jsp");
 			break;
 
-				}
+	}
 
-			}
-
-		
-
-	
+}
 
 private void showAllUsers(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-	allUsers = this.usersServiceDTO.getAllUsers();
-	request.setAttribute("allUsers", allUsers);
-	getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
-}
+	throws ServletException, IOException {
+		allUsers = this.usersServiceDTO.getAllUsers();
+		request.setAttribute("allUsers", allUsers);
+		getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
+	}
 }

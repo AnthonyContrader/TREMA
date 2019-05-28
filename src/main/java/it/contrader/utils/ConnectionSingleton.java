@@ -6,16 +6,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import java.sql.Connection;
 import java.util.Properties;
 
-
 public class ConnectionSingleton {
-
-
     private static Connection connection = null;
-
 
     private ConnectionSingleton() {
     }
-
 
     public static Connection getInstance() {
         if (connection == null) {
@@ -40,5 +35,4 @@ public class ConnectionSingleton {
         }
         return connection;
     }
-
 }

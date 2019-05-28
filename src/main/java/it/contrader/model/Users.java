@@ -4,6 +4,7 @@ package it.contrader.model;
  * Classe Model di esempio
  *
  */
+
 public class Users {
 
 	/**
@@ -11,22 +12,19 @@ public class Users {
 	 * <br>
 	 * Possiamo avere n colonne
 	 */
+	
 	private Integer id;
 	private String username;
 	private String password;
 	private String ruolo;
 
-	/**
-	 * Costruttore con parametri
-	 */
+	// Costruttore con parametri
 	public Users(Integer id, String username, String password, String ruolo) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.ruolo = ruolo;
-
-		
 	}
 
 	/**

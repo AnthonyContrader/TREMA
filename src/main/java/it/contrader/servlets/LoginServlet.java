@@ -12,7 +12,6 @@ import it.contrader.dto.UsersDTO;
 import it.contrader.service.UsersServiceDTO;
 
 public class LoginServlet extends HttpServlet {
-
 	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
 
 	@Override
