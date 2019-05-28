@@ -1,44 +1,27 @@
 package it.contrader.model;
 
-/**
- * Classe Model di esempio
- *
- */
 public class Users {
 
-	/**
-	 * I campi che sono attributi di una certa tabella che vogliamo rappresentare
-	 * <br>
-	 * Possiamo avere n colonne
-	 */
-	private Integer id;
+	private Integer iduser;
 	private String username;
 	private String password;
-	private String ruolo;
+	private String usertype;
 
-	/**
-	 * Costruttore con parametri
-	 */
-	public Users(Integer id, String username, String password, String ruolo) {
+	public Users(String username, String password, String usertype) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.ruolo = ruolo;
+		this.usertype = usertype;
 
 		
 	}
 
-	/**
-	 * Metodi setter e getter che ci permettono di recuperare le informazioni del
-	 * model o di settarle
-	 */
-	public Integer getId() {
-		return id;
+	public Integer getIduser() {
+		return iduser;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIduser(Integer iduser) {
+		this.iduser = iduser;
 	}
 
 	public String getUsername() {
@@ -48,6 +31,7 @@ public class Users {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -55,11 +39,19 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRuolo() {
-		return ruolo;
+
+	public String getUsertype() {
+		return usertype;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
+
+	@Override
+	public String toString() {
+		return "idUser=" + iduser + ", username=" + username + ", password=" + password + ", usertype=" + usertype;
+	}
+
+
 }
