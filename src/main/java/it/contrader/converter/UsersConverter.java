@@ -8,12 +8,14 @@ import it.contrader.model.Users;
  *
  */
 public class UsersConverter {
+
+
 	/**
 	 * Converte un NodesDTO in Nodes
 	 */
 	public static Users toEntity(UsersDTO usersDTO) {
+
 		Users users = null;
-		
 		if (usersDTO != null) {
 			users = new Users(usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getUsertype());
 		}
@@ -25,12 +27,14 @@ public class UsersConverter {
 	 * Converte un Nodes in NodesDTO
 	 */
 	public static UsersDTO toDTO(Users users) {
+
 		UsersDTO usersDTO = null;
-		
 		if (users != null) {
 			usersDTO = new UsersDTO(users.getIduser(), users.getUsername(), users.getPassword(), users.getUsertype());
 		}
 
 		return usersDTO;
 	}
+	
+
 }

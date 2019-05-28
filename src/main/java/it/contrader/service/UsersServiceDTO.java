@@ -14,6 +14,7 @@ import it.contrader.model.Users;
  * in un oggetto DTO e le restituisce al controller opportuno
  */
 public class UsersServiceDTO {
+
 	private final UsersDAO usersDAO;
 
 	public UsersServiceDTO() {
@@ -41,18 +42,6 @@ public class UsersServiceDTO {
 	}
 
 	public boolean updateUsers (UsersDTO usersDTO) {
-<<<<<<< HEAD
-		return this.usersDAO.updateUsers(UsersConverter.toEntity(usersDTO));		
-	}
-	
-	public boolean deleteUsers (UsersDTO usersDTO) {
-		return this.usersDAO.deleteUsers(UsersConverter.toEntity(usersDTO));		
-	}
-	
-	public boolean insertUsers (UsersDTO usersDTO) {
-		return this.usersDAO.insertUsers(UsersConverter.toEntity(usersDTO));	
-	}	
-=======
 		return this.usersDAO.updateUser(UsersConverter.toEntity(usersDTO));
 		
 }
@@ -69,5 +58,4 @@ public class UsersServiceDTO {
 		
 	
 	
->>>>>>> a55be6440364c682e5d9000e8e115f516e6d832b
 }
