@@ -1,8 +1,5 @@
 package it.contrader.converter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.contrader.dto.UsersDTO;
 import it.contrader.model.Users;
 
@@ -18,7 +15,7 @@ public class UsersConverter {
 		Users users = null;
 		
 		if (usersDTO != null) {
-			users = new Users(usersDTO.getId(), usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getRuolo());
+			users = new Users(usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getUsertype());
 		}
 
 		return users;
@@ -31,7 +28,7 @@ public class UsersConverter {
 		UsersDTO usersDTO = null;
 		
 		if (users != null) {
-			usersDTO = new UsersDTO(users.getId(), users.getUsername(), users.getPassword(), users.getRuolo());
+			usersDTO = new UsersDTO(users.getIduser(), users.getUsername(), users.getPassword(), users.getUsertype());
 		}
 
 		return usersDTO;

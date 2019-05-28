@@ -1,5 +1,6 @@
 package it.contrader.model;
 
+<<<<<<< HEAD
 /**
  * Classe Model di esempio
  *
@@ -14,29 +15,39 @@ public class Users {
 	 */
 	
 	private Integer id;
+=======
+public class Users {
+
+	private Integer iduser;
+>>>>>>> a55be6440364c682e5d9000e8e115f516e6d832b
 	private String username;
 	private String password;
-	private String ruolo;
+	private String usertype;
 
+<<<<<<< HEAD
 	// Costruttore con parametri
 	public Users(Integer id, String username, String password, String ruolo) {
+=======
+	public Users(String username, String password, String usertype) {
+>>>>>>> a55be6440364c682e5d9000e8e115f516e6d832b
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
+<<<<<<< HEAD
 		this.ruolo = ruolo;
+=======
+		this.usertype = usertype;
+
+		
+>>>>>>> a55be6440364c682e5d9000e8e115f516e6d832b
 	}
 
-	/**
-	 * Metodi setter e getter che ci permettono di recuperare le informazioni del
-	 * model o di settarle
-	 */
-	public Integer getId() {
-		return id;
+	public Integer getIduser() {
+		return iduser;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIduser(Integer iduser) {
+		this.iduser = iduser;
 	}
 
 	public String getUsername() {
@@ -46,6 +57,7 @@ public class Users {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -53,11 +65,19 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRuolo() {
-		return ruolo;
+
+	public String getUsertype() {
+		return usertype;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
+
+	@Override
+	public String toString() {
+		return "idUser=" + iduser + ", username=" + username + ", password=" + password + ", usertype=" + usertype;
+	}
+
+
 }

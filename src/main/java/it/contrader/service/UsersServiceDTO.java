@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.converter.UsersConverter;
-import it.contrader.dao.UsersDAO;
+import it.contrader.dao.*;
 import it.contrader.dto.UsersDTO;
 import it.contrader.model.Users;
 
@@ -26,7 +26,7 @@ public class UsersServiceDTO {
 	 */
 	public List<UsersDTO> getAllUsers() {
 
-		List<Users> list = usersDAO.getAllUsers();
+		List<Users> list = usersDAO.getAllUser();
 		List<UsersDTO> listDTO = new ArrayList<>();
 
 		for (Users users : list) {
@@ -41,6 +41,7 @@ public class UsersServiceDTO {
 	}
 
 	public boolean updateUsers (UsersDTO usersDTO) {
+<<<<<<< HEAD
 		return this.usersDAO.updateUsers(UsersConverter.toEntity(usersDTO));		
 	}
 	
@@ -51,4 +52,22 @@ public class UsersServiceDTO {
 	public boolean insertUsers (UsersDTO usersDTO) {
 		return this.usersDAO.insertUsers(UsersConverter.toEntity(usersDTO));	
 	}	
+=======
+		return this.usersDAO.updateUser(UsersConverter.toEntity(usersDTO));
+		
+}
+	
+	public boolean deleteUsers (UsersDTO usersDTO) {
+		return this.usersDAO.deleteUser(UsersConverter.toEntity(usersDTO));
+		
+}
+	
+	public boolean insertUsers (UsersDTO usersDTO) {
+		return this.usersDAO.insertUser(UsersConverter.toEntity(usersDTO));
+	
+}
+		
+	
+	
+>>>>>>> a55be6440364c682e5d9000e8e115f516e6d832b
 }
