@@ -3,6 +3,8 @@ package it.contrader.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 import it.contrader.dto.*;
@@ -17,32 +19,88 @@ public class HumanResourceServlet extends HttpServlet {
 		public HumanResourceServlet() {}
 		
 		public void updateList(HttpServletRequest request) {
-			session.getAttribute("idHR");
-			ServiceDTO<HumanResourceDTO> service=new HumanResourceService();
+			session.getAttribute("idhr" );
+			ServiceDTO<HumanResourceDTO> service = new HumanResourceServiceDTO();
+			List<HumanResourceDTO> listDTO = service.getAllBy(idhr);
+			request.setAttribute("list", listDTO);
 		}
 		
 		@Override
-		public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
-			final String  scelta= request.getParameter("richiesta"); //da dove spunta richiesta??
-			final HttpSession session=request.getSession(true);
-		//	this.userLogged=(UsersDTO) session.getAttribute("iduser");// possibile errore
+		public void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			ServiceDTO<HumanResourceDTO> service = new HumanResourceServiceDTO();
+		    
+		    if(request.getParameter("idhr")!=null) {
+		    	idhr = Integer.parseInt(request.getParameter("idHR").toString());
+		    }
+
+			if(request.getParameter("id")!=null) {
+				id = Integer.parseInt(request.getParameter("id"));
+		    }
 			
-			switch(scelta) {
+			ItemDTO dto;
+			boolean ans;
+			String description, itemType;
 			
-			case "HumanResource":
-				 showAllHumanResource(request, response);
+			
+		    String mode = request.getParameter("mode");
+			
+			session = request.getSession();
+			session.setAttribute("ambientId",ambientId);
+			
+			switch (mode.toUpperCase()) {
+
+			case "ITEMLISTBY":
+				updateList(request);
+				getServletContext().getRequestDispatcher("/item/itemmanager.jsp").forward(request, response);
 				break;
-			case "insertRedirect":
-				response.sendRedirect("humanresource/insertHumanResource.jsp");
-			case "insert":
-				final int idHr=Integer.parseInt(request.getParameter("idHR"));
-				final String name = request.getParameter("name");
-				final String surname = request.getParameter("surname");
-				final int iduser=Integer.parseInt(request.getParameter("iduser"));
-				
-			//	final HumanResourceDTO hrinsert=HumanResourceDTO(idHr, name, surname, iduser);
-				//hrDTO.insertHR(hrinsert);
-				showAllHumanResource(request, response);
+
+			case "ITEMLISTOP":
+				updateList(request);
+				getServletContext().getRequestDispatcher("/homeoperatore.jsp").forward(request, response);
+				break;
+
+			case "READ":
+				dto = service.read(id);
+				request.setAttribute("dto", dto);
+				getServletContext().getRequestDispatcher("/item/readitem.jsp").forward(request, response);
+				break;
+
+			case "INSERT":
+				description= request.getParameter("description");
+				itemType= request.getParameter("itemType");
+				int ambientId = Integer.parseInt(request.getParameter("ambientId"));
+				dto = new ItemDTO (description, itemType, ambientId);
+				ans = service.insert(dto);
+				request.setAttribute("ans", ans);
+				updateList(request);
+				getServletContext().getRequestDispatcher("/item/itemmanager.jsp").forward(request, response);
+				break;
+
+			case "PREUPDATE":
+				dto = service.read(id);;
+				request.setAttribute("dto", dto);
+				getServletContext().getRequestDispatcher("/item/updateitem.jsp").forward(request, response);
+				break;
+
+			case "UPDATE":
+				description = request.getParameter("description");
+				itemType= request.getParameter("itemType");
+				ambientId = Integer.parseInt(request.getParameter("ambientId"));
+				int idToUpdate = Integer.parseInt(request.getParameter("idToUpdate"));
+				dto = new ItemDTO(idToUpdate,description, itemType, ambientId);
+				ans = service.update(dto);
+				request.setAttribute("ans", ans);
+				System.out.println(ans);
+				updateList(request);
+				getServletContext().getRequestDispatcher("/item/itemmanager.jsp").forward(request, response);
+				break;
+
+			case "DELETE":
+				dto = service.read(id);
+				ans = service.delete(dto);
+				request.setAttribute("ans", ans);
+				updateList(request);
+				getServletContext().getRequestDispatcher("/item/itemmanager.jsp").forward(request, response);
 				break;
 			}
 		}

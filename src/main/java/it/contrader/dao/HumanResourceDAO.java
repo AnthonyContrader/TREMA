@@ -118,6 +118,24 @@ public class HumanResourceDAO implements DAO<HumanResource>{
 		}
 		return false;
 	}
+
+@Override
+public List<HumanResource> getAllBy(Object o) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<HumanResource> getAllBy(Integer id, String Descrizione) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public HumanResource read(String param1, String param2) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
 
 
