@@ -8,6 +8,8 @@ public interface DAO<T> {
 	public List<T> getAll();
 	
 	public List<T> getAllBy(Object o);
+	
+	public List<T> getAllBy(Integer id, String Descrizione);
 
 	public T read(int id);
 	

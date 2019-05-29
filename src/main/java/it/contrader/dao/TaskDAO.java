@@ -4,11 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.model.Task;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
-
-//import com.mysql.fabric.xmlrpc.base.Array;
+import it.contrader.model.Ambiente;
+import it.contrader.model.Task;
 
 public class TaskDAO {
 	private String strSQL = "SELECT t.idtask, t.descrizione_task as task, p.name as project, hr.name as hr "
@@ -28,38 +27,36 @@ public class TaskDAO {
 
 	}
 	
-	public List<Task> ReadAllTasks() {
-		List<Task> tasks = new ArrayList<>();
+	public List<Task> getAll() {
 		Connection connection = ConnectionSingleton.getInstance();
-
 		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
 			
-			while (resultSet.next()) {
-				Integer idtask = resultSet.getInt("idtask");
-				String descrizione_task = resultSet.getString("descrizione_task");
-				Integer idproject = resultSet.getInt("idproject");
-				Integer idhr = resultSet.getInt("idHR");
-				String project = resultSet.getString("project");
-				String hr = resultSet.getString("hr");
-				
-				Task task = new Task(idtask, descrizione_task, idproject, project, idhr, hr);
-				//task.setIdtask(idtask);
-				tasks.add(task);
-			}
-		} catch (final SQLException e) {
-			e.printStackTrace();
+			Integer idtask = resultSet.getInt("idtask");
+			String descrizione_task = resultSet.getString("descrizione_task");
+			Integer idproject = resultSet.getInt("idproject");
+			Integer idhr = resultSet.getInt("idHR");
+			String project = resultSet.getString("project");
+			String hr = resultSet.getString("hr");
+			
+			Task task = new Task(idtask, descrizione_task, idproject, project, idhr, hr);
+			
+			//task.setIdtask(idtask);
+			task.add(task);
+			
+			return task;
+		} 
+		catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			
+			return null;
 		}
-		return tasks;
 	}
 	
-<<<<<<< HEAD
-	public List<Task> ReadAllTasksBy(Integer id, String Descrizione) {
+	public List<Task> getAllBy(Integer id, String Descrizione) {
 		List<Task> tasks = new ArrayList<>();
-=======
-	public Task readTask(Integer idtask) {   //possibile errore futuro(utilizza entita)
->>>>>>> 56c0d8b6272e0b6b1ca4e64731960c5413274f86
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
@@ -101,6 +98,10 @@ public class TaskDAO {
 		return tasks;
 	}
 	
+	public List<Task> getAllBy(Object o) {
+		return null;
+	}
+	
 	public Task ReadTask(Integer idtask) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
@@ -126,7 +127,7 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean InsertTask(Task task) {
+	public boolean insertTask(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
@@ -140,7 +141,7 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean UpdateTask(Task task) {
+	public boolean updateTask(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
@@ -155,7 +156,7 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean DeleteTask(Task task) {
+	public boolean deleteTask(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);

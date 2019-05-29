@@ -36,6 +36,17 @@ public class AbstractServiceDTO<T,V> implements ServiceDTO<V> {
 	}
 	
 	@Override
+	public List<V> getAllBy(Integer id, String Descrizione) {
+		List<T> list = dao.getAllBy(id, Descrizione);
+		List<V> listDTO = new ArrayList<>();
+
+		for (T t : list) {
+			listDTO.add(converter.toDTO(t));
+		}
+		return listDTO;
+	}
+	
+	@Override
 	public V read(int id) {
 		return converter.toDTO(dao.read(id));
 	}

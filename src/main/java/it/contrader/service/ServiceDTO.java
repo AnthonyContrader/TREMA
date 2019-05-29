@@ -6,6 +6,8 @@ public interface ServiceDTO<T> {
 	
 	public List<T> getAll();
 	
+	public List<T> getAllBy(Integer id, String Descrizione);
+	
 	public List<T> getAllBy(Object o);
 
 	public T read(int id);
@@ -17,4 +19,5 @@ public interface ServiceDTO<T> {
 	public boolean update (T t);
 	
 	public boolean delete (T t);
+	
 }
