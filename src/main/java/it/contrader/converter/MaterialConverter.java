@@ -1,27 +1,28 @@
 package it.contrader.converter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.contrader.dto.MaterialDTO;
 import it.contrader.model.Material;
+import it.contrader.converter.*;
 
+public class MaterialConverter implements Converter<Material,MaterialDTO> {
 
-public class MaterialConverter {
-
-
-	public static Material toEntity(MaterialDTO materialDTO) {
+	public Material toEntity(MaterialDTO materialDTO) {
 
 		Material material = null;
 		if (materialDTO != null) {
-			material = new Material(materialDTO.getIdmaterial(), materialDTO.getTipo(), materialDTO.getQuantita(), materialDTO.getIdHR());
+			material = new Material (materialDTO.getIdmaterial(), materialDTO.getTipo(), materialDTO.getquantita(), materialDTO.getidHR());
+			
 		}
+		Integer idmaterial =materialDTO.getIdmaterial();
+		if(idmaterial != null) {
+			material.setIdmaterial(idmaterial);
+		}
+
 
 		return material;
 	}
 
-
-	public static MaterialDTO toDTO(Material material) {
+	public MaterialDTO toDTO(Material material) {
 
 		MaterialDTO materialDTO = null;
 		if (material != null) {
@@ -30,6 +31,4 @@ public class MaterialConverter {
 
 		return materialDTO;
 	}
-	
-
 }

@@ -1,17 +1,21 @@
 package it.contrader.dto;
 
-public class MaterialDTO {
-
-	private int idmaterial;
-	private String tipo;
-	private int quantita;
-	private int idHR;
+public class MaterialDTO implements DTO {
+	int idmaterial;
+	String tipo;
+	int quantita;
+	int idHR;
 	
-	public MaterialDTO() {}
+	public MaterialDTO(){}
 	
 	public MaterialDTO(int idmaterial, String tipo, int quantita, int idHR) {
-		super();
 		this.idmaterial = idmaterial;
+		this.tipo = tipo;
+		this.quantita = quantita;
+		this.idHR = idHR;
+	}
+	
+	public MaterialDTO(String tipo, int quantita, int idHR) {
 		this.tipo = tipo;
 		this.quantita = quantita;
 		this.idHR = idHR;
@@ -33,20 +37,19 @@ public class MaterialDTO {
 		this.tipo = tipo;
 	}
 
-	public int getQuantita() {
+	public int getquantita() {
 		return quantita;
 	}
 
-	public void setQuantita(int quantita) {
+	public void setquantita(int quantita) {
 		this.quantita = quantita;
 	}
 
-	public int getIdHR() {
+	public int getidHR() {
 		return idHR;
 	}
 
-	public void setIdHR(int idHR) {
+	public void setidHR(int idHR) {
 		this.idHR = idHR;
 	}
 }
-
