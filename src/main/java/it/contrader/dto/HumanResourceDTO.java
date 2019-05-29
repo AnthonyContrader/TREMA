@@ -1,12 +1,17 @@
 package it.contrader.dto;
 
-public class HumanResourceDTO {
+public class HumanResourceDTO{
 	private int idHR;
 	private String name;
 	private String surname;
 	private int iduser;
 	
-	public HumanResourceDTO() {}
+	public HumanResourceDTO(String name, String surname, int iduser) {
+		super();
+		this.name=name;
+		this.surname=surname;
+		this.iduser=iduser;
+	}
 	
 	public HumanResourceDTO(int idHR, String name, String surname, int iduser) {
 		super();
