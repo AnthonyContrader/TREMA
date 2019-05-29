@@ -8,7 +8,7 @@ import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
 import it.contrader.model.Task;
 
-public class TaskDAO {
+public class TaskDAO implements DAO<Task> {
 	private String strSQL = "SELECT t.idtask, t.descrizione_task as task, p.name as project, hr.name as hr "
 						  + "FROM task t"
 						  	+ "INNER JOIN project p on p.idproject = t.idproject "
@@ -26,6 +26,7 @@ public class TaskDAO {
 
 	}
 	
+	@Override
 	public List<Task> getAll() {
 		List<Task> tasks = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
@@ -57,6 +58,7 @@ public class TaskDAO {
 		}
 	}
 	
+	@Override
 	public List<Task> getAllBy(Integer id, String Descrizione) {
 		List<Task> tasks = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
@@ -100,11 +102,13 @@ public class TaskDAO {
 		return tasks;
 	}
 	
+	@Override
 	public List<Task> getAllBy(Object o) {
 		return null;
 	}
 	
-	public Task ReadTask(Integer idtask) {
+	@Override
+	public Task read(int idtask) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
@@ -129,7 +133,8 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean insertTask(Task task) {
+	@Override
+	public boolean insert(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
@@ -143,7 +148,8 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean updateTask(Task task) {
+	@Override
+	public boolean update(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
@@ -158,7 +164,8 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean deleteTask(Task task) {
+	@Override
+	public boolean delete(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
@@ -169,5 +176,11 @@ public class TaskDAO {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
+	}
+	
+	@Override
+	public Task read(String param1, String param2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -2,6 +2,8 @@ package it.contrader.dao;
 
 import java.util.List;
 
+import it.contrader.model.Task;
+
 //T = entity
 public interface DAO<T> {
 	
