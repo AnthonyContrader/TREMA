@@ -1,21 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <html>
 <head>
-<title>Login Trader</title>
+<link href="css/trema.css" rel="stylesheet">
+
+<title>Login Trema</title>
 </head>
 <body>
-	<div>
-		<form action="LoginServlet" method="post">
-			<h3>
-				username: <input type="text" id="user" name="username"
-					placeholder="inserisci username">
-			</h3>
-			<h3>
-				password: <input type="password" id="pass" name="password"
-					placeholder="inserisci password">
-			</h3>
+<img class="log"alt="Logo" src="css/DoserLogo.svg">	
+
+		<form class="login" action="LoginServlet" method="post">
+
+				<label for="user">Username: </label>
+			
+				<input type="text" id="user" name="username" placeholder="Insert username">
+		
+				<label for="pass">Password: </label>
+			
+				 <input type="password" id="pass" name="password" placeholder="Insert password">
+		
 			<button type="submit" value="Login" name="pulsante">Login</button>
-			<br> <a href="register.jsp"> Registrati </a>
 		</form>
-	</div>
+
+	
 </body>
 </html>
