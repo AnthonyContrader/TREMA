@@ -10,7 +10,7 @@ public class UsersConverter implements Converter<Users,UsersDTO> {
 		Users user = null;
 		if (userDTO != null) {
 			user = new Users( userDTO.getUsername(), userDTO.getPassword(), userDTO.getUsertype());
-			Integer id = userDTO.getIduser();
+			Integer id = userDTO.getId();
 			if(id != null) {
 				user.setIduser(id);
 			}
