@@ -46,7 +46,7 @@ public class TaskDAO {
 		return tasks;
 	}
 	
-	public Task readTask(Integer idtask) {
+	public Task readTask(Integer idtask) {   //possibile errore futuro(utilizza entita)
 		Connection connection = ConnectionSingleton.getInstance();
 
 		try {

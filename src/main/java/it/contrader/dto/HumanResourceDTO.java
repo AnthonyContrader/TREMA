@@ -6,6 +6,8 @@ public class HumanResourceDTO {
 	private String surname;
 	private int iduser;
 	
+	public HumanResourceDTO() {}
+	
 	public HumanResourceDTO(int idHR, String name, String surname, int iduser) {
 		super();
 		this.idHR=idHR;

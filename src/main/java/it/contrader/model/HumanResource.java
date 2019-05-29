@@ -1,12 +1,17 @@
 package it.contrader.model;
 
+import java.util.*;
+
 public class HumanResource {
 		private int idHR;
 		private String name;
 		private String surname;
 		private int iduser;
 		
+		public HumanResource() {}
+		
 		public HumanResource(int idHR, String name, String surname, int iduser) {
+			super();
 			this.idHR=idHR;
 			this.name=name;
 			this.surname=surname;
@@ -37,10 +42,4 @@ public class HumanResource {
 		public void setIduser(int iduser) {
 			this.iduser = iduser;
 		}
-		@Override
-		public String toString() {
-			return "idHR=" + idHR + ", name=" + name + ", surname=" + surname + ", iduser=" + iduser;
-		}
-		
-		
 }
