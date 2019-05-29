@@ -7,7 +7,7 @@ import java.util.List;
 import it.contrader.utils.*;
 import it.contrader.model.HumanResource;
 
-public class HumanResourceDAO {
+public class HumanResourceDAO{
 
 	private final String QUERY_ALL = "SELECT * FROM humanresource";
 	private final String QUERY_INSERT = "INSERT INTO humanresource (name, surname, iduser) VALUES (?,?,?)";
@@ -60,19 +60,20 @@ public class HumanResourceDAO {
 
 	}
 
-	public HumanResource readHR(int idhr) {
+	public HumanResource readHR(HumanResource hR) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1, idhr);
+			preparedStatement.setInt(1, hR.getIdHR());
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
-			int userid = resultSet.getInt("iduser");
-			String name = resultSet.getString("name");
-			String surname = resultSet.getString("surname");
+			int idHr=hR.getIdHR();
+			int userid = hR.getIduser();
+			String name = hR.getName();
+			String surname = hR.getSurname();
 
-			HumanResource hr = new HumanResource(idhr, name, surname, userid);
+			HumanResource hr = new HumanResource(idHr, name, surname, userid);
 			hr.setIdHR(resultSet.getInt("idHR"));
 
 			return hr;
@@ -82,35 +83,21 @@ public class HumanResourceDAO {
 		}
 	}
 
+
 	public boolean updateHR(HumanResource hrToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present
 		if (hrToUpdate.getIdHR() == 0)
 			return false;
-
-		HumanResource userRead = readHR(hrToUpdate.getIdHR());
-		if (!userRead.equals(hrToUpdate)) {
+	
 			try {
-				// Fill the userToUpdate object
-				if (hrToUpdate.getName() == null || hrToUpdate.getName().equals("")) {
-					hrToUpdate.setName(userRead.getName());
-				}
-				
-				if (hrToUpdate.getSurname() == null || hrToUpdate.getSurname().equals("")) {
-					hrToUpdate.setName(userRead.getSurname());
-				}
-				
-				if (hrToUpdate.getIduser() == 0 ) {
-					hrToUpdate.setIduser(userRead.getIduser());
-				}
-
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setString(1, hrToUpdate.getName());
-				preparedStatement.setString(2, hrToUpdate.getSurname());
-				preparedStatement.setInt(3, hrToUpdate.getIduser());
-				preparedStatement.setInt(4, hrToUpdate.getIdHR());
+				preparedStatement.setInt(1, hrToUpdate.getIdHR());
+				preparedStatement.setString(2, hrToUpdate.getName());
+				preparedStatement.setString(3, hrToUpdate.getSurname());
+				preparedStatement.setInt(4, hrToUpdate.getIduser());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
@@ -120,17 +107,13 @@ public class HumanResourceDAO {
 			} catch (SQLException e) {
 				return false;
 			}
-		}
-
-		return false;
-
 	}
 
-	public boolean deleteHR(int idhr) {
+	public boolean deleteHR(HumanResource hr) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, idhr);
+			preparedStatement.setInt(1, hr.getIdHR());
 			int n = preparedStatement.executeUpdate();
 			
 			if (n != 0)

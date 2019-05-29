@@ -54,8 +54,12 @@ public class TaskDAO {
 		return tasks;
 	}
 	
+<<<<<<< HEAD
 	public List<Task> ReadAllTasksBy(Integer id, String Descrizione) {
 		List<Task> tasks = new ArrayList<>();
+=======
+	public Task readTask(Integer idtask) {   //possibile errore futuro(utilizza entita)
+>>>>>>> 56c0d8b6272e0b6b1ca4e64731960c5413274f86
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {

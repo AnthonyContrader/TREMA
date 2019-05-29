@@ -21,10 +21,10 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("utente", null);
 
 		if (request != null) {
-			final String nomeUtente = request.getParameter("username").toString();
+			final String username = request.getParameter("username").toString();
 			final String password = request.getParameter("password").toString();
 			// recuperiamo l'utente
-			final UsersDTO usersDTO = usersServiceDTO.getUserByUsernameAndPasword(nomeUtente, password);
+			final UsersDTO usersDTO = usersServiceDTO.getUserByUsernameAndPasword(username, password);
 
 			if (usersDTO != null)
 				session.setAttribute("utente", usersDTO);
@@ -36,10 +36,10 @@ public class LoginServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 				break;
 			case "project_manager":
-				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);//da inserire la home page di PM
 				break;
 			case "hr_manager":
-				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);//da inserire la home page di HR manager
 				break;
 			default:
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
