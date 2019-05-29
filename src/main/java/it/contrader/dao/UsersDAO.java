@@ -7,7 +7,7 @@ import it.contrader.model.*;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
 
-public class UsersDAO {
+public class UsersDAO implements DAO<Users>{
 
 	private final String QUERY_ALL = "SELECT * FROM user";
 	private final String QUERY_INSERT = "INSERT INTO user (username, password, usertype) VALUES (?,?,?)";
@@ -18,7 +18,8 @@ public class UsersDAO {
 
 	public UsersDAO() {}
 
-	public List<Users> getAllUser() {
+@Override	
+	public List<Users> getAll() {
 		List<Users> usersList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
@@ -40,7 +41,8 @@ public class UsersDAO {
 		return usersList;
 	}
 
-	public boolean insertUser(Users userToInsert) {
+@Override
+	public boolean insert(Users userToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
@@ -56,7 +58,8 @@ public class UsersDAO {
 
 	}
 
-	public Users readUser(int userId) {
+@Override
+	public Users read(int userId) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
@@ -79,14 +82,15 @@ public class UsersDAO {
 
 	}
 
-	public boolean updateUser(Users userToUpdate) {
+@Override
+	public boolean update(Users userToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if iduser exists...
 		if (userToUpdate.getIduser() == 0)
 			return false;
 
-		Users userRead = readUser(userToUpdate.getIduser());
+		Users userRead = read(userToUpdate.getIduser());
 		if (!userRead.equals(userToUpdate)) {
 			try {
 				// Fill the userToUpdate object
@@ -122,7 +126,8 @@ public class UsersDAO {
 		return false;
 	}
 
-	public boolean deleteUser (Users userToDelete) {
+@Override
+	public boolean delete(Users userToDelete) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
@@ -160,6 +165,24 @@ public class UsersDAO {
 			e.printStackTrace();
 		}
 		return utente;
+	}
+
+	@Override
+	public List<Users> getAllBy(Object o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Users> getAllBy(Integer id, String Descrizione) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Users read(String param1, String param2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

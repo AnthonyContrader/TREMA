@@ -1,33 +1,34 @@
 package it.contrader.dto;
 
-/**
- * Il DTO (Data transfer object) è un ponte che ci permette di nascondere le
- * informazioni principali del nostro model
- * 
- */
-public class UsersDTO {
+public class UsersDTO implements DTO {
 
-	private Integer iduser;
+
+
+	private Integer id;
 	private String username;
 	private String password;
 	private String usertype;
 
-	public UsersDTO(Integer iduser, String username, String password, String usertype) {
-		super();
-		this.iduser = iduser;
+	public UsersDTO(Integer id, String username, String password, String usertype) {
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.usertype = usertype;
-
-		
 	}
 
-	public Integer getIduser() {
-		return iduser;
+	public UsersDTO (String username, String password, String usertype) {
+		this.username = username;
+		this.password = password;
+		this.usertype = usertype;
 	}
 
-	public void setIduser(Integer iduser) {
-		this.iduser = iduser;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -45,7 +46,6 @@ public class UsersDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getUsertype() {
 		return usertype;
 	}
@@ -53,11 +53,8 @@ public class UsersDTO {
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
-
 	@Override
 	public String toString() {
-		return "idUser=" + iduser + ", username=" + username + ", password=" + password + ", usertype=" + usertype;
+		return username ;
 	}
-
-
 }

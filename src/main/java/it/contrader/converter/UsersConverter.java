@@ -1,40 +1,32 @@
 package it.contrader.converter;
 
-import it.contrader.dto.UsersDTO;
-import it.contrader.model.Users;
+import it.contrader.dto.*;
+import it.contrader.model.*;
 
-/**
- * Il converter si occupa di "convertire" un model in un dto e viceversa
- *
- */
-public class UsersConverter {
+public class UsersConverter implements Converter<Users,UsersDTO> {
 
+	@Override
+	public Users toEntity(UsersDTO userDTO) {
+		Users user = null;
+		if (userDTO != null) {
+			user = new Users( userDTO.getUsername(), userDTO.getPassword(), userDTO.getUsertype());
+			Integer id = userDTO.getIduser();
+			if(id != null) {
+				user.setIduser(id);
+			}
 
-	/**
-	 * Converte un NodesDTO in Nodes
-	 */
-	public static Users toEntity(UsersDTO usersDTO) {
-
-		Users users = null;
-		if (usersDTO != null) {
-			users = new Users(usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getUsertype());
+			
 		}
-
-		return users;
+		
+		return user;
 	}
 
-	/**
-	 * Converte un Nodes in NodesDTO
-	 */
-	public static UsersDTO toDTO(Users users) {
-
-		UsersDTO usersDTO = null;
-		if (users != null) {
-			usersDTO = new UsersDTO(users.getIduser(), users.getUsername(), users.getPassword(), users.getUsertype());
+	@Override
+	public UsersDTO toDTO(Users user) {
+		UsersDTO userDTO = null;
+		if (user != null) {
+			userDTO = new UsersDTO( user.getIduser(),user.getUsername(), user.getPassword(), user.getUsertype());
 		}
-
-		return usersDTO;
+		return userDTO;
 	}
-	
-
 }

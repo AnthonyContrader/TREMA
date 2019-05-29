@@ -19,7 +19,7 @@ public class HumanResourceServlet extends HttpServlet {
 		public void updateList(HttpServletRequest request) {
 			session.getAttribute("idhr" );
 			ServiceDTO<HumanResourceDTO> service = new HumanResourceServiceDTO();
-			List<HumanResourceDTO> listDTO = service.getAllBy(idhr);
+			List<HumanResourceDTO> listDTO = service.getAll();
 			request.setAttribute("list", listDTO);
 		}
 		
