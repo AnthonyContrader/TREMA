@@ -1,15 +1,12 @@
 package it.contrader.converter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.contrader.dto.TaskDTO;
 import it.contrader.model.Task;
 
-public class TaskConverter {
+public class TaskConverter implements Converter<Task, TaskDTO>{
 	
 	// Converte un NodesDTO in Nodes
-	public static Task toEntity(TaskDTO taskDTO) {
+	public Task toEntity(TaskDTO taskDTO) {
 		Task task = null;
 		
 		if (taskDTO != null) {
@@ -20,11 +17,12 @@ public class TaskConverter {
 	}
 	
 	// Converte un Nodes in NodesDTO
-	public static TaskDTO toDTO(Task task) {
+	public TaskDTO toDTO(Task task) {
 		TaskDTO taskDTO = null;
 		
 		if (task != null) {
-			taskDTO = new TaskDTO(task.getDescrizione_task(), task.getIdproject(), task.getIdHR());
+			taskDTO = new TaskDTO(task.getIdtask(), task.getDescrizione_task(), task.getIdproject(), 
+					task.getDescrizioneProject(), task.getIdHR(), task.getDescrizioneHR());
 		}
 
 		return taskDTO;
