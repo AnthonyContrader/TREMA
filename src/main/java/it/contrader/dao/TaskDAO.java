@@ -6,7 +6,6 @@ import java.util.List;
 
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
-import it.contrader.model.Ambiente;
 import it.contrader.model.Task;
 
 public class TaskDAO {
@@ -28,25 +27,28 @@ public class TaskDAO {
 	}
 	
 	public List<Task> getAll() {
+		List<Task> tasks = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
+		
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			resultSet.next();
 			
-			Integer idtask = resultSet.getInt("idtask");
-			String descrizione_task = resultSet.getString("descrizione_task");
-			Integer idproject = resultSet.getInt("idproject");
-			Integer idhr = resultSet.getInt("idHR");
-			String project = resultSet.getString("project");
-			String hr = resultSet.getString("hr");
+			while (resultSet.next()) {
+				Integer idtask = resultSet.getInt("idtask");
+				String descrizione_task = resultSet.getString("descrizione_task");
+				Integer idproject = resultSet.getInt("idproject");
+				Integer idhr = resultSet.getInt("idHR");
+				String project = resultSet.getString("project");
+				String hr = resultSet.getString("hr");
+				
+				Task task = new Task(idtask, descrizione_task, idproject, project, idhr, hr);
+				
+				//task.setIdtask(idtask);
+				tasks.add(task);
+			}
 			
-			Task task = new Task(idtask, descrizione_task, idproject, project, idhr, hr);
-			
-			//task.setIdtask(idtask);
-			task.add(task);
-			
-			return task;
+			return tasks;
 		} 
 		catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
