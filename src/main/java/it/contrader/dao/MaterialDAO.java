@@ -18,6 +18,7 @@ public class MaterialDAO {
 
 
 	private final String GET_ALL = "select * from material";
+	private final String QUERY_READ   = "READ FROM material (idmaterial, tipo, quantita, idHR) values (?,?,?,?)";
 	private final String QUERY_INSERT = "INSERT INTO material (idmaterial, tipo, quantita, idHR) values (?,?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM material WHERE idmaterial = (?)";
 	private final String QUERY_UPDATE = "UPDATE material SET tipo, quantita, idHR =(?,?,?) WHERE idmaterial = (?)";
@@ -45,6 +46,28 @@ public class MaterialDAO {
 			e.printStackTrace();
 		}
 		return material;
+	}
+	
+	public Material readMaterial(int idmaterial) {                  //maybe exist errors
+		Connection connection = ConnectionSingleton.getInstance();
+
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
+			preparedStatement.setInt(1, idmaterial);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+		
+			String tipo= resultSet.getString("tipo");
+			int quantita=resultSet.getInt("quantita");
+			int idhr = resultSet.getInt("idHR");
+			Material material = new Material(idmaterial, tipo, quantita, idhr);;
+			material.setIdmaterial (resultSet.getInt("idmaterial"));
+			return material;
+		} 
+		catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return null;
+		}
 	}
 	// Inserimento materiale
 

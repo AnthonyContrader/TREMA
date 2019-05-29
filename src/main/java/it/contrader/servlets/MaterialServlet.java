@@ -23,7 +23,7 @@ public class MaterialServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		final String scelta = request.getParameter("richiesta");
-		final HttpSession session = request.getSession(true);
+		final HttpSession session = request.getSession(true);     //errore
 
 		switch (scelta) {
 
@@ -60,7 +60,7 @@ public class MaterialServlet extends HttpServlet {
 			break;
 
 		case "delete":
-			final int idmaterialUpdat = Integer.parseInt(request.getParameter("idmaterial"));
+			final int idmaterialUpdat = Integer.parseInt(request.getParameter("idmaterial"));  // errore
 			
 			final MaterialDTO use = new MaterialDTO();  // possibile passsaggio di parametri
 			materialServiceDTO.deleteMaterial(use);
