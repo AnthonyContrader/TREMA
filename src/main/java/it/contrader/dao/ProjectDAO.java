@@ -31,8 +31,8 @@ public class ProjectDAO implements DAO<Project> {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
-			int idproject = (Integer)o;
-			preparedStatement.setInt(1, idproject);
+			int iduser = (Integer)o;
+			preparedStatement.setInt(1, iduser);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			Project project;
 			while (resultSet.next()) {
@@ -40,9 +40,9 @@ public class ProjectDAO implements DAO<Project> {
 				String name = resultSet.getString("name");
 				String descrizione = resultSet.getString("descrizione");
 				String tipo = resultSet.getString("tipo");
-				int iduser = resultSet.getInt("iduser");
-				project = new Project(Idproject,name, descrizione, tipo, iduser);
-				project.setIdproject(idproject);
+				int Iduser = resultSet.getInt("iduser");
+				project = new Project(Idproject,name, descrizione, tipo, Iduser);
+				project.setIdproject(Idproject);
 				project.setName(name);
 				project.setDescrizione(descrizione);
 				project.setTipo(tipo);
