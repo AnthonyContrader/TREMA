@@ -7,6 +7,8 @@ public class MaterialDTO {
 	private int quantita;
 	private int idHR;
 	
+	public MaterialDTO() {}
+	
 	public MaterialDTO(int idmaterial, String tipo, int quantita, int idHR) {
 		super();
 		this.idmaterial = idmaterial;
