@@ -69,7 +69,15 @@ public class TaskDTO {
 	public void setIdproject(Integer idproject) {
 		this.idproject = idproject;
 	}
+	
+	public String getDescrizione_project() {
+		return descrizione_project;
+	}
 
+	public void setDescrizione_project(String descrizione_project) {
+		this.descrizione_project = descrizione_project;
+	}
+	
 	public Integer getIdHR() {
 		return idHR;
 	}
@@ -77,4 +85,14 @@ public class TaskDTO {
 	public void setIdHR(Integer idHR) {
 		this.idHR = idHR;
 	}
+
+	public String getDescrizione_hr() {
+		return descrizione_hr;
+	}
+
+	public void setDescrizione_hr(String descrizione_hr) {
+		this.descrizione_hr = descrizione_hr;
+	}
+	
+	
 }
