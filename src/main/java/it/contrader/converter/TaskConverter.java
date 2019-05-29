@@ -11,6 +11,11 @@ public class TaskConverter implements Converter<Task, TaskDTO>{
 		
 		if (taskDTO != null) {
 			task = new Task(taskDTO.getDescrizione_task(), taskDTO.getIdproject(), taskDTO.getIdHR());
+			
+			Integer idtask = taskDTO.getIdtask();
+			
+			if(idtask != null) 
+				task.setIdtask(taskDTO.getIdtask());
 		}
 
 		return task;
