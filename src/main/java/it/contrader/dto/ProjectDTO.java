@@ -1,64 +1,74 @@
 package it.contrader.dto;
 
 public class ProjectDTO {
-
-	private int idproject;
-	private String name;
-	private String descrizione;
-	private String tipo;
-	private int iduser;
 	
-	public ProjectDTO(int idproject, String name, String descrizione, String tipo , int iduser) {
-		super();
-		this.idproject = idproject;
-		this.name = name;
-		this.descrizione = descrizione;
-		this.tipo = tipo;
-		this.iduser = iduser;
-	}
+		private int idproject;
+		private String name;
+		private String descrizione;
+		private String tipo;
+		private int iduser;
 
-	public int getIdproject() {
-		return idproject;
-	}
+		public ProjectDTO() {
 
-	public void setIdproject(int idproject) {
-		this.idproject = idproject;
-	}
+		}
 
-	public String getName() {
-		return name;
-	}
+		public ProjectDTO(String name, String descrizione, String tipo, int iduser) {
+			super ();
+			this.setName(name);
+			this.setDescrizione(descrizione);
+			this.setTipo(tipo);
+			this.setIduser(iduser);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+		}
+		public ProjectDTO(int idproject, String name, String descrizione, String tipo, int iduser) {
+			super ();
+			this.idproject = idproject;
+			this.name = name;
+			this.descrizione = descrizione;
+			this.tipo = tipo;
+			this.iduser = iduser;
 
-	public String getDescrizione() {
-		return descrizione;
-	}
+		}
+		public int getIduser() {
+			return iduser;
+		}
 
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
+		public void setIduser(int iduser) {
+			this.iduser = iduser;
+		}
 
-	public String getTipo() {
-		return tipo;
-	}
+		
+		public String getName() {
+			return name;
+		}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
+		
+		public String getDescrizione() {
+			return descrizione;
+		}
 
-	public int getIduser() {
-		return iduser;
-	}
+		public void setDescrizione(String descrizione) {
+			this.descrizione = descrizione;
+		}
+		
+		public String getTipo() {
+			return tipo;
+		}
 
-	public void setIduser(int iduser) {
-		this.iduser = iduser;
-	}
+		public void setTipo(String tipo) {
+			this.tipo = tipo;
+		}
+
+		public int getIdproject() {
+			return idproject;
+		}
+
+		public void setIdproject(int idproject) {
+			this.idproject = idproject;
+		}
 	
 	
-
-
-
 }

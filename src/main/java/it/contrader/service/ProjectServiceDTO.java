@@ -1,58 +1,16 @@
 package it.contrader.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.contrader.converter.ProjectConverter;
 import it.contrader.dao.ProjectDAO;
 import it.contrader.dto.ProjectDTO;
 import it.contrader.model.Project;
 
-/**
- * Classe che si occupa di interfacciarsi con la persistenza e recuperare
- * attraverso i metodi del Data Access Object le tuple desiderate, Le converte
- * in un oggetto DTO e le restituisce al controller opportuno
- */
-public class ProjectServiceDTO {
 
-	private final ProjectDAO projectDAO;
+public class ProjectServiceDTO extends AbstractServiceDTO<Project,ProjectDTO> {
 
 	public ProjectServiceDTO() {
-		this.projectDAO = new ProjectDAO();
+		dao = new ProjectDAO();
+		converter = new ProjectConverter();
 	}
 
-	/**
-	 * Come vediamo la lista recuperata è di tipo Esempio ma noi la convertiamo in EsempioDTO
-	 * Invito chi fa i converter a fare un metodo per convertire direttamente la lista senza farli uno ad uno perchè è sporco e poco efficiente
-	 */
-	public List<ProjectDTO> getAllProject() {
-
-		List<Project> list = projectDAO.getAllProject();
-		List<ProjectDTO> listDTO = new ArrayList<>();
-
-		for (Project project : list) {
-			listDTO.add(ProjectConverter.toDTO(project));
-		}
-
-		return listDTO;
-	}
-	
-
-	public boolean updateProject (ProjectDTO projectDTO) {
-		return this.projectDAO.updateProject(ProjectConverter.toEntity(projectDTO));
-		
-}
-	
-	public boolean deleteProject (ProjectDTO projectDTO) {
-		return this.projectDAO.deleteProject(ProjectConverter.toEntity(projectDTO));
-		
-}
-	
-	public boolean insertProject (ProjectDTO projectDTO) {
-		return this.projectDAO.insertProject(ProjectConverter.toEntity(projectDTO));
-	
-}
-		
-	
-	
 }

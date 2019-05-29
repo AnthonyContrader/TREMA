@@ -1,34 +1,37 @@
 package it.contrader.model;
 
-/**
- * Classe Model di esempio
- *
- */
-public class Project {
 
-	/**
-	 * I campi che sono attributi di una certa tabella che vogliamo rappresentare
-	 * <br>
-	 * Possiamo avere n colonne
-	 */
+public class Project {
+	
 	private int idproject;
 	private String name;
 	private String descrizione;
 	private String tipo;
 	private int iduser;
 
-	/**
-	 * Costruttore con parametri
-	 */
-	public Project(int idproject, String name, String descrizione, String tipo , int iduser) {
-		super();
-		this.idproject = idproject;
+	public Project() {
+
+	}
+
+	public Project(String name, String descrizione, String tipo, int iduser) {
+		super ();
 		this.name = name;
 		this.descrizione = descrizione;
 		this.tipo = tipo;
 		this.iduser = iduser;
+
+	}
 	
-}
+	public Project(int idproject, String name, String descrizione, String tipo, int iduser) {
+		super ();
+		this.idproject = idproject;
+		this.descrizione = descrizione;
+		this.tipo = tipo;
+		this.iduser = iduser;
+
+	}
+
+	
 
 	public int getIdproject() {
 		return idproject;
@@ -69,4 +72,10 @@ public class Project {
 	public void setIduser(int iduser) {
 		this.iduser = iduser;
 	}
+
+	@Override
+	public String toString() {
+		return this.getIdproject() + "\t" + this.getName() + "\t\t" + this.getDescrizione() + "\t\t" + this.getTipo() + "\t\t" + this.getIduser();
+	}
+
 }
