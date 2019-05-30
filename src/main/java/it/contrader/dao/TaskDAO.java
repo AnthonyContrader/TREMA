@@ -1,14 +1,21 @@
 package it.contrader.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.main.GestoreEccezioni;
 import it.contrader.model.Task;
+import it.contrader.model.Project;
+import it.contrader.model.HumanResource;
 
-public class TaskDAO implements DAO<Task> {
+public class TaskDAO {
+	/*
 	private String strSQL = "SELECT t.idtask, t.descrizione_task as task, p.name as project, hr.name as hr "
 						  + "FROM task t"
 						  	+ "INNER JOIN project p on p.idproject = t.idproject "
@@ -17,18 +24,20 @@ public class TaskDAO implements DAO<Task> {
 	private final String QUERY_ALL = strSQL;
 	private final String QUERY_ReadByIdProject = strSQL + " where idproject=?";
 	private final String QUERY_ReadByIdHR = strSQL + " where idhr=?";
+	*/
+	
+	private final String QUERY_ALL = "SELECT * FROM task";
 	private final String QUERY_INSERT = "INSERT INTO task (descrizione_task, idproject, idHR) values (?,?,?)";
-	private final String QUERY_DELETE = "DELETE FROM task WHERE idtask = (?)";
+	private final String QUERY_READ = "SELECT * FROM task WHERE idtask=(?)";
 	private final String QUERY_UPDATE = "UPDATE task SET descrizione_task, idproject, idHR =(?,?,?) WHERE idtask = (?)";
-	private final String QUERY_READ = "select * from task where idtask=(?)";
+	private final String QUERY_DELETE = "DELETE FROM task WHERE idtask = (?)";
 	
 	public TaskDAO() {
 
 	}
 	
-	@Override
 	public List<Task> getAll() {
-		List<Task> tasks = new ArrayList<>();
+		List<Task> taskList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
@@ -40,16 +49,16 @@ public class TaskDAO implements DAO<Task> {
 				String descrizione_task = resultSet.getString("descrizione_task");
 				Integer idproject = resultSet.getInt("idproject");
 				Integer idhr = resultSet.getInt("idHR");
-				String project = resultSet.getString("project");
-				String hr = resultSet.getString("hr");
 				
-				Task task = new Task(idtask, descrizione_task, idproject, project, idhr, hr);
+				Project projectClient = new Project(null, null, null, idproject);
+				HumanResource hrClient = new HumanResource(null, null, idhr);
 				
-				//task.setIdtask(idtask);
-				tasks.add(task);
+				Task task = new Task(descrizione_task, projectClient, hrClient);
+				task.setIdtask(idtask);
+				taskList.add(task);
 			}
 			
-			return tasks;
+			return taskList;
 		} 
 		catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -58,72 +67,41 @@ public class TaskDAO implements DAO<Task> {
 		}
 	}
 	
-	@Override
-	public List<Task> getAllBy(Integer id, String Descrizione) {
-		List<Task> tasks = new ArrayList<>();
+	public boolean insert(Task task) {
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
+			preparedStatement.setString(1, task.getDescrizione_task());
+			preparedStatement.setInt(2, task.getProject().getIdproject());
+			preparedStatement.setInt(3, task.getHR().getIdHR());
+			return true;
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return false;
+		}
+	}
+	
+	public Task read(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
-			//int id = (Integer) o;
-			PreparedStatement preparedStatement = null;
+			int idtask = task.getIdtask();
 			
-			switch (Descrizione) {
-			case "project":
-				preparedStatement = connection.prepareStatement(QUERY_ReadByIdProject);
-				break;
-			case "hr":
-				preparedStatement = connection.prepareStatement(QUERY_ReadByIdHR);
-				break;
-			default:
-				return null;
-			}
-			
-			preparedStatement.setInt(1, id);
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			while (resultSet.next()) {
-				Integer idtask = resultSet.getInt("idtask");
-				String descrizione_task = resultSet.getString("descrizione_task");
-				Integer idproject = resultSet.getInt("idproject");
-				Integer idhr = resultSet.getInt("idHR");
-				String project = resultSet.getString("project");
-				String hr = resultSet.getString("hr");
-				
-				Task task = new Task(idtask, descrizione_task, idproject, project, idhr, hr);
-				
-				//task.setIdtask(idtask);
-				tasks.add(task);
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return tasks;
-	}
-	
-	@Override
-	public List<Task> getAllBy(Object o) {
-		return null;
-	}
-	
-	@Override
-	public Task read(int idtask) {
-		Connection connection = ConnectionSingleton.getInstance();
-		
-		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1,idtask);
+			preparedStatement.setInt(1, idtask);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
 			String descrizione_task = resultSet.getString("descrizione_task");
 			Integer idproject = resultSet.getInt("idproject");
-			Integer idHR = resultSet.getInt("idHR");
+			Integer idhr = resultSet.getInt("idHR");
 						
-			Task task = new Task (descrizione_task, idproject, idHR);
-			task.setIdtask(resultSet.getInt("idtask"));
+			Project projectClient = new Project(null, null, null, idproject);
+			HumanResource hrClient = new HumanResource(null, null, idhr);
 			
+			task = new Task(descrizione_task, projectClient, hrClient);
+			task.setIdtask(idtask);
+						
 			return task;
 		} 
 
@@ -133,54 +111,45 @@ public class TaskDAO implements DAO<Task> {
 		}
 	}
 	
-	@Override
-	public boolean insert(Task task) {
-		Connection connection = ConnectionSingleton.getInstance();
-		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, task.getDescrizione_task());
-			preparedStatement.setInt(2, task.getIdproject());
-			preparedStatement.setInt(3, task.getIdHR());
-			return true;
-		} catch (SQLException e) {
-			GestoreEccezioni.getInstance().gestisciEccezione(e);
-			return false;
-		}
-	}
 	
-	@Override
-	public boolean update(Task task) {
+	
+	public boolean update(Task taskToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
+		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
-			preparedStatement.setString(1, task.getDescrizione_task());
-			preparedStatement.setInt(2, task.getIdproject());
-			preparedStatement.setInt(3, task.getIdHR());
-			preparedStatement.execute();
-			return true;
-		} catch (SQLException e) {
+			preparedStatement.setString(1, taskToUpdate.getDescrizione_task());
+			preparedStatement.setInt(2, taskToUpdate.getProject().getIdproject());
+			preparedStatement.setInt(3, taskToUpdate.getHR().getIdHR());
+			int result = preparedStatement.executeUpdate();
+			
+			if (result > 0)
+				return true;
+			else
+				return false;
+		} 
+		catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
 	}
 	
-	@Override
 	public boolean delete(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
+		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
 			preparedStatement.setInt(1, task.getIdtask());
-			preparedStatement.execute();
-			return true;
-		} catch (SQLException e) {
+			int result = preparedStatement.executeUpdate();
+			
+			if (result != 0)
+				return true;
+		} 
+		catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
-	}
-	
-	@Override
-	public Task read(String param1, String param2) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return false;
 	}
 }

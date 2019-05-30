@@ -1,24 +1,16 @@
 package it.contrader.dto;
 
-public class MaterialDTO implements DTO {
-	int idmaterial;
-	String tipo;
-	int quantita;
-	int idHR;
+public class MaterialDTO {
+	private int idmaterial;
+	private String tipo;
+	private int quantita;
+	private HumanResourceDTO hrDTO;
 	
-	public MaterialDTO(){}
-	
-	public MaterialDTO(int idmaterial, String tipo, int quantita, int idHR) {
-		this.idmaterial = idmaterial;
+	public MaterialDTO(String tipo, int quantita, HumanResourceDTO hrDTO){
+		super();
 		this.tipo = tipo;
 		this.quantita = quantita;
-		this.idHR = idHR;
-	}
-	
-	public MaterialDTO(String tipo, int quantita, int idHR) {
-		this.tipo = tipo;
-		this.quantita = quantita;
-		this.idHR = idHR;
+		this.hrDTO = hrDTO; 
 	}
 
 	public int getIdmaterial() {
@@ -37,19 +29,29 @@ public class MaterialDTO implements DTO {
 		this.tipo = tipo;
 	}
 
-	public int getquantita() {
+	public int getQuantita() {
 		return quantita;
 	}
 
-	public void setquantita(int quantita) {
+	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
 
-	public int getidHR() {
-		return idHR;
+	public HumanResourceDTO getHRDTO() {
+		return hrDTO;
 	}
 
-	public void setidHR(int idHR) {
-		this.idHR = idHR;
+	public void setHRDTO(HumanResourceDTO hrDTO) {
+		this.hrDTO = hrDTO;
+	}
+	
+	public boolean equals(MaterialDTO materialCompare) {
+		if (hrDTO.getIdHR()!=materialCompare.getHRDTO().getIdHR()) 
+			return false;
+		
+		if (!this.getTipo().equals(getTipo()))
+			return false;
+		
+		return true;
 	}
 }

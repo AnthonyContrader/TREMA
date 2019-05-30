@@ -2,48 +2,15 @@ package it.contrader.dto;
 
 public class TaskDTO {
 	private Integer idtask;
-	private String descrizione_task;
-	private Integer idproject;
-	private String descrizione_project;
-	private Integer idHR;
-	private String descrizione_hr;
+	private String descrizioneTask;
+	private ProjectDTO projectDTO;
+	private HumanResourceDTO hrDTO;
 	
-	public TaskDTO() {
-		
-	}
-	
-	public TaskDTO(int idtask, String descrizione_task, Integer idproject, Integer idHR) {
+	public TaskDTO(String descrizioneTask, ProjectDTO projectDTO, HumanResourceDTO hrDTO){
 		super();
-		this.idtask = idtask;
-		this.descrizione_task = descrizione_task;
-		this.idproject = idproject;
-		this.idHR = idHR;
-	}
-	
-	public TaskDTO(String descrizione_task, Integer idproject, Integer idHR) {
-		super();
-		this.descrizione_task = descrizione_task;
-		this.idproject = idproject;
-		this.idHR = idHR;
-	}
-	
-	public TaskDTO(String descrizione_task, Integer idproject, String project, Integer idHR, String hr) {
-		super();
-		this.descrizione_task = descrizione_task;
-		this.idproject = idproject;
-		this.descrizione_project = project;
-		this.idHR = idHR;
-		this.descrizione_hr = hr;
-	}
-	
-	public TaskDTO(int idtask, String descrizione_task, Integer idproject, String project, Integer idHR, String hr) {
-		super();
-		this.idtask = idtask;
-		this.descrizione_task = descrizione_task;
-		this.idproject = idproject;
-		this.descrizione_project = project;
-		this.idHR = idHR;
-		this.descrizione_hr = hr;
+		this.descrizioneTask = descrizioneTask;
+		this.projectDTO = projectDTO;
+		this.hrDTO = hrDTO; 
 	}
 
 	public Integer getIdtask() {
@@ -54,45 +21,40 @@ public class TaskDTO {
 		this.idtask = idtask;
 	}
 
-	public String getDescrizione_task() {
-		return descrizione_task;
+	public String getDescrizioneTask() {
+		return descrizioneTask;
 	}
 
-	public void setDescrizione_task(String descrizione_task) {
-		this.descrizione_task = descrizione_task;
+	public void setDescrizioneTask(String descrizioneTask) {
+		this.descrizioneTask = descrizioneTask;
 	}
 
-	public Integer getIdproject() {
-		return idproject;
+	public ProjectDTO getProjectDTO() {
+		return projectDTO;
 	}
 
-	public void setIdproject(Integer idproject) {
-		this.idproject = idproject;
+	public void setProjectDTO(ProjectDTO projectDTO) {
+		this.projectDTO = projectDTO;
+	}
+
+	public HumanResourceDTO getHRDTO() {
+		return hrDTO;
+	}
+
+	public void setHRDTO(HumanResourceDTO hrDTO) {
+		this.hrDTO = hrDTO;
 	}
 	
-	public String getDescrizione_project() {
-		return descrizione_project;
+	public boolean equals(TaskDTO taskCompare) {
+		if (projectDTO.getIdproject()!=taskCompare.getProjectDTO().getIdproject()) 
+			return false;
+		
+		if (hrDTO.getIdHR()!=taskCompare.getHRDTO().getIdHR()) 
+			return false;
+		
+		if (!this.getDescrizioneTask().equals(getDescrizioneTask()))
+			return false;
+		
+		return true;
 	}
-
-	public void setDescrizione_project(String descrizione_project) {
-		this.descrizione_project = descrizione_project;
-	}
-	
-	public Integer getIdHR() {
-		return idHR;
-	}
-
-	public void setIdHR(Integer idHR) {
-		this.idHR = idHR;
-	}
-
-	public String getDescrizione_hr() {
-		return descrizione_hr;
-	}
-
-	public void setDescrizione_hr(String descrizione_hr) {
-		this.descrizione_hr = descrizione_hr;
-	}
-	
-	
 }

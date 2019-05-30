@@ -1,33 +1,38 @@
 package it.contrader.converter;
 
 import it.contrader.dto.TaskDTO;
+import it.contrader.dto.ProjectDTO;
+import it.contrader.dto.HumanResourceDTO;
 import it.contrader.model.Task;
+import it.contrader.model.Project;
+import it.contrader.model.HumanResource;
+import it.contrader.model.Material;
 
-public class TaskConverter implements Converter<Task, TaskDTO>{
+public class TaskConverter{
 	
 	// Converte un NodesDTO in Nodes
-	public Task toEntity(TaskDTO taskDTO) {
+	public static Task toEntity(TaskDTO taskDTO) {
 		Task task = null;
 		
 		if (taskDTO != null) {
-			task = new Task(taskDTO.getDescrizione_task(), taskDTO.getIdproject(), taskDTO.getIdHR());
-			
-			Integer idtask = taskDTO.getIdtask();
-			
-			if(idtask != null) 
-				task.setIdtask(taskDTO.getIdtask());
+			Project project = ProjectConverter.toEntity(taskDTO.getProjectDTO());
+			HumanResource hr = HumanResourceConverter.toEntity(taskDTO.getHRDTO());
+			task = new Task(taskDTO.getDescrizioneTask(), project, hr);
+			task.setIdtask(taskDTO.getIdtask());
 		}
 
 		return task;
 	}
 	
 	// Converte un Nodes in NodesDTO
-	public TaskDTO toDTO(Task task) {
+	public static TaskDTO toDTO(Task task) {
 		TaskDTO taskDTO = null;
 		
 		if (task != null) {
-			taskDTO = new TaskDTO(task.getIdtask(), task.getDescrizione_task(), task.getIdproject(), 
-					task.getDescrizioneProject(), task.getIdHR(), task.getDescrizioneHR());
+			Project projectDTO = ProjectConverter.toDTO(task.getProjectDTO());
+			HumanResource hrDTO = HumanResourceConverter.toDTO(task.getHRDTO());
+			taskDTO = new Task(task.getDescrizione_task(), project, hr);
+			taskDTO.setIdtask(task.getIdtask());
 		}
 
 		return taskDTO;

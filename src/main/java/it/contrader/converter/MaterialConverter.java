@@ -1,34 +1,30 @@
 package it.contrader.converter;
 
 import it.contrader.dto.MaterialDTO;
+import it.contrader.dto.HumanResourceDTO;
 import it.contrader.model.Material;
-import it.contrader.converter.*;
+import it.contrader.model.HumanResource;
 
-public class MaterialConverter implements Converter<Material,MaterialDTO> {
+public class MaterialConverter{
 
-	public Material toEntity(MaterialDTO materialDTO) {
-
+	public static Material toEntity(MaterialDTO materialDTO) {
 		Material material = null;
+		
 		if (materialDTO != null) {
-			material = new Material (materialDTO.getIdmaterial(), materialDTO.getTipo(), materialDTO.getquantita(), materialDTO.getidHR());
-			
+			HumanResource hr = HumanResourceConverter.toEntity(materialDTO.getHRDTO());
+			material = new Material(materialDTO.getTipo(), materialDTO.getQuantita(), hr);
+			material.setIdmaterial(materialDTO.getIdmaterial());
 		}
-		Integer idmaterial =materialDTO.getIdmaterial();
-		if(idmaterial != null) {
-			material.setIdmaterial(idmaterial);
-		}
-
-
 		return material;
 	}
 
-	public MaterialDTO toDTO(Material material) {
-
+	public static MaterialDTO toDTO(Material material) {
 		MaterialDTO materialDTO = null;
+		
 		if (material != null) {
-			materialDTO = new MaterialDTO(material.getIdmaterial(), material.getTipo(), material.getQuantita(), material.getIdHR());
+			HumanResource hrDTO = HumanResourceConverter.toDTO(material.getHR());
+			materialDTO = new MaterialDTO(material.getTipo(), material.getQuantita(), hrDTO);
+			materialDTO.setIdmaterial(material.getIdmaterial());
 		}
-
-		return materialDTO;
 	}
 }
