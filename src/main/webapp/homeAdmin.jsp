@@ -1,9 +1,11 @@
+<%@ page import="it.contrader.dto.*"%>
+<% UsersDTO utente = (UsersDTO) session.getAttribute("utente"); %>
 <html>
 <head>
 <title>Menu Principale</title>
 </head>
 <body>
-	<h1>Benvenuto: ${utente}</h1>
+	<h1>Benvenuto: <%=utente.getUsername()%></h1>
 	<h2>------- MENU PRINCIPALE -------</h2>
 
 	<h3>1. Esempio</h3>

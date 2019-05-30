@@ -1,8 +1,9 @@
 package it.contrader.main;
 
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+//import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 
 public class ConnectionSingleton {
@@ -23,10 +24,12 @@ public class ConnectionSingleton {
                 String password ="root";
                 Class<?> c = Class.forName(driver);
                 System.out.println("Ho caricato: " + c.getName());
-                String myUrl = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName;
-                DriverManagerDataSource dataSource = new DriverManagerDataSource(myUrl, username, password);
-                dataSource.setDriverClassName(driver);
-                connection = dataSource.getConnection();
+                String myUrl = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName+"?useSSL=false";
+                
+                connection = (Connection) DriverManager.getConnection(myUrl, username, password);
+                //DriverManagerDataSource dataSource = new DriverManagerDataSource(myUrl, username, password);
+                //dataSource.setDriverClassName(driver);
+                //connection = dataSource.getConnection();
             } catch (Exception e) {
                 e.printStackTrace();
             }
