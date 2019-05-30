@@ -1,11 +1,13 @@
 <%@ include file="/header.jsp"%>
+<%@ page import="it.contrader.dto.*"%>
+<%@ page import="java.util.*"%>
 <%!
-//private String convertUsertype(String userType) {
-	//	if (userType.equals("admin"))
-		//	return "Admin";
-	//	else
-		//	return "Business Owner";
-	//}%>
+private String convertUsertype(String userType) {
+		if (userType.equals("admin"))
+			return "Admin";
+		else
+			return "Business Owner";
+	}%>
 
 <!DOCTYPE html>
 <html>
@@ -77,7 +79,7 @@ body {
 			for (UsersDTO user : allUser) {
 		%>
 		<tr>
-			<td><%=user.getIduser()%></td>
+			<td><%=user.getId()%></td>
 			<td><%=user.getUsername()%></td>
 			<td><%=user.getPassword()%></td>
 			<td><%=convertUsertype(user.getUsertype())%></td>

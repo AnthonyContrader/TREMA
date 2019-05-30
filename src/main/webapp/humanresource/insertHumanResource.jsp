@@ -42,15 +42,15 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="/TREMA/ClientServlet?richiesta=insert">
+	<form method="POST" action="/TREMA/HumanResourceServlet?richiesta=insert">
 
-		Client Name: <input type="text" size="40" maxlength="40" name="client_name" />
+		Client Name: <input type="text" size="40" maxlength="40" name="name" />
 		<br>
 		<br>
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="/wmesjsp/ClientServlet?richiesta=ClientManager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="/TREMA/HumanResourceServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

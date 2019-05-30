@@ -1,4 +1,6 @@
 <%@ include file="/header.jsp"%>
+<%@ page import="it.contrader.dto.*"%>
+<%@ page import="java.util.*"%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/wmesjsp/css/style.css">
@@ -41,7 +43,7 @@
 		</div>
 		<br>
 		<br>
-		<form method="POST" action="/wmesjsp/UserServlet?richiesta=update">
+		<form method="POST" action="/TREMA/UsersServlet?richiesta=update">
 
 			<%
 				String selected = "selected=\"selected\"";

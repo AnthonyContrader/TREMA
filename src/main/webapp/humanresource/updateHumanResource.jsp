@@ -43,19 +43,19 @@
 			<p>HR Update</p>
 
 		</div>
-		<form method="POST" action="/wmesjsp/ClientServlet?richiesta=update">
+		<form method="POST" action="/TREMA/HumanResourceServlet?richiesta=update">
 			<br>
 
 			<br>
-			<input type="hidden" name="client_id" value="<%=updatehr.getId()%>" />Name: <input type="text" size="40" maxlength="40"
-				name="client_name" value="<%=updatehr.getName()%>" />
+			<input type="hidden" name="idhr" value="<%=updatehr.getId()%>" />Name: <input type="text" size="40" maxlength="40"
+				name="name" value="<%=updatehr.getName()%>" />
 			<br>
 			<br>
 			<br>
 			<input type="SUBMIT" value="Update">
 			<br>
 			<br>
-			<a href="/TREMA/ClientServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="/TREMA/HumanResourceServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		</form>
 
 	</div>

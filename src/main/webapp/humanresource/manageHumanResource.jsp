@@ -33,7 +33,7 @@
 </style>
 </head>
 <%
-	List<HumanResourceDTO> allhr = (List<HumanResourceTO>) request.getAttribute("allHr");
+	List<HumanResourceDTO> allhr = (List<HumanResourceDTO>) request.getAttribute("allHr");
 %>
 </head>
 <body>
@@ -60,7 +60,7 @@
 		%>
 		<tr>
 
-			<td><%=hr.getClientName()%></td>
+			<td><%=hr.getName()%></td>
 
 
 			<td><a href="/TREMA/ClientServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
