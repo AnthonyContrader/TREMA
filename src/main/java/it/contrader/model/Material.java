@@ -1,30 +1,22 @@
 package it.contrader.model;
 
 public class Material {
-
-
-	int idmaterial;
-	String tipo;
-	int quantita;
-	int idHR;
+	private int idmaterial;
+	private String tipo;
+	private int quantita;
+	private HumanResource hr;
 
 	public Material() {
 
 	}
 
-	public Material(int idmaterial, String tipo, int quantita, int idHR) {
+	public Material(String tipo, int quantita, HumanResource hr) {
 		this.idmaterial = idmaterial;
 		this.tipo = tipo;
 		this.quantita = quantita;
-		this.idHR = idHR;
+		this.hr = hr;
 	}
 	
-	public Material(String tipo, int quantita, int idHR) {
-		this.tipo = tipo;
-		this.quantita = quantita;
-		this.idHR = idHR;
-	}
-
 	public int getIdmaterial() {
 		return idmaterial;
 	}
@@ -45,22 +37,33 @@ public class Material {
 		return quantita;
 	}
 
-	public void setquantita(int quantita) {
+	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
 
-	public int getIdHR() {
-		return idHR;
+	public HumanResource getHR() {
+		return hr;
 	}
 
-	public void setIdHR(int idHR) {
-		this.idHR = idHR;
+	public void setHR(HumanResource hr) {
+		this.hr = hr;
 	}
 	
-	@Override
+	public boolean equals(Material materialCompare) {
+		if (!this.getTipo().equals(getTipo())) {
+			return false;
+		}
+		
+		if (hr.getIdHR() != materialCompare.getHR().getIdHR()) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public String toString() {
-		return "Material [idmaterial=" + idmaterial + ", tipo=" + tipo + ", quantita=" + quantita + ", idHR=" + idHR
-				+ "]";
+		return this.getIdmaterial() + "\t\t" + this.getTipo() + "\t\t" 
+				+ this.getQuantita() + "\t\t" + this.getHR().getIdHR();
 	}
 }
 
