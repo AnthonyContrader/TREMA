@@ -1,9 +1,6 @@
 package it.contrader.dto;
 
 public class UsersDTO{
-
-
-
 	private Integer id;
 	private String username;
 	private String password;

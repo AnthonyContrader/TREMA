@@ -6,21 +6,27 @@
 <title>Login Trema</title>
 </head>
 <body>
-<img class="log"alt="Logo" src="css/DoserLogo.svg">	
 
-		<form class="login" action="LoginServlet" method="post">
-
-				<label for="user">Username: </label>
-			
-				<input type="text" id="user" name="username" placeholder="Insert username">
-		
-				<label for="pass">Password: </label>
-			
-				 <input type="password" id="pass" name="password" placeholder="Insert password">
-		
-			<button type="submit" value="Login" name="pulsante">Login</button>
+	<div class="pre_contenitore">
+		<p>Login</p>
+	</div>
+	<div class="contenitore">
+		<form action="LoginServlet" method="post">
+			<p>Enter your login details</p>
+			<p>
+				<br>
+				<label>Username</label>
+				<br>
+				<input type="text" name="username" class="username" placeholder="Username">
+			</p>
+			<p>
+				<label>Password</label>
+				<br>
+				<input type="Password" name="password" class="password" placeholder="Password">
+			</p>
+			<button type="submit" value="Login" class="btn btn-warning">Sign in</button>
 		</form>
+	</div>
 
-	
 </body>
 </html>

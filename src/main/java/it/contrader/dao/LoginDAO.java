@@ -10,7 +10,7 @@ import it.contrader.main.*;
 
 public class LoginDAO {
 
-    private final String QUERY_LOGIN = "select * from user where username = ? and password = ?";
+    private final String QUERY_LOGIN = "SELECT * FROM user WHERE username = ? AND password = ?";
     
     /**
      * 
@@ -25,7 +25,6 @@ public class LoginDAO {
             PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
             statement.setString(1, username);
             statement.setString(2, password);
-            
             String usertype=null;
             ResultSet rs;
             if(statement.executeQuery().next()) {

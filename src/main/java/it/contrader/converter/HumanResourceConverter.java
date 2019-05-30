@@ -2,22 +2,32 @@ package it.contrader.converter;
 
 import it.contrader.dto.*;
 import it.contrader.model.*;
+public class HumanResourceConverter {
+	
+	public static HumanResource toEntity(HumanResourceDTO hrdto) {
 
-public class HumanResourceConverter implements Converter<HumanResource, HumanResourceDTO>{
-		public HumanResource toEntity(HumanResourceDTO hrDTO) {
-			HumanResource hr=null;
-			
-			if(hrDTO!=null) {
-				hr=new HumanResource(hrDTO.getIdHR(), hrDTO.getName(), hrDTO.getSurname(), hrDTO.getIduser());;
-			}				
-			return hr;
+		HumanResource hr = null;
+		if (hrdto != null) {
+			Users user = UsersConverter.toEntity(hrdto.getUserDTO());
+			hr = new HumanResource(user, hrdto.getName());
+			hr.setId(hrdto.getId());
 		}
+		return hr;
+	}
+
+	
+	public static HumanResourceDTO toDTO(HumanResource hr) {
+
+		HumanResourceDTO hrdto  = null;
+		if (hr != null) {
+			UsersDTO userDTO = UsersConverter.toDTO(hr.getUser());
+			hrdto = new HumanResourceDTO(userDTO, hr.getName(), hr.getSurname());
+			hrdto.setId(hr.getId());
+		}
+
 		
-		public HumanResourceDTO toDTO(HumanResource hr) {
-			HumanResourceDTO hrDTO=null;
-			if(hr!=null) {
-				hrDTO=new HumanResourceDTO(hr.getIdHR(), hr.getName(), hr.getSurname(), hr.getIduser());
-			}
-			return hrDTO;
-		}
+		return hrdto;
+	}
+	
+
 }

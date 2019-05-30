@@ -22,17 +22,15 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("utente", null);
 
 		if (request != null) {
-			final String nomeUtente = request.getParameter("username").toString().trim();
+			final String username = request.getParameter("username").toString().trim();
 			final String password = request.getParameter("password").toString().trim();
-			// recuperiamo l'utente
-			final UsersDTO userDTO = usersServiceDTO.getUserByUsernameAndPasword(nomeUtente, password);
-
+		
+			final UsersDTO userDTO = usersServiceDTO.getUserByUsernameAndPasword(username, password);
+			System.out.println("provaaaaaaaaaaaa");
 			if (userDTO != null)
 				session.setAttribute("utente", userDTO);
-
-			// verifichiamo che tipo di ruolo ha all'interno dell'applicazione
-			// e lo reindirizziamo nella jsp opportuna
-			switch (userDTO.getUsertype().toLowerCase()) {
+			
+			switch (userDTO.getUsertype()) {
 			case "admin":
 				getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
 				break;

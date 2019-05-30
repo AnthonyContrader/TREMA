@@ -6,8 +6,9 @@ import java.util.List;
 
 import it.contrader.main.*;
 import it.contrader.model.HumanResource;
+import it.contrader.model.Users;
 
-public class HumanResourceDAO implements DAO<HumanResource>{
+public class HumanResourceDAO{
 
 	private final String QUERY_ALL = "SELECT * FROM humanresource";
 	private final String QUERY_INSERT = "INSERT INTO humanresource (name, surname, iduser) VALUES (?,?,?)";
@@ -15,24 +16,26 @@ public class HumanResourceDAO implements DAO<HumanResource>{
 	private final String QUERY_UPDATE = "UPDATE humanresource SET name=?, surname=?, iduser=? WHERE idHR=?";
 	private final String QUERY_DELETE = "DELETE FROM humanresource WHERE idHR=?";
 
-	public HumanResourceDAO() {}
-	
-@Override
-	public List<HumanResource> getAll() {
-		List<HumanResource> hrlist = new ArrayList<HumanResource>();
+	public HumanResourceDAO() {
+	}
+
+	public List<HumanResource> getAllHr() {
+		List<HumanResource> hrlist = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
-		
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			HumanResource hr;
-			
 			while (resultSet.next()) {
-				int idhr = resultSet.getInt("idHR");
+				int userId = resultSet.getInt("iduser");
+				Users user = new Users(null, null, null);
+				user.setIduser(userId);
+
 				String name = resultSet.getString("name");
 				String surname = resultSet.getString("surname");
-				int iduser = resultSet.getInt("iduser");
-				hr = new HumanResource(idhr, name, surname, iduser);
+
+				hr = new HumanResource(user, name, surname);
+				hr.setId(resultSet.getInt("idHR"));
 				hrlist.add(hr);
 			}
 		} catch (SQLException e) {
@@ -41,14 +44,13 @@ public class HumanResourceDAO implements DAO<HumanResource>{
 		return hrlist;
 	}
 
-@Override
-	public boolean insert(HumanResource hr) {
+	public boolean insertHr(HumanResource hr) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, hr.getName());
-			preparedStatement.setString(2, hr.getSurname());
-			preparedStatement.setInt(3, hr.getIduser());
+			preparedStatement.setInt(1, hr.getUser().getIduser());
+			preparedStatement.setString(2, hr.getName());
+			preparedStatement.setString(3, hr.getSurname());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -58,84 +60,75 @@ public class HumanResourceDAO implements DAO<HumanResource>{
 
 	}
 
-@Override
-	public HumanResource read(int idhr) {
+	public HumanResource readHr(HumanResource hr) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
+			int idhr = hr.getId();
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
 			preparedStatement.setInt(1, idhr);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			
-			int userid = resultSet.getInt("iduser");
-			String name = resultSet.getString("name");
-			String surname = resultSet.getString("surname");
-			HumanResource hr = new HumanResource(idhr, name, surname, userid);
+			String user, name, surname;
+
+			name = resultSet.getString("name");
+			surname = resultSet.getString("surname");
+			int userId = resultSet.getInt("iduser");
+			Users User = new Users(null, null, null);
+			User.setIduser(userId);
+
+			hr = new HumanResource(User, name);
+
+			hr.setId(resultSet.getInt("idHR"));
+
 			return hr;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return null;
 		}
+
 	}
 
-@Override
-	public boolean update(HumanResource hrToUpdate) {
+	public boolean updateHr(HumanResource hrToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present
-		if (hrToUpdate.getIdHR() == 0)
+		if (hrToUpdate.getId() == 0)
 			return false;
-	
-			try {
-				// Update the user
-				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setInt(1, hrToUpdate.getIdHR());
-				preparedStatement.setString(2, hrToUpdate.getName());
-				preparedStatement.setString(3, hrToUpdate.getSurname());
-				preparedStatement.setInt(4, hrToUpdate.getIduser());
-				int a = preparedStatement.executeUpdate();
-				if (a > 0)
-					return true;
-				else
-					return false;
 
-			} catch (SQLException e) {
+		// Client clientRead = readClient(clientToUpdate);
+		// if (!clientRead.equals(clientToUpdate)) {
+
+		try {
+			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
+			preparedStatement.setInt(1, hrToUpdate.getUser().getIduser());
+			preparedStatement.setString(2, hrToUpdate.getName());
+			preparedStatement.setString(3, hrToUpdate.getSurname());
+			preparedStatement.setInt(4, hrToUpdate.getId());
+			int a = preparedStatement.executeUpdate();
+
+			if (a > 0)
+				return true;
+			else
 				return false;
-			}
+		} catch (SQLException e) {
+			return false;
+		}
+
 	}
 
-@Override
-	public boolean delete(HumanResource hr) {
+	public boolean deleteHr(HumanResource hr) {
 		Connection connection = ConnectionSingleton.getInstance();
+
 		try {
+			int id = hr.getId();
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, hr.getIdHR());
+			preparedStatement.setInt(1, id);
 			int n = preparedStatement.executeUpdate();
-			
 			if (n != 0)
 				return true;
 		} catch (SQLException e) {
 		}
 		return false;
+
 	}
-
-@Override
-public List<HumanResource> getAllBy(Object o) {
-	// TODO Auto-generated method stub
-	return null;
 }
-
-@Override
-public List<HumanResource> getAllBy(Integer id, String Descrizione) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public HumanResource read(String param1, String param2) {
-	// TODO Auto-generated method stub
-	return null;
-}
-}
-
-

@@ -21,7 +21,8 @@ public class UsersServiceDTO {
 	public UsersServiceDTO() {
 		this.userDAO = new UsersDAO();
 	}
-	public List<UsersDTO> getAllUsers() {
+	
+	public List<UsersDTO> getAllUser() {
 
 		List<Users> list = userDAO.getAllUser();
 		List<UsersDTO> listDTO = new ArrayList<>();
@@ -46,7 +47,7 @@ public class UsersServiceDTO {
 		
 }
 	
-	public boolean deleteUsers (UsersDTO userDTO) {
+	public boolean deleteUser (UsersDTO userDTO) {
 		return this.userDAO.deleteUser(UsersConverter.toEntity(userDTO));
 		
 }

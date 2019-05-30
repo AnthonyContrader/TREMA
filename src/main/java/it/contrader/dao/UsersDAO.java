@@ -16,7 +16,7 @@ public class UsersDAO{
 	
 	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, usertype=? WHERE iduser=?";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE iduser=?";
-	private final String QUERY_LOGIN = "select * from user where username=? and password=?";
+	private final String QUERY_LOGIN = "SELECT * FROM user WHERE username=? AND password=?";
 
 	public UsersDAO() {}
 
@@ -148,18 +148,20 @@ public class UsersDAO{
 		Connection connection = ConnectionSingleton.getInstance();
 		Users utente = null;
 		try {
+			System.out.println("daooooooooo");
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
+			System.out.println("daooooooooo2");
 			statement.setString(1, username);
 			statement.setString(2, password);
 			statement.execute();
 			ResultSet resultSet = statement.getResultSet();
 
 			while (resultSet.next()) {
-				String Username = resultSet.getString("username");
-				String pass = resultSet.getString("password");
 				Integer userId = resultSet.getInt("iduser");
+				String name = resultSet.getString("username");
+				String pass = resultSet.getString("password");
 				String usertype = resultSet.getString("usertype");
-				utente = new Users(Username, pass, usertype);
+				utente = new Users(name, pass, usertype);
 				utente.setIduser(userId);
 			}
 
