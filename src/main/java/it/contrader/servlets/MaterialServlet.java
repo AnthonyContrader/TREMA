@@ -39,7 +39,7 @@ public class MaterialServlet extends HttpServlet{
 		//final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
 		
 		switch (scelta) {
-			case "MaterialManager":
+			case "HR_manager":
 				showAllMaterials(request, response);
 				break;
 				

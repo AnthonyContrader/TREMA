@@ -40,7 +40,7 @@ public class TaskServlet extends HttpServlet{
 		//final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
 		
 		switch (scelta) {
-			case "MaterialManager":
+			case "project_manager":
 				showAllTasks(request, response);
 				break;
 				
