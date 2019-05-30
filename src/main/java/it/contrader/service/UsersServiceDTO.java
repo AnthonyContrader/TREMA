@@ -1,14 +1,58 @@
 package it.contrader.service;
 
-import it.contrader.model.*;
 import it.contrader.dto.*;
+import it.contrader.model.Users;
 import it.contrader.dao.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import it.contrader.converter.*;
 
-public class UsersServiceDTO extends AbstractServiceDTO<Users,UsersDTO> {
-	
+/**
+ * Classe che si occupa di interfacciarsi con la persistenza e recuperare
+ * attraverso i metodi del Data Access Object le tuple desiderate, Le converte
+ * in un oggetto DTO e le restituisce al controller opportuno
+ */
+public class UsersServiceDTO {
+
+	private final UsersDAO userDAO;
+
 	public UsersServiceDTO() {
-		dao = new UsersDAO();
-		converter = new UsersConverter();
+		this.userDAO = new UsersDAO();
 	}
+	public List<UsersDTO> getAllUsers() {
+
+		List<Users> list = userDAO.getAllUser();
+		List<UsersDTO> listDTO = new ArrayList<>();
+
+		for (Users user : list) {
+			listDTO.add(UsersConverter.toDTO(user));
+		}
+
+		return listDTO;
+	}
+	
+	public UsersDTO getUserByUsernameAndPasword(String username, String password) {
+		return UsersConverter.toDTO(userDAO.login(username, password));
+	}
+
+	public UsersDTO readUser(UsersDTO userDTO) {
+		return UsersConverter.toDTO(this.userDAO.readUser(UsersConverter.toEntity(userDTO)));
+	}
+	
+	public boolean updateUser(UsersDTO userDTO) {
+		return this.userDAO.updateUser(UsersConverter.toEntity(userDTO));
+		
 }
+	
+	public boolean deleteUsers (UsersDTO userDTO) {
+		return this.userDAO.deleteUser(UsersConverter.toEntity(userDTO));
+		
+}
+	
+	public boolean insertUsers (UsersDTO usersDTO) {
+		return this.userDAO.insertUser(UsersConverter.toEntity(usersDTO));
+	
+}
+	}

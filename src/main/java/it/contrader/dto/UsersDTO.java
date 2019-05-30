@@ -1,6 +1,6 @@
 package it.contrader.dto;
 
-public class UsersDTO implements DTO {
+public class UsersDTO{
 
 
 
@@ -9,19 +9,12 @@ public class UsersDTO implements DTO {
 	private String password;
 	private String usertype;
 
-	public UsersDTO(Integer id, String username, String password, String usertype) {
-		this.id = id;
+	public UsersDTO(String username, String password, String usertype) {
+		super();
 		this.username = username;
 		this.password = password;
 		this.usertype = usertype;
 	}
-
-	public UsersDTO (String username, String password, String usertype) {
-		this.username = username;
-		this.password = password;
-		this.usertype = usertype;
-	}
-
 
 	public Integer getId() {
 		return id;
@@ -53,8 +46,20 @@ public class UsersDTO implements DTO {
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
-	@Override
-	public String toString() {
-		return username ;
+
+	public boolean equals(UsersDTO userCompare)  {
+		if (!this.getUsername().equals(userCompare.getUsername())) {
+			return false;
+		}
+		
+		if (!this.getPassword().equals(userCompare.getPassword())) {
+			return false;
+		}
+		
+		if (!this.getUsertype().equals(userCompare.getUsertype())) {
+			return false;
+		}
+		
+		return true;		
 	}
 }

@@ -7,19 +7,20 @@ import it.contrader.model.*;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
 
-public class UsersDAO implements DAO<Users>{
+public class UsersDAO{
 
 	private final String QUERY_ALL = "SELECT * FROM user";
 	private final String QUERY_INSERT = "INSERT INTO user (username, password, usertype) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM user WHERE iduser=?";
+	
 	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, usertype=? WHERE iduser=?";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE iduser=?";
 	private final String QUERY_LOGIN = "select * from user where username=? and password=?";
 
 	public UsersDAO() {}
 
-@Override	
-	public List<Users> getAll() {
+	
+	public List<Users> getAllUser() {
 		List<Users> usersList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
@@ -41,8 +42,8 @@ public class UsersDAO implements DAO<Users>{
 		return usersList;
 	}
 
-@Override
-	public boolean insert(Users userToInsert) {
+
+	public boolean insertUser(Users userToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
@@ -58,10 +59,11 @@ public class UsersDAO implements DAO<Users>{
 
 	}
 
-@Override
-	public Users read(int userId) {
+
+	public Users readUser(Users user) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
+			int userId=user.getIduser();
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
 			preparedStatement.setInt(1, userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
@@ -71,7 +73,7 @@ public class UsersDAO implements DAO<Users>{
 			username = resultSet.getString("username");
 			password = resultSet.getString("password");
 			usertype = resultSet.getString("usertype");
-			Users user = new Users(username, password, usertype);
+			user = new Users(username, password, usertype);
 			user.setIduser(resultSet.getInt("iduser"));
 
 			return user;
@@ -82,19 +84,19 @@ public class UsersDAO implements DAO<Users>{
 
 	}
 
-@Override
-	public boolean update(Users userToUpdate) {
+//delete e user non controllate(per ora)
+	public boolean updateUser(Users userToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if iduser exists...
 		if (userToUpdate.getIduser() == 0)
 			return false;
 
-		Users userRead = read(userToUpdate.getIduser());
-		if (!userRead.equals(userToUpdate)) {
+		//Users userRead = readUser(userToUpdate.getIduser());
+		//if (!userRead.equals(userToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				if (userToUpdate.getUsername() == null || userToUpdate.getUsername().equals("")) {
+			/*	if (userToUpdate.getUsername() == null || userToUpdate.getUsername().equals("")) {
 					userToUpdate.setUsername(userRead.getUsername());
 				}
 
@@ -104,7 +106,7 @@ public class UsersDAO implements DAO<Users>{
 
 				if (userToUpdate.getUsertype() == null || userToUpdate.getUsertype().equals("")) {
 					userToUpdate.setUsertype(userRead.getUsertype());
-				}
+				}*/
 
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
@@ -121,13 +123,12 @@ public class UsersDAO implements DAO<Users>{
 			} catch (SQLException e) {
 				return false;
 			}
-		}
+}
 
-		return false;
-	}
+		
+	
 
-@Override
-	public boolean delete(Users userToDelete) {
+	public boolean deleteUser(Users userToDelete) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
@@ -165,24 +166,6 @@ public class UsersDAO implements DAO<Users>{
 			e.printStackTrace();
 		}
 		return utente;
-	}
-
-	@Override
-	public List<Users> getAllBy(Object o) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Users> getAllBy(Integer id, String Descrizione) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Users read(String param1, String param2) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }
