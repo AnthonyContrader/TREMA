@@ -6,7 +6,6 @@ import it.contrader.dto.HumanResourceDTO;
 import it.contrader.model.Task;
 import it.contrader.model.Project;
 import it.contrader.model.HumanResource;
-import it.contrader.model.Material;
 
 public class TaskConverter{
 	
@@ -29,9 +28,9 @@ public class TaskConverter{
 		TaskDTO taskDTO = null;
 		
 		if (task != null) {
-			Project projectDTO = ProjectConverter.toDTO(task.getProjectDTO());
-			HumanResource hrDTO = HumanResourceConverter.toDTO(task.getHRDTO());
-			taskDTO = new Task(task.getDescrizione_task(), project, hr);
+			ProjectDTO projectDTO = ProjectConverter.toDTO(task.getProject());
+			HumanResourceDTO hrDTO = HumanResourceConverter.toDTO(task.getHR());
+			taskDTO = new TaskDTO(task.getDescrizione_task(), projectDTO, hrDTO);
 			taskDTO.setIdtask(task.getIdtask());
 		}
 

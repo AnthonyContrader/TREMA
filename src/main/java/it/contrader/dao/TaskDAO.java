@@ -36,7 +36,7 @@ public class TaskDAO {
 
 	}
 	
-	public List<Task> getAll() {
+	public List<Task> getAllTask() {
 		List<Task> taskList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		
@@ -67,7 +67,7 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean insert(Task task) {
+	public boolean insertTask(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
@@ -81,7 +81,7 @@ public class TaskDAO {
 		}
 	}
 	
-	public Task read(Task task) {
+	public Task readTask(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
@@ -113,7 +113,7 @@ public class TaskDAO {
 	
 	
 	
-	public boolean update(Task taskToUpdate) {
+	public boolean updateTask(Task taskToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
@@ -134,7 +134,7 @@ public class TaskDAO {
 		}
 	}
 	
-	public boolean delete(Task task) {
+	public boolean deleteTask(Task task) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {

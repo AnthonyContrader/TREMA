@@ -25,7 +25,7 @@ public class MaterialDAO {
 
 	}
 	
-	public List<Material> getAll() {
+	public List<Material> getAllMaterial() {
 		List<Material> materialList = new ArrayList<Material>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
@@ -50,7 +50,7 @@ public class MaterialDAO {
 		return materialList;
 	}
 	
-	public boolean insert(Material material) {
+	public boolean insertMaterial(Material material) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
@@ -65,7 +65,7 @@ public class MaterialDAO {
 		}
 	}
 	
-	public Material read(Material material) {
+	public Material readMaterial(Material material) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			int idmaterial = material.getIdmaterial();
@@ -92,7 +92,7 @@ public class MaterialDAO {
 		}
 	}
 
-	public boolean update(Material materialToUpdate) {
+	public boolean updateMaterial(Material materialToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		if (materialToUpdate.getIdmaterial() == 0)
@@ -115,7 +115,7 @@ public class MaterialDAO {
 		}
 	}
 	
-	public boolean delete(Material material) {
+	public boolean deleteMaterial(Material material) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
