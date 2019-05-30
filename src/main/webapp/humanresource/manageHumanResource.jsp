@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Gestione Clienti</title>
+<title>Gestione Personale</title>
 
-<link rel="stylesheet" type="text/css" href="TREMA/src/main/webapp/css.trema.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -33,14 +33,14 @@
 </style>
 </head>
 <%
-	List<HumanResourceDTO> allhr = (List<HumanResourceDTO>) request.getAttribute("allHr");
+	List<HumanResourceDTO> allHr = (List<HumanResourceDTO>) request.getAttribute("allHr");
 %>
 </head>
 <body>
 
 	<div class="pre_contenitore">
 
-		<p>Client Management</p>
+		<p>Human Resource Management</p>
 
 	</div>
 	<br>
@@ -50,21 +50,21 @@
 	<br />
 	<table>
 		<tr>
-			<th>Client Name</th>
+			<th>Human Resource Name</th>
 			<th>Update</th>
 			<th>Delete</th>
 
 		</tr>
 		<% 
-			for (HumanResourceDTO hr : allhr) {
+			for (HumanResourceDTO hr : allHr) {
 		%>
 		<tr>
 
 			<td><%=hr.getName()%></td>
 
 
-			<td><a href="/TREMA/ClientServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="/TREMA/ClientServlet?richiesta=delete&id=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="/wmesjsp/ClientServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="/wmesjsp/ClientServlet?richiesta=delete&id=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
@@ -72,10 +72,10 @@
 	</table>
 	<br>
 	<br>
-	<a href="/TREMA/ClientServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Client</i></a>
+	<a href="/JspApp/HumanResourceServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New HR</i></a>
 	<br>
 	<br>
-	<a href="/TREMA/ClientServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="/JspApp/HumanResourceServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 </body>
 </html>

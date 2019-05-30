@@ -43,7 +43,7 @@
 			<p>HR Update</p>
 
 		</div>
-		<form method="POST" action="/TREMA/HumanResourceServlet?richiesta=update">
+		<form method="POST" action="/JspApp/HumanResourceServlet?richiesta=update">
 			<br>
 
 			<br>
@@ -55,7 +55,7 @@
 			<input type="SUBMIT" value="Update">
 			<br>
 			<br>
-			<a href="/TREMA/HumanResourceServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="/JspApp/HumanResourceServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		</form>
 
 	</div>

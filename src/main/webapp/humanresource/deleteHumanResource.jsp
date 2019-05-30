@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cancella Progetto</title>
+<title>Cancella Dipendente</title>
 </head>
 <body>
 	<h1>Cancella</h1>
