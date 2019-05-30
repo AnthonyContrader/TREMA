@@ -54,11 +54,11 @@ public class Task {
 			return false;
 		}
 		
-		if (project.getIdproject() != taskCompare.getProject().getIdproject()) {
+		if (project.getProjectId() != taskCompare.getProject().getProjectId()) {
 			return false;
 		}
 		
-		if (hr.getIdHR() != taskCompare.getHR().getIdHR()) {
+		if (hr.getId() != taskCompare.getHR().getId()) {
 			return false;
 		}
 		
@@ -67,6 +67,6 @@ public class Task {
 	
 	public String toString() {
 		return this.getIdtask() + "\t\t" + this.getDescrizione_task() + "\t\t" 
-				+ this.getProject().getIdproject() + "\t\t" + this.getHR().getIdHR();
+				+ this.getProject().getProjectId() + "\t\t" + this.getHR().getId();
 	}
 }

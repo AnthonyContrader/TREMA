@@ -22,9 +22,11 @@ public class MaterialConverter{
 		MaterialDTO materialDTO = null;
 		
 		if (material != null) {
-			HumanResource hrDTO = HumanResourceConverter.toDTO(material.getHR());
+			HumanResourceDTO hrDTO = HumanResourceConverter.toDTO(material.getHR());
 			materialDTO = new MaterialDTO(material.getTipo(), material.getQuantita(), hrDTO);
 			materialDTO.setIdmaterial(material.getIdmaterial());
 		}
+		
+		return materialDTO;
 	}
 }

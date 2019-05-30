@@ -38,7 +38,8 @@ public class MaterialDAO {
 				String tipo = resultSet.getString("tipo");
 				int idhr = resultSet.getInt("idhr");
 				
-				HumanResource hrClient = new HumanResource(null, null, idhr);
+				HumanResource hrClient = new HumanResource(null, null, null);
+				hrClient.setId(idhr);
 				
 				material = new Material(tipo, quantita, hrClient);
 				material.setIdmaterial(idmaterial);
@@ -56,7 +57,7 @@ public class MaterialDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, material.getTipo());
 			preparedStatement.setInt(2, material.getQuantita());
-			preparedStatement.setInt(3, material.getHR().getIdHR());
+			preparedStatement.setInt(3, material.getHR().getId());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -79,8 +80,9 @@ public class MaterialDAO {
 			int quantita = resultSet.getInt("tipo");
 			int idhr = resultSet.getInt("idhr");
 			
-			HumanResource hrClient = new HumanResource(null, null, idhr);
-				
+			HumanResource hrClient = new HumanResource(null, null, null);
+			hrClient.setId(idhr);
+			
 			material = new Material(tipo, quantita, hrClient);
 			material.setIdmaterial(idmaterial);
 			
@@ -102,7 +104,7 @@ public class MaterialDAO {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, materialToUpdate.getTipo());
 			preparedStatement.setInt(2, materialToUpdate.getQuantita());
-			preparedStatement.setInt(3, materialToUpdate.getHR().getIdHR());
+			preparedStatement.setInt(3, materialToUpdate.getHR().getId());
 			int result = preparedStatement.executeUpdate();
 			
 			if (result > 0)

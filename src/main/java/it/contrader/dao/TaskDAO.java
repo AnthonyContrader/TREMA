@@ -50,8 +50,10 @@ public class TaskDAO {
 				Integer idproject = resultSet.getInt("idproject");
 				Integer idhr = resultSet.getInt("idHR");
 				
-				Project projectClient = new Project(null, null, null, idproject);
-				HumanResource hrClient = new HumanResource(null, null, idhr);
+				Project projectClient = new Project(null, null, null, null);
+				projectClient.setProjectId(idproject);
+				HumanResource hrClient = new HumanResource(null, null, null);
+				hrClient.setId(idhr);
 				
 				Task task = new Task(descrizione_task, projectClient, hrClient);
 				task.setIdtask(idtask);
@@ -72,8 +74,8 @@ public class TaskDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, task.getDescrizione_task());
-			preparedStatement.setInt(2, task.getProject().getIdproject());
-			preparedStatement.setInt(3, task.getHR().getIdHR());
+			preparedStatement.setInt(2, task.getProject().getProjectId());
+			preparedStatement.setInt(3, task.getHR().getId());
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -96,8 +98,10 @@ public class TaskDAO {
 			Integer idproject = resultSet.getInt("idproject");
 			Integer idhr = resultSet.getInt("idHR");
 						
-			Project projectClient = new Project(null, null, null, idproject);
-			HumanResource hrClient = new HumanResource(null, null, idhr);
+			Project projectClient = new Project(null, null, null, null);
+			projectClient.setProjectId(idproject);
+			HumanResource hrClient = new HumanResource(null, null, null);
+			hrClient.setId(idhr);
 			
 			task = new Task(descrizione_task, projectClient, hrClient);
 			task.setIdtask(idtask);
@@ -119,8 +123,8 @@ public class TaskDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, taskToUpdate.getDescrizione_task());
-			preparedStatement.setInt(2, taskToUpdate.getProject().getIdproject());
-			preparedStatement.setInt(3, taskToUpdate.getHR().getIdHR());
+			preparedStatement.setInt(2, taskToUpdate.getProject().getProjectId());
+			preparedStatement.setInt(3, taskToUpdate.getHR().getId());
 			int result = preparedStatement.executeUpdate();
 			
 			if (result > 0)

@@ -33,15 +33,15 @@ public class MaterialServiceDTO {
 		return MaterialConverter.toDTO(this.materialDAO.readMaterial(MaterialConverter.toEntity(materialDTO)));
 	}
 
-	public boolean updateClient(MaterialDTO materialDTO) {
+	public boolean updateMaterial(MaterialDTO materialDTO) {
 		return this.materialDAO.updateMaterial(MaterialConverter.toEntity(materialDTO));
 	}
 		
-	public boolean deleteClient (MaterialDTO materialDTO) {
+	public boolean deleteMaterial (MaterialDTO materialDTO) {
 		return this.materialDAO.deleteMaterial(MaterialConverter.toEntity(materialDTO));
 	}
 		
-	public boolean insertClient (MaterialDTO materialDTO) {
+	public boolean insertMaterial (MaterialDTO materialDTO) {
 		return this.materialDAO.insertMaterial(MaterialConverter.toEntity(materialDTO));
 	}
 }

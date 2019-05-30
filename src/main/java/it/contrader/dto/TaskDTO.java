@@ -46,10 +46,10 @@ public class TaskDTO {
 	}
 	
 	public boolean equals(TaskDTO taskCompare) {
-		if (projectDTO.getIdproject()!=taskCompare.getProjectDTO().getIdproject()) 
+		if (projectDTO.getId()!=taskCompare.getProjectDTO().getId()) 
 			return false;
 		
-		if (hrDTO.getIdHR()!=taskCompare.getHRDTO().getIdHR()) 
+		if (hrDTO.getId()!=taskCompare.getHRDTO().getId()) 
 			return false;
 		
 		if (!this.getDescrizioneTask().equals(getDescrizioneTask()))

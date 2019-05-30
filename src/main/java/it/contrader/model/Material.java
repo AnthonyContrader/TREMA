@@ -54,7 +54,7 @@ public class Material {
 			return false;
 		}
 		
-		if (hr.getIdHR() != materialCompare.getHR().getIdHR()) {
+		if (hr.getId() != materialCompare.getHR().getId()) {
 			return false;
 		}
 		
@@ -63,7 +63,7 @@ public class Material {
 	
 	public String toString() {
 		return this.getIdmaterial() + "\t\t" + this.getTipo() + "\t\t" 
-				+ this.getQuantita() + "\t\t" + this.getHR().getIdHR();
+				+ this.getQuantita() + "\t\t" + this.getHR().getId();
 	}
 }
 

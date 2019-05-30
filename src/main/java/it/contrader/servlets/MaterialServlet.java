@@ -1,7 +1,9 @@
 package it.contrader.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,106 +11,106 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.contrader.dto.MaterialDTO;
-import it.contrader.dto.MaterialDTO;
+import it.contrader.dto.HumanResourceDTO;
+import it.contrader.dto.UsersDTO;
+
 import it.contrader.service.MaterialServiceDTO;
-import it.contrader.service.MaterialServiceDTO;
-import it.contrader.service.ServiceDTO;
+import it.contrader.service.HumanResourceServiceDTO;
 
 public class MaterialServlet extends HttpServlet{
-	private static final long serialVersionUID = 1L;
-	private int idHR;
-	private HttpSession session;
-	private int idmaterial;
-	public MaterialServlet() {
-	}
-	
-	public void updateList(HttpServletRequest request) {
-		session.getAttribute("idmaterial" );
-		ServiceDTO<MaterialDTO> service = new MaterialServiceDTO();
-		List<MaterialDTO> listDTO = service.getAllBy(idmaterial);
-		request.setAttribute("list", listDTO);
-	}
+	private MaterialServiceDTO materialServiceDTO = new MaterialServiceDTO();
+	private HumanResourceServiceDTO hrServiceDTO = new HumanResourceServiceDTO();
+	private List<MaterialDTO> allMaterials = new ArrayList<MaterialDTO>();
+	private List<MaterialDTO> filteredMaterialss = new ArrayList<MaterialDTO>();
 	
 	@Override
-	public void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServiceDTO<MaterialDTO> service = new MaterialServiceDTO();
-	    
-	    if(request.getParameter("idHR")!=null) {
-	    	idHR = Integer.parseInt(request.getParameter("idHR").toString());
-	    }
-
-		if(request.getParameter("idmaterial")!=null) {
-			idmaterial = Integer.parseInt(request.getParameter("idmaterial"));
-	    }
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		final String scelta = request.getParameter("richiesta");
+		final HttpSession session = request.getSession(true);
 		
-		MaterialDTO dto;
-		boolean ans;
-		String tipo;
-		int quantita;
+		// Here I don't know if userLogged is the general user that login in the app
+		// or is only the user of the entity.
+		final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
 		
-		
-	    String mode = request.getParameter("mode");
-		
-		session = request.getSession();
-		session.setAttribute("idHR",idHR);
-		
-		switch (mode.toUpperCase()) {
+		switch (scelta) {
+			case "MaterialManager":
+				showAllMaterials(request, response);
+				break;
+				
+			case "insertRedirect":
+				response.sendRedirect("material/insertClient.jsp");
+				break;
 
-		case "ITEMLISTBY":
-			updateList(request);
-			getServletContext().getRequestDispatcher("/material/material.jsp").forward(request, response);  //materialmanager or material?
+		case "insert":
+			final int idmaterial = Integer.parseInt(request.getParameter("idmaterial"));
+			final String tipo = request.getParameter("tipo");
+			final int quantita = Integer.parseInt(request.getParameter("quantita"));
+			final int idhr = Integer.parseInt(request.getParameter("idHR"));
+			
+			HumanResourceDTO hrDTO = new HumanResourceDTO(null, null, null);
+			hrDTO.setId(idhr);
+			
+			final MaterialDTO materialInsert = new MaterialDTO(tipo, quantita, hrDTO);
+			materialServiceDTO.insertMaterial(materialInsert);
+			showAllMaterials(request, response);
 			break;
 
-		case "ITEMLISTOP":   //maybe should be removed
-			updateList(request);
-			getServletContext().getRequestDispatcher("/idHR.jsp").forward(request, response);
+		case "updateRedirect":
+			int idmaterial = Integer.parseInt(request.getParameter("id"));
+			MaterialDTO materialUpdate = new MaterialDTO(new UserDTO("", "", ""), "");
+			materialUpdate.setIdmaterial(idmaterial)
+
+			materialUpdate = this.materialServiceDTO.readMaterial(materialUpdate);
+			request.setAttribute("clientUpdate", materialUpdate);
+			getServletContext().getRequestDispatcher("/material/updateMaterial.jsp").forward(request, response);
+
 			break;
 
-		case "READ":
-			dto = service.read(idmaterial);
-			request.setAttribute("dto", dto);
-			getServletContext().getRequestDispatcher("/material/readmaterial.jsp").forward(request, response);
+		case "update":
+			final Integer idmaterial = Integer.parseInt(request.getParameter("idmaterial"));
+			final String tipo = request.getParameter("tipo");
+			final int quantita = Integer.parseInt(request.getParameter("quantita"));
+
+			final MaterialDTO materialtDTO = new MaterialDTO(tipo, quantita, 0);
+			materialtDTO.setIdmaterial(idmaterial);
+			clientServiceDTO.updateClient(clientDTO);
+			showAllClient(request, response);
 			break;
 
-		case "INSERT":
-			tipo= request.getParameter("tipo");
-			quantita= Integer.parseInt(request.getParameter("quantita"));
-			int idHR = Integer.parseInt(request.getParameter("idHR"));
-			dto = new MaterialDTO (tipo, quantita, idHR);
-			ans = service.insert(dto);
-			request.setAttribute("ans", ans);
-			updateList(request);
-			getServletContext().getRequestDispatcher("/material/materialmanager.jsp").forward(request, response);  //materialmanager or material?
+		case "delete":
+			final Integer materialIdDelete = Integer.parseInt(request.getParameter("idmaterial"));
+
+			final MaterialDTO materialdelete = new MaterialDTO(userLogged, "");
+			materialdelete.setIdmaterial(materialIdDelete);
+			materialServiceDTO.deleteMaterial(materialdelete);
+			showAllMaterials(request, response);
 			break;
 
-		case "PREUPDATE":
-			dto = service.read(idmaterial);;
-			request.setAttribute("dto", dto);
-			getServletContext().getRequestDispatcher("/material/updatematerial.jsp").forward(request, response);
+		case "indietro":
+			response.sendRedirect("homeBO.jsp");
 			break;
 
-		case "UPDATE":
-			tipo =request.getParameter("tipo");
-			quantita= Integer.parseInt(request.getParameter("quantita"));
-			idHR = Integer.parseInt(request.getParameter("idHR"));
-			int idmaterialToUpdate = Integer.parseInt(request.getParameter("idmaterialToUpdate"));
-			dto = new MaterialDTO(idmaterialToUpdate, tipo, quantita, idHR);
-			ans = service.update(dto);
-			request.setAttribute("ans", ans);
-			System.out.println(ans);
-			updateList(request);
-			getServletContext().getRequestDispatcher("/material/materialmanager.jsp").forward(request, response);	//materialmanager or material?
+		case "logsMenu":
+			response.sendRedirect("index.jsp");
 			break;
 
-		case "DELETE":
-			dto = service.read(idmaterial);
-			ans = service.delete(dto);
-			request.setAttribute("ans", ans);
-			updateList(request);
-			getServletContext().getRequestDispatcher("/material/materialmanager.jsp").forward(request, response);
-			break;
 		}
 	}
-
-
+	
+	// Show all material for user logged
+	private void showAllMaterials(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		allClients.clear();
+		filteredClients.clear();
+		allClients = this.clientServiceDTO.getAllClient();
+		HttpSession session = request.getSession(true);
+		UserDTO userLogged=(UserDTO) session.getAttribute("utente");
+			
+		for (ClientDTO clientDTO:allClients) {
+			if (clientDTO.getUserDTO().getId()==userLogged.getId())
+				filteredClients.add(clientDTO);
+		}
+				
+		request.setAttribute("allClient", filteredClients);
+		getServletContext().getRequestDispatcher("/client/manageClient.jsp").forward(request, response);
+	}
 }

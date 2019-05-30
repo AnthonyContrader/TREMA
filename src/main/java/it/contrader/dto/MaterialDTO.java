@@ -46,7 +46,7 @@ public class MaterialDTO {
 	}
 	
 	public boolean equals(MaterialDTO materialCompare) {
-		if (hrDTO.getIdHR()!=materialCompare.getHRDTO().getIdHR()) 
+		if (hrDTO.getId()!=materialCompare.getHRDTO().getId()) 
 			return false;
 		
 		if (!this.getTipo().equals(getTipo()))
