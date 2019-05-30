@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		final HttpSession session = request.getSession();
-		session.setAttribute("user", null);
+		session.setAttribute("utente", null);
 
 		if (request != null) {
 			final String username = request.getParameter("username").toString().trim();
@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 			final UsersDTO userDTO = usersServiceDTO.getUserByUsernameAndPassword(username, password);
 
 			if (userDTO != null)
-				session.setAttribute("user", userDTO);
+				session.setAttribute("utente", userDTO);
 			
 			switch (userDTO.getUsertype()) {
 			case "admin":
