@@ -1,36 +1,36 @@
 package it.contrader.converter;
 
 import it.contrader.dto.ProjectDTO;
+import it.contrader.dto.UsersDTO;
 import it.contrader.model.Project;
+import it.contrader.model.Users;
 
-public class ProjectConverter implements Converter<Project,ProjectDTO> {
-
-
-	public Project toEntity(ProjectDTO projectDTO) {
+public class ProjectConverter {
+	
+	public static Project toEntity(ProjectDTO projectDTO) {
 
 		Project project = null;
 		if (projectDTO != null) {
-			project = new Project(projectDTO.getName(),projectDTO.getDescrizione(), projectDTO.getTipo(), projectDTO.getIduser());
-			Integer id = projectDTO.getIdproject();
-			if(id != null) {
-				project.setIdproject(projectDTO.getIdproject());
-			}
-
-
+			Users user = UsersConverter.toEntity(projectDTO.getUserDTO());
+			project = new Project(projectDTO.getprojectName(),projectDTO.getDescrizione(),projectDTO.getTipo(),user );
+			project.setProjectId(projectDTO.getId());
 		}
 		return project;
-
 	}
 
+	
+	public static ProjectDTO toDTO(Project project) {
 
-
-	public ProjectDTO toDTO(Project project) {
-
-		ProjectDTO projectDTO = null;
+		ProjectDTO projectDTO  = null;
 		if (project != null) {
-			projectDTO = new ProjectDTO(project.getIdproject(),project.getName(), project.getDescrizione(),project.getTipo(), project.getIduser());
+			UsersDTO userDTO = UsersConverter.toDTO(project.getUser());
+			projectDTO = new ProjectDTO(project.getProjectName(),project.getDescrizione(),project.getTipo(),userDTO);
+			projectDTO.setId(project.getProjectId());
 		}
 
+		
 		return projectDTO;
 	}
+	
+
 }

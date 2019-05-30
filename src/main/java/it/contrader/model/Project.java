@@ -1,52 +1,48 @@
 package it.contrader.model;
 
+import it.contrader.model.Project;
+import it.contrader.model.Users;
 
 public class Project {
-	
-	private int idproject;
-	private String name;
+
+	private int projectId;
+	private Users user;
+	private String projectName;
 	private String descrizione;
 	private String tipo;
-	private int iduser;
 
-	public Project() {
-
-	}
-
-	public Project(String name, String descrizione, String tipo, int iduser) {
-		super ();
-		this.name = name;
-		this.descrizione = descrizione;
-		this.tipo = tipo;
-		this.iduser = iduser;
-
-	}
+	public Project() {}
 	
-	public Project(int idproject, String name, String descrizione, String tipo, int iduser) {
-		super ();
-		this.idproject = idproject;
-		this.descrizione = descrizione;
-		this.tipo = tipo;
-		this.iduser = iduser;
-
+	public Project(String projectName,String descrizione, String tipo, Users user) {
+		this.user=user; 
+		this.projectName=projectName;
+		this.descrizione=descrizione;
+		this.tipo=tipo;
 	}
 
-	
 
-	public int getIdproject() {
-		return idproject;
+	public int getProjectId() {
+		return projectId;
 	}
 
-	public void setIdproject(int idproject) {
-		this.idproject = idproject;
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 
-	public String getName() {
-		return name;
+	public Users getUser() {
+		return user;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 	public String getDescrizione() {
@@ -65,17 +61,23 @@ public class Project {
 		this.tipo = tipo;
 	}
 
-	public int getIduser() {
-		return iduser;
-	}
-
-	public void setIduser(int iduser) {
-		this.iduser = iduser;
-	}
-
-	@Override
 	public String toString() {
-		return this.getIdproject() + "\t" + this.getName() + "\t\t" + this.getDescrizione() + "\t\t" + this.getTipo() + "\t\t" + this.getIduser();
+		return this.getProjectId() + " " + this.getProjectName() + " " + this.getDescrizione() +  " " + this.getTipo() + " " + this.getUser().getIduser() ;
+
+	}
+
+	public boolean equals(Project projectCompare) {
+
+		if (user.getIduser()!=projectCompare.getUser().getIduser()) {
+			return false;
+		}
+
+		if (!this.getProjectName().equals(getProjectName())) {
+			return false;
+
+		}
+		
+		return true;
 	}
 
 }

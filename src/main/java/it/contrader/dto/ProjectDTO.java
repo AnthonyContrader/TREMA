@@ -1,74 +1,79 @@
 package it.contrader.dto;
 
+import it.contrader.dto.ProjectDTO;
+import it.contrader.dto.UsersDTO;
+
 public class ProjectDTO {
 	
-		private int idproject;
-		private String name;
-		private String descrizione;
-		private String tipo;
-		private int iduser;
+	private int Id;
+	private UsersDTO userDTO;
+	private String projectName;
+	private String descrizione;
+	private String tipo;
 
-		public ProjectDTO() {
+	public ProjectDTO (String projectName, String descrizione, String tipo, UsersDTO userDTO) {
+		super();
+		//this.Id = Id;
+		this.userDTO=userDTO; 
+		this.projectName=projectName;
+		this.descrizione=descrizione;
+		this.tipo=tipo;
+	}
 
-		}
+	public int getId() {
+		return Id;
+	}
 
-		public ProjectDTO(String name, String descrizione, String tipo, int iduser) {
-			super ();
-			this.setName(name);
-			this.setDescrizione(descrizione);
-			this.setTipo(tipo);
-			this.setIduser(iduser);
+	public void setId(int id) {
+		Id = id;
+	}
 
-		}
-		public ProjectDTO(int idproject, String name, String descrizione, String tipo, int iduser) {
-			super ();
-			this.idproject = idproject;
-			this.name = name;
-			this.descrizione = descrizione;
-			this.tipo = tipo;
-			this.iduser = iduser;
+	public UsersDTO getUserDTO() {
+		return userDTO;
+	}
 
-		}
-		public int getIduser() {
-			return iduser;
-		}
+	public void setUserDTO(UsersDTO userDTO) {
+		this.userDTO = userDTO;
+	}
 
-		public void setIduser(int iduser) {
-			this.iduser = iduser;
-		}
+	public String getprojectName() {
+		return projectName;
+	}
 
-		
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-		
-		public String getDescrizione() {
-			return descrizione;
-		}
-
-		public void setDescrizione(String descrizione) {
-			this.descrizione = descrizione;
-		}
-		
-		public String getTipo() {
-			return tipo;
-		}
-
-		public void setTipo(String tipo) {
-			this.tipo = tipo;
-		}
-
-		public int getIdproject() {
-			return idproject;
-		}
-
-		public void setIdproject(int idproject) {
-			this.idproject = idproject;
-		}
+	public void setprojectName(String projectName) {
+		this.projectName = projectName;
+	}
 	
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public boolean equals(ProjectDTO projectCompare) {
+
+		if (userDTO.getId()!=projectCompare.getUserDTO().getId()) {
+			return false;
+		}
+
+		if (!this.getprojectName().equals(getprojectName())) {
+			return false;
+
+		}
+		
+		return true;
+	}
+	
+
 	
 }
