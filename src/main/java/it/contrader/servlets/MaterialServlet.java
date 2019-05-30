@@ -44,7 +44,7 @@ public class MaterialServlet extends HttpServlet{
 				break;
 				
 			case "insertRedirect":
-				response.sendRedirect("material/insertClient.jsp");
+				response.sendRedirect("material/insertTask.jsp");
 				break;
 
 		case "insert":

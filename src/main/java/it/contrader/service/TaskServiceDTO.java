@@ -23,7 +23,7 @@ public class TaskServiceDTO {
 		this.taskDAO = new TaskDAO();
 	}
 	
-	public List<TaskDTO> getAllClient() {
+	public List<TaskDTO> getAllTask() {
 
 		List<Task> list = taskDAO.getAllTask();
 		List<TaskDTO> listDTO = new ArrayList<>();
@@ -35,19 +35,19 @@ public class TaskServiceDTO {
 		return listDTO;
 	}
 	
-	public TaskDTO readMaterial(TaskDTO taskDTO) {
+	public TaskDTO readTask(TaskDTO taskDTO) {
 		return TaskConverter.toDTO(this.taskDAO.readTask(TaskConverter.toEntity(taskDTO)));
 	}
 
-	public boolean updateClient(TaskDTO taskDTO) {
+	public boolean updateTask(TaskDTO taskDTO) {
 		return this.taskDAO.updateTask(TaskConverter.toEntity(taskDTO));
 	}
 		
-	public boolean deleteClient (TaskDTO taskDTO) {
+	public boolean deleteTask (TaskDTO taskDTO) {
 		return this.taskDAO.deleteTask(TaskConverter.toEntity(taskDTO));
 	}
 		
-	public boolean insertClient (TaskDTO taskDTO) {
+	public boolean insertTask (TaskDTO taskDTO) {
 		return this.taskDAO.insertTask(TaskConverter.toEntity(taskDTO));
 	}
 }
