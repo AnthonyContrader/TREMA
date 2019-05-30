@@ -1,39 +1,32 @@
 <%@ page import="it.contrader.dto.*"%>
+
+<link rel="stylesheet" href="css/css/bootstrap.min.css" >
 <% UsersDTO utente = (UsersDTO) session.getAttribute("utente"); %>
 <html>
 <head>
-<title>Menu Principale</title>
+<title allign="center">Menu Principale</title>
 </head>
 <body>
-	<h1>Benvenuto: <%=utente.getUsername()%></h1>
+	<div><h1>Benvenuto: <%=utente.getUsername()%></h1></div>
 	<h2>------- MENU PRINCIPALE -------</h2>
 
-	<h3>1. Esempio</h3>
-	<form action="MenuServlet" method="post">
-		<button type="submit" value="esempioManager" name="richiesta">
-			bottone esempio</button>
+	<form action="manageUser" method="post">
+		<button type="submit" class="btn btn-primary" name="richiesta">Visualizza Users</button>
 	</form>
-	<!--  
-     <h3>2. Badges</h3>
-     <form action="BadgeServlet" method="post">
-     <button type="submit" value="badgesManagement" name="richiesta"> Management badge</button>
+     <form action="insertUser" method="post">
+     <button type="submit" class="btn btn-primary" name="richiesta">Aggiungi Users</button>
      </form>
-     
-     <h3>3. Assegnazione Badges</h3>
-     <form action="AssegnazioneServlet" method="post">
-     <button type="submit" value="assegnazioneManagement" name="richiesta"> Management Assegnazione</button>
      </form>
-     
-     <h3>4. Indietro</h3>
-     <form action="CustomersServlet" method="post">
-     <input type="submit" value="indietro" name="richiesta">
+     <form action="updateUser" method="post">
+     <button type="submit" class="btn btn-primary" name="richiesta">Modifica Users</button>
      </form>
-     
-       <h3>5.logout<h3>
-     <form action="LogoutServlet" method="post">
-     <input type="submit" value="Logout" name="Logout">
+     <form action="deleteUser" method="post">
+     <button type="submit" class="btn btn-primary" name="richiesta">Cancella User</button>
      </form>
--->
+      <form action="LogoutServlet" method="post">
+     <button type="submit" class="btn btn-primary" name="richiesta">Logout</button>
+     </form>
+
 
 
 </body>

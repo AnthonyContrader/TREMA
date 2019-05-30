@@ -11,7 +11,7 @@
 		<p>Login</p>
 	</div>
 	<div class="contenitore">
-		<form action="LoginServlet" method="post">
+		<form action="LoginServlet" method="post" class="login">
 			<p>Enter your login details</p>
 			<p>
 				<br>
