@@ -1,5 +1,7 @@
 package it.contrader.model;
 
+import it.contrader.model.Users;
+
 public class Users {
 
 	private Integer iduser;
@@ -7,8 +9,9 @@ public class Users {
 	private String password;
 	private String usertype;
 
+	public Users() {}
+	
 	public Users(String username, String password, String usertype) {
-		super();
 		this.username = username;
 		this.password = password;
 		this.usertype = usertype;
@@ -53,5 +56,21 @@ public class Users {
 		return "idUser=" + iduser + ", username=" + username + ", password=" + password + ", usertype=" + usertype;
 	}
 
+	public boolean equals(Users userCompare)  {
+		if (!this.getUsername().equals(userCompare.getUsername())) {
+			return false;
+		}
+		
+		if (!this.getPassword().equals(userCompare.getPassword())) {
+			return false;
+		}
+		
+		if (!this.getUsertype().equals(userCompare.getUsertype())) {
+			return false;
+		}
+		
+		return true;
+				
+	}
 
 }

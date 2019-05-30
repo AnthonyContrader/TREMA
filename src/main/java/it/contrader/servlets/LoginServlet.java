@@ -27,19 +27,19 @@ public class LoginServlet extends HttpServlet {
 			String password = request.getParameter("password").toString();
 			UsersDTO dto = service.read(username, password);
 			if (dto != null)
-				session.setAttribute("users", dto);
+				session.setAttribute("user", dto);
 			else
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 
-			switch (dto.getUsertype().toUpperCase()) {
-			case "ADMIN":
-				getServletContext().getRequestDispatcher("/homeadmin.jsp").forward(request, response);
+			switch (dto.getUsertype()) {
+			case "admin":
+				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 				break;
-			case "HR_MANAGER":
-				getServletContext().getRequestDispatcher("/homeHR.jsp").forward(request, response);
+			case "HR_manager":
+				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 				break;
-			case "PJ_MANAGER":
-				getServletContext().getRequestDispatcher("/homePJ.jsp").forward(request, response);
+			case "project_manager":
+				getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 				break;
 			default:
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
