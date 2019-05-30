@@ -3,7 +3,6 @@ package it.contrader.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.main.GestoreEccezioni;
 import it.contrader.model.*;
@@ -148,11 +147,8 @@ public class UsersDAO{
 		Connection connection = ConnectionSingleton.getInstance();
 		Users utente = null;
 		try {
-			System.out.println("daooooooooo");
-			
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
 			
-			System.out.println("daooooooooo2");
 			statement.setString(1, username);
 			statement.setString(2, password);
 			statement.execute();
