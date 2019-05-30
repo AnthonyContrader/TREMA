@@ -17,7 +17,7 @@ public class MaterialServiceDTO {
 		this.materialDAO = new MaterialDAO();
 	}
 	
-	public List<MaterialDTO> getAllClient() {
+	public List<MaterialDTO> getAllMaterial() {
 
 		List<Material> list = materialDAO.getAllMaterial();
 		List<MaterialDTO> listDTO = new ArrayList<>();
