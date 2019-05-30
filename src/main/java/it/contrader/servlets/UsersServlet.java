@@ -22,6 +22,7 @@ import it.contrader.service.*;
  */
 public class UsersServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 	private final UsersServiceDTO userServiceDTO = new UsersServiceDTO();
 	private List<UsersDTO> allUsers = new ArrayList<>();
 
@@ -29,12 +30,12 @@ public class UsersServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		final String scelta = request.getParameter("richiesta");
-		final HttpSession session = request.getSession(true);
+	//	final HttpSession session = request.getSession(true);
 
 		switch (scelta) {
 
 		case "admin":
-			allUsers = this.userServiceDTO.getAllUsers();
+			allUsers = this.userServiceDTO.getAllUser();
 			request.setAttribute("allUser", allUsers);
 			getServletContext().getRequestDispatcher("/user/manageUser.jsp").forward(request, response);
 			break;
@@ -86,16 +87,16 @@ public class UsersServlet extends HttpServlet {
 
 			final UsersDTO userdelete = new UsersDTO("", "", "");
 			userdelete.setId(deleteId);
-			userServiceDTO.deleteUsers(userdelete);
+			userServiceDTO.deleteUser(userdelete);
 			showAllUsers(request, response);
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeAdmin.jsp");
+			response.sendRedirect("/homeAdmin.jsp");
 			break;
 
 		case "logsMenu":
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/index.jsp");
 			break;
 
 		}
@@ -104,7 +105,7 @@ public class UsersServlet extends HttpServlet {
 
 	private void showAllUsers(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		allUsers = this.userServiceDTO.getAllUsers();
+		allUsers = this.userServiceDTO.getAllUser();
 		request.setAttribute("allUser", allUsers);
 		getServletContext().getRequestDispatcher("/user/manageUser.jsp").forward(request, response);
 	}

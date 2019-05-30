@@ -1,6 +1,5 @@
 package it.contrader.main;
 
-//import main.controller.GestoreEccezioni;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.sql.Connection;

@@ -13,6 +13,7 @@ import it.contrader.service.UsersServiceDTO;
 
 public class LoginServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
 
 	@Override
@@ -24,9 +25,8 @@ public class LoginServlet extends HttpServlet {
 		if (request != null) {
 			final String username = request.getParameter("username").toString().trim();
 			final String password = request.getParameter("password").toString().trim();
-		
-			final UsersDTO userDTO = usersServiceDTO.getUserByUsernameAndPasword(username, password);
-			System.out.println("provaaaaaaaaaaaa");
+			final UsersDTO userDTO = usersServiceDTO.getUserByUsernameAndPassword(username, password);
+
 			if (userDTO != null)
 				session.setAttribute("utente", userDTO);
 			

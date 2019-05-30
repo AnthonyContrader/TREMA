@@ -149,7 +149,9 @@ public class UsersDAO{
 		Users utente = null;
 		try {
 			System.out.println("daooooooooo");
+			
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
+			
 			System.out.println("daooooooooo2");
 			statement.setString(1, username);
 			statement.setString(2, password);
@@ -157,9 +159,9 @@ public class UsersDAO{
 			ResultSet resultSet = statement.getResultSet();
 
 			while (resultSet.next()) {
-				Integer userId = resultSet.getInt("iduser");
 				String name = resultSet.getString("username");
 				String pass = resultSet.getString("password");
+				Integer userId = resultSet.getInt("iduser");
 				String usertype = resultSet.getString("usertype");
 				utente = new Users(name, pass, usertype);
 				utente.setIduser(userId);
