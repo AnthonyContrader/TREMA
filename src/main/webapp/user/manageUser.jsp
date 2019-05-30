@@ -1,13 +1,7 @@
 <%@ include file="/header.jsp"%>
 <%@ page import="it.contrader.dto.*"%>
 <%@ page import="java.util.*"%>
-<%!
-private String convertUsertype(String userType) {
-		if (userType.equals("admin"))
-			return "Admin";
-		else
-			return "Business Owner";
-	}%>
+
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +18,7 @@ body {
 	color: white;
 }
 </style>
-<link rel="stylesheet" type="text/css" href="/wmesjsp/css/style.css">
+<link rel="stylesheet" type="text/css" href="/JspApp/css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -82,9 +76,9 @@ body {
 			<td><%=user.getId()%></td>
 			<td><%=user.getUsername()%></td>
 			<td><%=user.getPassword()%></td>
-			<td><%=convertUsertype(user.getUsertype())%></td>
-			<td class="center"><a href="/wmesjsp/UserServlet?richiesta=updateRedirect&id=<%=user.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td class="center"><a href="/wmesjsp/UserServlet?richiesta=delete&id=<%=user.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><%=user.getUsertype()%></td>
+			<td class="center"><a href="/JspApp/UsersServlet?richiesta=updateRedirect&id=<%=user.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td class="center"><a href="/JspApp/UsersServlet?richiesta=delete&id=<%=user.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 
 		</tr>
 		<%
@@ -93,11 +87,11 @@ body {
 	</table>
 	<br>
 	<br>
-	<a href="/wmesjsp/UserServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New User</i></a>
+	<a href="/JspApp/UsersServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New User</i></a>
 
 	<br>
 	<br>
-	<a href="/wmesjsp/UserServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="/JspApp/UsersServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 
 </body>
