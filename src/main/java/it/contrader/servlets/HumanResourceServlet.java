@@ -10,74 +10,76 @@ import javax.servlet.http.*;
 import it.contrader.dto.*;
 import it.contrader.service.*;
 
-public class ClientServlet extends HttpServlet {
+public class HumanResourceServlet extends HttpServlet {
 
-	private ClientServiceDTO clientServiceDTO = new ClientServiceDTO();
-	private List<ClientDTO> allClients = new ArrayList<ClientDTO>();
-	private List<ClientDTO> filteredClients = new ArrayList<ClientDTO>();
+	private HumanResourceServiceDTO hrserviceDTO = new HumanResourceServiceDTO();
+	private List<HumanResourceDTO> allHr = new ArrayList<HumanResourceDTO>();
+	private List<HumanResourceDTO> filteredHr = new ArrayList<HumanResourceDTO>();
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		final String scelta = request.getParameter("richiesta");
 		final HttpSession session = request.getSession(true);
-		final UserDTO userLogged = (UserDTO) session.getAttribute("utente");
+		final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
 
 		switch (scelta) {
 
-		case "ClientManager":
-			showAllClient(request, response);
+		case "HR_manager":
+			showAllHr(request, response);
 			break;
 
 		case "insertRedirect":
-			response.sendRedirect("client/insertClient.jsp");
+			response.sendRedirect("humanresource/insertHumanResource.jsp");
 			break;
 
 		case "insert":
 			// final int userId = Integer.parseInt(request.getParameter("user_id"));
-			final String clientName = request.getParameter("client_name");
+			final String name = request.getParameter("name");
+			final String surname = request.getParameter("surname");
 			// UserDTO userInsert = new UserDTO("","","");
 
 			// userInsert.setId(userId);
-			final ClientDTO clientInsert = new ClientDTO(userLogged, clientName);
-			clientServiceDTO.insertClient(clientInsert);
-			showAllClient(request, response);
+			final HumanResourceDTO hrin = new HumanResourceDTO(userLogged, name, surname);
+			hrserviceDTO.insertHr(hrin);
+			showAllHr(request, response);
 			break;
 
 		case "updateRedirect":
-			int id = Integer.parseInt(request.getParameter("id"));
-			ClientDTO clientUpdate = new ClientDTO(new UserDTO("", "", ""), "");
-			clientUpdate.setId(id);
+			int id = Integer.parseInt(request.getParameter("idHR"));
+			HumanResourceDTO hrup = new HumanResourceDTO(new UsersDTO(" ", " ", " "), " ", " ");
+			hrup.setId(id);
 
-			clientUpdate = this.clientServiceDTO.readClient(clientUpdate);
-			request.setAttribute("clientUpdate", clientUpdate);
-			getServletContext().getRequestDispatcher("/client/updateClient.jsp").forward(request, response);
+			hrup = this.hrserviceDTO.readHr(hrup);
+			request.setAttribute("humanresourceUpdate", hrup);
+			getServletContext().getRequestDispatcher("/humanresource/updateHumanResource.jsp").forward(request, response);
 
 			break;
 
 		case "update":
-			final Integer clientIdUpdate = Integer.parseInt(request.getParameter("client_id"));
+			final Integer hridupdate = Integer.parseInt(request.getParameter("idHR"));
 			// final Integer userIdUpdate =
 			// Integer.parseInt(request.getParameter("user_id"));
-			final String clientNameUpdate = request.getParameter("client_name");
+			final String idnameup = request.getParameter("name");
+			final String idsurnameup = request.getParameter("surname");
 
-			final ClientDTO clientDTO = new ClientDTO(userLogged, clientNameUpdate);
-			clientDTO.setId(clientIdUpdate);
-			clientServiceDTO.updateClient(clientDTO);
-			showAllClient(request, response);
+			final HumanResourceDTO hrDTO = new HumanResourceDTO(userLogged, idnameup, idsurnameup);
+			hrDTO.setId(hridupdate);
+			hrserviceDTO.updateHr(hrDTO);
+			showAllHr(request, response);
 			break;
 
 		case "delete":
-			final Integer clientIdDelete = Integer.parseInt(request.getParameter("id"));
+			final Integer idhrdel = Integer.parseInt(request.getParameter("idHR"));
 
-			final ClientDTO clientdelete = new ClientDTO(userLogged, "");
-			clientdelete.setId(clientIdDelete);
-			clientServiceDTO.deleteClient(clientdelete);
-			showAllClient(request, response);
+			final HumanResourceDTO idhrDel = new HumanResourceDTO(userLogged, "", "");
+			idhrDel.setId(idhrdel);
+			hrserviceDTO.deleteHr(idhrDel);
+			showAllHr(request, response);
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeBO.jsp");
+			response.sendRedirect("homeAdmin.jsp");
 			break;
 
 		case "logsMenu":
@@ -89,21 +91,21 @@ public class ClientServlet extends HttpServlet {
 	}
 	
 	// Show all client for user logged
-	private void showAllClient(HttpServletRequest request, HttpServletResponse response)
+	private void showAllHr(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		allClients.clear();
-		filteredClients.clear();
-		allClients = this.clientServiceDTO.getAllClient();
+		allHr.clear();
+		filteredHr.clear();
+		allHr = this.hrserviceDTO.getAllHr();
 		HttpSession session = request.getSession(true);
-		UserDTO userLogged=(UserDTO) session.getAttribute("utente");
+		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
 		
-		for (ClientDTO clientDTO:allClients) {
-			if (clientDTO.getUserDTO().getId()==userLogged.getId())
-				filteredClients.add(clientDTO);
+		for (HumanResourceDTO hrDTO:allHr) {
+			if (hrDTO.getUserDTO().getId()==userLogged.getId())
+				filteredHr.add(hrDTO);
 		}
 			
-		request.setAttribute("allClient", filteredClients);
-		getServletContext().getRequestDispatcher("/client/manageClient.jsp").forward(request, response);
+		request.setAttribute("allHr", filteredHr);
+		getServletContext().getRequestDispatcher("/humanresource/manageHR.jsp").forward(request, response);
 	}
 }
 

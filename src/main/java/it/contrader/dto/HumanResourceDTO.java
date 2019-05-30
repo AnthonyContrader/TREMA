@@ -8,6 +8,8 @@ public class HumanResourceDTO {
 	private String name;
 	private String surname;
 
+	public HumanResourceDTO() {}
+	
 	public HumanResourceDTO (UsersDTO userDTO, String name, String surname) {
 		super();
 		//this.Id = Id;
