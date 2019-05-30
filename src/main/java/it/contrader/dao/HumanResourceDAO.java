@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.utils.*;
+import it.contrader.main.*;
 import it.contrader.model.HumanResource;
 
 public class HumanResourceDAO implements DAO<HumanResource>{

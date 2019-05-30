@@ -27,7 +27,7 @@
 </style>
 
 <%
-	UserDTO updateUser = (UserDTO) request.getAttribute("userUpdate");
+	UsersDTO updateUser = (UsersDTO) request.getAttribute("userUpdate");
 %>
 </head>
 

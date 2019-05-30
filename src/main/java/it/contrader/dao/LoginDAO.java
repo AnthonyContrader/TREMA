@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import it.contrader.utils.*;
+import it.contrader.main.*;
 
 
 public class LoginDAO {

@@ -1,4 +1,4 @@
-package it.contrader.utils;
+package it.contrader.main;
 
 public class GestoreEccezioni {
     private static GestoreEccezioni ourInstance = new GestoreEccezioni();
