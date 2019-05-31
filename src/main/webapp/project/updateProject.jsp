@@ -1,4 +1,4 @@
-<%@ page import="it.contrader.dto.ProjectDTO"%>
+<%@ page import="it.contrader.dto.*"%>
 <%@ page import="java.util.*"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
@@ -47,8 +47,7 @@
 			<br>
 
 			<br>
-			<input type="hidden" name="idproject" value="<%=updateProject.getId()%>" /> Project Name: <input type="text" size="40" maxlength="40"
-				name="name" value="<%=updateProject.getprojectName()%>" />
+			<input type="hidden" name="idproject" value="<%=updateProject.getId()%>" /> Project Name: <input type="text" size="40" maxlength="40" name="name" value="<%=updateProject.getprojectName()%>" />
 			<br>
 			<br>
 			<br>

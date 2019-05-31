@@ -18,8 +18,8 @@ public class ProjectServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ProjectServiceDTO projectServiceDTO = new ProjectServiceDTO();
-	private List<ProjectDTO> allProjects = new ArrayList<ProjectDTO>();
-	private List<ProjectDTO> filteredProjects = new ArrayList<ProjectDTO>();
+	private List<ProjectDTO> allProjects = new ArrayList<>();
+	private List<ProjectDTO> filteredProjects = new ArrayList<>();
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,44 +31,29 @@ public class ProjectServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "project_manager":
-			allProjects.clear();
-			filteredProjects.clear(); 
-			allProjects = this.projectServiceDTO.getAllProject();
-			allProjects = this.projectServiceDTO.getAllProject();
-			for (ProjectDTO projectDTO:allProjects) {
-				if (projectDTO.getUserDTO().getId()==userLogged.getId()) {
-						filteredProjects.add(projectDTO); }
-			}
-			request.setAttribute("allProjects", filteredProjects);
-			getServletContext().getRequestDispatcher("/project/manageProject.jsp").forward(request, response);
-		
+			showAllProject(request, response);
 			break;
-
 		case "insertRedirect":
-			response.sendRedirect("insertProject.jsp");
+			response.sendRedirect("/project/insertProject.jsp");
 			break;
 
 		case "insert":
-			// final int userId = Integer.parseInt(request.getParameter("user_id"));
 			final String projectName = request.getParameter("name");
 			final String descrizione = request.getParameter("descrizione");
 			final String tipo = request.getParameter("tipo");
-			// UserDTO userInsert = new UserDTO("","","");
-
-			// userInsert.setId(userId);
 			final ProjectDTO projectInsert = new ProjectDTO(projectName,descrizione,tipo,userLogged);
 			projectServiceDTO.insertProject(projectInsert);
 			showAllProject(request, response);
 			break;
 
 		case "updateRedirect":
-			int id = Integer.parseInt(request.getParameter("idproject"));
+			int id = Integer.parseInt(request.getParameter("id"));
 			ProjectDTO projectUpdate = new ProjectDTO("","","",new UsersDTO("", "", ""));
 			projectUpdate.setId(id);
 
 			projectUpdate = this.projectServiceDTO.readProject(projectUpdate);
 			request.setAttribute("projectUpdate", projectUpdate);
-			getServletContext().getRequestDispatcher("updateProject.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/project/updateProject.jsp").forward(request, response);
 
 			break;
 
@@ -95,7 +80,7 @@ public class ProjectServlet extends HttpServlet {
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeAdmin.jsp"); 
+			response.sendRedirect("homeProject.jsp"); 
 			break;
 
 		case "logsMenu":
@@ -108,19 +93,18 @@ public class ProjectServlet extends HttpServlet {
 	
 
 	// Show all project for user logged
-	private void showAllProject(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	private void showAllProject(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		allProjects.clear();
 		filteredProjects.clear(); 
-		allProjects = this.projectServiceDTO.getAllProject();
+		allProjects = projectServiceDTO.getAllProject();
 		HttpSession session = request.getSession(true);
 		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
-		
 		for (ProjectDTO projectDTO:allProjects) {
 			if (projectDTO.getUserDTO().getId()==userLogged.getId()) {
-					filteredProjects.add(projectDTO); }
-		}
+					filteredProjects.add(projectDTO);}
+		}	
 		request.setAttribute("allProjects", filteredProjects);
-		getServletContext().getRequestDispatcher("manageProject.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/project/manageProject.jsp").forward(request, response);
 	}
 }
+	
