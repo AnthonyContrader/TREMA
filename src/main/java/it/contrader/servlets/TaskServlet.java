@@ -119,8 +119,9 @@ public class TaskServlet extends HttpServlet{
 	
 	private void showAllTasks(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		allTasks.clear();
-		filteredTasks.clear();
+		//filteredTasks.clear();
 		allTasks = this.taskServiceDTO.getAllTask();
+		/*
 		HttpSession session = request.getSession(true);
 		
 		ProjectDTO projectDTO = new ProjectDTO("", "", "", null);
@@ -139,9 +140,9 @@ public class TaskServlet extends HttpServlet{
 			
 			if (taskDTO.getHRDTO().getId() == hrDTO.getId())
 				filteredTasks.add(taskDTO);
-		}
+		} */
 				
-		request.setAttribute("allTask", filteredTasks);
+		request.setAttribute("allTask", allTasks);
 		getServletContext().getRequestDispatcher("/task/manageTask.jsp").forward(request, response);
 	}
 }
