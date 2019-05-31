@@ -8,7 +8,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Inserisci nuovo ordine</title>
-	<link rel="stylesheet" type="text/css" href="/wmesjsp/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/trema/css/style.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<style>
@@ -56,7 +56,7 @@
 		<input type="SUBMIT" value="Add">
 		<br />
 		<br />
-		<a href="/wmesjsp/TaskServlet?richiesta=OrderManager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="/trema/TaskServlet?richiesta=OrderManager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		
 	</form>
 </head>

@@ -19,25 +19,21 @@ import it.contrader.service.HumanResourceServiceDTO;
 
 public class TaskServlet extends HttpServlet{
 	private TaskServiceDTO taskServiceDTO = new TaskServiceDTO();
-	//private HumanResourceServiceDTO hrServiceDTO = new HumanResourceServiceDTO();
 	private List<TaskDTO> allTasks = new ArrayList<TaskDTO>();
 	private List<TaskDTO> filteredTasks = new ArrayList<TaskDTO>();
 	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final String scelta = request.getParameter("richiesta");
-		//final HttpSession session = request.getSession(true);
+		final HttpSession session = request.getSession(true);
 		
 		int idtask;
-		String descrizioneTask;
-		int idproject;
-		int idhr;
+		String descrizione_task;
+		Integer idproject;
+		Integer idhr;
 		HumanResourceDTO hrDTO;
 		ProjectDTO projectDTO;
-		
-		// Here I don't know if userLogged is the general user that login in the app
-		// or is only the user of the entity.
-		//final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
+		TaskDTO taskDTO;
 		
 		switch (scelta) {
 			case "project_manager":
@@ -49,9 +45,9 @@ public class TaskServlet extends HttpServlet{
 				break;
 
 		case "insert":
-			descrizioneTask = request.getParameter("descrizione_task");
+			descrizione_task = request.getParameter("descrizione_task");
 			idproject = Integer.parseInt(request.getParameter("idproject"));
-			idhr = Integer.parseInt(request.getParameter("idHR"));
+			idhr = Integer.parseInt(request.getParameter("idhr"));
 			
 			projectDTO = new ProjectDTO("", "", "", null);
 			projectDTO.setId(idproject);
@@ -59,28 +55,28 @@ public class TaskServlet extends HttpServlet{
 			hrDTO = new HumanResourceDTO(null, null, null);
 			hrDTO.setId(idhr);
 			
-			final TaskDTO taskInsert = new TaskDTO(descrizioneTask, projectDTO, hrDTO);
-			taskServiceDTO.insertTask(taskInsert);
+			taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
+			taskServiceDTO.insertTask(taskDTO);
 			showAllTasks(request, response);
 			break;
 
 		case "updateRedirect":
-			idtask = Integer.parseInt(request.getParameter("idmaterial"));
+			idtask = Integer.parseInt(request.getParameter("idtask"));
 			
-			TaskDTO taskUpdate = new TaskDTO("", null, null);
-			taskUpdate.setIdtask(idtask);
+			taskDTO = new TaskDTO("", null, null);
+			taskDTO.setIdtask(idtask);
 
-			taskUpdate = this.taskServiceDTO.readTask(taskUpdate);
-			request.setAttribute("taskUpdate", taskUpdate);
+			taskDTO = this.taskServiceDTO.readTask(taskDTO);
+			request.setAttribute("taskUpdate", taskDTO);
 			getServletContext().getRequestDispatcher("/task/updateTask.jsp").forward(request, response);
 
 			break;
 
 		case "update":
 			idtask = Integer.parseInt(request.getParameter("idtask"));
-			descrizioneTask = request.getParameter("descrizione_task");
-			idproject = Integer.parseInt(request.getParameter("idHR"));
-			idhr = Integer.parseInt(request.getParameter("idHR"));
+			descrizione_task = request.getParameter("descrizione_task");
+			idproject = Integer.parseInt(request.getParameter("idproject"));
+			idhr = Integer.parseInt(request.getParameter("idhr"));
 			
 			projectDTO = new ProjectDTO("", "", "", null);
 			projectDTO.setId(idproject);
@@ -88,18 +84,17 @@ public class TaskServlet extends HttpServlet{
 			hrDTO = new HumanResourceDTO(null, null, null);
 			hrDTO.setId(idhr);
 			
-			final TaskDTO taskDTO = new TaskDTO(descrizioneTask, projectDTO, hrDTO);
-			taskDTO.setIdtask(idtask);
+			taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
 			taskServiceDTO.updateTask(taskDTO);
 			showAllTasks(request, response);
 			break;
 
 		case "delete":
-			final Integer materialIdDelete = Integer.parseInt(request.getParameter("idtask"));
+			idtask = Integer.parseInt(request.getParameter("idtask"));
 
-			final TaskDTO taskdelete = new TaskDTO("", null, null);
-			taskdelete.setIdtask(materialIdDelete);
-			taskServiceDTO.deleteTask(taskdelete);
+			taskDTO = new TaskDTO("", null, null);
+			taskDTO.setIdtask(idtask);
+			taskServiceDTO.deleteTask(taskDTO);
 			showAllTasks(request, response);
 			break;
 
@@ -114,13 +109,11 @@ public class TaskServlet extends HttpServlet{
 		}
 	}
 	
-	// Show all material for user logged.. (
-	// I think that here all materials must be showed from the actual HR...
 	private void showAllTasks(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		allTasks.clear();
 		filteredTasks.clear();
 		allTasks = this.taskServiceDTO.getAllTask();
-		//HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(true);
 		
 		ProjectDTO projectDTO = new ProjectDTO("", "", "", null);
 		int idproject = Integer.parseInt(request.getParameter("idproject"));
@@ -130,6 +123,8 @@ public class TaskServlet extends HttpServlet{
 		int idhr = Integer.parseInt(request.getParameter("idHR"));
 		hrDTO.setId(idhr);
 		
+		ProjectDTO idprojectDTO = (ProjectDTO) session.getAttribute("idproject");
+		
 		for (TaskDTO taskDTO : allTasks) {
 			if (taskDTO.getProjectDTO().getId() == projectDTO.getId())
 				filteredTasks.add(taskDTO);
@@ -138,7 +133,7 @@ public class TaskServlet extends HttpServlet{
 				filteredTasks.add(taskDTO);
 		}
 				
-		request.setAttribute("allMaterial", filteredTasks);
+		request.setAttribute("allTask", filteredTasks);
 		getServletContext().getRequestDispatcher("/task/manageTask.jsp").forward(request, response);
 	}
 }
