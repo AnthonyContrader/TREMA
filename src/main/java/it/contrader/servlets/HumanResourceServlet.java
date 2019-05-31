@@ -5,16 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import it.contrader.dto.*;
-import it.contrader.service.*;
+import it.contrader.dto.HumanResourceDTO;
+import it.contrader.dto.UsersDTO;
+import it.contrader.service.HumanResourceServiceDTO;
 
 public class HumanResourceServlet extends HttpServlet {
 
-	private HumanResourceServiceDTO hrserviceDTO = new HumanResourceServiceDTO();
+	private static final long serialVersionUID = 1L;
+	private HumanResourceServiceDTO HrServiceDTO = new HumanResourceServiceDTO();
 	private List<HumanResourceDTO> allHr = new ArrayList<HumanResourceDTO>();
-
+	private List<HumanResourceDTO> filteredHr = new ArrayList<HumanResourceDTO>();
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,63 +31,69 @@ public class HumanResourceServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "HR_manager":
-			
-			allHr = this.hrserviceDTO.getAllHr();
-			request.setAttribute("allHr", allHr);
+			allHr.clear();
+			filteredHr.clear(); 
+			allHr = this.HrServiceDTO.getAllHr();
+			allHr = this.HrServiceDTO.getAllHr();
+			for (HumanResourceDTO HrDTO:allHr) {
+				if (HrDTO.getUserDTO().getId()==userLogged.getId()) {
+						filteredHr.add(HrDTO); }
+			}
+			request.setAttribute("allHr", filteredHr);
 			getServletContext().getRequestDispatcher("/humanresource/manageHumanResource.jsp").forward(request, response);
+		
 			break;
 
 		case "insertRedirect":
-			response.sendRedirect("humanresource/insertHumanResource.jsp");
+			response.sendRedirect("/humanresource/insertHumanResource.jsp");
 			break;
 
 		case "insert":
 			// final int userId = Integer.parseInt(request.getParameter("user_id"));
-			final String name = request.getParameter("name");
-			final String surname = request.getParameter("surname");
+			final String HrName = request.getParameter("name");
+			final String HrSurname = request.getParameter("surname");
 			// UserDTO userInsert = new UserDTO("","","");
 
 			// userInsert.setId(userId);
-			final HumanResourceDTO hrin = new HumanResourceDTO(userLogged, name, surname);
-			hrserviceDTO.insertHr(hrin);
+			final HumanResourceDTO HrInsert = new HumanResourceDTO(userLogged,HrName,HrSurname);
+			HrServiceDTO.insertHr(HrInsert);
 			showAllHr(request, response);
 			break;
 
 		case "updateRedirect":
 			int id = Integer.parseInt(request.getParameter("idHR"));
-			HumanResourceDTO hrup = new HumanResourceDTO(new UsersDTO(" ", " ", " "), " ", " ");
-			hrup.setId(id);
+			HumanResourceDTO HrUpdate = new HumanResourceDTO(userLogged,"","");
+			HrUpdate.setId(id);
 
-			hrup = this.hrserviceDTO.readHr(hrup);
-			request.setAttribute("humanresourceUpdate", hrup);
+			HrUpdate = this.HrServiceDTO.readHr(HrUpdate);
+			request.setAttribute("HrUpdate", HrUpdate);
 			getServletContext().getRequestDispatcher("/humanresource/updateHumanResource.jsp").forward(request, response);
 
 			break;
 
 		case "update":
-			final Integer hridupdate = Integer.parseInt(request.getParameter("idHR"));
+			final Integer HrIdUpdate = Integer.parseInt(request.getParameter("idHR"));
 			// final Integer userIdUpdate =
 			// Integer.parseInt(request.getParameter("user_id"));
-			final String idnameup = request.getParameter("name");
-			final String idsurnameup = request.getParameter("surname");
+			final String HrNameUpdate = request.getParameter("name");
+			final String HrSurnameUpdate = request.getParameter("surname");
 
-			final HumanResourceDTO hrDTO = new HumanResourceDTO(userLogged, idnameup, idsurnameup);
-			hrDTO.setId(hridupdate);
-			hrserviceDTO.updateHr(hrDTO);
+			final HumanResourceDTO HrDTO = new HumanResourceDTO(userLogged,HrNameUpdate,HrSurnameUpdate);
+			HrDTO.setId(HrIdUpdate);
+			HrServiceDTO.updateHr(HrDTO);
 			showAllHr(request, response);
 			break;
 
 		case "delete":
-			final Integer idhrdel = Integer.parseInt(request.getParameter("idHR"));
-
-			final HumanResourceDTO idhrDel = new HumanResourceDTO(userLogged, "", "");
-			idhrDel.setId(idhrdel);
-			hrserviceDTO.deleteHr(idhrDel);
+			final Integer HrIdDelete = Integer.parseInt(request.getParameter("idHR"));
+			final HumanResourceDTO Hrdelete = new HumanResourceDTO(userLogged,"","");
+			Hrdelete.setId(HrIdDelete);
+			HrServiceDTO.deleteHr(Hrdelete);
 			showAllHr(request, response);
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeHumanResource.jsp");
+			response.sendRedirect("homeHumanResource.jsp"); 
 			break;
 
 		case "logsMenu":
@@ -93,21 +104,21 @@ public class HumanResourceServlet extends HttpServlet {
 
 	}
 	
-	// Show all client for user logged
+
+	// Show all project for user logged
 	private void showAllHr(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		allHr.clear();
-		allHr = this.hrserviceDTO.getAllHr();
+		filteredHr.clear(); 
+		allHr = this.HrServiceDTO.getAllHr();
 		HttpSession session = request.getSession(true);
 		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
 		
-		for (HumanResourceDTO hrDTO:allHr) {
-			if (hrDTO.getUserDTO().getId()==userLogged.getId())
-				allHr.add(hrDTO);
+		for (HumanResourceDTO HrDTO:allHr) {
+			if (HrDTO.getUserDTO().getId()==userLogged.getId()) {
+					filteredHr.add(HrDTO); }
 		}
-			
-		request.setAttribute("allHr", allHr);
-		getServletContext().getRequestDispatcher("/humanresource/manageHR.jsp").forward(request, response);
+		request.setAttribute("allHr", filteredHr);
+		getServletContext().getRequestDispatcher("/humanresource/manageHumanResource.jsp").forward(request, response);
 	}
 }
-
