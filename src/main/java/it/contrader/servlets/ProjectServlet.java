@@ -16,6 +16,7 @@ import it.contrader.service.ProjectServiceDTO;
 
 public class ProjectServlet extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
 	private ProjectServiceDTO projectServiceDTO = new ProjectServiceDTO();
 	private List<ProjectDTO> allProjects = new ArrayList<ProjectDTO>();
 	private List<ProjectDTO> filteredProjects = new ArrayList<ProjectDTO>();
@@ -31,7 +32,6 @@ public class ProjectServlet extends HttpServlet {
 
 		case "project_manager":
 			showAllProject(request, response);
-			System.out.println("Ciao");
 			break;
 
 		case "insertRedirect":
@@ -78,7 +78,6 @@ public class ProjectServlet extends HttpServlet {
 
 		case "delete":
 			final Integer projectIdDelete = Integer.parseInt(request.getParameter("idproject"));
-
 			final ProjectDTO projectdelete = new ProjectDTO("","","",userLogged);
 			projectdelete.setId(projectIdDelete);
 			projectServiceDTO.deleteProject(projectdelete);
@@ -86,7 +85,7 @@ public class ProjectServlet extends HttpServlet {
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeAdmin.jsp"); // DA MODIFICARE CON LA VIEW CORRETTA
+			response.sendRedirect("homeAdmin.jsp"); 
 			break;
 
 		case "logsMenu":

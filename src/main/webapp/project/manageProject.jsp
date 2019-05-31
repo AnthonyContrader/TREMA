@@ -67,8 +67,8 @@
 			<td><%=project.getprojectName()%></td>
 
 
-			<td><a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=updateRedirect&id=<%=project.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=delete&id=<%=project.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="ProjectServlet?richiesta=updateRedirect&id=<%=project.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="ProjectServlet?richiesta=delete&id=<%=project.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
@@ -76,10 +76,10 @@
 	</table>
 	<br>
 	<br>
-	<a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Client</i></a>
+	<a href="ProjectServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Client</i></a>
 	<br>
 	<br>
-	<a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="ProjectServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 </body>
 </html>

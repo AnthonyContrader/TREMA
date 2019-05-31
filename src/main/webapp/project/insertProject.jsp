@@ -41,7 +41,7 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=insert">
+	<form method="POST" action="ProjectServlet?richiesta=insert">
 
 		Project Name: <input type="text" size="40" maxlength="40" name="name" />
 		Descrition: <input type="text" size="40" maxlength="40" name="descrizione" />
@@ -51,7 +51,7 @@
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

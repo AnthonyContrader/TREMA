@@ -43,7 +43,7 @@
 			<p>Project Update</p>
 
 		</div>
-		<form method="POST" action="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=update">
+		<form method="POST" action="ProjectServlet?richiesta=update">
 			<br>
 
 			<br>
@@ -55,7 +55,7 @@
 			<input type="SUBMIT" value="Update">
 			<br>
 			<br>
-			<a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		</form>
 
 	</div>
