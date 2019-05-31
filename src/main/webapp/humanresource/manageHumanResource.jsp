@@ -7,7 +7,7 @@
 <head>
 <title>Gestione Personale</title>
 
-<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
+<link rel="stylesheet" type="text/css" href="TREMA/src/main/webapp/css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -50,7 +50,9 @@
 	<br />
 	<table>
 		<tr>
-			<th>Human Resource Name</th>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Surname</th>
 			<th>Update</th>
 			<th>Delete</th>
 
@@ -60,11 +62,12 @@
 		%>
 		<tr>
 
+			<td><%=hr.getId()%></td>
 			<td><%=hr.getName()%></td>
-
-
-			<td><a href="/wmesjsp/ClientServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="/wmesjsp/ClientServlet?richiesta=delete&id=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><%=hr.getSurname()%></td>
+			
+			<td class="center"><a href="HumanResourceServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td class="center"><a href="HumanResourceServlet?richiesta=delete&id=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
@@ -72,10 +75,10 @@
 	</table>
 	<br>
 	<br>
-	<a href="/JspApp/HumanResourceServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New HR</i></a>
+	<a href="HumanResourceServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New HR </i></a>
 	<br>
 	<br>
-	<a href="/JspApp/HumanResourceServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="HumanResourceServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back </i></a>
 
 </body>
 </html>

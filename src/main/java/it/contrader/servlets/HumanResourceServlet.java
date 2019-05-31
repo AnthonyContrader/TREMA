@@ -14,7 +14,7 @@ public class HumanResourceServlet extends HttpServlet {
 
 	private HumanResourceServiceDTO hrserviceDTO = new HumanResourceServiceDTO();
 	private List<HumanResourceDTO> allHr = new ArrayList<HumanResourceDTO>();
-	private List<HumanResourceDTO> filteredHr = new ArrayList<HumanResourceDTO>();
+
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +26,9 @@ public class HumanResourceServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "HR_manager":
-			showAllHr(request, response);
+			allHr = this.hrserviceDTO.getAllHr();
+			request.setAttribute("allHr", allHr);
+			getServletContext().getRequestDispatcher("/user/manageHumanResource.jsp").forward(request, response);
 			break;
 
 		case "insertRedirect":
@@ -94,17 +96,16 @@ public class HumanResourceServlet extends HttpServlet {
 	private void showAllHr(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		allHr.clear();
-		filteredHr.clear();
 		allHr = this.hrserviceDTO.getAllHr();
 		HttpSession session = request.getSession(true);
 		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
 		
 		for (HumanResourceDTO hrDTO:allHr) {
 			if (hrDTO.getUserDTO().getId()==userLogged.getId())
-				filteredHr.add(hrDTO);
+				allHr.add(hrDTO);
 		}
 			
-		request.setAttribute("allHr", filteredHr);
+		request.setAttribute("allHr", allHr);
 		getServletContext().getRequestDispatcher("/humanresource/manageHR.jsp").forward(request, response);
 	}
 }
