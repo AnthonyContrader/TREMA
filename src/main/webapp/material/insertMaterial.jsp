@@ -41,15 +41,15 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="../MaterialServlet?richiesta=insert">
+	<form method="POST" action="/TREMA/MaterialServlet?richiesta=insert">
 
-		Material Name: <input type="text" size="40" maxlength="40" name="client_name" />
+		Material Name: <input type="text" size="40" maxlength="40" name="tipo" />
 		<br>
 		<br>
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="../MaterialtServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="/TREMA/MaterialtServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

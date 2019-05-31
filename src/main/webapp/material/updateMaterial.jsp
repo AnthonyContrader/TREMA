@@ -43,7 +43,7 @@
 			<p>Material Update</p>
 
 		</div>
-		<form method="POST" action="../MaterialServlet?richiesta=update">
+		<form method="POST" action="/TREMA/MaterialServlet?richiesta=update">
 			<br>
 
 			<br>
@@ -55,7 +55,7 @@
 			<input type="SUBMIT" value="Update">
 			<br>
 			<br>
-			<a href="../MaterialServlet?richiesta=idmaterial"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="/TREMA/MaterialServlet?richiesta=HR-manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		</form>
 
 	</div>

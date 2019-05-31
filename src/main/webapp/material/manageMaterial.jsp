@@ -73,7 +73,7 @@
 	<a href="../MaterialServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Material</i></a>
 	<br>
 	<br>
-	<a href="../MaterialServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="../MaterialServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 </body>
 </html>
