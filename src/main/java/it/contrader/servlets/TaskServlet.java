@@ -49,12 +49,15 @@ public class TaskServlet extends HttpServlet{
 			idproject = Integer.parseInt(request.getParameter("idproject"));
 			idhr = Integer.parseInt(request.getParameter("idhr"));
 			
+			projectDTO = null;
 			projectDTO = new ProjectDTO("", "", "", null);
 			projectDTO.setId(idproject);
 			
+			hrDTO = null;
 			hrDTO = new HumanResourceDTO(null, null, null);
 			hrDTO.setId(idhr);
 			
+			taskDTO = null;
 			taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
 			taskServiceDTO.insertTask(taskDTO);
 			showAllTasks(request, response);
@@ -63,6 +66,7 @@ public class TaskServlet extends HttpServlet{
 		case "updateRedirect":
 			idtask = Integer.parseInt(request.getParameter("idtask"));
 			
+			taskDTO = null;
 			taskDTO = new TaskDTO("", null, null);
 			taskDTO.setIdtask(idtask);
 
@@ -78,12 +82,15 @@ public class TaskServlet extends HttpServlet{
 			idproject = Integer.parseInt(request.getParameter("idproject"));
 			idhr = Integer.parseInt(request.getParameter("idhr"));
 			
+			projectDTO = null;
 			projectDTO = new ProjectDTO("", "", "", null);
 			projectDTO.setId(idproject);
 			
+			hrDTO = null;
 			hrDTO = new HumanResourceDTO(null, null, null);
 			hrDTO.setId(idhr);
 			
+			taskDTO = null;
 			taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
 			taskServiceDTO.updateTask(taskDTO);
 			showAllTasks(request, response);
@@ -91,7 +98,8 @@ public class TaskServlet extends HttpServlet{
 
 		case "delete":
 			idtask = Integer.parseInt(request.getParameter("idtask"));
-
+			
+			taskDTO = null;
 			taskDTO = new TaskDTO("", null, null);
 			taskDTO.setIdtask(idtask);
 			taskServiceDTO.deleteTask(taskDTO);
