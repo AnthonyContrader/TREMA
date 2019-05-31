@@ -38,7 +38,7 @@ public class UsersServlet extends HttpServlet {
 			break;
 
 		case "insertRedirect":
-			response.sendRedirect("/user/insertUser.jsp");
+			response.sendRedirect("user/insertUser.jsp");
 			break;
 
 		case "insert":
