@@ -30,7 +30,7 @@ public class HumanResourceServlet extends HttpServlet {
 
 		switch (scelta) {
 
-		case "HR_manager":
+		case "human_manager":
 			allHr.clear();
 			filteredHr.clear(); 
 			allHr = this.HrServiceDTO.getAllHr();

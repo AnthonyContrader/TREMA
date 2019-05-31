@@ -90,7 +90,7 @@ body {
 
 	</div>
 	<div class="contenitore">
-		<a href="HumanResourceServlet?richiesta=HR_manager"><span class="fs"> Visualizza Dipendenti </span></a>
+		<a href="HumanResourceServlet?richiesta=human_manager"><span class="fs"> Visualizza Dipendenti </span></a>
 		<br>
 		
 		<br>

@@ -113,7 +113,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO user (username,password,usertype)
-values ('admin','admin','admin'),('user','user','project_manager'),('user3','user3','project_manager'),('user4','user4','HR_manager'),('user5','user5','HR_manager'),('admin1','admin1','admin');
+values ('admin','admin','admin'),('user','user','project_manager'),('user3','user3','project_manager'),('user4','user4','human_manager'),('user5','user5','human_manager'),('admin1','admin1','admin');
 
 INSERT INTO humanresource (name,surname,iduser)
 values ('Gianluca','Di Nanna',1),('Ali','Tavakkoli',2),('Adrian','Papuc',2),('Angel','Mata',2),('Dino','Zoff',3),('Carlo','Cracco',1);

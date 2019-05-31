@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 			case "admin":
 				getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
 				break;
-			case "HR_manager":
+			case "human_manager":
 				getServletContext().getRequestDispatcher("/homeHumanResource.jsp").forward(request, response);
 				break;
 			case "project_manager":
