@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="header" img class="imgheader" src="css/TremaLogo.svg" alt="../css/DoserLogo.svg">
+<div class="header" img class="imgheader" src="css/TremaLogo.svg" alt="../css/TremaLogo.svg">
 </div>
 
 

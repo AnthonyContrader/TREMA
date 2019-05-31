@@ -8,9 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import it.contrader.converter.*;
 import it.contrader.dto.*;
 import it.contrader.service.*;
 
@@ -55,7 +52,7 @@ public class UsersServlet extends HttpServlet {
 			break;
 
 		case "updateRedirect":
-			int id = Integer.parseInt(request.getParameter("iduser"));
+			int id = Integer.parseInt(request.getParameter("id"));
 			UsersDTO userUpdate = new UsersDTO("", "", "");
 			userUpdate.setId(id);
 
@@ -92,7 +89,7 @@ public class UsersServlet extends HttpServlet {
 			break;
 
 		case "indietro":
-			response.sendRedirect("/homeAdmin.jsp");
+			response.sendRedirect("/user/manageUser.jsp");
 			break;
 
 		case "logsMenu":

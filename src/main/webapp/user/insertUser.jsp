@@ -52,9 +52,6 @@
 		<br>
 		Password: <input type="text" size="40" maxlength="40" name="password" />
 		<br>
-		<br>
-		<br>
-		<br>
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>

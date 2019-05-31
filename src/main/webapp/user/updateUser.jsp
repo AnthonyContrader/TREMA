@@ -35,13 +35,18 @@
 
 <body>
 	<div class="center">
+
 		<div class="pre_contenitore">
+
 			<p>User Update</p>
+
 		</div>
 		<br>
 		<br>
 		<form method="POST" action="UsersServlet?richiesta=update">
-			
+
+	
+
 			User type: <select style="width: 270px;" name="usertype">
 
 			<option value="admin">Admin</option>
@@ -66,7 +71,7 @@
 
 			<br>
 			<br>
-			<a href="/TREMA/src/main/java/it/contrader/servlets/UsersServlet?richiesta=admin"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="UsersServlet?richiesta=admin"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 		</form>
 
