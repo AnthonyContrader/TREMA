@@ -112,6 +112,6 @@ public class ProjectServlet extends HttpServlet {
 		}
 			
 		request.setAttribute("allProjects", filteredProjects);
-		getServletContext().getRequestDispatcher("/project/manageProject.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("manageProject.jsp").forward(request, response);
 	}
 }
