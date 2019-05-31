@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/wmesjsp/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -43,32 +43,25 @@
 		</div>
 		<br>
 		<br>
-		<form method="POST" action="/TREMA/UsersServlet?richiesta=update">
+		<form method="POST" action="UsersServlet?richiesta=update">
 
-			<%
-				String selected = "selected=\"selected\"";
-				String adminSelected = "";
-				String boSelected = "";
-				if (updateUser.getUsertype().equals("admin")) {
-					adminSelected = selected;
-				} else
-					boSelected = selected;
-			%>
+	
 
-			User type: <select style="width: 270px;" name="user_type">
+			User type: <select style="width: 270px;" name="usertype">
 
-				<option <%=adminSelected%> value="admin">Admin</option>
-				<option <%=boSelected%> value="bo">Business owner</option>
+			<option value="admin">Admin</option>
+			<option value="HR_manager">Hr manager</option>
+			<option value="project_manager">Project manager</option>
 
 
 			</select>
 			<br>
-			<input type="hidden" name="user_id" value="<%=updateUser.getId()%>" />
+			<input type="hidden" name="iduser" value="<%=updateUser.getId()%>" />
 			<br>
-			Username: <input type="text" size="40" maxlength="40" name="user_user" value="<%=updateUser.getUsername()%>" />
+			Username: <input type="text" size="40" maxlength="40" name="username" value="<%=updateUser.getUsername()%>" />
 			<br>
 			<br>
-			Password: <input type="text" size="40" maxlength="40" name="user_pass" value="<%=updateUser.getPassword()%>" />
+			Password: <input type="text" size="40" maxlength="40" name="password" value="<%=updateUser.getPassword()%>" />
 			<br>
 			<br>
 			<br>
@@ -78,7 +71,7 @@
 
 			<br>
 			<br>
-			<a href="/wmesjsp/UserServlet?richiesta=UserManager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="/TREMA/src/main/java/it/contrader/servlets/UsersServlet?richiesta=admin"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 		</form>
 

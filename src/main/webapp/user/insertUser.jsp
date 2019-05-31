@@ -7,7 +7,7 @@
 <title>Inserisci nuovo utente</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/wmesjsp/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
 <style>
 .pre_contenitore {
 	width: 320px;
@@ -38,18 +38,19 @@
 
 	<br>
 	<br>
-	<form method="POST" action="/wmesjsp/UserServlet?richiesta=insert">
+	<form method="POST" action="UsersServlet?richiesta=insert">
 
-		User type: <select style="width: 275px;" name="user_type">
+		User type: <select style="width: 275px;" name="usertype">
 			<option value="admin">Admin</option>
-			<option value="bo">Business Owner</option>
+			<option value="HR_manager">Hr manager</option>
+			<option value="project_manager">Project manager</option>
 		</select>
 		<br>
 		<br>
-		Username: <input type="text" size="40" maxlength="40" name="user_user" />
+		Username: <input type="text" size="40" maxlength="40" name="username" />
 		<br>
 		<br>
-		Password: <input type="text" size="40" maxlength="40" name="user_pass" />
+		Password: <input type="text" size="40" maxlength="40" name="password" />
 		<br>
 		<br>
 		<br>
@@ -57,7 +58,7 @@
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="/wmesjsp/UserServlet?richiesta=UserManager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="UsersServlet?richiesta=admin"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>
