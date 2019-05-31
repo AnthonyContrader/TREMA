@@ -1,24 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ include file="/header.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<h2><center>------- INSERT MATERIAL -------</center></h2>
-	<form action="CustomersServlet?richiesta=home" method="post">
-		<input type="submit" value="HOME" name="richiesta">
-	</form>
+<title>Inserisci nuovo material</title>
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<style>
+/*contenitore in cima dove c'è scritto "Login"*/
+.pre_contenitore {
+	width: 320px;
+	margin: auto;
+	height: 50px;
+	border: 1px solid black;
+	border-radius: 40px 40px 40px 40px;
+	background-color: rgba(0, 0, 0, 0.9);
+	box-shadow: 20px 30px 20px #000000;
+	padding: 20px;
+}
 
-     <h3>Inserisci i dati del material</h3>
-     <form action="CustomersServlet?richiesta=insertMaterial" method="post">
-     	<h4>Tipo: <input type = "text" id = "tipo" name ="tipo" placeholder = "inserisci tipo"></h4>
-     	<h4>Quantita: <input type = "text" id = "quantita" name ="quantita" placeholder = "inserisci la quantita"></h4>
-     	<h4>ID HR: <input type = "text" id = "idhr" name ="idhr" placeholder = "inserisci el ID del Dependente"></h4>
-		<input type="submit" value="Inserisci Material" name="richiesta">
-		<input type="submit" value="Cancel" name="richiesta">
-     </form>
+.pre_contenitore p {
+	color: white;
+	text-align: center;
+	font-size: 1.9em;
+	font-family: arial;
+	line-height: 2px;
+}
+</style>
+</head>
+<br>
+
+<body>
+	<div class="pre_contenitore">
+
+		<p>New Material</p>
+
+	</div>
+	<br>
+	<br>
+	<br>
+	<form method="POST" action="../MaterialServlet?richiesta=insert">
+
+		Material Name: <input type="text" size="40" maxlength="40" name="client_name" />
+		<br>
+		<br>
+		<input type="SUBMIT" value="Add">
+		<br>
+		<br>
+		<a href="../MaterialtServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+
+	</form>
 </body>
 </html>
