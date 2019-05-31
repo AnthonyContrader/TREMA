@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Project</title>
-<link rel="stylesheet" type="text/css" href="/wmesjsp/css/style.css">
+<link rel="stylesheet" type="text/css" href="css/css/bootstrap.min.css">
 <style>
 /*contenitore in cima dove c'è scritto "Login"*/
 .pre_contenitore {
