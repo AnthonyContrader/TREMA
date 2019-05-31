@@ -90,7 +90,7 @@ body {
 
 	</div>
 	<div class="contenitore">
-		<a href="ClientServlet?richiesta=ProjectManager"><span class="fs"> Project Management </span></a>
+		<a href="ProjectServlet?richiesta=project_manager"><span class="fs"> Project Management </span></a>
 		<br>
 		<br>
 		<a href="TaskServlet?richiesta=TaskManager"><span class="fs"> Task Management </span></a>
