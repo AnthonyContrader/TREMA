@@ -31,6 +31,7 @@ public class ProjectServlet extends HttpServlet {
 
 		case "project_manager":
 			showAllProject(request, response);
+			System.out.println("Ciao");
 			break;
 
 		case "insertRedirect":

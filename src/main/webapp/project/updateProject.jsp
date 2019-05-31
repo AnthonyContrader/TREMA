@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/trema.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -43,7 +43,7 @@
 			<p>Project Update</p>
 
 		</div>
-		<form method="POST" action="/JspApp/ProjectServlet?richiesta=update">
+		<form method="POST" action="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=update">
 			<br>
 
 			<br>
@@ -55,7 +55,7 @@
 			<input type="SUBMIT" value="Update">
 			<br>
 			<br>
-			<a href="/JspApp/ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		</form>
 
 	</div>

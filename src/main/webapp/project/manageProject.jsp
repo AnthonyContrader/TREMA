@@ -11,7 +11,7 @@
 <head>
 <title>Gestione Clienti</title>
 
-<link rel="stylesheet" type="text/css" href="/JspApp/css/trema.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -67,8 +67,8 @@
 			<td><%=project.getprojectName()%></td>
 
 
-			<td><a href="/JspApp/ProjectServlet?richiesta=updateRedirect&id=<%=project.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="/JspApp/ProjectServlet?richiesta=delete&id=<%=project.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=updateRedirect&id=<%=project.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=delete&id=<%=project.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
@@ -76,10 +76,10 @@
 	</table>
 	<br>
 	<br>
-	<a href="/JspApp/ClientServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Client</i></a>
+	<a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Client</i></a>
 	<br>
 	<br>
-	<a href="/JspApp/ClientServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="/TREMA/src/main/java/it/contrader/servlets/ProjectServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 </body>
 </html>
