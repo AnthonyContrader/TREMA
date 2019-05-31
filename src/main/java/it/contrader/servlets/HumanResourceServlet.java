@@ -26,9 +26,10 @@ public class HumanResourceServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "HR_manager":
+			
 			allHr = this.hrserviceDTO.getAllHr();
 			request.setAttribute("allHr", allHr);
-			getServletContext().getRequestDispatcher("/user/manageHumanResource.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/humanresource/manageHumanResource.jsp").forward(request, response);
 			break;
 
 		case "insertRedirect":
@@ -81,7 +82,7 @@ public class HumanResourceServlet extends HttpServlet {
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeAdmin.jsp");
+			response.sendRedirect("homeHumanResource.jsp");
 			break;
 
 		case "logsMenu":
