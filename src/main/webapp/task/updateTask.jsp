@@ -32,33 +32,38 @@
 		line-height: 2px;
 	}
 	</style>
+<%
+	TaskDTO updateTask = (TaskDTO) request.getAttribute("taskUpdate");
+%>
+</head>
 <body>
-	<div class="pre_contenitore">
-		<p>New Order</p>
+	<div class="center">
+		<div class="pre_contenitore">
+			<p>Task Update</p>
+		</div>
+		<form method="POST" action="/trema/TaskServlet?richiesta=update">
+			<br>
+			<br>
+			<input type="hidden" name="task_id" value="<%=updateTask.getIdtask()%>" /> 
+			Description: <input type="text" size="40" maxlength="40" name="task_description" value="<%=updateTask.getDescrizioneTask()%>" />
+			<br>
+			<br>
+			<br>
+			ID Project:: <input type="text" size="40" maxlength="40" name="task_idproject" value="<%=updateTask.getProjectDTO().getId() %>" />
+			<br>
+			<br>
+			<br>
+			ID HR: <input type="text" size="40" maxlength="40" name="task_idhr" value="<%=updateTask.getHRDTO().getId()%>" />
+			<br>
+			<br>
+			<br>
+			<input type="SUBMIT" value="Update">
+		</form>
+		<br>
+		<br>
+		<a href="/trema/TaskServlet?richiesta=TaskManager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+
 	</div>
-	<br>
-	<br>
-	<form method="POST" action="/tremajsp/TaskServlet?richiesta=insert">
-		Task Name: <select style="width: 270px;" name="idtask">
-			<%
-				for (TaskDTO taskDTO : allTasksByUser) {
-			%>
-			<option value="<%=taskDTO.getIdtask()%>"><%=taskDTO.getDescrizioneTask()%></option>
-			<%
-				}
-			%>
-		</select>
-		<br>
-		<br>
-		Description: <input type="text" size="40" maxlength="40" name="order_description" />
-		<br>
-		<br>
-		<input type="SUBMIT" value="Add">
-		<br />
-		<br />
-		<a href="/trema/TaskServlet?richiesta=OrderManager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
-		
-	</form>
 </head>
 </body>
 </html>

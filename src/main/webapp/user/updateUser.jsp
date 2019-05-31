@@ -35,18 +35,13 @@
 
 <body>
 	<div class="center">
-
 		<div class="pre_contenitore">
-
 			<p>User Update</p>
-
 		</div>
 		<br>
 		<br>
 		<form method="POST" action="UsersServlet?richiesta=update">
-
-	
-
+			
 			User type: <select style="width: 270px;" name="usertype">
 
 			<option value="admin">Admin</option>
