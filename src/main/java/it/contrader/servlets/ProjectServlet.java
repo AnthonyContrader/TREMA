@@ -31,11 +31,21 @@ public class ProjectServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "project_manager":
-			showAllProject(request, response);
+			allProjects.clear();
+			filteredProjects.clear(); 
+			allProjects = this.projectServiceDTO.getAllProject();
+			allProjects = this.projectServiceDTO.getAllProject();
+			for (ProjectDTO projectDTO:allProjects) {
+				if (projectDTO.getUserDTO().getId()==userLogged.getId()) {
+						filteredProjects.add(projectDTO); }
+			}
+			request.setAttribute("allProjects", filteredProjects);
+			getServletContext().getRequestDispatcher("/project/manageProject.jsp").forward(request, response);
+		
 			break;
 
 		case "insertRedirect":
-			response.sendRedirect("project/insertProject.jsp");
+			response.sendRedirect("insertProject.jsp");
 			break;
 
 		case "insert":
@@ -58,7 +68,7 @@ public class ProjectServlet extends HttpServlet {
 
 			projectUpdate = this.projectServiceDTO.readProject(projectUpdate);
 			request.setAttribute("projectUpdate", projectUpdate);
-			getServletContext().getRequestDispatcher("/project/updateProject.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("updateProject.jsp").forward(request, response);
 
 			break;
 
@@ -107,10 +117,9 @@ public class ProjectServlet extends HttpServlet {
 		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
 		
 		for (ProjectDTO projectDTO:allProjects) {
-			if (projectDTO.getUserDTO().getId()==userLogged.getId())
-				filteredProjects.add(projectDTO); 
+			if (projectDTO.getUserDTO().getId()==userLogged.getId()) {
+					filteredProjects.add(projectDTO); }
 		}
-			
 		request.setAttribute("allProjects", filteredProjects);
 		getServletContext().getRequestDispatcher("manageProject.jsp").forward(request, response);
 	}
