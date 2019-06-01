@@ -31,17 +31,7 @@ public class HumanResourceServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "human_manager":
-			allHr.clear();
-			filteredHr.clear(); 
-			allHr = this.HrServiceDTO.getAllHr();
-			allHr = this.HrServiceDTO.getAllHr();
-			for (HumanResourceDTO HrDTO:allHr) {
-				if (HrDTO.getUserDTO().getId()==userLogged.getId()) {
-						filteredHr.add(HrDTO); }
-			}
-			request.setAttribute("allHr", filteredHr);
-			getServletContext().getRequestDispatcher("/humanresource/manageHumanResource.jsp").forward(request, response);
-		
+			showAllHr(request, response);
 			break;
 
 		case "insertRedirect":
@@ -62,7 +52,7 @@ public class HumanResourceServlet extends HttpServlet {
 
 		case "updateRedirect":
 			int id = Integer.parseInt(request.getParameter("idHR"));
-			HumanResourceDTO HrUpdate = new HumanResourceDTO(userLogged,"","");
+			HumanResourceDTO HrUpdate = new HumanResourceDTO(new UsersDTO("", "", ""),"","");
 			HrUpdate.setId(id);
 
 			HrUpdate = this.HrServiceDTO.readHr(HrUpdate);
@@ -110,7 +100,7 @@ public class HumanResourceServlet extends HttpServlet {
 			throws ServletException, IOException {
 		allHr.clear();
 		filteredHr.clear(); 
-		allHr = this.HrServiceDTO.getAllHr();
+		allHr = HrServiceDTO.getAllHr();
 		HttpSession session = request.getSession(true);
 		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
 		

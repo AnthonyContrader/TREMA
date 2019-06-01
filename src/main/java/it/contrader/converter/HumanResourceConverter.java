@@ -2,6 +2,7 @@ package it.contrader.converter;
 
 import it.contrader.dto.*;
 import it.contrader.model.*;
+
 public class HumanResourceConverter {
 	
 	public static HumanResource toEntity(HumanResourceDTO hrdto) {

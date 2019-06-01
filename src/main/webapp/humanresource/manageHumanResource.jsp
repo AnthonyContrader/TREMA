@@ -1,13 +1,18 @@
 <%@ include file="/header.jsp"%>
-<%@ page import="it.contrader.dto.HumanResourceDTO"%>
+<%@ page import="it.contrader.dto.*"%>
+<%@ page import="it.contrader.dao.*"%>
+<%@ page import="it.contrader.model.*"%>
+<%@ page import="it.contrader.service.*"%>
+<%@ page import="it.contrader.servlets.*"%>
 <%@ page import="java.util.*"%>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>Gestione Personale</title>
 
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -50,9 +55,8 @@
 	<br />
 	<table>
 		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Surname</th>
+			<th>Human Resource Name</th>
+			<th>Human Resource Surname</th>
 			<th>Update</th>
 			<th>Delete</th>
 
@@ -62,12 +66,11 @@
 		%>
 		<tr>
 
-			<td><%=hr.getId()%></td>
 			<td><%=hr.getName()%></td>
 			<td><%=hr.getSurname()%></td>
 			
-			<td class="center"><a href="HumanResourceServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td class="center"><a href="HumanResourceServlet?richiesta=delete&id=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="HumanResourceServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="HumanResourceServlet?richiesta=delete&idHR=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
