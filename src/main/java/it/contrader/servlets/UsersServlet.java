@@ -63,11 +63,6 @@ public class UsersServlet extends HttpServlet {
 			break;
 
 		case "update":
-			//System.out.println("ID: " + Integer.parseInt(request.getParameter("user_id")));
-			//System.out.println("username: " + request.getParameter("user_user"));
-			//System.out.println("password: " + request.getParameter("user_pass"));
-			//System.out.println("Tipo utente: " + request.getParameter("user_type"));
-
 			final Integer idUpdate = Integer.parseInt(request.getParameter("iduser"));
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
@@ -89,7 +84,7 @@ public class UsersServlet extends HttpServlet {
 
 		case "indietro":
 			response.sendRedirect("homaAdmin.jsp");
-			break;
+			break; 
 
 		case "logsMenu":
 			response.sendRedirect("/index.jsp");
