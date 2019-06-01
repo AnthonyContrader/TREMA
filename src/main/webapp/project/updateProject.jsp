@@ -47,7 +47,10 @@
 			<br>
 
 			<br>
-			<input type="hidden" name="idproject" value="<%=updateProject.getId()%>" /> Project Name: <input type="text" size="40" maxlength="40" name="name" value="<%=updateProject.getprojectName()%>" />
+			<input type="hidden" name="idproject" value="<%=updateProject.getId()%>" /> 
+			Project Name: <input type="text" size="40" maxlength="40" name="name" value="<%=updateProject.getprojectName()%>" />
+			Descrizione: <input type="text" size="40" maxlength="40" name="descrizione" value="<%=updateProject.getDescrizione()%>" />
+			project Type: <input type="text" size="40" maxlength="40" name="tipo" value="<%=updateProject.getTipo()%>" />
 			<br>
 			<br>
 			<br>

@@ -55,20 +55,20 @@
 	<table>
 		<tr>
 			<th>Project Name</th>
+			<th>Descrizione</th>
+			<th>Tipo</th>
 			<th>Update</th>
 			<th>Delete</th>
-
 		</tr>
 		<% 
 			for (ProjectDTO project : allProjects) {
 		%>
 		<tr>
-
 			<td><%=project.getprojectName()%></td>
-
-
+			<td><%=project.getDescrizione()%></td>
+			<td><%=project.getTipo()%></td>
 			<td><a href="ProjectServlet?richiesta=updateRedirect&id=<%=project.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="ProjectServlet?richiesta=delete&id=<%=project.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="ProjectServlet?richiesta=delete&idproject=<%=project.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}

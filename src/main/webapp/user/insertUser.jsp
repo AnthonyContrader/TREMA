@@ -38,7 +38,7 @@
 
 	<br>
 	<br>
-	<form method="POST" action="UsersServlet?richiesta=insert">
+	<form method="POST" action="/JspApp/UsersServlet?richiesta=insert">
 
 		User type: <select style="width: 275px;" name="usertype">
 			<option value="admin">Admin</option>
@@ -55,7 +55,7 @@
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="UsersServlet?richiesta=admin"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="/JspApp/UsersServlet?richiesta=admin"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

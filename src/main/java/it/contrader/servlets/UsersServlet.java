@@ -81,7 +81,6 @@ public class UsersServlet extends HttpServlet {
 
 		case "delete":
 			final Integer deleteId = Integer.parseInt(request.getParameter("id"));
-
 			final UsersDTO userdelete = new UsersDTO("", "", "");
 			userdelete.setId(deleteId);
 			userServiceDTO.deleteUser(userdelete);
@@ -89,7 +88,7 @@ public class UsersServlet extends HttpServlet {
 			break;
 
 		case "indietro":
-			response.sendRedirect("/user/manageUser.jsp");
+			response.sendRedirect("homaAdmin.jsp");
 			break;
 
 		case "logsMenu":

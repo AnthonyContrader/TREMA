@@ -34,7 +34,7 @@ public class ProjectServlet extends HttpServlet {
 			showAllProject(request, response);
 			break;
 		case "insertRedirect":
-			response.sendRedirect("project/insertProject.jsp");
+			response.sendRedirect("/project/insertProject.jsp");
 			break;
 
 		case "insert":
@@ -72,7 +72,7 @@ public class ProjectServlet extends HttpServlet {
 			break;
 
 		case "delete":
-			final Integer projectIdDelete = Integer.parseInt(request.getParameter("idproject"));
+			final int projectIdDelete = Integer.parseInt(request.getParameter("idproject"));
 			final ProjectDTO projectdelete = new ProjectDTO("","","",userLogged);
 			projectdelete.setId(projectIdDelete);
 			projectServiceDTO.deleteProject(projectdelete);
@@ -101,7 +101,8 @@ public class ProjectServlet extends HttpServlet {
 		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
 		for (ProjectDTO projectDTO:allProjects) {
 			if (projectDTO.getUserDTO().getId()==userLogged.getId()) {
-					filteredProjects.add(projectDTO);}
+					filteredProjects.add(projectDTO);
+			}
 		}	
 		request.setAttribute("allProjects", filteredProjects);
 		getServletContext().getRequestDispatcher("/project/manageProject.jsp").forward(request, response);
