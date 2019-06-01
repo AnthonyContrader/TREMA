@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -29,7 +29,7 @@
 </style>
 
 <%
-	HumanResourceDTO updatehr = (HumanResourceDTO) request.getAttribute("hrUpdate");
+	HumanResourceDTO updatehr = (HumanResourceDTO) request.getAttribute("HrUpdate");
 %>
 </head>
 <br>
@@ -43,19 +43,19 @@
 			<p>HR Update</p>
 
 		</div>
-		<form method="POST" action="/JspApp/HumanResourceServlet?richiesta=update">
+		<form method="POST" action="HumanResourceServlet?richiesta=update">
 			<br>
 
 			<br>
-			<input type="hidden" name="idhr" value="<%=updatehr.getId()%>" />Name: <input type="text" size="40" maxlength="40"
-				name="name" value="<%=updatehr.getName()%>" />
-			<br>
+			<input type="hidden" name="idHR" value="<%=updatehr.getId()%>" />
+			Nome Dipendente: 		<input type="text" size="40" maxlength="40" name="name" value="<%=updatehr.getName()%>" />
+			Cognome Dipendente:  	<input type="text" size="40" maxlength="40" name="cognome" value="<%=updatehr.getSurname()%>" />
 			<br>
 			<br>
 			<input type="SUBMIT" value="Update">
 			<br>
 			<br>
-			<a href="/JspApp/HumanResourceServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="HumanResourceServlet?richiesta=human_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		</form>
 
 	</div>

@@ -1,10 +1,15 @@
 package it.contrader.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.main.*;
+import it.contrader.main.ConnectionSingleton;
+import it.contrader.main.GestoreEccezioni;
 import it.contrader.model.HumanResource;
 import it.contrader.model.Users;
 
@@ -48,9 +53,9 @@ public class HumanResourceDAO{
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setInt(1, hr.getUser().getIduser());
-			preparedStatement.setString(2, hr.getName());
-			preparedStatement.setString(3, hr.getSurname());
+			preparedStatement.setString(1, hr.getName());
+			preparedStatement.setString(2, hr.getSurname());
+			preparedStatement.setInt(3, hr.getUser().getIduser());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -68,7 +73,7 @@ public class HumanResourceDAO{
 			preparedStatement.setInt(1, idhr);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			String user, name, surname;
+			String name, surname, user;
 
 			name = resultSet.getString("name");
 			surname = resultSet.getString("surname");
@@ -76,7 +81,7 @@ public class HumanResourceDAO{
 			Users User = new Users(null, null, null);
 			User.setIduser(userId);
 
-			hr = new HumanResource(User, name);
+			hr = new HumanResource( User, name, surname);
 
 			hr.setId(resultSet.getInt("idHR"));
 
@@ -100,9 +105,9 @@ public class HumanResourceDAO{
 
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-			preparedStatement.setInt(1, hrToUpdate.getUser().getIduser());
-			preparedStatement.setString(2, hrToUpdate.getName());
-			preparedStatement.setString(3, hrToUpdate.getSurname());
+			preparedStatement.setString(1, hrToUpdate.getName());
+			preparedStatement.setString(2, hrToUpdate.getSurname());
+			preparedStatement.setInt(3, hrToUpdate.getUser().getIduser());
 			preparedStatement.setInt(4, hrToUpdate.getId());
 			int a = preparedStatement.executeUpdate();
 

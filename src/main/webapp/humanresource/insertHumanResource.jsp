@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserisci nuovo dipendente</title>
-<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -41,15 +41,17 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="/TREMA/ClientServlet?richiesta=insert">
+	<form method="POST" action="HumanResourceServlet?richiesta=insert">
 
-		HR Name: <input type="text" size="40" maxlength="40" name="name" />
+		Nome Dipendente: <input type="text" size="40" maxlength="40" name="name" />
+		Cognome Dipendente: <input type="text" size="40" maxlength="40" name="surname" />
+		
 		<br>
 		<br>
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="/TREMA/ClientServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="HumanResourceServlet?richiesta=human_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

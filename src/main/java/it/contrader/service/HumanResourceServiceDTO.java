@@ -1,11 +1,12 @@
 package it.contrader.service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.converter.*;
-import it.contrader.dao.*;
-import it.contrader.dto.*;
-import it.contrader.model.*;
+import it.contrader.converter.HumanResourceConverter;
+import it.contrader.dao.HumanResourceDAO;
+import it.contrader.dto.HumanResourceDTO;
+import it.contrader.model.HumanResource;
 
 public class HumanResourceServiceDTO {
 

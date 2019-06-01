@@ -116,13 +116,13 @@ INSERT INTO user (username,password,usertype)
 values ('admin','admin','admin'),('user','user','project_manager'),('user3','user3','project_manager'),('user4','user4','human_manager'),('user5','user5','human_manager'),('admin1','admin1','admin');
 
 INSERT INTO humanresource (name,surname,iduser)
-values ('Gianluca','Di Nanna',1),('Ali','Tavakkoli',2),('Adrian','Papuc',2),('Angel','Mata',2),('Dino','Zoff',3),('Carlo','Cracco',1);
+values ('Gianluca','Di Nanna',4),('Ali','Tavakkoli',5),('Adrian','Papuc',5),('Angel','Mata',4),('Dino','Zoff',4),('Carlo','Cracco',4);
 
 INSERT INTO material (tipo,quantita,idHR)
-values ('Computer',5,3),('Martello',23,2),('Calce',3,2),('Macchina da cucire',5,4),('Hard Disk',43,3),('Cazzola',7,6);
+values ('Computer',5,4),('Martello',23,4),('Calce',3,5),('Macchina da cucire',5,4),('Hard Disk',43,5),('Cazzola',7,5);
 
 INSERT INTO project (name,descrizione,tipo,iduser)
-values ('Trema','Progetto Informatico','Informatica',1),('Dorse','Progetto Edilizio','Edile',3),('Triplan','Progetto Informatico','Informatica',2),('SportUp','Progetto Tessile','Tessuti',6),('Incoro','Progetto Edilizio','Edile',3),('Worse','Progetto Informatico','Informatica',6);
+values ('Trema','Progetto Informatico','Informatica',3),('Dorse','Progetto Edilizio','Edile',3),('Triplan','Progetto Informatico','Informatica',2),('SportUp','Progetto Tessile','Tessuti',3),('Incoro','Progetto Edilizio','Edile',3),('Worse','Progetto Informatico','Informatica',2);
 
 INSERT INTO task (descrizione_task,idHR,idproject)
 values ('Progettazione',2,1),('Progettazione',1,2),('Consegna',3,3),('Sviluppo',4,4),('Progettazione',5,5),('Sviluppo',6,6);

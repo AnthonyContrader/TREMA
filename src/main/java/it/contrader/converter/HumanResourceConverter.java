@@ -1,7 +1,9 @@
 package it.contrader.converter;
 
-import it.contrader.dto.*;
-import it.contrader.model.*;
+import it.contrader.dto.HumanResourceDTO;
+import it.contrader.dto.UsersDTO;
+import it.contrader.model.HumanResource;
+import it.contrader.model.Users;
 
 public class HumanResourceConverter {
 	
@@ -10,7 +12,7 @@ public class HumanResourceConverter {
 		HumanResource hr = null;
 		if (hrdto != null) {
 			Users user = UsersConverter.toEntity(hrdto.getUserDTO());
-			hr = new HumanResource(user, hrdto.getName());
+			hr = new HumanResource(user, hrdto.getName(), hrdto.getSurname());
 			hr.setId(hrdto.getId());
 		}
 		return hr;

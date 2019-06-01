@@ -21,7 +21,7 @@
 	</servlet>	
 	<servlet>
 		<servlet-name>HumanResourceServlet</servlet-name>
-		<servlet-class>it.contrader.servlets.LogoutServlet</servlet-class>
+		<servlet-class>it.contrader.servlets.HumanResourceServlet</servlet-class>
 	</servlet>	
 	<servlet>
 		<servlet-name>ProjectServlet</servlet-name>

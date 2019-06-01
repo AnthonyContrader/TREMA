@@ -45,7 +45,7 @@
 
 	<div class="pre_contenitore">
 
-		<p>Human Resource Management</p>
+		<p>HR Manager</p>
 
 	</div>
 	<br>
@@ -55,8 +55,8 @@
 	<br />
 	<table>
 		<tr>
-			<th>Human Resource Name</th>
-			<th>Human Resource Surname</th>
+			<th>Nome Dipendente</th>
+			<th>Cognome Dipendente</th>
 			<th>Update</th>
 			<th>Delete</th>
 
