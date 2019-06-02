@@ -25,7 +25,7 @@ public class HumanResourceDAO{
 	}
 
 	public List<HumanResource> getAllHr() {
-		List<HumanResource> hrlist = new ArrayList<>();
+		List<HumanResource> hrList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			Statement statement = connection.createStatement();
@@ -33,28 +33,29 @@ public class HumanResourceDAO{
 			HumanResource hr;
 			while (resultSet.next()) {
 				int userId = resultSet.getInt("iduser");
-				Users user = new Users(null, null, null);
-				user.setIduser(userId);
+				Users userhr = new Users(null, null, null);
+				userhr.setIduser(userId);
+
 				String name = resultSet.getString("name");
 				String surname = resultSet.getString("surname");
-				
-				hr = new HumanResource(user, name, surname);
+
+				hr = new HumanResource(name,surname, userhr);
 				hr.setId(resultSet.getInt("idHR"));
-				hrlist.add(hr);
+				hrList.add(hr);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return hrlist;
+		return hrList;
 	}
 
 	public boolean insertHr(HumanResource hr) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(2, hr.getName());
-			preparedStatement.setString(3, hr.getSurname());
-			preparedStatement.setInt(4, hr.getUser().getIduser());
+			preparedStatement.setString(1, hr.getName());
+			preparedStatement.setString(2, hr.getSurname());
+			preparedStatement.setInt(3, hr.getUser().getIduser());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -72,7 +73,7 @@ public class HumanResourceDAO{
 			preparedStatement.setInt(1, idhr);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			String name, surname, user;
+			String name, surname;
 
 			name = resultSet.getString("name");
 			surname = resultSet.getString("surname");
@@ -80,7 +81,7 @@ public class HumanResourceDAO{
 			Users User = new Users(null, null, null);
 			User.setIduser(userId);
 
-			hr = new HumanResource( User, name, surname);
+			hr = new HumanResource(name, surname, User);
 
 			hr.setId(resultSet.getInt("idHR"));
 

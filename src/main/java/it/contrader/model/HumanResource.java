@@ -3,32 +3,41 @@ package it.contrader.model;
 import it.contrader.model.*;
 
 public class HumanResource {
-
-	private int idhr;
-	private Users user;
+	private int id;
 	private String name;
 	private String surname;
-
+	private Users user;
+	
 	public HumanResource() {}
 	
-	/*public HumanResource(Users user, String name) {
-		this.user=user; 
-		this.name=name;
-	}*/
-	
-	public HumanResource(Users user, String name, String surname) {
-		this.user=user; 
+	public HumanResource(String name, String surname, Users user) {
 		this.name=name;
 		this.surname=surname;
+		this.user=user;
 	}
 
-
 	public int getId() {
-		return idhr;
+		return id;
 	}
 
 	public void setId(int id) {
-		this.idhr = id;
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public Users getUser() {
@@ -39,27 +48,11 @@ public class HumanResource {
 		this.user = user;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	@Override
+	public String toString() {
+		return "id=" + id + ", name=" + name + ", surname=" + surname + ", iduser=" +this.getUser().getIduser();
 	}
 	
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String toString() {
-		return this.getId() + " " + this.getUser().getIduser() + " " + this.getName() + " " + this.getSurname();
-
-	}
-
 	public boolean equals(HumanResource hr) {
 
 		if (user.getIduser()!=hr.getUser().getIduser()) {
@@ -67,6 +60,11 @@ public class HumanResource {
 		}
 
 		if (!this.getName().equals(getName())) {
+			return false;
+
+		}
+		
+		if (!this.getSurname().equals(getSurname())) {
 			return false;
 
 		}

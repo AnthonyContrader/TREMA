@@ -24,7 +24,7 @@ public class HumanResourceConverter {
 		HumanResourceDTO hrdto  = null;
 		if (hr != null) {
 			UsersDTO userDTO = UsersConverter.toDTO(hr.getUser());
-			hrdto = new HumanResourceDTO(userDTO, hr.getName(), hr.getSurname());
+			hrdto = new HumanResourceDTO(hr.getName(), hr.getSurname(), userDTO);
 			hrdto.setId(hr.getId());
 		}
 

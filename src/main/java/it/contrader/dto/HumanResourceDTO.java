@@ -9,9 +9,8 @@ public class HumanResourceDTO {
 	private String name;
 	private String surname;
 	
-	public HumanResourceDTO (UsersDTO userDTO, String name, String surname) {
+	public HumanResourceDTO (String name, String surname, UsersDTO userDTO) {
 		super();
-		//this.Id = Id;
 		this.userDTO=userDTO; 
 		this.name=name;
 		this.surname=surname;
