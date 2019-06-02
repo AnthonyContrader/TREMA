@@ -41,10 +41,10 @@ public class TaskDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
-			//PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
-			//ResultSet resultSet = preparedStatement.executeQuery();
+			//Statement statement = connection.createStatement();
+			//ResultSet resultSet = statement.executeQuery(QUERY_ALL);
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
+			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
 				Integer idtask = resultSet.getInt("idtask");
@@ -54,7 +54,7 @@ public class TaskDAO {
 				
 				Project projectClient = new Project(null, null, null, null);
 				projectClient.setProjectId(idproject);
-				HumanResource hrClient = new HumanResource(null, null, null);
+				HumanResource hrClient = new HumanResource("", "", null);
 				hrClient.setId(idhr);
 				
 				Task task = new Task(descrizione_task, projectClient, hrClient);
@@ -77,6 +77,7 @@ public class TaskDAO {
 			preparedStatement.setString(1, task.getDescrizione_task());
 			preparedStatement.setInt(2, task.getProject().getProjectId());
 			preparedStatement.setInt(3, task.getHR().getId());
+			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -101,7 +102,7 @@ public class TaskDAO {
 						
 			Project projectClient = new Project(null, null, null, null);
 			projectClient.setProjectId(idproject);
-			HumanResource hrClient = new HumanResource(null, null, null);
+			HumanResource hrClient = new HumanResource("", "", null);
 			hrClient.setId(idhr);
 			
 			task = new Task(descrizione_task, projectClient, hrClient);

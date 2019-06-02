@@ -4,9 +4,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserisci le nuova task</title>
-<link rel="stylesheet" type="text/css" href="trema/css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
 <style>
 .pre_contenitore {
 	width: 320px;
@@ -36,7 +36,7 @@
 	<br>
 	<br>
 	
-	<form method="POST" action="TaskServlet?richiesta=insert">
+	<form method="POST" action="/JspApp/TaskServlet?richiesta=insert">
 		Descrizione: <input type="text" size="40" maxlength="40" name="descrizione_task" />
 		<br>
 		<br>
@@ -50,6 +50,6 @@
 	
 	<br>
 	<br>
-	<a href="TaskServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="/JspApp/TaskServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 </body>
 </html>

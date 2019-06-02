@@ -40,78 +40,78 @@ public class TaskServlet extends HttpServlet{
 				break;
 				
 			case "insertRedirect":
-				response.sendRedirect("/task/insertTask.jsp");
+				response.sendRedirect("task/insertTask.jsp");
 				break;
 				
-		case "insert":
-			descrizione_task = request.getParameter("descrizione_task");
-			idproject = Integer.parseInt(request.getParameter("idproject"));
-			idhr = Integer.parseInt(request.getParameter("idhr"));
-			
-			projectDTO = null;
-			projectDTO = new ProjectDTO("", "", "", null);
-			projectDTO.setId(idproject);
-			
-			hrDTO = null;
-			hrDTO = new HumanResourceDTO(null, null, null);
-			hrDTO.setId(idhr);
-			
-			taskDTO = null;
-			taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
-			taskServiceDTO.insertTask(taskDTO);
-			showAllTasks(request, response);
-			break;
+			case "insert":
+				descrizione_task = request.getParameter("descrizione_task");
+				idproject = Integer.parseInt(request.getParameter("idproject"));
+				idhr = Integer.parseInt(request.getParameter("idhr"));
+				
+				projectDTO = null;
+				projectDTO = new ProjectDTO(null, null, null, null);
+				projectDTO.setId(idproject);
+				
+				hrDTO = null;
+				hrDTO = new HumanResourceDTO("", "", null);
+				hrDTO.setId(idhr);
+				
+				taskDTO = null;
+				taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
+				taskServiceDTO.insertTask(taskDTO);
+				showAllTasks(request, response);
+				break;
 
-		case "updateRedirect":
-			idtask = Integer.parseInt(request.getParameter("idtask"));
-			
-			taskDTO = null;
-			taskDTO = new TaskDTO("", null, null);
-			taskDTO.setIdtask(idtask);
+			case "updateRedirect":
+				idtask = Integer.parseInt(request.getParameter("idtask"));
+				
+				taskDTO = null;
+				taskDTO = new TaskDTO(null, null, null);
+				taskDTO.setIdtask(idtask);
+	
+				taskDTO = this.taskServiceDTO.readTask(taskDTO);
+				request.setAttribute("taskUpdate", taskDTO);
+				getServletContext().getRequestDispatcher("/task/updateTask.jsp").forward(request, response);
+	
+				break;
 
-			taskDTO = this.taskServiceDTO.readTask(taskDTO);
-			request.setAttribute("taskUpdate", taskDTO);
-			getServletContext().getRequestDispatcher("/task/updateTask.jsp").forward(request, response);
+			case "update":
+				idtask = Integer.parseInt(request.getParameter("idtask"));
+				descrizione_task = request.getParameter("descrizione_task");
+				idproject = Integer.parseInt(request.getParameter("idproject"));
+				idhr = Integer.parseInt(request.getParameter("idhr"));
+				
+				projectDTO = null;
+				projectDTO = new ProjectDTO(null, null, null, null);
+				projectDTO.setId(idproject);
+				
+				hrDTO = null;
+				hrDTO = new HumanResourceDTO("", "", null);
+				hrDTO.setId(idhr);
+				
+				taskDTO = null;
+				taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
+				taskServiceDTO.updateTask(taskDTO);
+				showAllTasks(request, response);
+				break;
 
-			break;
+			case "delete":
+				idtask = Integer.parseInt(request.getParameter("idtask"));
+				
+				taskDTO = null;
+				taskDTO = new TaskDTO(null, null, null);
+				taskDTO.setIdtask(idtask);
+				taskServiceDTO.deleteTask(taskDTO);
+				showAllTasks(request, response);
+				break;
 
-		case "update":
-			idtask = Integer.parseInt(request.getParameter("idtask"));
-			descrizione_task = request.getParameter("descrizione_task");
-			idproject = Integer.parseInt(request.getParameter("idproject"));
-			idhr = Integer.parseInt(request.getParameter("idhr"));
-			
-			projectDTO = null;
-			projectDTO = new ProjectDTO("", "", "", null);
-			projectDTO.setId(idproject);
-			
-			hrDTO = null;
-			hrDTO = new HumanResourceDTO(null, null, null);
-			hrDTO.setId(idhr);
-			
-			taskDTO = null;
-			taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
-			taskServiceDTO.updateTask(taskDTO);
-			showAllTasks(request, response);
-			break;
+			case "indietro":
+				response.sendRedirect("homeProject.jsp");
+				break;
 
-		case "delete":
-			idtask = Integer.parseInt(request.getParameter("idtask"));
-			
-			taskDTO = null;
-			taskDTO = new TaskDTO("", null, null);
-			taskDTO.setIdtask(idtask);
-			taskServiceDTO.deleteTask(taskDTO);
-			showAllTasks(request, response);
-			break;
-
-		case "indietro":
-			response.sendRedirect("homeProject.jsp");
-			break;
-
-		case "logsMenu":
-			response.sendRedirect("index.jsp");
-			break;
+			case "logsMenu":
+				response.sendRedirect("index.jsp");
+				break;
 
 		}
 	}
