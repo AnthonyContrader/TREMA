@@ -41,7 +41,7 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="/JspApp/ProjectServlet?richiesta=insert">
+	<form method="POST" action="ProjectServlet?richiesta=insert">
 		Name: <input type="text" size="40" maxlength="40" name="name" />
 		Descrizione: <input type="text" size="40" maxlength="40" name="descrizione" />
 		Tipo: <input type="text" size="40" maxlength="40" name="tipo" />
@@ -50,7 +50,7 @@
 		<input type="SUBMIT" value="Add" >
 		<br>
 		<br>
-		<a href="/JspApp/ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="ProjectServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

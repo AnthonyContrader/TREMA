@@ -11,10 +11,10 @@ public class HumanResource {
 
 	public HumanResource() {}
 	
-	public HumanResource(Users user, String name) {
+	/*public HumanResource(Users user, String name) {
 		this.user=user; 
 		this.name=name;
-	}
+	}*/
 	
 	public HumanResource(Users user, String name, String surname) {
 		this.user=user; 

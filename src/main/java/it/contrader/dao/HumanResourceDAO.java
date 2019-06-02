@@ -35,10 +35,9 @@ public class HumanResourceDAO{
 				int userId = resultSet.getInt("iduser");
 				Users user = new Users(null, null, null);
 				user.setIduser(userId);
-
 				String name = resultSet.getString("name");
 				String surname = resultSet.getString("surname");
-
+				
 				hr = new HumanResource(user, name, surname);
 				hr.setId(resultSet.getInt("idHR"));
 				hrlist.add(hr);
@@ -53,9 +52,9 @@ public class HumanResourceDAO{
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, hr.getName());
-			preparedStatement.setString(2, hr.getSurname());
-			preparedStatement.setInt(3, hr.getUser().getIduser());
+			preparedStatement.setString(2, hr.getName());
+			preparedStatement.setString(3, hr.getSurname());
+			preparedStatement.setInt(4, hr.getUser().getIduser());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

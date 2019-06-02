@@ -67,9 +67,16 @@
 		<tr>
 			<td><%=hr.getName()%></td>
 			<td><%=hr.getSurname()%></td>
+<<<<<<< HEAD
 			
 			<td><a href="HumanResourceServlet?richiesta=updateRedirect&idhHr=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
 			<td><a href="HumanResourceServlet?richiesta=delete&idhR=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+=======
+			<td><%=hr.getId()%></td>
+			<td><%=hr.getUserDTO().getId()%></td>
+			<td><a href="HumanResourceServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="HumanResourceServlet?richiesta=delete&idhr=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+>>>>>>> b798bbf57ae9fd409c790837883f397b03e018f4
 		</tr>
 		<%
 			}
@@ -77,7 +84,7 @@
 	</table>
 	<br>
 	<br>
-	<a href="HumanResourceServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New HR </i></a>
+	<a href="HumanResourceServlet?richiesta=insert"><i class="fas fa-plus-circle fa-lg"> New HR </i></a>
 	<br>
 	<br>
 	<a href="HumanResourceServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back </i></a>
