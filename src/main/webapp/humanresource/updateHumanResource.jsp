@@ -1,13 +1,13 @@
-<%@ page import="it.contrader.dto.HumanResourceDTO"%>
+<%@ include file="/header.jsp"%>
+<%@ page import="it.contrader.dto.*"%>
 <%@ page import="java.util.*"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
-/*contenitore in cima dove c'Ã¨ scritto "Login"*/
+/*contenitore in cima dove c'è scritto "Login"*/
 .pre_contenitore {
 	width: 320px;
 	margin: auto;

@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Inserisci nuovo dipendente</title>
-<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
+<title>Inserisci nuovo utente</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
 <style>
-/*contenitore in cima dove c'è scritto "Login"*/
 .pre_contenitore {
 	width: 320px;
 	margin: auto;
