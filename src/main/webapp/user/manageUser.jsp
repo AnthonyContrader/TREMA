@@ -90,7 +90,7 @@ body {
 
 	<br>
 	<br>
-	<a href="UsersServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="LogoutServlet"><i class="fas fa-arrow-alt-circle-left fa-lg"> Logout</i></a>
 
 
 </body>

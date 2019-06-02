@@ -65,12 +65,11 @@
 			for (HumanResourceDTO hr : allHr) {
 		%>
 		<tr>
-
 			<td><%=hr.getName()%></td>
 			<td><%=hr.getSurname()%></td>
 			
-			<td><a href="HumanResourceServlet?richiesta=updateRedirect&id=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="HumanResourceServlet?richiesta=delete&idHR=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="HumanResourceServlet?richiesta=updateRedirect&idhHr=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="HumanResourceServlet?richiesta=delete&idhR=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}

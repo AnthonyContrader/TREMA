@@ -41,7 +41,7 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="HumanResourceServlet?richiesta=insert">
+	<form method="POST" action="/JspApp/HumanResourceServlet?richiesta=insert">
 
 		Nome Dipendente: <input type="text" size="40" maxlength="40" name="name" />
 		Cognome Dipendente: <input type="text" size="40" maxlength="40" name="surname" />
@@ -51,7 +51,7 @@
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="HumanResourceServlet?richiesta=human_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="/JspApp/HumanResourceServlet?richiesta=human_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

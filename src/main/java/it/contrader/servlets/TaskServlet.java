@@ -3,6 +3,7 @@ package it.contrader.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,15 +13,13 @@ import javax.servlet.http.HttpSession;
 import it.contrader.dto.HumanResourceDTO;
 import it.contrader.dto.ProjectDTO;
 import it.contrader.dto.TaskDTO;
-
 import it.contrader.service.TaskServiceDTO;
-import it.contrader.service.ProjectServiceDTO;
-import it.contrader.service.HumanResourceServiceDTO;
 
 public class TaskServlet extends HttpServlet{
-	private TaskServiceDTO taskServiceDTO = new TaskServiceDTO();
-	private List<TaskDTO> allTasks = new ArrayList<TaskDTO>();
-	private List<TaskDTO> filteredTasks = new ArrayList<TaskDTO>();
+	private static final long serialVersionUID = 1L;
+	private final TaskServiceDTO taskServiceDTO = new TaskServiceDTO();
+	private List<TaskDTO> allTasks = new ArrayList<>();
+	//private List<TaskDTO> filteredTasks = new ArrayList<>();
 	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +40,7 @@ public class TaskServlet extends HttpServlet{
 				break;
 				
 			case "insertRedirect":
-				response.sendRedirect("task/insertTask.jsp");
+				response.sendRedirect("/task/insertTask.jsp");
 				break;
 
 		case "insert":
@@ -107,7 +106,7 @@ public class TaskServlet extends HttpServlet{
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeBO.jsp");
+			response.sendRedirect("homeProject.jsp");
 			break;
 
 		case "logsMenu":
@@ -120,29 +119,22 @@ public class TaskServlet extends HttpServlet{
 	private void showAllTasks(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		allTasks.clear();
 		//filteredTasks.clear();
-		allTasks = this.taskServiceDTO.getAllTask();
+		allTasks = taskServiceDTO.getAllTask();
 		/*
 		HttpSession session = request.getSession(true);
 		
-		ProjectDTO projectDTO = new ProjectDTO("", "", "", null);
-		int idproject = Integer.parseInt(request.getParameter("idproject"));
-		projectDTO.setId(idproject);
-		
-		HumanResourceDTO hrDTO = new HumanResourceDTO(null, null, null);
-		int idhr = Integer.parseInt(request.getParameter("idHR"));
-		hrDTO.setId(idhr);
-		
-		ProjectDTO idprojectDTO = (ProjectDTO) session.getAttribute("idproject");
+		ProjectDTO idprojectDTO = (ProjectDTO) session.getAttribute("id");
+		HumanResourceDTO idhrDTO = (HumanResourceDTO) session.getAttribute("id");
 		
 		for (TaskDTO taskDTO : allTasks) {
-			if (taskDTO.getProjectDTO().getId() == projectDTO.getId())
+			if (taskDTO.getProjectDTO().getId() == idprojectDTO.getId())
 				filteredTasks.add(taskDTO);
 			
-			if (taskDTO.getHRDTO().getId() == hrDTO.getId())
+			if (taskDTO.getHRDTO().getId() == idhrDTO.getId())
 				filteredTasks.add(taskDTO);
 		} */
 				
-		request.setAttribute("allTask", allTasks);
+		request.setAttribute("allTasks", allTasks);
 		getServletContext().getRequestDispatcher("/task/manageTask.jsp").forward(request, response);
 	}
 }

@@ -27,7 +27,14 @@
 		<servlet-name>ProjectServlet</servlet-name>
 		<servlet-class>it.contrader.servlets.ProjectServlet</servlet-class>
 	</servlet>	
-	
+	<servlet>
+		<servlet-name>TaskServlet</servlet-name>
+		<servlet-class>it.contrader.servlets.TaskServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>MaterialServlet</servlet-name>
+		<servlet-class>it.contrader.servlets.MaterialServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
@@ -48,5 +55,13 @@
 	<servlet-mapping>
 		<servlet-name>HumanResourceServlet</servlet-name>
 		<url-pattern>/HumanResourceServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TaskServlet</servlet-name>
+		<url-pattern>/TaskServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MaterialServlet</servlet-name>
+		<url-pattern>/MaterialServlet</url-pattern>
 	</servlet-mapping>
 </web-app>

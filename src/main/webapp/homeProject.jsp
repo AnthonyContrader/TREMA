@@ -93,7 +93,7 @@ body {
 		<a href="ProjectServlet?richiesta=project_manager"><span class="fs"> Project Management </span></a>
 		<br>
 		<br>
-		<a href="TaskServlet?richiesta=TaskManager"><span class="fs"> Task Management </span></a>
+		<a href="TaskServlet?richiesta=project_manager"><span class="fs"> Task Management </span></a>
 		<br>
 		<br>
 		<p>

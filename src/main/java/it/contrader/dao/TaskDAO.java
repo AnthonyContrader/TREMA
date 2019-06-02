@@ -41,8 +41,10 @@ public class TaskDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
+			//PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
+			//ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
 				Integer idtask = resultSet.getInt("idtask");
@@ -64,7 +66,6 @@ public class TaskDAO {
 		} 
 		catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
-			
 			return null;
 		}
 	}
@@ -114,8 +115,6 @@ public class TaskDAO {
 			return null;
 		}
 	}
-	
-	
 	
 	public boolean updateTask(Task taskToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();

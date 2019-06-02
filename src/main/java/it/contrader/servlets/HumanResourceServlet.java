@@ -18,8 +18,8 @@ public class HumanResourceServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private HumanResourceServiceDTO HrServiceDTO = new HumanResourceServiceDTO();
-	private List<HumanResourceDTO> allHr = new ArrayList<HumanResourceDTO>();
-	private List<HumanResourceDTO> filteredHr = new ArrayList<HumanResourceDTO>();
+	private List<HumanResourceDTO> allHr = new ArrayList<>();
+	private List<HumanResourceDTO> filteredHr = new ArrayList<>();
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,12 +39,8 @@ public class HumanResourceServlet extends HttpServlet {
 			break;
 
 		case "insert":
-			// final int userId = Integer.parseInt(request.getParameter("user_id"));
 			final String HrName = request.getParameter("name");
 			final String HrSurname = request.getParameter("surname");
-			// UserDTO userInsert = new UserDTO("","","");
-
-			// userInsert.setId(userId);
 			final HumanResourceDTO HrInsert = new HumanResourceDTO(userLogged,HrName,HrSurname);
 			HrServiceDTO.insertHr(HrInsert);
 			showAllHr(request, response);
@@ -52,22 +48,19 @@ public class HumanResourceServlet extends HttpServlet {
 
 		case "updateRedirect":
 			int id = Integer.parseInt(request.getParameter("idHR"));
-			HumanResourceDTO HrUpdate = new HumanResourceDTO(new UsersDTO("", "", ""),"","");
+			HumanResourceDTO HrUpdate = new HumanResourceDTO(new UsersDTO(" ", " ", " "), " ", " ");
 			HrUpdate.setId(id);
-
 			HrUpdate = this.HrServiceDTO.readHr(HrUpdate);
+			System.out.println(" "+HrUpdate.getName()+" "+HrUpdate.getSurname());
 			request.setAttribute("HrUpdate", HrUpdate);
 			getServletContext().getRequestDispatcher("/humanresource/updateHumanResource.jsp").forward(request, response);
 
 			break;
 
 		case "update":
-			final Integer HrIdUpdate = Integer.parseInt(request.getParameter("idHR"));
-			// final Integer userIdUpdate =
-			// Integer.parseInt(request.getParameter("user_id"));
+			final int HrIdUpdate = Integer.parseInt(request.getParameter("idHr"));
 			final String HrNameUpdate = request.getParameter("name");
 			final String HrSurnameUpdate = request.getParameter("surname");
-
 			final HumanResourceDTO HrDTO = new HumanResourceDTO(userLogged,HrNameUpdate,HrSurnameUpdate);
 			HrDTO.setId(HrIdUpdate);
 			HrServiceDTO.updateHr(HrDTO);
@@ -75,8 +68,8 @@ public class HumanResourceServlet extends HttpServlet {
 			break;
 
 		case "delete":
-			final Integer HrIdDelete = Integer.parseInt(request.getParameter("idHR"));
-			final HumanResourceDTO Hrdelete = new HumanResourceDTO(userLogged,"","");
+			final int HrIdDelete = Integer.parseInt(request.getParameter("idhR"));
+			final HumanResourceDTO Hrdelete = new HumanResourceDTO(userLogged," "," ");
 			Hrdelete.setId(HrIdDelete);
 			HrServiceDTO.deleteHr(Hrdelete);
 			showAllHr(request, response);
@@ -96,8 +89,7 @@ public class HumanResourceServlet extends HttpServlet {
 	
 
 	// Show all project for user logged
-	private void showAllHr(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	private void showAllHr(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		allHr.clear();
 		filteredHr.clear(); 
 		allHr = HrServiceDTO.getAllHr();
@@ -105,8 +97,9 @@ public class HumanResourceServlet extends HttpServlet {
 		UsersDTO userLogged=(UsersDTO) session.getAttribute("utente");
 		
 		for (HumanResourceDTO HrDTO:allHr) {
-			if (HrDTO.getUserDTO().getId()==userLogged.getId()) {
-					filteredHr.add(HrDTO); }
+			if (HrDTO.getUserDTO().getId()==userLogged.getId()) 
+					filteredHr.add(HrDTO); 
+			//System.out.println(" "+ HrDTO.getName()+" "+ HrDTO.getSurname());
 		}
 		request.setAttribute("allHr", filteredHr);
 		getServletContext().getRequestDispatcher("/humanresource/manageHumanResource.jsp").forward(request, response);

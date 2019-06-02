@@ -27,6 +27,5 @@
 			<button type="submit" value="Login" class="btn btn-warning">Sign in</button>
 		</form>
 	</div>
-
 </body>
 </html>

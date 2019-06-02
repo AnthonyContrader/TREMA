@@ -1,14 +1,18 @@
 <%@ include file="/header.jsp"%>
 <%@ page import="it.contrader.dto.*"%>
+<%@ page import="it.contrader.dao.*"%>
+<%@ page import="it.contrader.model.*"%>
+<%@ page import="it.contrader.service.*"%>
+<%@ page import="it.contrader.servlets.*"%>
 <%@ page import="java.util.*"%>
-<%@ include file="/header.jsp"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Gestione Task</title>
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
 .pre_contenitore {
 	width: 320px;
@@ -30,7 +34,7 @@
 }
 </style>
 <%
-	List<TaskDTO> allTask = (List<TaskDTO>) request.getAttribute("allTasks");
+	List<TaskDTO> allTasks = (List<TaskDTO>) request.getAttribute("allTasks");
 %>
 </head>
 <body>
@@ -41,25 +45,21 @@
 	<br />
 	<table>
 		<tr>
-			<th>Description</th>
-			<th>Action</th>
-			<th>Input</th>
-			<th>Output</th>
-			<th>Resource</th>
-			<th>Time</th>
-			<th>State</th>
+			<th>Descrizione</th>
+			<th>ID Project</th>
+			<th>ID HR</th>
 			<th>Update</th>
 			<th>Delete</th>
 		</tr>
 		<%
-			for (TaskDTO task : allTask) {
+			for (TaskDTO task : allTasks) {
 		%>
 		<tr>
 			<td><%=task.getDescrizioneTask()%></td>
 			<td><%=task.getProjectDTO().getId()%></td>
 			<td><%=task.getHRDTO().getId()%></td>
-			<td><a href="/trema/TaskServlet?richiesta=updateRedirect&id=<%=task.getIdtask()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="/trema/TaskServlet?richiesta=delete&id=<%=task.getIdtask()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="TaskServlet?richiesta=updateRedirect&idtask=<%=task.getIdtask()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="TaskServlet?richiesta=delete&idtask=<%=task.getIdtask()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
@@ -67,9 +67,9 @@
 	</table>
 	<br>
 	<br>
-	<a href="/trema/TaskServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Task</i></a>
+	<a href="TaskServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Task</i></a>
 	<br>
 	<br>
-	<a href="/trema/TaskServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="TaskServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 </body>
 </html>

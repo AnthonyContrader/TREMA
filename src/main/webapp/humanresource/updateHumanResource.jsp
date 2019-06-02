@@ -49,7 +49,7 @@
 			<br>
 			<input type="hidden" name="idHR" value="<%=updatehr.getId()%>" />
 			Nome Dipendente: 		<input type="text" size="40" maxlength="40" name="name" value="<%=updatehr.getName()%>" />
-			Cognome Dipendente:  	<input type="text" size="40" maxlength="40" name="cognome" value="<%=updatehr.getSurname()%>" />
+			Cognome Dipendente:  	<input type="text" size="40" maxlength="40" name="surname" value="<%=updatehr.getSurname()%>" />
 			<br>
 			<br>
 			<input type="SUBMIT" value="Update">

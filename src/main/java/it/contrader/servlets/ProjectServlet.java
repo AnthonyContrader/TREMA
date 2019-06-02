@@ -50,7 +50,6 @@ public class ProjectServlet extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			ProjectDTO projectUpdate = new ProjectDTO("","","",new UsersDTO("", "", ""));
 			projectUpdate.setId(id);
-
 			projectUpdate = this.projectServiceDTO.readProject(projectUpdate);
 			request.setAttribute("projectUpdate", projectUpdate);
 			getServletContext().getRequestDispatcher("/project/updateProject.jsp").forward(request, response);
