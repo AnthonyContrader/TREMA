@@ -12,7 +12,7 @@ public class HumanResourceConverter {
 		HumanResource hr = null;
 		if (hrdto != null) {
 			Users user = UsersConverter.toEntity(hrdto.getUserDTO());
-			hr = new HumanResource(user, hrdto.getName(), hrdto.getSurname());
+			hr = new HumanResource(hrdto.getName(), hrdto.getSurname(),user);
 			hr.setId(hrdto.getId());
 		}
 		return hr;

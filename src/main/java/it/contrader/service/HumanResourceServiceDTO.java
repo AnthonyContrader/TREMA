@@ -22,11 +22,6 @@ public class HumanResourceServiceDTO {
 	public HumanResourceServiceDTO() {
 		this.hrDAO = new HumanResourceDAO();
 	}
-
-	/**
-	 * Come vediamo la lista recuperata � di tipo Esempio ma noi la convertiamo in EsempioDTO
-	 * Invito chi fa i converter a fare un metodo per convertire direttamente la lista senza farli uno ad uno perch� � sporco e poco efficiente
-	 */
 	public List<HumanResourceDTO> getAllHr() {
 
 		List<HumanResource> list = hrDAO.getAllHr();
