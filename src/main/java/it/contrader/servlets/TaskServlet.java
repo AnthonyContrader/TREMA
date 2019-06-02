@@ -42,7 +42,7 @@ public class TaskServlet extends HttpServlet{
 			case "insertRedirect":
 				response.sendRedirect("/task/insertTask.jsp");
 				break;
-
+				
 		case "insert":
 			descrizione_task = request.getParameter("descrizione_task");
 			idproject = Integer.parseInt(request.getParameter("idproject"));

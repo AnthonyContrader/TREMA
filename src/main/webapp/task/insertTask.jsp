@@ -36,20 +36,20 @@
 	<br>
 	<br>
 	
-	<form method="POST" action="/JspApp/TaskServlet?richiesta=insert">
-		Descrizione: <input type="text" size="40" maxlength="40" name="task_description" />
+	<form method="POST" action="TaskServlet?richiesta=insert">
+		Descrizione: <input type="text" size="40" maxlength="40" name="descrizione_task" />
 		<br>
 		<br>
-		ID Project: <input type="text" size="40" maxlength="40" name="task_idproject" />
+		ID Project: <input type="text" size="40" maxlength="40" name="idproject" />
 		<br>
 		<br>
-		ID HR: <input type="text" size="40" maxlength="40" name="task_idhr" />
+		ID HR: <input type="text" size="40" maxlength="40" name="idhr" />
 		<br>
 		<input type="SUBMIT" value="Add">
 	</form>
 	
 	<br>
 	<br>
-	<a href="/JspApp/TaskServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="TaskServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 </body>
 </html>
