@@ -22,17 +22,17 @@
 	height: 50px;
 	border: 1px solid black;
 	border-radius: 40px 40px 4px 40px;
-	background-color: rgba(0, 0, 0, 0.9);
+	background-color: orange;
 	box-shadow: 20px 30px 20px #000000;
 	padding: 20px;
 }
 
 .pre_contenitore p {
-	color: orange;
+	color: black;
 	text-align: center;
 	font-size: 1.9em;
 	font-family: arial;
-	line-height: 2px;
+	line-height: 1px;
 }
 </style>
 </head>
@@ -44,7 +44,7 @@
 
 	<div class="pre_contenitore">
 
-		<p>Human Resource Management</p>
+		<p>Human Resource</p>
 
 	</div>
 	<br>
@@ -70,8 +70,8 @@
 			<td><%=hr.getName()%></td>
 			<td><%=hr.getSurname()%></td>
 			
-			<td class="center"><a href="HumanResourceServlet?richiesta=updateRedirect&idhr=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td class="center"><a href="HumanResourceServlet?richiesta=delete&idhr=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td class="center"><a href="/JspApp/HumanResourceServlet?richiesta=updateRedirect&idhr=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td class="center"><a href="/JspApp/HumanResourceServlet?richiesta=delete&idhr=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
@@ -79,10 +79,10 @@
 	</table>
 	<br>
 	<br>
-	<a href="HumanResourceServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New HR </i></a>
+	<a href="/JspApp/HumanResourceServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New HR </i></a>
 	<br>
 	<br>
-	<a href="HumanResourceServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back </i></a>
+	<a href="/JspApp/HumanResourceServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back </i></a>
 
 </body>
 </html>
