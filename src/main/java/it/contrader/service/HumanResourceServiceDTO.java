@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.converter.HumanResourceConverter;
+import it.contrader.converter.UsersConverter;
 import it.contrader.dao.HumanResourceDAO;
 import it.contrader.dto.HumanResourceDTO;
+import it.contrader.dto.UsersDTO;
 import it.contrader.model.HumanResource;
 
 public class HumanResourceServiceDTO {
@@ -35,7 +37,10 @@ public class HumanResourceServiceDTO {
 	}
 	
 
-	
+	public HumanResourceDTO getHRByNameAndSurname(HumanResource humanResource) {
+		return HumanResourceConverter.toDTO(this.hrDAO.nameSurHr(HumanResourceConverter.toEntity(humanResource)));
+	}
+
 	public HumanResourceDTO readHr(HumanResourceDTO hr) {
 		return HumanResourceConverter.toDTO(this.hrDAO.readHr(HumanResourceConverter.toEntity(hr)));
 	}

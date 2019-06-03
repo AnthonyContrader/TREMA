@@ -1,11 +1,18 @@
 <%@ include file="/header.jsp"%>
+<%@ page import="it.contrader.dto.*"%>
+<%@ page import="it.contrader.dao.*"%>
+<%@ page import="it.contrader.model.*"%>
+<%@ page import="it.contrader.service.*"%>
+<%@ page import="it.contrader.servlets.*"%>
+<%@ page import="java.util.*"%>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>Gestione Material</title>
 
-<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -31,7 +38,7 @@
 </style>
 </head>
 <%
-	List<MaterialDTO> allMaterial = (List<MaterialDTO>) request.getAttribute("allMaterial");
+	List<MaterialDTO> allMaterials = (List<MaterialDTO>) request.getAttribute("allMaterials");
 %>
 </head>
 <body>
@@ -48,21 +55,23 @@
 	<br />
 	<table>
 		<tr>
-			<th>Material ID</th>
+			<th>Tipo</th>
+			<th>Quantita</th>
 			<th>Update</th>
 			<th>Delete</th>
 
 		</tr>
 		<% 
-			for (MaterialDTO material : allMaterial) {
+			for (MaterialDTO material : allMaterials) {
 		%>
 		<tr>
 
-			<td><%=material.getIdMaterial()%></td>
+			<td><%=material.getTipo()%></td>
+			<td><%=material.getQuantita()%></td>
 
 
-			<td><a href="../MaterialServlet?richiesta=updateRedirect&idmaterial=<%=material.getIdmaterial()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td><a href="../MaterialServlet?richiesta=delete&idmaterial=<%=material.getIdmaterial()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td><a href="MaterialServlet?richiesta=updateRedirect&id=<%=material.getIdmaterial()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="MaterialServlet?richiesta=delete&idmaterial=<%=material.getIdmaterial()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
@@ -70,10 +79,10 @@
 	</table>
 	<br>
 	<br>
-	<a href="../MaterialServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Material</i></a>
+	<a href="MaterialServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Material</i></a>
 	<br>
 	<br>
-	<a href="../MaterialServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="MaterialServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 </body>
 </html>

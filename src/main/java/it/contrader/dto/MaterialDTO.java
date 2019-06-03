@@ -1,5 +1,7 @@
 package it.contrader.dto;
 
+import it.contrader.dto.*;
+
 public class MaterialDTO {
 	private int idmaterial;
 	private String tipo;

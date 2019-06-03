@@ -13,57 +13,56 @@ import javax.servlet.http.HttpSession;
 import it.contrader.dto.MaterialDTO;
 import it.contrader.dto.HumanResourceDTO;
 import it.contrader.dto.UsersDTO;
-
 import it.contrader.service.MaterialServiceDTO;
-import it.contrader.service.HumanResourceServiceDTO;
+
 
 public class MaterialServlet extends HttpServlet{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private MaterialServiceDTO materialServiceDTO = new MaterialServiceDTO();
 	//private HumanResourceServiceDTO hrServiceDTO = new HumanResourceServiceDTO();
-	private List<MaterialDTO> allMaterials = new ArrayList<MaterialDTO>();
-	private List<MaterialDTO> filteredMaterials = new ArrayList<MaterialDTO>();
+	private List<MaterialDTO> allMaterials = new ArrayList<>();
+	private List<MaterialDTO> filteredMaterials = new ArrayList<>();
 	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		final String scelta = request.getParameter("richiesta");
+		final HttpSession session = request.getSession(true);
+		final HumanResourceDTO hrLogged = (HumanResourceDTO) session.getAttribute("hr");
 		//final HttpSession session = request.getSession(true);
-		
-		int idmaterial;
-		String tipo;
-		int quantita;
-		int idhr;
-		HumanResourceDTO hrDTO;
-		
 		// Here I don't know if userLogged is the general user that login in the app
 		// or is only the user of the entity.
-		//final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
+		//final UsersDTO hrLogged = (UsersDTO) session.getAttribute("utente");
 		
 		switch (scelta) {
-			case "HR_manager":
+			case "human_manager":
 				showAllMaterials(request, response);
 				break;
 				
 			case "insertRedirect":
-				response.sendRedirect("material/insertTask.jsp");
+				response.sendRedirect("material/insertMaterial.jsp");
 				break;
 
 		case "insert":
-			tipo = request.getParameter("tipo");
-			quantita = Integer.parseInt(request.getParameter("quantita"));
-			idhr = Integer.parseInt(request.getParameter("idHR"));
 			
-			hrDTO = new HumanResourceDTO(null, null, null);
-			hrDTO.setId(idhr);
+			final String tipo = request.getParameter("tipo");
+			final Integer quantita = Integer.parseInt(request.getParameter("quantita"));
 			
-			final MaterialDTO materialInsert = new MaterialDTO(tipo, quantita, hrDTO);
+			final MaterialDTO materialInsert = new MaterialDTO(tipo,quantita,hrLogged);
 			materialServiceDTO.insertMaterial(materialInsert);
 			showAllMaterials(request, response);
 			break;
 
 		case "updateRedirect":
-			idmaterial = Integer.parseInt(request.getParameter("idmaterial"));
 			
-			MaterialDTO materialUpdate = new MaterialDTO("", 0, null);
+			int idmaterial = Integer.parseInt(request.getParameter("idmaterial"));
+			
+			MaterialDTO materialUpdate = new MaterialDTO("", 0,null);
 			materialUpdate.setIdmaterial(idmaterial);
 
 			materialUpdate = this.materialServiceDTO.readMaterial(materialUpdate);
@@ -73,31 +72,30 @@ public class MaterialServlet extends HttpServlet{
 			break;
 
 		case "update":
-			idmaterial = Integer.parseInt(request.getParameter("idmaterial"));
-			tipo = request.getParameter("tipo");
-			quantita = Integer.parseInt(request.getParameter("quantita"));
-			idhr = Integer.parseInt(request.getParameter("idHR"));
 			
-			hrDTO = new HumanResourceDTO(null, null, null);
-			hrDTO.setId(idhr);
-			
-			final MaterialDTO materialDTO = new MaterialDTO(tipo, quantita, null);
-			materialDTO.setIdmaterial(idmaterial);
+			final Integer materialIdUpdate = Integer.parseInt(request.getParameter("idmaterial"));
+			// final Integer userIdUpdate =
+			// Integer.parseInt(request.getParameter("user_id"));
+			final String materialTipoUpdate = request.getParameter("tipo");
+			final Integer materialQuantitaUpdate = Integer.parseInt(request.getParameter("quantita"));
+
+			final MaterialDTO materialDTO = new MaterialDTO(materialTipoUpdate,materialQuantitaUpdate,hrLogged);
+			materialDTO.setIdmaterial(materialIdUpdate);
 			materialServiceDTO.updateMaterial(materialDTO);
 			showAllMaterials(request, response);
 			break;
 
 		case "delete":
-			final Integer materialIdDelete = Integer.parseInt(request.getParameter("idmaterial"));
-
-			final MaterialDTO materialdelete = new MaterialDTO("", 0, null);
+			
+			final int materialIdDelete = Integer.parseInt(request.getParameter("idmaterial"));
+			final MaterialDTO materialdelete = new MaterialDTO("",0, hrLogged);
 			materialdelete.setIdmaterial(materialIdDelete);
 			materialServiceDTO.deleteMaterial(materialdelete);
 			showAllMaterials(request, response);
 			break;
 
 		case "indietro":
-			response.sendRedirect("homeBO.jsp");
+			response.sendRedirect("homeHumanResource.jsp");
 			break;
 
 		case "logsMenu":
@@ -113,14 +111,13 @@ public class MaterialServlet extends HttpServlet{
 		allMaterials.clear();
 		filteredMaterials.clear();
 		allMaterials = this.materialServiceDTO.getAllMaterial();
-		//HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(true);
+		HumanResourceDTO hrLogged=(HumanResourceDTO) session.getAttribute("utente");
 		
-		HumanResourceDTO hrDTO = new HumanResourceDTO(null, null, null);
-		int idhr = Integer.parseInt(request.getParameter("idHR"));
-		hrDTO.setId(idhr);
+	
 		
 		for (MaterialDTO materialDTO : allMaterials) {
-			if (materialDTO.getHRDTO().getId() == hrDTO.getId())
+			if (materialDTO.getHRDTO().getId() == hrLogged.getId())
 				filteredMaterials.add(materialDTO);
 		}
 				

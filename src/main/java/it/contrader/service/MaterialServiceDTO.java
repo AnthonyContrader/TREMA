@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.converter.MaterialConverter;
-import it.contrader.converter.HumanResourceConverter;
 import it.contrader.dao.MaterialDAO;
 import it.contrader.dto.MaterialDTO;
-import it.contrader.dto.HumanResourceDTO;
 import it.contrader.model.Material;
 
 public class MaterialServiceDTO {
+	
 	private final MaterialDAO materialDAO;
 	
 	public MaterialServiceDTO() {

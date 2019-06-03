@@ -8,8 +8,8 @@ import it.contrader.model.HumanResource;
 public class MaterialConverter{
 
 	public static Material toEntity(MaterialDTO materialDTO) {
-		Material material = null;
 		
+		Material material = null;
 		if (materialDTO != null) {
 			HumanResource hr = HumanResourceConverter.toEntity(materialDTO.getHRDTO());
 			material = new Material(materialDTO.getTipo(), materialDTO.getQuantita(), hr);
@@ -19,8 +19,8 @@ public class MaterialConverter{
 	}
 
 	public static MaterialDTO toDTO(Material material) {
-		MaterialDTO materialDTO = null;
 		
+		MaterialDTO materialDTO = null;
 		if (material != null) {
 			HumanResourceDTO hrDTO = HumanResourceConverter.toDTO(material.getHR());
 			materialDTO = new MaterialDTO(material.getTipo(), material.getQuantita(), hrDTO);

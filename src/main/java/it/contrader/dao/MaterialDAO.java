@@ -26,24 +26,24 @@ public class MaterialDAO {
 	}
 	
 	public List<Material> getAllMaterial() {
-		List<Material> materialList = new ArrayList<Material>();
+		List<Material> materialList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			Material material;
 			while (resultSet.next()) {
-				int idmaterial = resultSet.getInt("idmaterial");
-				int quantita = resultSet.getInt("quantita");
+				int HRId = resultSet.getInt("idHR");
+				HumanResource HrMaterial = new HumanResource(null, null, null);
+				HrMaterial.setId(HRId);
+				
 				String tipo = resultSet.getString("tipo");
-				int idhr = resultSet.getInt("idhr");
+				int quantita = resultSet.getInt("quantita");
 				
-				HumanResource hrClient = new HumanResource(null, null, null);
-				hrClient.setId(idhr);
-				
-				material = new Material(tipo, quantita, hrClient);
-				material.setIdmaterial(idmaterial);
+				material = new Material(tipo, quantita, HrMaterial);
+				material.setIdmaterial(resultSet.getInt("idmaterial"));
 				materialList.add(material);
+	
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,15 +76,18 @@ public class MaterialDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			
-			String tipo = resultSet.getString("quantita");
-			int quantita = resultSet.getInt("tipo");
-			int idhr = resultSet.getInt("idhr");
+			String tipo;
+			int quantita, hr;
+			
+			tipo = resultSet.getString("tipo");
+			quantita = resultSet.getInt("quantita");
+			hr = resultSet.getInt("idHR");
 			
 			HumanResource hrClient = new HumanResource(null, null, null);
-			hrClient.setId(idhr);
+			hrClient.setId(hr);
 			
 			material = new Material(tipo, quantita, hrClient);
-			material.setIdmaterial(idmaterial);
+			material.setIdmaterial(resultSet.getInt("idHR"));
 			
 			return material;
 			

@@ -16,6 +16,11 @@ public class HumanResource {
 		this.user=user;
 	}
 
+	public HumanResource(String names, String sur) {
+		this.name=names;
+		this.surname=sur;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -20,6 +20,7 @@ public class HumanResourceDAO{
 	private final String QUERY_READ = "SELECT * FROM humanresource WHERE idHR=?";
 	private final String QUERY_UPDATE = "UPDATE humanresource SET name=?, surname=?, iduser=? WHERE idHR=?";
 	private final String QUERY_DELETE = "DELETE FROM humanresource WHERE idHR=?";
+	private final String QUERY_NS = "SELECT name,surname FROM humanresource WHERE idHR=?";
 
 	public HumanResourceDAO() {
 	}
@@ -135,5 +136,54 @@ public class HumanResourceDAO{
 		}
 		return false;
 
+	}
+
+	public HumanResource login(String name, String surname) {
+
+		Connection connection = ConnectionSingleton.getInstance();
+		HumanResource hr = null;
+		try {
+			PreparedStatement statement = connection.prepareStatement(QUERY_ALL);
+			
+			statement.setString(1, name);
+			statement.setString(2, surname);
+			statement.execute();
+			ResultSet resultSet = statement.getResultSet();
+
+			while (resultSet.next()) {
+				String names = resultSet.getString("name");
+				String sur = resultSet.getString("surname");
+				hr = new HumanResource(names, sur);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return hr;
+	}
+
+	public HumanResource nameSurHr(HumanResource hr) {
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			int idhr = hr.getId();
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_NS);
+			preparedStatement.setInt(1, idhr);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			
+			String name, surname;
+
+			name = resultSet.getString("name");
+			surname = resultSet.getString("surname");
+
+			hr = new HumanResource(name, surname);
+
+			hr.setId(resultSet.getInt("idHR"));
+
+			return hr;
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return null;
+		}
 	}
 }

@@ -93,6 +93,9 @@ body {
 		<a href="HumanResourceServlet?richiesta=human_manager"><span class="fs"> Visualizza Dipendenti </span></a>
 		<br>
 		
+		<a href="MaterialServlet?richiesta=human_manager"><span class="fs"> Visualizza Materiali </span></a>
+		<br>
+		
 		<br>
 		<p>
 			<a href="LogoutServlet" target="self"><span class="fs"> Logout </span></a>

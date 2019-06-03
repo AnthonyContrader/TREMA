@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserisci nuovo material</title>
-<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -41,15 +41,16 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="/TREMA/MaterialServlet?richiesta=insert">
+	<form method="POST" action="MaterialServlet?richiesta=insert">
 
-		Material Name: <input type="text" size="40" maxlength="40" name="tipo" />
+		Tipo: <input type="text" size="40" maxlength="40" name="tipo" />
+		Quantita: <input type="text" size="40" maxlength="40" name="quantita" />
 		<br>
 		<br>
 		<input type="SUBMIT" value="Add">
 		<br>
 		<br>
-		<a href="/TREMA/MaterialtServlet?richiesta=HR_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+		<a href="MaterialServlet?richiesta=human_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 
 	</form>
 </body>

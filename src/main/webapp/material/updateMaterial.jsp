@@ -1,9 +1,10 @@
-<%@ page import="trema.dto.MaterialDTO"%>
+<%@ page import="it.contrader.dto.*"%>
 <%@ page import="java.util.*"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -43,19 +44,20 @@
 			<p>Material Update</p>
 
 		</div>
-		<form method="POST" action="/TREMA/MaterialServlet?richiesta=update">
+		<form method="POST" action="MaterialServlet?richiesta=update">
 			<br>
 
 			<br>
-			<input type="hidden" name="idmaterial" value="<%=updateMaterial.getIdMaterial()%>" /> Material Name: <input type="text" size="40" maxlength="40"
-				idmaterial="Idmaterial" value="<%=updateMaterial.getIdMaterial()%>" />
+			<input type="hidden" name="idmaterial" value="<%=updateMaterial.getIdmaterial()%>" /> 
+			Tipo: <input type="text" size="40" maxlength="40" name="tipo" value="<%=updateMaterial.getTipo()%>" />
+			Quantita: <input type="text" size="40" maxlength="40" name="quantita" value="<%=updateMaterial.getQuantita()%>" />
 			<br>
 			<br>
 			<br>
 			<input type="SUBMIT" value="Update">
 			<br>
 			<br>
-			<a href="/TREMA/MaterialServlet?richiesta=HR-manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+			<a href="MaterialServlet?richiesta=human_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 		</form>
 
 	</div>
