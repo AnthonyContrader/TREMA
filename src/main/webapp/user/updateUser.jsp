@@ -10,12 +10,12 @@
 /*contenitore in cima dove c'è scritto "Login"*/
 .pre_contenitore {
 	width: 320px;
-	margin: auto;
+	margin-left: 600px;
 	height: 50px;
 	border: 1px solid black;
 	border-radius: 40px 40px 40px 40px;
 	background-color: rgba(0, 0, 0, 0.9);
-	box-shadow: 20px 30px 20px #00ff00;
+	box-shadow: 8px 15px 8px #00ff00;
 	padding: 20px;
 }
 
