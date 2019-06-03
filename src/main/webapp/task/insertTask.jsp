@@ -1,14 +1,12 @@
-<%@ page import="it.contrader.dto.*"%>
-<%@ page import="java.util.*"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ include file="/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserisci le nuova task</title>
-<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/TREMA/css/style.css">
 <style>
 .pre_contenitore {
 	width: 320px;
@@ -52,6 +50,6 @@
 	
 	<br>
 	<br>
-	<a href="/JspApp/TaskServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
+	<a href="/JspApp/TaskServlet?richiesta=project_manager"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>
 </body>
 </html>

@@ -11,6 +11,7 @@ import java.util.List;
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.main.GestoreEccezioni;
 import it.contrader.model.Material;
+import it.contrader.model.Users;
 import it.contrader.model.HumanResource;
 
 public class MaterialDAO {
@@ -33,9 +34,9 @@ public class MaterialDAO {
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			Material material;
 			while (resultSet.next()) {
-				int HRId = resultSet.getInt("idHR");
-				HumanResource HrMaterial = new HumanResource(null, null, null);
-				HrMaterial.setId(HRId);
+				int userId = resultSet.getInt("iduser");
+				Users HrMaterial = new Users(null, null, null);
+				HrMaterial.setIduser(userId);
 				
 				String tipo = resultSet.getString("tipo");
 				int quantita = resultSet.getInt("quantita");
@@ -57,7 +58,7 @@ public class MaterialDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, material.getTipo());
 			preparedStatement.setInt(2, material.getQuantita());
-			preparedStatement.setInt(3, material.getHR().getId());
+			preparedStatement.setInt(3, material.getHR().getIduser());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -81,13 +82,12 @@ public class MaterialDAO {
 			
 			tipo = resultSet.getString("tipo");
 			quantita = resultSet.getInt("quantita");
-			hr = resultSet.getInt("idHR");
-			
-			HumanResource hrClient = new HumanResource(null, null, null);
-			hrClient.setId(hr);
+			hr = resultSet.getInt("iduser");
+			Users hrClient = new Users(null, null, null);
+			hrClient.setIduser(hr);
 			
 			material = new Material(tipo, quantita, hrClient);
-			material.setIdmaterial(resultSet.getInt("idHR"));
+			material.setIdmaterial(resultSet.getInt("idmaterial"));
 			
 			return material;
 			
@@ -107,7 +107,7 @@ public class MaterialDAO {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, materialToUpdate.getTipo());
 			preparedStatement.setInt(2, materialToUpdate.getQuantita());
-			preparedStatement.setInt(3, materialToUpdate.getHR().getId());
+			preparedStatement.setInt(3, materialToUpdate.getHR().getIduser());
 			int result = preparedStatement.executeUpdate();
 			
 			if (result > 0)

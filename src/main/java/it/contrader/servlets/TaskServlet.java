@@ -19,7 +19,7 @@ public class TaskServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private final TaskServiceDTO taskServiceDTO = new TaskServiceDTO();
 	private List<TaskDTO> allTasks = new ArrayList<>();
-	private List<TaskDTO> filteredTasks = new ArrayList<>();
+	//private List<TaskDTO> filteredTasks = new ArrayList<>();
 	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +40,7 @@ public class TaskServlet extends HttpServlet{
 				break;
 				
 			case "insertRedirect":
-				response.sendRedirect("/task/insertTask.jsp");
+				response.sendRedirect("task/insertTask.jsp");
 				break;
 				
 			case "insert":
@@ -91,7 +91,6 @@ public class TaskServlet extends HttpServlet{
 				
 				taskDTO = null;
 				taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
-				//taskDTO.setIdtask(idtask);
 				taskServiceDTO.updateTask(taskDTO);
 				showAllTasks(request, response);
 				break;
@@ -119,9 +118,9 @@ public class TaskServlet extends HttpServlet{
 	
 	private void showAllTasks(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		allTasks.clear();
-		filteredTasks.clear();
+		//filteredTasks.clear();
 		allTasks = taskServiceDTO.getAllTask();
-		
+		/*
 		HttpSession session = request.getSession(true);
 		
 		ProjectDTO idprojectDTO = (ProjectDTO) session.getAttribute("id");
@@ -133,7 +132,7 @@ public class TaskServlet extends HttpServlet{
 			
 			if (taskDTO.getHRDTO().getId() == idhrDTO.getId())
 				filteredTasks.add(taskDTO);
-		} 
+		} */
 				
 		request.setAttribute("allTasks", allTasks);
 		getServletContext().getRequestDispatcher("/task/manageTask.jsp").forward(request, response);

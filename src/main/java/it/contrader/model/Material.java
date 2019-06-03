@@ -4,17 +4,17 @@ public class Material {
 	private int idmaterial;
 	private String tipo;
 	private int quantita;
-	private HumanResource hr;
+	private Users hr;
 
 	public Material() {
 
 	}
 
-	public Material(String tipo, int quantita, HumanResource hr) {
+	public Material(String tipo, int quantita, Users hr2) {
 		this.idmaterial = idmaterial;
 		this.tipo = tipo;
 		this.quantita = quantita;
-		this.hr = hr;
+		this.hr = hr2;
 	}
 	
 	public int getIdmaterial() {
@@ -41,11 +41,11 @@ public class Material {
 		this.quantita = quantita;
 	}
 
-	public HumanResource getHR() {
+	public Users getHR() {
 		return hr;
 	}
 
-	public void setHR(HumanResource hr) {
+	public void setHR(Users hr) {
 		this.hr = hr;
 	}
 	
@@ -54,7 +54,7 @@ public class Material {
 			return false;
 		}
 		
-		if (hr.getId() != materialCompare.getHR().getId()) {
+		if (hr.getIduser() != materialCompare.getHR().getIduser()) {
 			return false;
 		}
 		
@@ -63,7 +63,7 @@ public class Material {
 	
 	public String toString() {
 		return this.getIdmaterial() + "\t\t" + this.getTipo() + "\t\t" 
-				+ this.getQuantita() + "\t\t" + this.getHR().getId();
+				+ this.getQuantita() + "\t\t" + this.getHR().getIduser();
 	}
 }
 
