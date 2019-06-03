@@ -56,7 +56,7 @@ public class MaterialDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, material.getTipo());
 			preparedStatement.setInt(2, material.getQuantita());
-			preparedStatement.setInt(4, material.getUser().getIduser());
+			preparedStatement.setInt(3, material.getUser().getIduser());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

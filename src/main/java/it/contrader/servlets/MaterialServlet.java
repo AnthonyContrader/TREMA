@@ -33,8 +33,9 @@ public class MaterialServlet extends HttpServlet{
 		final String scelta = request.getParameter("richiesta");
 		final HttpSession session = request.getSession(true);
 		final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
-		
+		System.out.println(" "+scelta);
 		switch (scelta) {
+		
 			case "human_manager":
 				showAllMaterial(request, response);
 				break;
