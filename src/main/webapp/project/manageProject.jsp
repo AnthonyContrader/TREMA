@@ -1,4 +1,4 @@
-<%@ include file="/header.jsp"%>
+<%@ include file="../header.jsp"%>
 <%@ page import="it.contrader.dto.*"%>
 <%@ page import="it.contrader.dao.*"%>
 <%@ page import="it.contrader.model.*"%>
@@ -76,7 +76,7 @@
 	</table>
 	<br>
 	<br>
-	<a href="ProjectServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Client</i></a>
+	<a href="/JspApp/ProjectServlet?richiesta=insertRedirect"><i class="fas fa-plus-circle fa-lg"> New Client</i></a>
 	<br>
 	<br>
 	<a href="ProjectServlet?richiesta=indietro"><i class="fas fa-arrow-alt-circle-left fa-lg"> Back</i></a>

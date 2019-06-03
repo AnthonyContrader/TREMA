@@ -37,7 +37,7 @@ public class MaterialServlet extends HttpServlet{
 		//final HttpSession session = request.getSession(true);
 		// Here I don't know if userLogged is the general user that login in the app
 		// or is only the user of the entity.
-		//final UsersDTO hrLogged = (UsersDTO) session.getAttribute("utente");
+		final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
 		
 		switch (scelta) {
 			case "human_manager":
@@ -105,14 +105,14 @@ public class MaterialServlet extends HttpServlet{
 		}
 	}
 	
-	// Show all material for user logged.. (
+	
 	// I think that here all materials must be showed from the actual HR...
 	private void showAllMaterials(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		allMaterials.clear();
 		filteredMaterials.clear();
 		allMaterials = this.materialServiceDTO.getAllMaterial();
 		HttpSession session = request.getSession(true);
-		HumanResourceDTO hrLogged=(HumanResourceDTO) session.getAttribute("utente");
+		HumanResourceDTO hrLogged=(HumanResourceDTO) session.getAttribute("hr");
 		
 	
 		

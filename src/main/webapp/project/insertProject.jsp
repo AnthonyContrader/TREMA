@@ -41,10 +41,15 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="ProjectServlet?richiesta=insert">
+	<form method="POST" action="/JspApp/ProjectServlet?richiesta=insert">
 		Name: <input type="text" size="40" maxlength="40" name="name" />
-		Descrizione: <input type="text" size="40" maxlength="40" name="descrizione" />
-		Tipo: <input type="text" size="40" maxlength="40" name="tipo" />
+		Descrizione: <input type="text" size="40" maxlength="40" name="tipo" />
+		Tipo: <select style="width: 275px;" name="descrizione">
+			<option value="Informatica">Informatica</option>
+			<option value="Edile">Edile</option>
+			<option value="Tessile">Tessile</option>
+			<option value="Robotica">Robotica</option>
+		</select>
 		<br>
 		<br>
 		<input type="SUBMIT" value="Add" >

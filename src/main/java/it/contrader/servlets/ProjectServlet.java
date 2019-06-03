@@ -34,7 +34,7 @@ public class ProjectServlet extends HttpServlet {
 			showAllProject(request, response);
 			break;
 		case "insertRedirect":
-			response.sendRedirect("/project/insertProject.jsp");
+			response.sendRedirect("/JspApp/project/insertProject.jsp");
 			break;
 
 		case "insert":
