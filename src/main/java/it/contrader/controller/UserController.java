@@ -1,71 +1,103 @@
 package it.contrader.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import it.contrader.dto.UserDTO;
+import it.contrader.services.UserService;
+
 import java.util.List;
 
-import it.contrader.main.MainDispatcher;
-import it.contrader.model.User;
-import it.contrader.service.UserService;
-import it.contrader.dao.*;
 
-public class UserController implements Controller {
+@Controller
+@RequestMapping("/User")
+public class UserController {
 
-	private static String sub_package = "user.";
-	private UserService usersService;
-	private Request request;
-
-	public UserController() {
-		this.usersService = new UserService();
+	private final UserService userService;
+	private HttpSession session;
+	
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
 	}
 
-	public List<User> getAllUser() {
-		return this.usersService.getAllUser();
+	private void visualUser(HttpServletRequest request){
+		List<UserDTO> allUser = this.userService.getListaUserDTO();
+		request.setAttribute("allUserDTO", allUser);
 	}
-
-	public UserDAO readUser(int userId) {
-		return this.usersService.readUser(userId);
+	
+	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
+	public String userManagement(HttpServletRequest request) {
+		visualUser(request);
+		return "homeUser";		
 	}
-
-	public boolean insertUser(UserDAO usersDTO) {
-		return this.usersService.insertUser(usersDTO);
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		request.setAttribute("id", id);
+		this.userService.deleteUserById(id);
+		visualUser(request);
+		return "homeUser";
+		
 	}
-
-	public boolean updateUser(UserDAO usersDTO) {
-		return this.usersService.updateUser(usersDTO);
+	
+	@RequestMapping(value = "/crea", method = RequestMethod.GET)
+	public String insert(HttpServletRequest request) {
+		visualUser(request);
+		request.setAttribute("option", "insert");
+		return "creaUser";
+		
 	}
+	
+	@RequestMapping(value = "/cercaUser", method = RequestMethod.GET)
+	public String cercaUser(HttpServletRequest request) {
 
-	public boolean deleteUser(Integer usersId) {
-		return this.usersService.deleteUser(usersId);
+		final String content = request.getParameter("search");
+
+		List<UserDTO> allUser = this.userService.findUserDTOByUsername(content);
+		request.setAttribute("allUserDTO", allUser);
+
+		return "homeUser";
+
 	}
+	
+	@RequestMapping(value = "/creaUser", method = RequestMethod.POST)
+	public String insertUser(HttpServletRequest request) {
+		String username = request.getParameter("username").toString();
+		String password = request.getParameter("password").toString();
+		String ruolo = request.getParameter("ruolo").toString();
 
-	@Override
-	public void doControl(Request request) {
-		String mode = (String) request.get("mode");
-		String choice = (String) request.get("choice");
+		UserDTO userObj = new UserDTO(0, username, password, ruolo,"");
+		
+		userService.insertUser(userObj);
 
-		if (mode == "menu") {
-			MainDispatcher.getInstance().callView("User", null);
-		} else {
-			switch (choice.toUpperCase()) {
-			case "L":
-				MainDispatcher.getInstance().callView(sub_package + "UserRead", null);
-				break;
-			case "I":
-				MainDispatcher.getInstance().callView(sub_package + "UserInsert", null);
-				break;
-			case "M":
-				MainDispatcher.getInstance().callView(sub_package + "UserUpdate", null);
-				break;
-			case "C":
-				MainDispatcher.getInstance().callView(sub_package + "UserDelete", null);
-				break;
-			case "E":
-				MainDispatcher.getInstance().callView("Login", null);
-				break;
-			default:
-				MainDispatcher.getInstance().callView("Login", null);
-				break;
+		visualUser(request);
+		return "homeUser";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginControl(HttpServletRequest request) {
+
+		session = request.getSession();
+		final String username = request.getParameter("username");
+		final String password = request.getParameter("password");
+		final UserDTO userDTO = userService.getByUsernameAndPassword(username, password);
+		final String ruolo = userDTO.getRuolo();
+		if (!StringUtils.isEmpty(ruolo)) {
+			session.setAttribute("utenteCollegato", userDTO);
+			if (ruolo.equals("ADMIN")) {
+				return "home";
+			} else if (ruolo.equals("CHATMASTER")) {
+				return "home";
 			}
 		}
+		return "index";
 	}
-
 }

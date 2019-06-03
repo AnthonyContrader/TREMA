@@ -1,34 +1,50 @@
 package it.contrader.controller;
 
-import it.contrader.main.MainDispatcher;
-import it.contrader.service.LoginService;
+import java.util.List;
 
-public class HomeController implements Controller {
+import javax.servlet.http.HttpServletRequest;
 
-    private LoginService loginService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-    public HomeController() {
-        loginService = new LoginService();
-    }
+import it.contrader.dto.UserDTO;
+import it.contrader.services.UserService;
 
-    public void doControl(Request request) {
-        if (request != null) {
-            String nomeUtente = request.get("nomeUtente").toString();
-            String password = request.get("password").toString();
-            
-            //Change view according userType
-            String userType= loginService.login(nomeUtente, password);
-            if(userType==null)
-                MainDispatcher.getInstance().callAction("Login", "doControl", request);
-            
-            if (userType.equals("admin"))
-                MainDispatcher.getInstance().callView("HomeAdmin", request);
-            
-            if (userType.equals("user"))
-            	MainDispatcher.getInstance().callView("HomeBO", request);
-           
-        }
-        else MainDispatcher.getInstance().callView("Login", null);
+@Controller
+@RequestMapping("/Home")
+public class HomeController {
 
-    }
+	private final UserService userService;
+
+	@Autowired
+	public HomeController(UserService userService) {
+		this.userService = userService;
+	}
+
+	@RequestMapping(value = "/chatManagement", method = RequestMethod.GET)
+	public String chatManagement(HttpServletRequest request) {
+		return "homeChatbot";
+
+	}
+
+	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
+	public String userManagement(HttpServletRequest request) {
+		List<UserDTO> allUser = this.userService.getListaUserDTO();
+		request.setAttribute("allUserDTO", allUser);
+		return "homeUser";
+
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		return "index";
+
+	}
+	@RequestMapping(value = "/indietro", method = RequestMethod.GET)
+	public String indietro(HttpServletRequest request) {
+		return "home";
+
+	}
 }

@@ -1,83 +1,43 @@
 package it.contrader.model;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.lang.Nullable;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class User {
-	protected int iduser;
-	protected String username;
-	protected String password;
-	protected String usertype;
-	
-	public User() {}
-	
-	public User (String username, String password, String usertype) {
-		this.username = username;
-		this.password = password;
-		this.usertype = usertype;
-	}
 
-	public int getUserId() {
-		return iduser;
-	}
-	public void setUserId(int userId) {
-		this.iduser = userId;
-	}
+	@Id
+	@Column(name = "idUser")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idUser;
 
-	public String getPassword() {
-		return password;
-	}
+	@Column(name = "username")
+	@NotNull
+	private String username;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	@Column(name = "password")
+	@NotNull
+	private String password;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	@NotNull
+	@Column(name = "ruolo")
+	private String ruolo;
 
-	public String getUsername() {
-		return username;
-	}
-	
-	public String getUsertype() {
-		return usertype;
-	}
-
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
-	}
-	
-	@Override
-	public String toString() {
-		return  iduser + "\t"  + username +"\t\t" +   password + "\t\t" + usertype;
-	}
-
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		
-		User other = (User) obj;
-		
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		
-		if (iduser != other.iduser)
-			return false;
-		
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		
-		return true;
-	}
+	@Nullable
+	@Column(name = "email")
+	private String email;
 
 }
