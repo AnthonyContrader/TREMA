@@ -91,6 +91,7 @@ public class TaskServlet extends HttpServlet{
 				
 				taskDTO = null;
 				taskDTO = new TaskDTO(descrizione_task, projectDTO, hrDTO);
+				taskDTO.setIdtask(idtask);
 				taskServiceDTO.updateTask(taskDTO);
 				showAllTasks(request, response);
 				break;

@@ -29,7 +29,7 @@ public class TaskDAO {
 	private final String QUERY_ALL = "SELECT * FROM task";
 	private final String QUERY_INSERT = "INSERT INTO task (descrizione_task, idproject, idHR) values (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM task WHERE idtask=(?)";
-	private final String QUERY_UPDATE = "UPDATE task SET descrizione_task, idproject, idHR = (?,?,?) WHERE idtask = (?)";
+	private final String QUERY_UPDATE = "UPDATE task SET descrizione_task=?, idproject=?, idHR=? WHERE idtask = (?)";
 	private final String QUERY_DELETE = "DELETE FROM task WHERE idtask = (?)";
 	
 	public TaskDAO() {
@@ -120,14 +120,12 @@ public class TaskDAO {
 	public boolean updateTask(Task taskToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 		
-		if (taskToUpdate.getIdtask() == 0)
-			return false;
-		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, taskToUpdate.getDescrizione_task());
 			preparedStatement.setInt(2, taskToUpdate.getProject().getProjectId());
 			preparedStatement.setInt(3, taskToUpdate.getHR().getId());
+			preparedStatement.setInt(4, taskToUpdate.getIdtask());
 			int result = preparedStatement.executeUpdate();
 			
 			if (result > 0)
