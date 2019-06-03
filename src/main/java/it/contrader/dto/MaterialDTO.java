@@ -6,13 +6,13 @@ public class MaterialDTO {
 	private int idmaterial;
 	private String tipo;
 	private int quantita;
-	private HumanResourceDTO hrDTO;
+	private UsersDTO hrDTO;
 	
-	public MaterialDTO(String tipo, int quantita, HumanResourceDTO hrDTO){
+	public MaterialDTO(String tipo, int quantita, UsersDTO hrLogged){
 		super();
 		this.tipo = tipo;
 		this.quantita = quantita;
-		this.hrDTO = hrDTO; 
+		this.hrDTO = hrLogged; 
 	}
 
 	public int getIdmaterial() {
@@ -39,11 +39,11 @@ public class MaterialDTO {
 		this.quantita = quantita;
 	}
 
-	public HumanResourceDTO getHRDTO() {
+	public UsersDTO getHRDTO() {
 		return hrDTO;
 	}
 
-	public void setHRDTO(HumanResourceDTO hrDTO) {
+	public void setHRDTO(UsersDTO hrDTO) {
 		this.hrDTO = hrDTO;
 	}
 	

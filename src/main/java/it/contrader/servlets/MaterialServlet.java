@@ -33,11 +33,11 @@ public class MaterialServlet extends HttpServlet{
 		
 		final String scelta = request.getParameter("richiesta");
 		final HttpSession session = request.getSession(true);
-		final HumanResourceDTO hrLogged = (HumanResourceDTO) session.getAttribute("hr");
+		//final HumanResourceDTO hrLogged = (HumanResourceDTO) session.getAttribute("hr");
 		//final HttpSession session = request.getSession(true);
 		// Here I don't know if userLogged is the general user that login in the app
 		// or is only the user of the entity.
-		final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
+		final UsersDTO hrLogged = (UsersDTO) session.getAttribute("utente");
 		
 		switch (scelta) {
 			case "human_manager":
@@ -112,12 +112,12 @@ public class MaterialServlet extends HttpServlet{
 		filteredMaterials.clear();
 		allMaterials = this.materialServiceDTO.getAllMaterial();
 		HttpSession session = request.getSession(true);
-		HumanResourceDTO hrLogged=(HumanResourceDTO) session.getAttribute("hr");
+		UsersDTO hrLogged=(UsersDTO) session.getAttribute("utente");
 		
 	
 		
 		for (MaterialDTO materialDTO : allMaterials) {
-			if (materialDTO.getHRDTO().getId() == hrLogged.getId())
+			if (materialDTO.getHRDTO().getId()==hrLogged.getId())
 				filteredMaterials.add(materialDTO);
 		}
 				
