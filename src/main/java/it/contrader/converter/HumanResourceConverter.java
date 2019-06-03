@@ -7,13 +7,13 @@ import it.contrader.model.Users;
 
 public class HumanResourceConverter {
 	
-	public static HumanResource toEntity(HumanResource humanResource) {
+	public static HumanResource toEntity(HumanResourceDTO hrdto) {
 
 		HumanResource hr = null;
-		if (humanResource != null) {
-			Users user = UsersConverter.toEntity(humanResource.getUserDTO());
-			hr = new HumanResource(humanResource.getName(), humanResource.getSurname(), user);
-			hr.setId(humanResource.getId());
+		if (hrdto != null) {
+			Users user = UsersConverter.toEntity(hrdto.getUserDTO());
+			hr = new HumanResource(hrdto.getName(), hrdto.getSurname(), user);
+			hr.setId(hrdto.getId());
 		}
 		return hr;
 	}

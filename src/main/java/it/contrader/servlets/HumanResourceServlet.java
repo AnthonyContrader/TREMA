@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.contrader.dto.*;
-import it.contrader.model.HumanResource;
 import it.contrader.service.*;
 
 public class HumanResourceServlet extends HttpServlet {
@@ -26,16 +25,6 @@ public class HumanResourceServlet extends HttpServlet {
 		final String scelta = request.getParameter("richiesta");
 		final HttpSession session = request.getSession(true);
 		final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
-		session.setAttribute("hr", null);
-		
-
-		if (request != null) {
-			final String name = request.getParameter("name").toString().trim();
-			final String surname = request.getParameter("surname").toString().trim();
-			final HumanResourceDTO hrDTO = HrServiceDTO.getHRByNameAndSurname(new HumanResource(name, surname));
-
-			if (hrDTO != null) 
-				session.setAttribute("hr", hrDTO);
 
 		switch (scelta) {
 
@@ -44,7 +33,7 @@ public class HumanResourceServlet extends HttpServlet {
 			break;
 
 		case "insertRedirect":
-			response.sendRedirect("humanresource/insertHumanResource.jsp");
+			response.sendRedirect("/JspApp/humanresource/insertHumanResource.jsp");
 			break;
 
 		case "insert":
@@ -93,7 +82,7 @@ public class HumanResourceServlet extends HttpServlet {
 			break;
 
 		}
-		}
+
 	}
 	
 
