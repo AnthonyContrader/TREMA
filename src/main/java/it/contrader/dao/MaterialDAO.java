@@ -12,16 +12,14 @@ import it.contrader.main.ConnectionSingleton;
 import it.contrader.main.GestoreEccezioni;
 import it.contrader.model.Material;
 import it.contrader.model.Users;
-import it.contrader.model.HumanResource;
 
 public class MaterialDAO {
 
-	private final String QUERY_ALL = "SELECT * FROM material";
-	private final String QUERY_INSERT = "INSERT INTO material (tipo, quantita, idHR) VALUES (?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM material WHERE idmaterial=?";
-	private final String QUERY_UPDATE = "UPDATE material SET tipo=?, quantita=?, idHR=? WHERE idmaterial=?";
-	private final String QUERY_DELETE = "DELETE FROM material WHERE idmaterial=?";
-	
+	private final String QUERY_ALL = "select * from material";
+	private final String QUERY_INSERT = "insert into material (tipo, quantita,iduser) values (?,?,?)";
+	private final String QUERY_READ = "select * from material where idmaterial=?";
+	private final String QUERY_UPDATE = "UPDATE material SET tipo=?, quantita=?, iduser=? WHERE idmaterial=?";
+	private final String QUERY_DELETE = "DELETE from material WHERE idmaterial=?";
 	public MaterialDAO() {
 
 	}
@@ -35,13 +33,13 @@ public class MaterialDAO {
 			Material material;
 			while (resultSet.next()) {
 				int userId = resultSet.getInt("iduser");
-				Users HrMaterial = new Users(null, null, null);
-				HrMaterial.setIduser(userId);
+				Users userMaterial = new Users(null, null, null);
+				userMaterial.setIduser(userId);
 				
 				String tipo = resultSet.getString("tipo");
 				int quantita = resultSet.getInt("quantita");
 				
-				material = new Material(tipo, quantita, HrMaterial);
+				material = new Material(tipo, quantita, userMaterial);
 				material.setIdmaterial(resultSet.getInt("idmaterial"));
 				materialList.add(material);
 	
@@ -58,7 +56,7 @@ public class MaterialDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, material.getTipo());
 			preparedStatement.setInt(2, material.getQuantita());
-			preparedStatement.setInt(3, material.getHR().getIduser());
+			preparedStatement.setInt(4, material.getUser().getIduser());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -78,15 +76,14 @@ public class MaterialDAO {
 			resultSet.next();
 			
 			String tipo;
-			int quantita, hr;
 			
 			tipo = resultSet.getString("tipo");
-			quantita = resultSet.getInt("quantita");
-			hr = resultSet.getInt("iduser");
-			Users hrClient = new Users(null, null, null);
-			hrClient.setIduser(hr);
+			int quantita = resultSet.getInt("quantita");
+			int userId = resultSet.getInt("iduser");
+			Users userClient = new Users(null, null, null);
+			userClient.setIduser(userId);
 			
-			material = new Material(tipo, quantita, hrClient);
+			material = new Material(tipo, quantita, userClient);
 			material.setIdmaterial(resultSet.getInt("idmaterial"));
 			
 			return material;
@@ -107,7 +104,8 @@ public class MaterialDAO {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, materialToUpdate.getTipo());
 			preparedStatement.setInt(2, materialToUpdate.getQuantita());
-			preparedStatement.setInt(3, materialToUpdate.getHR().getIduser());
+			preparedStatement.setInt(3, materialToUpdate.getUser().getIduser());
+			preparedStatement.setInt(4, materialToUpdate.getIdmaterial());
 			int result = preparedStatement.executeUpdate();
 			
 			if (result > 0)

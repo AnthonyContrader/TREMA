@@ -1,18 +1,19 @@
 package it.contrader.dto;
 
-import it.contrader.dto.*;
+import it.contrader.dto.MaterialDTO;
+import it.contrader.dto.UsersDTO;
 
 public class MaterialDTO {
 	private int idmaterial;
 	private String tipo;
 	private int quantita;
-	private UsersDTO hrDTO;
+	private UsersDTO userDTO;
 	
-	public MaterialDTO(String tipo, int quantita, UsersDTO hrLogged){
+	public MaterialDTO(String tipo, int quantita, UsersDTO userDTO){
 		super();
 		this.tipo = tipo;
 		this.quantita = quantita;
-		this.hrDTO = hrLogged; 
+		this.userDTO=userDTO; 
 	}
 
 	public int getIdmaterial() {
@@ -39,18 +40,20 @@ public class MaterialDTO {
 		this.quantita = quantita;
 	}
 
-	public UsersDTO getHRDTO() {
-		return hrDTO;
+	public UsersDTO getUserDTO() {
+		return userDTO;
 	}
 
-	public void setHRDTO(UsersDTO hrDTO) {
-		this.hrDTO = hrDTO;
+	public void setUserDTO(UsersDTO userDTO) {
+		this.userDTO = userDTO;
 	}
 	
 	public boolean equals(MaterialDTO materialCompare) {
-		if (hrDTO.getId()!=materialCompare.getHRDTO().getId()) 
-			return false;
 		
+		if (userDTO.getId()!=materialCompare.getUserDTO().getId()) {
+			return false;
+		}
+
 		if (!this.getTipo().equals(getTipo()))
 			return false;
 		

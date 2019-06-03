@@ -1,4 +1,4 @@
-<%@ include file="/header.jsp"%>
+<%@ include file="../header.jsp"%>
 <%@ page import="it.contrader.dto.*"%>
 <%@ page import="it.contrader.dao.*"%>
 <%@ page import="it.contrader.model.*"%>

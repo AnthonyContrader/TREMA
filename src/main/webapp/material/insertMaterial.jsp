@@ -41,7 +41,7 @@
 	<br>
 	<br>
 	<br>
-	<form method="POST" action="MaterialServlet?richiesta=insert">
+	<form method="POST" action="/JspApp/MaterialServlet?richiesta=insert">
 
 		Tipo: <input type="text" size="40" maxlength="40" name="tipo" />
 		Quantita: <input type="text" size="40" maxlength="40" name="quantita" />

@@ -2,10 +2,8 @@ package it.contrader.converter;
 
 import it.contrader.dto.MaterialDTO;
 import it.contrader.dto.UsersDTO;
-import it.contrader.dto.HumanResourceDTO;
 import it.contrader.model.Material;
 import it.contrader.model.Users;
-import it.contrader.model.HumanResource;
 
 public class MaterialConverter{
 
@@ -13,8 +11,8 @@ public class MaterialConverter{
 		
 		Material material = null;
 		if (materialDTO != null) {
-			Users hr = UsersConverter.toEntity(materialDTO.getHRDTO());
-			material = new Material(materialDTO.getTipo(), materialDTO.getQuantita(), hr);
+			Users user = UsersConverter.toEntity(materialDTO.getUserDTO());
+			material = new Material(materialDTO.getTipo(), materialDTO.getQuantita(), user);
 			material.setIdmaterial(materialDTO.getIdmaterial());
 		}
 		return material;
@@ -24,8 +22,8 @@ public class MaterialConverter{
 		
 		MaterialDTO materialDTO = null;
 		if (material != null) {
-			UsersDTO hrDTO = UsersConverter.toDTO(material.getHR());
-			materialDTO = new MaterialDTO(material.getTipo(), material.getQuantita(), hrDTO);
+			UsersDTO userDTO = UsersConverter.toDTO(material.getUser());
+			materialDTO = new MaterialDTO(material.getTipo(), material.getQuantita(), userDTO);
 			materialDTO.setIdmaterial(material.getIdmaterial());
 		}
 		

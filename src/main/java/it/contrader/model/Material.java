@@ -1,20 +1,23 @@
 package it.contrader.model;
 
+import it.contrader.model.Material;
+import it.contrader.model.Users;
+
 public class Material {
+	
 	private int idmaterial;
 	private String tipo;
 	private int quantita;
-	private Users hr;
+	private Users user;
 
 	public Material() {
 
 	}
 
-	public Material(String tipo, int quantita, Users hr2) {
-		this.idmaterial = idmaterial;
+	public Material(String tipo, int quantita, Users user) {
 		this.tipo = tipo;
 		this.quantita = quantita;
-		this.hr = hr2;
+		this.user=user; 
 	}
 	
 	public int getIdmaterial() {
@@ -41,12 +44,12 @@ public class Material {
 		this.quantita = quantita;
 	}
 
-	public Users getHR() {
-		return hr;
+	public Users getUser() {
+		return user;
 	}
 
-	public void setHR(Users hr) {
-		this.hr = hr;
+	public void setUser(Users user) {
+		this.user = user;
 	}
 	
 	public boolean equals(Material materialCompare) {
@@ -54,7 +57,7 @@ public class Material {
 			return false;
 		}
 		
-		if (hr.getIduser() != materialCompare.getHR().getIduser()) {
+		if (user.getIduser()!=materialCompare.getUser().getIduser()) {
 			return false;
 		}
 		
@@ -63,7 +66,7 @@ public class Material {
 	
 	public String toString() {
 		return this.getIdmaterial() + "\t\t" + this.getTipo() + "\t\t" 
-				+ this.getQuantita() + "\t\t" + this.getHR().getIduser();
+				+ this.getQuantita() + "\t\t" + this.getUser().getIduser();
 	}
 }
 
