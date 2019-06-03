@@ -14,7 +14,7 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 	text-align: center;
-	color: white;
+	color: #3399ff;
 }
 </style>
 <link rel="stylesheet" type="text/css" href="TREMA/src/main/webapp/css/style.css">
