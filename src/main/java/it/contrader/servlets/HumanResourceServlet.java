@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.contrader.dto.HumanResourceDTO;
-import it.contrader.dto.UsersDTO;
-import it.contrader.service.HumanResourceServiceDTO;
+import it.contrader.dto.*;
+import it.contrader.service.*;
 
 public class HumanResourceServlet extends HttpServlet {
 
@@ -34,7 +33,7 @@ public class HumanResourceServlet extends HttpServlet {
 			break;
 
 		case "insertRedirect":
-			response.sendRedirect("/humanresource/insertHumanResource.jsp");
+			response.sendRedirect("humanresource/insertHumanResource.jsp");
 			break;
 
 		case "insert":

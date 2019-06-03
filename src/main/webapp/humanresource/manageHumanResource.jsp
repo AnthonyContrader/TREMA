@@ -1,23 +1,17 @@
 <%@ include file="/header.jsp"%>
 <%@ page import="it.contrader.dto.*"%>
+<%@ page import="it.contrader.dao.*"%>
+<%@ page import="it.contrader.model.*"%>
+<%@ page import="it.contrader.service.*"%>
+<%@ page import="it.contrader.servlets.*"%>
 <%@ page import="java.util.*"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>Gestione Hr</title>
-<style>
-body {
-	background-image:
-		url("https://i1.wp.com/www.deteched.com/wp-content/uploads/2017/10/Space-Vortex-4K-Abstract-Wallpapers.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	text-align: center;
-	color: white;
-}
-</style>
-<link rel="stylesheet" type="text/css" href="TREMA/src/main/webapp/css/style.css">
+
+<link rel="stylesheet" type="text/css" href="/TREMA/src/main/webapp/css/trema.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <style>
@@ -27,7 +21,7 @@ body {
 	margin: auto;
 	height: 50px;
 	border: 1px solid black;
-	border-radius: 40px 40px 40px 40px;
+	border-radius: 40px 40px 4px 40px;
 	background-color: rgba(0, 0, 0, 0.9);
 	box-shadow: 20px 30px 20px #000000;
 	padding: 20px;
