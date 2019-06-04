@@ -28,6 +28,7 @@ public class UserController {
 	}
 
 	private void visualUser(HttpServletRequest request){
+		//UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
 	}

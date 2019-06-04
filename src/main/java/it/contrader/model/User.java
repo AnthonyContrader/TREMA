@@ -1,10 +1,16 @@
 package it.contrader.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.Nullable;
@@ -17,7 +23,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor	
 @Entity			//associa classe tab db
-public class User {
+@Table(name="users")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "idUser")
@@ -47,6 +60,12 @@ public class User {
 	@NotNull
 	@Column(name = "usertype")
 	private String usertype;
+	
+	//bi-directional many-to-one association to Project
+		@OneToMany(mappedBy="user")
+		private List<Project> projects;
+		
+	public User() {}
 
 	public Integer getIdUser() {
 		return idUser;
@@ -104,6 +123,26 @@ public class User {
 		this.usertype = usertype;
 	}
 
-	
+	public List<Project> getProjects() {
+		return this.projects;
+	}
+
+	public void setProject(List<Project> project) {
+		this.project = project;
+	}
+
+	public Project addProject(Project project) {
+		getProjects().add(project);
+		project.setUser(this);
+
+		return project;
+	}
+
+	public Project removeProject(Project project) {
+		getProjects().remove(project);
+		project.setUser(null);
+
+		return project;
+	}
 
 }

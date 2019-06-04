@@ -1,5 +1,6 @@
 package it.contrader.dto;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,8 @@ public class UserDTO {
 	private String azienda;
 	
 	private String usertype;
+	
+	private List<ProjectDTO> projectsDTO;
 
 	public Integer getIdUser() {
 		return idUser;
@@ -77,6 +80,14 @@ public class UserDTO {
 
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
+	}
+
+	public List<ProjectDTO> getProjectsDTO() {
+		return projectsDTO;
+	}
+
+	public void setProjectsDTO(List<ProjectDTO> projectsDTO) {
+		this.projectsDTO = projectsDTO;
 	}
 
 	
