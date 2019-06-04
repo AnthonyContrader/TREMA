@@ -11,7 +11,7 @@
 /*contenitore in cima dove c'è scritto "Login"*/
 .pre_contenitore {
 	width: 320px;
-	margin: auto;
+	margin-left: 600px;
 	height: 50px;
 	border: 1px solid black;
 	border-radius: 40px 40px 40px 40px;
