@@ -70,7 +70,7 @@
 			<td><%=material.getQuantita()%></td>
 
 
-			<td><a href="MaterialServlet?richiesta=updateRedirect&id=<%=material.getIdmaterial()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td><a href="MaterialServlet?richiesta=updateRedirect&idmaterial=<%=material.getIdmaterial()%>"><i class="fas fa-edit" title="Update"></i></a></td>
 			<td><a href="MaterialServlet?richiesta=delete&idmaterial=<%=material.getIdmaterial()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%

@@ -66,8 +66,9 @@ public class HumanResourceServlet extends HttpServlet {
 			break;
 
 		case "delete":
-			final Integer HrIdDelete = Integer.parseInt(request.getParameter("idhr"));
-			final HumanResourceDTO Hrdelete = new HumanResourceDTO("","",userLogged);
+			final int HrIdDelete = Integer.parseInt(request.getParameter("idhr"));
+			System.out.println(" "+HrIdDelete);
+			final HumanResourceDTO Hrdelete = new HumanResourceDTO(" "," ",userLogged);
 			Hrdelete.setId(HrIdDelete);
 			HrServiceDTO.deleteHr(Hrdelete);
 			showAllHr(request, response);

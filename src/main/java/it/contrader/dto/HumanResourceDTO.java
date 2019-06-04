@@ -21,7 +21,7 @@ public class HumanResourceDTO {
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.Id = id;
 	}
 
 	public UsersDTO getUserDTO() {

@@ -33,7 +33,7 @@ public class MaterialServlet extends HttpServlet{
 		final String scelta = request.getParameter("richiesta");
 		final HttpSession session = request.getSession(true);
 		final UsersDTO userLogged = (UsersDTO) session.getAttribute("utente");
-		System.out.println(" "+scelta);
+		
 		switch (scelta) {
 		
 			case "human_manager":
@@ -45,10 +45,8 @@ public class MaterialServlet extends HttpServlet{
 				break;
 
 		case "insert":
-			
 			final String tipo = request.getParameter("tipo");
 			final Integer quantita = Integer.parseInt(request.getParameter("quantita"));
-			System.out.println(" "+tipo+" "+quantita);
 			final MaterialDTO materialInsert = new MaterialDTO(tipo,quantita,userLogged);
 			materialServiceDTO.insertMaterial(materialInsert);
 			showAllMaterial(request, response);

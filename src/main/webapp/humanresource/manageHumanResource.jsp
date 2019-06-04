@@ -70,8 +70,8 @@
 			<td><%=hr.getName()%></td>
 			<td><%=hr.getSurname()%></td>
 			
-			<td class="center"><a href="/JspApp/HumanResourceServlet?richiesta=updateRedirect&idhr=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
-			<td class="center"><a href="/JspApp/HumanResourceServlet?richiesta=delete&idhr=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
+			<td class="center"><a href="HumanResourceServlet?richiesta=updateRedirect&idhr=<%=hr.getId()%>"><i class="fas fa-edit" title="Update"></i></a></td>
+			<td class="center"><a href="HumanResourceServlet?richiesta=delete&idhr=<%=hr.getId()%>"><i class="fas fa-trash-alt" title="Delete"></i></a></td>
 		</tr>
 		<%
 			}
