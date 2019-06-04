@@ -18,7 +18,7 @@ public class HomeController {
 
 	private final UserService userService;
 
-	@Autowired
+	@Autowired//si crea il server all'avvio e tramite la injection si richiama il service
 	public HomeController(UserService userService) {
 		this.userService = userService;
 	}
@@ -33,7 +33,7 @@ public class HomeController {
 	public String userManagement(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
-		return "homeUser";
+		return "homeUser"; //tramite la view resolver(bean istanziato da spring)
 
 	}
 
