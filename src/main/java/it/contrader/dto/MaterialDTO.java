@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 
 @Data
 @AllArgsConstructor
@@ -15,10 +13,11 @@ public class MaterialDTO {
 	private int Idmaterial;
 
 	private String material;
-
-	private MaterialDTO materialDTO;
-
-
 	
+	private int quantita;
+	
+	private UserDTO userDTO;
+	
+	private int	taskDTO;
 
 }

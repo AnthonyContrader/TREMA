@@ -2,7 +2,8 @@ package it.contrader.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;;
+
 
 
 /**
@@ -10,34 +11,37 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="materials")
+@Table(name="material")
 @NamedQuery(name="Material.findAll", query="SELECT c FROM Material c")
 public class Material implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idmaterial")
-	private int Idmaterial;
+	@Column(name="idMaterial")
+	private int idMaterial;
 
 	@Column(name="material")
 	private String material;
+	
+	@Column(name="quantita")
+	private int quantita;
 
 	//bi-directional many-to-one association to Task
 	@ManyToOne
-	@JoinColumn(name="idtask")
-	private Task task;
+	@JoinColumn(name="idTask")
+	private List<Task> task;
 
 
 	public Material() {
 	}
 
 	public int getIdmaterial() {
-		return this.Idmaterial;
+		return this.idMaterial;
 	}
 
 	public void setIdMaterial(int Idmaterial) {
-		this.Idmaterial = Idmaterial;
+		this.idMaterial = Idmaterial;
 	}
 
 	public String getMaterial() {
@@ -47,13 +51,21 @@ public class Material implements Serializable {
 	public void setMaterial(String material) {
 		this.material = material;
 	}
+	
+	public int getQuantita() {
+		return this.quantita;
+	}
 
-	public Task getTask() {
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
+	public List<Task> getTask() {
 		return this.task;
 	}
 
 	public void setTask(Task task) {
-		this.task = task;
+		this.task = (List<Task>) task;
 	}
 
 

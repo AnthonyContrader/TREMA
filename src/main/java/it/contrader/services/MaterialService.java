@@ -1,4 +1,4 @@
-package it.contrader.service;
+package it.contrader.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.converter.ConverterMaterial;
-import it.contrader.converter.ConverterTask;
+import it.contrader.converter.ConverterUser;
 import it.contrader.dao.MaterialRepository;
 import it.contrader.dto.MaterialDTO;
-import it.contrader.dto.TaskDTO;
+import it.contrader.dto.UserDTO;
 import it.contrader.model.Material;
-import it.contrader.model.Task;
 
 @Service
 public class MaterialService {
@@ -26,12 +25,12 @@ public class MaterialService {
 	}
 	
 	public List<MaterialDTO> getListaMAterialDTO(){
-		return ConverterMaterial.toListDTO((List<material>) materialRepository.findAll());
+		return ConverterMaterial.toListDTO((List<Material>) materialRepository.findAll());
 		
 	}
 	
 	public MaterialDTO getMaterialDTOByIdmaterial(Integer idmaterial) {
-		return ConverterMaterial.toDTO(materialRepository.findByIdmaterial(idmaterial).get());
+		return ConverterMaterial.toDTO(materialRepository.findById(idmaterial).get());
 	}
 
 	
@@ -39,18 +38,18 @@ public class MaterialService {
 		return materialRepository.save(ConverterMaterial.toEntity(materialDTO)) != null;
 	}
 	
-	public boolean updateMaterial(MAterialDTO materialDTO) {
+	public boolean updateMaterial(MaterialDTO materialDTO) {
 		return materialRepository.save(ConverterMaterial.toEntity(materialDTO)) != null;
 	}
 	
 	public void deletematerialByIdmaterial(Integer idmaterial) {
-		materialRepository.deleteByIdmaterial(idmaterial);
+		materialRepository.deleteById(idmaterial);
 	}
 
 	
-	public List<MaterialDTO> findMaterialDTOByTask( TaskDTO taskDTO) {
+	public List<MaterialDTO> findMaterialDTOByUser( UserDTO userDTO) {
 		
-		final List<Material> listMaterial = materialRepository.findAllByTask(ConverterTask.toEntity(taskDTO));
+		final List<Material> listMaterial = materialRepository.findAllByUser(ConverterUser.toEntity(userDTO));
 		final List<MaterialDTO> listMaterialDTO = new ArrayList<>();
 		listMaterial.forEach(i -> listMaterialDTO.add(ConverterMaterial.toDTO(i)));
 		return listMaterialDTO;

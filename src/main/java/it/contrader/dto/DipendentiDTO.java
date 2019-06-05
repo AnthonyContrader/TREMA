@@ -18,5 +18,7 @@ public class DipendentiDTO {
 	private String surname;
 
 	private UserDTO userDTO;
+	
+	private int	taskDTO;
 
 }

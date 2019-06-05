@@ -1,14 +1,14 @@
-package it.contrader.wmesspring.converter;
+package it.contrader.converter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.wmesspring.dto.ClientDTO;
-import it.contrader.wmesspring.dto.OrderDTO;
-import it.contrader.wmesspring.dto.TaskDTO;
-import it.contrader.wmesspring.model.Client;
-import it.contrader.wmesspring.model.Order;
-import it.contrader.wmesspring.model.Task;
+import it.contrader.dto.DipendentiDTO;
+import it.contrader.dto.MaterialDTO;
+import it.contrader.dto.TaskDTO;
+import it.contrader.model.Dipendenti;
+import it.contrader.model.Material;
+import it.contrader.model.Task;
 
 
 
@@ -20,14 +20,13 @@ public class ConverterMaterial {
 			
 			if (material != null) {
 				materialDTO = new MaterialDTO();
-				materialDTO.setMaterialDTO(ConverterTask.toDTO(material.getTask()));
+				materialDTO.setTaskDTO(ConverterTask.toDTO(material.getTask()));
 				
-				materialDTO.setMaterialName(material.getMaterialName());
+				materialDTO.setMaterial(material.getMaterial());
+				
+				materialDTO.setQuantita(material.getQuantita());
 
-				materialDTO.setIdmaterial(material.getIdmaterial());	
-				
-	
-				
+				materialDTO.setIdmaterial(material.getIdmaterial());		
 			}
 		
 		return materialDTO;
@@ -41,11 +40,9 @@ public class ConverterMaterial {
 			material = new Material();
 			material.setTask(ConverterTask.toEntity(materialDTO.getTaskDTO()));
 
-			material.setIdmaterial(materialDTO.getIdmaterial());
-			material.setMaterialName(materialDTO.getMaterial());
-			
-			
-			
+			material.setIdMaterial(materialDTO.getIdmaterial());
+			material.setMaterial(materialDTO.getMaterial());
+			material.setQuantita(materialDTO.getQuantita());			
 		}
 		return material;	
 		}
@@ -63,8 +60,8 @@ public class ConverterMaterial {
 	public static List<Material> toListEntity(List<MaterialDTO> listMaterialDTO) {
 		List<Material> list = new ArrayList<>();
 		if (!listMaterialDTO.isEmpty()) {
-			for (MaterialDTO materialDTO : listClientDTO) {
-				list.add(ConverterMAterial.toEntity(materialDTO));
+			for (MaterialDTO materialDTO : listMaterialDTO) {
+				list.add(ConverterMaterial.toEntity(materialDTO));
 			}
 		}
 		return list;
