@@ -90,7 +90,7 @@ public class UserController {
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
 		final UserDTO userDTO = userService.getByUsernameAndPassword(username, password);
-		final String usertype = userDTO.getUserType();
+		final String usertype = userDTO.getUserType(); // possibile errore
 		if (!StringUtils.isEmpty(usertype)) {
 			session.setAttribute("utenteCollegato", userDTO);
 			if (usertype.equals("ADMIN")) {

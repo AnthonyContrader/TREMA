@@ -3,6 +3,9 @@ package it.contrader.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.util.List;
 
 @Entity
@@ -22,11 +25,11 @@ public class Project implements Serializable {
 	@Column(name="tipologie")
 	private String tipologie;
 	
-	private List<Task> tasks;
 	
 	//bi-directional many-to-one association to Project
-	@ManyToOne
-	@JoinColumn(name="iduser")
+	@OneToMany(mappedBy="projects")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+		private List<Task> tasks;
 	private User user;
 	
 	public Project() {
