@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import it.contrader.wmesspring.dto.TaskDTO;
+import it.contrader.dto.TaskDTO;
 
 @Data
 @AllArgsConstructor

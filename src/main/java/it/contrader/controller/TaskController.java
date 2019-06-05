@@ -27,7 +27,7 @@ public class TaskController {
 	//private final ProjectService projectService;
 	
 	@Autowired
-	public TaskController(TaskService taskService, ResourceService resourceService) {
+	public TaskController(TaskService taskService) {
 		this.taskService = taskService;
 	}
 
