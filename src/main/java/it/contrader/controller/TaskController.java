@@ -45,9 +45,9 @@ public class TaskController {
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
-		int idtask = Integer.parseInt(request.getParameter("idtask"));
-		request.setAttribute("idtask", idtask);
-		this.taskService.deleteTaskById(idtask);
+		int idTask = Integer.parseInt(request.getParameter("idtask"));
+		request.setAttribute("idTask", idTask);
+		this.taskService.deleteTaskById(idTask);
 		visualTask(request);
 		return "task/manageTask";
 	}
@@ -67,8 +67,8 @@ public class TaskController {
 		String datainizioInsert = request.getParameter("data_inizio").toString();
 		String datafineInsert = request.getParameter("data_fine").toString();
 		String objectiveInsert = request.getParameter("objective").toString();
-		int idproject = Integer.parseInt(request.getParameter("idproject"));
-		projectInsertDTO.setIdProject(idproject);
+		int idProject = Integer.parseInt(request.getParameter("idProject"));
+		projectInsertDTO.setIdProject(idProject);
 		
 		TaskDTO taskObj = new TaskDTO();
 		
@@ -90,7 +90,7 @@ public class TaskController {
 		
 		TaskDTO taskUpdate = new TaskDTO();
 		
-		int idtask = Integer.parseInt(request.getParameter("idtask"));
+		int idtask = Integer.parseInt(request.getParameter("idTask"));
 		taskUpdate = this.taskService.getTaskDTOByIdTask(idtask);
 		
 		request.setAttribute("taskUpdate", taskUpdate);
@@ -101,19 +101,19 @@ public class TaskController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request, HttpSession session) {
-		Integer idtaskUpdate = Integer.parseInt(request.getParameter("idtask"));
+		Integer idTaskUpdate = Integer.parseInt(request.getParameter("idTask"));
 		String taskUpdate = request.getParameter("task");
 		String datainizioUpdate = request.getParameter("data_inizio");
 		String datafineUpdate = request.getParameter("data_fine");
 		String objectiveUpdate = request.getParameter("objective");
-		Integer projectUpdateId = Integer.parseInt(request.getParameter("idproject"));
+		Integer projectUpdateId = Integer.parseInt(request.getParameter("idProject"));
 		
 		ProjectDTO projectUpdateDTO = new ProjectDTO();
 		projectUpdateDTO.setIdProject(projectUpdateId);
 		
 		TaskDTO task = new TaskDTO();
 		
-		task.setIdtask(idtaskUpdate);
+		task.setIdTask(idTaskUpdate);
 		task.setTask(taskUpdate);
 		task.setData_inizio(datainizioUpdate);
 		task.setData_fine(datafineUpdate);
