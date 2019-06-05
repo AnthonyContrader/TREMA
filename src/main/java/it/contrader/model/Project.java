@@ -2,6 +2,7 @@ package it.contrader.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -20,6 +21,8 @@ public class Project implements Serializable {
 
 	@Column(name="tipologie")
 	private String tipologie;
+	
+	private List<Task> tasks;
 	
 	//bi-directional many-to-one association to Project
 	@ManyToOne
@@ -59,5 +62,13 @@ public class Project implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public List<Task> getTasks() {
+		return this.tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
 	}
 }

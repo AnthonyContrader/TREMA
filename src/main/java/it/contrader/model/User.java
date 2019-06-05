@@ -128,7 +128,7 @@ public class User implements Serializable{
 	}
 
 	public void setProject(List<Project> project) {
-		this.project = project;
+		this.projects = project;
 	}
 
 	public Project addProject(Project project) {
