@@ -25,14 +25,5 @@ public class UserDTO {
 	private String usertype;
 	
 	private List<ProjectDTO> projectsDTO;
-
-	public String getUserType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	
 	
 }

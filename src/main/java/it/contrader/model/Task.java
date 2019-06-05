@@ -7,11 +7,13 @@ import org.springframework.lang.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
+@NoArgsConstructor
 @Entity	
 @Table(name="task")
 

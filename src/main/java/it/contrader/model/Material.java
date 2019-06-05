@@ -9,6 +9,7 @@ import org.springframework.lang.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 
@@ -18,6 +19,7 @@ import lombok.Data;
  */
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
+@NoArgsConstructor
 @Entity	
 @Table(name="material")
 

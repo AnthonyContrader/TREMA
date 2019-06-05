@@ -18,7 +18,8 @@ import org.springframework.lang.Nullable;
 import lombok.*;
 
 @Data   //genera get e set
-@AllArgsConstructor	//genera il construct[lib lombok]
+@AllArgsConstructor//genera il construct[lib lombok]
+@NoArgsConstructor
 @Entity			//associa classe tab db
 @Table(name="user")
 
