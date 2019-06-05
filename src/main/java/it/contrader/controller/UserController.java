@@ -102,11 +102,10 @@ public class UserController {
 		String password = request.getParameter("user_pass").toString();
 		String userType = request.getParameter("user_type").toString();
 
-		// UserDTO userObj = new UserDTO(0, username, password, ruolo,"");
 		UserDTO userObj = new UserDTO();
-		userObj.setUserUser(username);
-		userObj.setUserPass(password);
-		userObj.setUserType(userType);
+		userObj.setUser(username);
+		userObj.setPassword(password);
+		userObj.setUsertype(userType);
 		userService.insertUser(userObj);
 
 		visualUser(request);
@@ -120,7 +119,7 @@ public class UserController {
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
 		final UserDTO userDTO = userService.getUserByUserUserAndUserPass(username, password);
-		final String userType = userDTO.getUserType();
+		final String userType = userDTO.getUsertype();
 		if (!StringUtils.isEmpty(userType)) {
 
 			session.setAttribute("utente", userDTO);

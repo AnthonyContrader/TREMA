@@ -94,7 +94,7 @@ public class ProjectController {
 	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request, HttpSession session) {
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
-		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);   //possibile errore
+		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);   //possibile errore per project e non per user
 		request.setAttribute("taskList", taskList);
 		return "project/insertProject";
 	}	
