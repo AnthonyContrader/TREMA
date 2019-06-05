@@ -6,19 +6,25 @@ import javax.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.mapping.Set;
+import org.springframework.lang.Nullable;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.util.List;
 
+@Data   //genera get e set
+@AllArgsConstructor	//genera il construct[lib lombok]
 @Entity
-@Table(name="projects")
+@Table(name="project")
 @NamedQuery(name="Project.findAll", query="SELECT p FROM Project p")
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idproject")
-	private int idproject;
+	@Column(name="idProject")
+	private int idProject;
 
 	@Column(name="project")
 	private String project;
@@ -27,55 +33,14 @@ public class Project implements Serializable {
 	private String tipologie;
 	
 	@ManyToOne
-	@JoinColumn(name="idUser")
-	private User idUser;
-	
-	//bi-directional many-to-one association to Project
-	@OneToMany(mappedBy="idProject")
-	@OnDelete(action=OnDeleteAction.CASCADE)
-		private List<Task> tasks;
+	@JoinColumn(name="user")
 	private User user;
 	
+	//bi-directional many-to-one association to Project
+	@OneToMany(mappedBy="project")
+		private List<Task> tasks;
+		
 	public Project() {
 	}
 
-	public int getIdproject() {
-		return idproject;
-	}
-
-	public void setIdproject(int idproject) {
-		this.idproject = idproject;
-	}
-
-	public String getProject() {
-		return project;
-	}
-
-	public void setProject(String project) {
-		this.project = project;
-	}
-
-	public String getTipologie() {
-		return tipologie;
-	}
-
-	public void setTipologie(String tipologie) {
-		this.tipologie = tipologie;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	public List<Task> getTasks() {
-		return this.tasks;
-	}
-
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
 }

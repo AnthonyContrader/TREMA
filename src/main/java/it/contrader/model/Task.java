@@ -2,10 +2,18 @@ package it.contrader.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.lang.Nullable;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.List;
 
-@Entity
-@Table(name="tasks")
+@Data   //genera get e set
+@AllArgsConstructor	//genera il construct[lib lombok]
+@Entity	
+@Table(name="task")
 @NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")
 
 public class Task implements Serializable {
@@ -30,97 +38,19 @@ public class Task implements Serializable {
 
 	//bi-directional many-to-one association to Project
 	@ManyToOne
-	@JoinColumn(name="idProject")
+	@JoinColumn(name="project")
 	private Project project;
 	
 	//bi-directional one-to-many association to Dipendenti
 	@OneToMany
-	@JoinColumn(name="idTask")
+	@JoinColumn(name="task")
 	private List<Dipendenti> dipendentis;
 	
 	//bi-directional one-to-many association to Material
 	@OneToMany
-	@JoinColumn(name="idTask")
+	@JoinColumn(name="task")
 	private List<Material> materials;
 	
 	public Task() {
-	}
-
-	public int getIdTask() {
-		return idTask;
-	}
-
-	public void setIdTask(int idTask) {
-		this.idTask = idTask;
-	}
-
-	public String getTask() {
-		return task;
-	}
-
-	public void setTask(String task) {
-		this.task = task;
-	}
-
-	public String getData_inizio() {
-		return data_inizio;
-	}
-
-	public void setData_inizio(String data_inizio) {
-		this.data_inizio = data_inizio;
-	}
-
-	public String getData_fine() {
-		return data_fine;
-	}
-
-	public void setData_fine(String data_fine) {
-		this.data_fine = data_fine;
-	}
-
-	public String getObjective() {
-		return objective;
-	}
-
-	public void setObjective(String objective) {
-		this.objective = objective;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
-	public List<Dipendenti> getDipendentis() {
-		return dipendentis;
-	}
-
-	public void setDipendentis(List<Dipendenti> dipendentis) {
-		this.dipendentis = dipendentis;
-	}
-	
-	public Dipendenti addDipendenti(Dipendenti dipendenti) {
-		getDipendentis().add(dipendenti);
-		dipendenti.setTask(this);
-
-		return dipendenti;
-	}
-	
-	public List<Material> getMaterials() {
-		return materials;
-	}
-
-	public void setMaterials(List<Material> materials) {
-		this.materials = materials;
-	}
-	
-	public Material addMaterial(Material material) {
-		getMaterials().add(material);
-		material.setTask(this);
-
-		return material;
 	}
 }

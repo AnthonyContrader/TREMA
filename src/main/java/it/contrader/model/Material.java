@@ -1,8 +1,14 @@
 package it.contrader.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
-import java.util.*;;
+
+import org.springframework.lang.Nullable;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 
 
@@ -10,7 +16,9 @@ import java.util.*;;
  * The persistent class for the clients database table.
  * 
  */
-@Entity
+@Data   //genera get e set
+@AllArgsConstructor	//genera il construct[lib lombok]
+@Entity	
 @Table(name="material")
 @NamedQuery(name="Material.findAll", query="SELECT c FROM Material c")
 public class Material implements Serializable {
@@ -29,43 +37,10 @@ public class Material implements Serializable {
 
 	//bi-directional many-to-one association to Task
 	@ManyToOne
-	@JoinColumn(name="idTask")
+	@JoinColumn(name="task")
 	private Task task;
 
 	public Material() {
 	}
-
-	public int getIdmaterial() {
-		return this.idMaterial;
-	}
-
-	public void setIdMaterial(int Idmaterial) {
-		this.idMaterial = Idmaterial;
-	}
-
-	public String getMaterial() {
-		return this.material;
-	}
-
-	public void setMaterial(String material) {
-		this.material = material;
-	}
-	
-	public int getQuantita() {
-		return this.quantita;
-	}
-
-	public void setQuantita(int quantita) {
-		this.quantita = quantita;
-	}
-
-	public Task getTask() {
-		return this.task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
-	}
-
 
 }

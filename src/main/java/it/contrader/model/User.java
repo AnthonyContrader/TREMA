@@ -20,7 +20,7 @@ import lombok.*;
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
 @Entity			//associa classe tab db
-@Table(name="users")
+@Table(name="user")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable{
 
@@ -55,9 +55,8 @@ public class User implements Serializable{
 	@Column(name = "usertype")
 	private String usertype;
 	
-	//bi-directional many-to-one association to Project
-		@OneToMany(mappedBy="idUser")
-		private List<Project> projects;
+	@OneToMany(mappedBy="user")
+	private List<Project> projects;
 		
 	public User() {}
 

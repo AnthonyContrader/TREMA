@@ -1,16 +1,18 @@
 package it.contrader.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
+import org.springframework.lang.Nullable;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-
-/**
- * The persistent class for the clients database table.
- * 
- */
-@Entity
+@Data   //genera get e set
+@AllArgsConstructor	//genera il construct[lib lombok]
+@Entity	
 @Table(name="dipendenti")
 @NamedQuery(name="Dipendenti.findAll", query="SELECT c FROM Dipendenti c")
 public class Dipendenti implements Serializable {
@@ -29,42 +31,10 @@ public class Dipendenti implements Serializable {
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="idTask")
+	@JoinColumn(name="task")
 	private Task task;
 
 	public Dipendenti() {
-	}
-
-	public int getIdDipendenti() {
-		return this.idDipendente;
-	}
-
-	public void setIdDipendenti(int idDipendenti) {
-		this.idDipendente = idDipendenti;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getSurname() {
-		return this.surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public Task getTask() {
-		return this.task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
 	}
 
 }
