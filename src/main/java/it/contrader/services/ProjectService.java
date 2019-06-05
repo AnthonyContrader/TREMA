@@ -54,9 +54,9 @@ public class ProjectService {
 		return listProjectDTO;
 	}
 
-	public List<TaskDTO> findTaskDTOByUser(UserDTO userDTO) {
+	public List<TaskDTO> findTaskDTOByUser(ProjectDTO projectDTO) {
 		List<TaskDTO> taskList = new ArrayList<TaskDTO>();
-		taskList = taskService.findTaskDTOByUser(ConverterUser.toEntity(userDTO));
+		taskList = taskService.findTaskDTOByProject(ConverterProject.toEntity(projectDTO));
 		return taskList;
 	}
 }

@@ -25,13 +25,13 @@ public class ConverterUser {
 	public static User toEntity(UserDTO userDTO) {
 		User user = null;
 		if (userDTO != null) {
-			user = new User();
+			user = new User(null, null, null, null, null, null, null, null);
 			user.setIdUser(userDTO.getIdUser());
 			user.setUser(userDTO.getUser());
 			user.setPassword(userDTO.getPassword());
 			user.setName_user(userDTO.getName_user());
 			user.setSurname_user(userDTO.getSurname_user());
-			user.setUsertype(userDTO.getUsertype());
+			user.setUsertype(userDTO.getUserType());
 		}
 		return user;
 	}

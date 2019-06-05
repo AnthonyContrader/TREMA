@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.contrader.dto.ProjectDTO;
+import it.contrader.dto.TaskDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.services.ProjectService;
 
@@ -57,7 +58,7 @@ public class ProjectController {
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 
 		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);
-		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);
+		List<TaskDTO> taskList = projectService.findTaskDTOByProject(userDTO);  //possibile errore
 
 		request.setAttribute("taskList", taskList);
 		request.setAttribute("projectUpdate", projectUpdate);
@@ -76,16 +77,16 @@ public class ProjectController {
 		String taskListString[] = (String[]) request.getParameterValues("taskList");
 		for (String taskString : taskListString) {
 			TaskDTO taskDTO = new TaskDTO();
-			taskDTO.setTaskId(Integer.parseInt(taskString));
+			taskDTO.setIdTask(Integer.parseInt(taskString));
 			taskList.add(taskDTO);
 		}
 
-		ProjectDTO project = new ProjectDTO();
-		project.setUserDTO(userLogged);
-		project.setProjectId(idUpdate);
-		project.setProject(project);
-		project.setTasksDTO(taskList);
-		projectService.updateProject(project);
+		ProjectDTO project1 = new ProjectDTO();
+		project1.setUserDTO(userLogged);
+		project1.setIdProject(idUpdate);
+		project1.setProject(project);
+		project1.setTaskDTO(taskList);
+		projectService.updateProject(project1);
 		visualProject(request);
 		return "project/manageProject";
 	}
@@ -93,7 +94,7 @@ public class ProjectController {
 	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request, HttpSession session) {
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
-		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);
+		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);   //possibile errore
 		request.setAttribute("taskList", taskList);
 		return "project/insertProject";
 	}	
@@ -108,14 +109,14 @@ public class ProjectController {
 		
 		for(String taskString : taskListString) {
 			TaskDTO taskDTO=new TaskDTO();
-			taskDTO.setTaskId(Integer.parseInt(taskString));
+			taskDTO.setIdTask(Integer.parseInt(taskString));
 			taskList.add(taskDTO);
 		}
 		
 		ProjectDTO projectObj = new ProjectDTO();
-		projectObj.setProjectName(name);
+		projectObj.setProject(name);
 		projectObj.setUserDTO(userLogged);
-		projectObj.setTasksDTO(taskList);
+		projectObj.setTaskDTO(taskList);
 		
 		projectService.insertProject(projectObj);
 		visualProject(request);
