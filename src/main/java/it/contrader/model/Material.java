@@ -20,7 +20,7 @@ import lombok.Data;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @Entity	
 @Table(name="material")
-@NamedQuery(name="Material.findAll", query="SELECT c FROM Material c")
+
 public class Material implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,5 @@ public class Material implements Serializable {
 	@JoinColumn(name="task")
 	private Task task;
 
-	public Material() {
-	}
 
 }

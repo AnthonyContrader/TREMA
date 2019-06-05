@@ -21,7 +21,7 @@ import lombok.*;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @Entity			//associa classe tab db
 @Table(name="user")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -58,6 +58,4 @@ public class User implements Serializable{
 	@OneToMany(mappedBy="user")
 	private List<Project> projects;
 		
-	public User() {}
-
 }

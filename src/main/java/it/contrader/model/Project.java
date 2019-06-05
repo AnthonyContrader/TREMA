@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @Entity
 @Table(name="project")
-@NamedQuery(name="Project.findAll", query="SELECT p FROM Project p")
+
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,10 +37,8 @@ public class Project implements Serializable {
 	private User user;
 	
 	//bi-directional many-to-one association to Project
-	@OneToMany(mappedBy="project")
-		private List<Task> tasks;
+	@OneToMany(mappedBy = "project")
+	private List<Task> tasks;
 		
-	public Project() {
-	}
-
+		
 }
