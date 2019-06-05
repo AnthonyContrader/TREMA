@@ -3,6 +3,8 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.contrader.dto.ProjectDTO;
+import it.contrader.model.Project;
 import it.contrader.dto.TaskDTO;
 import it.contrader.model.Task;
 
@@ -18,6 +20,12 @@ public class ConverterTask {
 		 	taskDTO.setData_fine(task.getData_fine());
 			taskDTO.setObjective(task.getObjective());
 			taskDTO.setProjectDTO(ConverterProject.toDTO(task.getProject()));
+			
+			if (task.getProject() != null) {
+				ProjectDTO projectDTO = new ProjectDTO();
+				projectDTO.setIdProject(task.getProject().getIdProject());
+				taskDTO.setProjectDTO(projectDTO);
+			}
 		}
 		return taskDTO;
 	}
@@ -33,6 +41,12 @@ public class ConverterTask {
 			task.setData_fine(taskDTO.getData_fine());
 			task.setObjective(taskDTO.getObjective());
 			task.setProject(ConverterProject.toEntity(taskDTO.getProjectDTO()));
+			
+			if (taskDTO.getProjectDTO() != null) {
+				Project project = new Project();
+				project.setIdProject(taskDTO.getProjectDTO().getIdProject());
+				task.setProject(project);
+			}
 		}
 		return task;
 	}
