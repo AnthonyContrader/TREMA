@@ -15,13 +15,10 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.Nullable;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
-@NoArgsConstructor	
 @Entity			//associa classe tab db
 @Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")

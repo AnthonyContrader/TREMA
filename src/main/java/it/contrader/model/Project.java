@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.mapping.Set;
 
 import java.util.List;
 
