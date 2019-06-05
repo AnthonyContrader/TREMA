@@ -16,5 +16,48 @@ import it.contrader.dto.TaskDTO;
 import it.contrader.model.Task;
 
 public class TaskService {
+	private final TaskRepository taskRepository;
 
+	@Autowired
+	public TaskService(TaskRepository taskRepository) {
+		this.taskRepository = taskRepository;
+	}
+
+	public List<TaskDTO> getListaTaskDTO() {
+		return ConverterTask.toListDTO((List<Task>) taskRepository.findAll());
+	}
+
+	public TaskDTO getTaskDTOById(Integer id) {
+		return ConverterTask.toDTO(taskRepository.findById(id).get());
+	}
+	
+	public List<TaskDTO> getListaTaskDTOByProject(ProjectDTO project) {
+		return ConverterTask.toListDTO((List<Task>) taskRepository.findAllByProject(ConverterProject.toEntity(project)));
+	}
+	
+	//public UserDTO getByUsernameAndPassword(String username, String password) {
+
+		//final User user = userRepository.findUserByUserUserAndUserPass(username, password);
+
+		//return ConverterUser.toDTO(user);
+	//}
+
+	public boolean insertTask(TaskDTO taskDTO) {
+		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
+	}
+
+	public boolean updateTask(TaskDTO taskDTO) {
+		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
+	}
+	
+	public void deleteTaskById(Integer idtask) {
+		taskRepository.deleteById(idtask);
+	}
+	
+	public List<TaskDTO> findTaskDTOByProject(Project project) {
+		final List<Task> list = taskRepository.findAllByProject(project);
+		final List<TaskDTO> taskDTOs = new ArrayList<>();
+		list.forEach(i -> taskDTOs.add(ConverterTask.toDTO(i)));
+		return taskDTOs;
+	}
 }

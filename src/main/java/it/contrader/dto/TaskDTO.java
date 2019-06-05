@@ -6,11 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import it.contrader.wmesspring.dto.ProjectDTO;
-import it.contrader.wmesspring.dto.ProjectTemplateDTO;
-import it.contrader.wmesspring.dto.ResourceDTO;
-import it.contrader.wmesspring.dto.UserDTO;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
