@@ -5,8 +5,6 @@ import java.util.List;
 
 import it.contrader.dto.TaskDTO;
 import it.contrader.model.Task;
-import it.contrader.converter.ConverterTask;
-import it.contrader.converter.ConverterProject;
 
 public class ConverterTask {
 	public static TaskDTO toDTO(Task task) {
@@ -14,11 +12,11 @@ public class ConverterTask {
 		if (task != null) {
 			taskDTO = new TaskDTO();
 			
-			taskDTO.setTaskId(task.getIdtask());
-			taskDTO.setTaskTask(task.getTask());
-			taskDTO.setTaskDataInizio(task.getData_inizio());
-		 	taskDTO.setTaskDataFine(task.getData_fine());
-			taskDTO.setTaskObjective(task.getObjective());
+			taskDTO.setIdtask(task.getIdtask());
+			taskDTO.setTask(task.getTask());
+			taskDTO.setData_inizio(task.getData_inizio());
+		 	taskDTO.setData_fine(task.getData_fine());
+			taskDTO.setObjective(task.getObjective());
 			taskDTO.setProjectDTO(ConverterProject.toDTO(task.getProject()));
 		}
 		return taskDTO;
@@ -29,12 +27,12 @@ public class ConverterTask {
 		if (taskDTO != null) {
 			task = new Task();
 			
-			task.setTaskId(taskDTO.getIdtask());
-			task.setTaskTask(taskDTO);
-			task.setTaskDataInizio(taskDTO.getData_inizio());
-			task.setTaskDataFine(taskDTO.getData_fine());
-			task.setTaskObjective(taskDTO.getObjective());
-			task.setProjectDTO(ConverterProject.toDTO(taskDTO.getProject()));
+			task.setIdtask(taskDTO.getIdtask());
+			task.setTask(taskDTO.getTask());;
+			task.setData_inizio(taskDTO.getData_inizio());
+			task.setData_fine(taskDTO.getData_fine());
+			task.setObjective(taskDTO.getObjective());
+			task.setProject(ConverterProject.toEntity(taskDTO.getProjectDTO()));
 		}
 		return task;
 	}

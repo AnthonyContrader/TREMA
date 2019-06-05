@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import it.contrader.converter.ConverterProject;
 import it.contrader.dao.ProjectRepository;
 import it.contrader.dto.ProjectDTO;
@@ -27,21 +28,14 @@ public class TaskService {
 		return ConverterTask.toListDTO((List<Task>) taskRepository.findAll());
 	}
 
-	public TaskDTO getTaskDTOById(Integer id) {
-		return ConverterTask.toDTO(taskRepository.findById(id).get());
+	public TaskDTO getTaskDTOById(Integer idtask) {
+		return ConverterTask.toDTO(taskRepository.findById(idtask).get());
 	}
 	
 	public List<TaskDTO> getListaTaskDTOByProject(ProjectDTO project) {
 		return ConverterTask.toListDTO((List<Task>) taskRepository.findAllByProject(ConverterProject.toEntity(project)));
 	}
 	
-	//public UserDTO getByUsernameAndPassword(String username, String password) {
-
-		//final User user = userRepository.findUserByUserUserAndUserPass(username, password);
-
-		//return ConverterUser.toDTO(user);
-	//}
-
 	public boolean insertTask(TaskDTO taskDTO) {
 		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
 	}
