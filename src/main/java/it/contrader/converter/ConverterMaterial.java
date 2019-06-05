@@ -3,12 +3,10 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.dto.DipendentiDTO;
+
 import it.contrader.dto.MaterialDTO;
-import it.contrader.dto.TaskDTO;
-import it.contrader.model.Dipendenti;
 import it.contrader.model.Material;
-import it.contrader.model.Task;
+
 
 
 
@@ -26,7 +24,7 @@ public class ConverterMaterial {
 				
 				materialDTO.setQuantita(material.getQuantita());
 
-				materialDTO.setIdmaterial(material.getIdmaterial());		
+				materialDTO.setIdmaterial(material.getIdMaterial());		
 			}
 		
 		return materialDTO;
@@ -37,7 +35,7 @@ public class ConverterMaterial {
 		Material material = null;
 		
 		if (materialDTO != null) {
-			material = new Material();
+			material = new Material(0, null, 0, null);
 			material.setTask(ConverterTask.toEntity(materialDTO.getTaskDTO()));
 
 			material.setIdMaterial(materialDTO.getIdmaterial());
