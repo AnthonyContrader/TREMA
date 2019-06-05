@@ -25,5 +25,9 @@ public class UserDTO {
 	private String usertype;
 	
 	private List<ProjectDTO> projectsDTO;
+
+	
+
+	
 	
 }
