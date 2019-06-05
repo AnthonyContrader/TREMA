@@ -10,14 +10,16 @@ import org.springframework.lang.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
+@NoArgsConstructor
 @Entity
 @Table(name="project")
-@NamedQuery(name="Project.findAll", query="SELECT p FROM Project p")
+
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,10 +39,8 @@ public class Project implements Serializable {
 	private User user;
 	
 	//bi-directional many-to-one association to Project
-	@OneToMany(mappedBy="project")
-		private List<Task> tasks;
+	@OneToMany(mappedBy = "project")
+	private List<Task> tasks;
 		
-	public Project() {
-	}
-
+		
 }

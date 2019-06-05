@@ -11,6 +11,7 @@ import it.contrader.dao.UserRepository;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User;
 
+
 @Service
 public class UserService {
 
@@ -29,9 +30,9 @@ public class UserService {
 		return ConverterUser.toDTO(userRepository.findById(id).get());
 	}
 
-	public UserDTO getByUsernameAndPassword(String username, String password) {
+	public UserDTO getUserByUserUserAndUserPass(String username, String password) {
 
-		final User user = userRepository.findUserByUsernameAndPassword(username, password);
+		final User user = userRepository.findUserByUserUserAndUserPass(username, password);
 
 		return ConverterUser.toDTO(user);
 	}
@@ -43,18 +44,19 @@ public class UserService {
 	public boolean updateUser(UserDTO userDTO) {
 		return userRepository.save(ConverterUser.toEntity(userDTO)) != null;
 	}
-	
+
 	public void deleteUserById(Integer id) {
 		userRepository.deleteById(id);
 	}
-	
-	public List<UserDTO> findUserDTOByUsername(String username) {
-		
-		final List<User> list = userRepository.findAllByUsername(username);
-		final List<UserDTO> userDTOs = new ArrayList<>();
+
+	public List<UserDTO> findAllUserDTO() {
+
+		List<User> list = userRepository.findAll();
+		List<UserDTO> userDTOs = new ArrayList<>();
 		list.forEach(i -> userDTOs.add(ConverterUser.toDTO(i)));
 		return userDTOs;
-		
-	
+
 	}
+	
 }
+

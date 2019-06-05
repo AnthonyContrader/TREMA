@@ -14,7 +14,7 @@ import lombok.Data;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @Entity	
 @Table(name="dipendenti")
-@NamedQuery(name="Dipendenti.findAll", query="SELECT c FROM Dipendenti c")
+
 public class Dipendenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,5 @@ public class Dipendenti implements Serializable {
 	@JoinColumn(name="task")
 	private Task task;
 
-	public Dipendenti() {
-	}
 
 }

@@ -1,5 +1,7 @@
 package it.contrader.dto;
 
+import java.util.List;
+
 import lombok.*;
 
 @Data
@@ -13,5 +15,7 @@ public class ProjectDTO {
 	
 	private String tipologia;
 	
-	private int idUser;
+	private UserDTO userDTO;
+
+	private List<TaskDTO> taskDTO;
 }

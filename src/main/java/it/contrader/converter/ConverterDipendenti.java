@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.dto.DipendentiDTO;
-import it.contrader.dto.MaterialDTO;
-import it.contrader.dto.TaskDTO;
 import it.contrader.model.Dipendenti;
-import it.contrader.model.Material;
-import it.contrader.model.Task;
+
 
 
 
@@ -26,7 +23,7 @@ public class ConverterDipendenti {
 				
 				dipendentiDTO.setSurname(dipendenti.getSurname());
 
-				dipendentiDTO.setIdDipendente(dipendenti.getIdDipendenti());		
+				dipendentiDTO.setIdDipendente(dipendenti.getIdDipendente());		
 			}
 		
 		return dipendentiDTO;
@@ -37,10 +34,10 @@ public class ConverterDipendenti {
 		Dipendenti dipendenti = null;
 		
 		if (dipendentiDTO != null) {
-			dipendenti = new Dipendenti();
+			dipendenti = new Dipendenti(0, null, null, null);
 			dipendenti.setTask(ConverterTask.toEntity(dipendentiDTO.getTaskDTO()));
 
-			dipendenti.setIdDipendenti(dipendentiDTO.getIdDipendente());
+			dipendenti.setIdDipendente(dipendentiDTO.getIdDipendente());
 			dipendenti.setName(dipendentiDTO.getName());
 			dipendenti.setSurname(dipendentiDTO.getSurname());			
 		}

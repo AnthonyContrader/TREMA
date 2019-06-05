@@ -12,9 +12,9 @@ import java.util.List;
 
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
+@NoArgsConstructor
 @Entity	
 @Table(name="task")
-@NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")
 
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -51,6 +51,4 @@ public class Task implements Serializable {
 	@JoinColumn(name="task")
 	private List<Material> materials;
 	
-	public Task() {
-	}
 }

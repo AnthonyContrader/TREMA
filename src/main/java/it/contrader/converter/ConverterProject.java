@@ -12,7 +12,7 @@ public class ConverterProject {
 			
 			if(project != null) {
 				projectDTO = new ProjectDTO();
-				projectDTO.setIdproject(project.getIdproject());
+				projectDTO.setIdProject(project.getIdProject());
 				projectDTO.setProject(project.getProject());
 				projectDTO.setTipologia(project.getTipologie());
 				List<Task> taskList= project.getTasks();
@@ -32,14 +32,14 @@ public class ConverterProject {
 			Project project = null;
 			
 			if (projectDTO != null) {
-				project = new Project();
+				project = new Project(0, null, null, null, null);
 				
-				project.setProjectId(projectDTO.getIdproject());
-				project.setProjectName(projectDTO.getProject());
-				project.setTipologie(projectDTO.getTipologie());; 
+				project.setIdProject(projectDTO.getIdProject());
+				project.setProject(projectDTO.getProject());
+				project.setTipologie(projectDTO.getTipologia());; 
 				project.setUser(ConverterUser.toEntity(projectDTO.getUserDTO()));
 				
-				List<TaskDTO> taskListDTO= projectDTO.getTasksDTO();
+				List<TaskDTO> taskListDTO= projectDTO.getTaskDTO();
 				List<Task> taskList= new ArrayList<Task>();
 				
 				for (TaskDTO taskDTO: taskListDTO) {
