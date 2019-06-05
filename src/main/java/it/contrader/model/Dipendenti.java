@@ -2,7 +2,7 @@ package it.contrader.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+
 
 
 /**
@@ -30,10 +30,6 @@ public class Dipendenti implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idTask")
 	private int task;
-
-	//bi-directional many-to-one association to Order
-	@OneToMany(mappedBy="dipendenti")
-	private List<Material> materials;
 
 	public Dipendenti() {
 	}
@@ -68,28 +64,6 @@ public class Dipendenti implements Serializable {
 
 	public void setTask(int task) {
 		this.task = task;
-	}
-
-	public List<Material> getMaterials() {
-		return this.materials;
-	}
-
-	public void setMaterials(List<Material> materials) {
-		this.materials = materials;
-	}
-
-	public Material addMaterial(Material material) {
-		getMaterials().add(material);
-		material.setDipendenti(this);
-
-		return material;
-	}
-
-	public Material removeMaterial(Material material) {
-		getMaterials().remove(material);
-		material.setDipendenti(null);
-
-		return material;
 	}
 
 }

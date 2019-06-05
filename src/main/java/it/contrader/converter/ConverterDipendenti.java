@@ -26,12 +26,7 @@ public class ConverterDipendenti {
 				
 				dipendentiDTO.setSurname(dipendenti.getSurname());
 
-				dipendentiDTO.setIdDipendenti(dipendenti.getIdDipendenti());	
-				
-				List<Material> materialList= dipendenti.getMaterials();
-				List<MaterialDTO> materialListDTO= new ArrayList<MaterialDTO>();
-	
-				
+				dipendentiDTO.setIdDipendente(dipendenti.getIdDipendenti());		
 			}
 		
 		return dipendentiDTO;
@@ -45,15 +40,9 @@ public class ConverterDipendenti {
 			dipendenti = new Dipendenti();
 			dipendenti.setTask(ConverterTask.toEntity(dipendentiDTO.getTaskDTO()));
 
-			dipendenti.setIdDipendenti(dipendentiDTO.getIdDipendenti());
+			dipendenti.setIdDipendenti(dipendentiDTO.getIdDipendente());
 			dipendenti.setName(dipendentiDTO.getName());
-			dipendenti.setSurname(dipendentiDTO.getSurname());
-			
-			
-			List<MaterialDTO> materialListDTO= dipendentiDTO.getMaterialsDTO();
-			List<Material> materialList= new ArrayList<Material>();
-	
-			
+			dipendenti.setSurname(dipendentiDTO.getSurname());			
 		}
 		return dipendenti;	
 		}

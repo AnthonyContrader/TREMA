@@ -5,12 +5,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.contrader.dto.DipendentiDTO;
-import it.contrader.dto.MaterialDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.services.DipendentiService;
 
@@ -97,7 +95,7 @@ public class DipendentiController {
 		dipendentiUpdateDTO.setName(dipendentiName);
 		dipendentiUpdateDTO.setSurname(dipendentiSurname);
 		dipendentiUpdateDTO.setUserDTO(userLogged);
-		dipendentiUpdateDTO.setIdDipendenti(idUpdate);
+		dipendentiUpdateDTO.setIdDipendente(idUpdate);
 		
 		dipendentiService.updateDipendenti(dipendentiUpdateDTO);
 		visualDipendenti(request);
