@@ -18,6 +18,6 @@ public class MaterialDTO {
 	
 	private UserDTO userDTO;
 	
-	private int	taskDTO;
+	private TaskDTO	taskDTO;
 
 }

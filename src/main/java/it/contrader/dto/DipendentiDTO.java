@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import it.contrader.dto.UserDTO;
+import it.contrader.model.Task;
 
 
 @Data
@@ -19,6 +20,6 @@ public class DipendentiDTO {
 
 	private UserDTO userDTO;
 	
-	private int	taskDTO;
+	private TaskDTO taskDTO;
 
 }

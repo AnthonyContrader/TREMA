@@ -30,7 +30,7 @@ public class Material implements Serializable {
 	//bi-directional many-to-one association to Task
 	@ManyToOne
 	@JoinColumn(name="idTask")
-	private List<Task> task;
+	private Task task;
 
 	public Material() {
 	}
@@ -59,12 +59,12 @@ public class Material implements Serializable {
 		this.quantita = quantita;
 	}
 
-	public List<Task> getTask() {
+	public Task getTask() {
 		return this.task;
 	}
 
 	public void setTask(Task task) {
-		this.task = (List<Task>) task;
+		this.task = task;
 	}
 
 

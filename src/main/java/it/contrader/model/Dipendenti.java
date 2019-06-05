@@ -3,7 +3,6 @@ package it.contrader.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import java.util.*;;
 
 
 
@@ -31,7 +30,7 @@ public class Dipendenti implements Serializable {
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="idTask")
-	private List<Task> task;
+	private Task task;
 
 	public Dipendenti() {
 	}
@@ -60,12 +59,12 @@ public class Dipendenti implements Serializable {
 		this.surname = surname;
 	}
 
-	public List<Task> getTask() {
+	public Task getTask() {
 		return this.task;
 	}
 
 	public void setTask(Task task) {
-		this.task = (List<Task>) task;
+		this.task = task;
 	}
 
 }
