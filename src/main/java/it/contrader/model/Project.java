@@ -26,9 +26,12 @@ public class Project implements Serializable {
 	@Column(name="tipologie")
 	private String tipologie;
 	
+	@ManyToOne
+	@JoinColumn(name="idUser")
+	private User idUser;
 	
 	//bi-directional many-to-one association to Project
-	@OneToMany(mappedBy="projects")
+	@OneToMany(mappedBy="idProject")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 		private List<Task> tasks;
 	private User user;

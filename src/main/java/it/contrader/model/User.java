@@ -56,7 +56,7 @@ public class User implements Serializable{
 	private String usertype;
 	
 	//bi-directional many-to-one association to Project
-		@OneToMany(mappedBy="user")
+		@OneToMany(mappedBy="idUser")
 		private List<Project> projects;
 		
 	public User() {}
