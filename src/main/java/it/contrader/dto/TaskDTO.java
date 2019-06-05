@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskDTO {
-	private int idtask;
+	private int idTask;
 
 	private String task;
 

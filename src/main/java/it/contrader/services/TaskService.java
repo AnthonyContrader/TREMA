@@ -28,8 +28,8 @@ public class TaskService {
 		return ConverterTask.toListDTO((List<Task>) taskRepository.findAll());
 	}
 	
-	public TaskDTO getTaskDTOByIdTask(Integer idtask) {
-		return ConverterTask.toDTO(taskRepository.findById(idtask).get());
+	public TaskDTO getTaskDTOByIdTask(Integer idTask) {
+		return ConverterTask.toDTO(taskRepository.findById(idTask).get());
 	}
 	
 	public List<TaskDTO> getListaTaskDTOByProject(ProjectDTO project) {

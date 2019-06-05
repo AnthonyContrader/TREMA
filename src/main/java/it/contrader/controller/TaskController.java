@@ -32,7 +32,7 @@ public class TaskController {
 	}
 
 	private void visualTask(HttpServletRequest request) {
-		ProjectDTO projectDTO = (ProjectDTO) session.getAttribute("idproject");
+		ProjectDTO projectDTO = (ProjectDTO) session.getAttribute("idProject");
 		List<TaskDTO> allTask = this.taskService.getListaTaskDTOByProject(projectDTO);
 		request.setAttribute("allTaskDTO", allTask);
 	}

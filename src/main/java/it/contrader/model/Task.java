@@ -15,8 +15,8 @@ public class Task implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idtask")
-	private int idtask;
+	@Column(name="idTask")
+	private int idTask;
 
 	@Column(name="task")
 	private String task;
@@ -38,12 +38,12 @@ public class Task implements Serializable {
 	public Task() {
 	}
 
-	public int getIdtask() {
-		return idtask;
+	public int getIdTask() {
+		return idTask;
 	}
 
-	public void setIdtask(int idtask) {
-		this.idtask = idtask;
+	public void setIdTask(int idTask) {
+		this.idTask = idTask;
 	}
 
 	public String getTask() {
