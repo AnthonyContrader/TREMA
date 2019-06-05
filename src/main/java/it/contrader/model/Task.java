@@ -2,8 +2,6 @@ package it.contrader.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import it.contrader.model.Project;
-
 import java.util.List;
 
 @Entity
@@ -32,8 +30,18 @@ public class Task implements Serializable {
 
 	//bi-directional many-to-one association to Project
 	@ManyToOne
-	@JoinColumn(name="idproject")
+	@JoinColumn(name="idProject")
 	private Project project;
+	
+	//bi-directional one-to-many association to Dipendenti
+	@OneToMany
+	@JoinColumn(name="idTask")
+	private Dipendenti dipendenti;
+	
+	//bi-directional one-to-many association to Material
+	@OneToMany
+	@JoinColumn(name="idTask")
+	private Material material;
 	
 	public Task() {
 	}
@@ -84,5 +92,21 @@ public class Task implements Serializable {
 
 	public void setProject(Project project) {
 		this.project = project;
+	}
+
+	public Dipendenti getDipendenti() {
+		return dipendenti;
+	}
+
+	public void setDipendenti(Dipendenti dipendenti) {
+		this.dipendenti = dipendenti;
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(Material material) {
+		this.material = material;
 	}
 }

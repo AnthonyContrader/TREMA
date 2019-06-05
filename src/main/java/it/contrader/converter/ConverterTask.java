@@ -12,7 +12,7 @@ public class ConverterTask {
 		if (task != null) {
 			taskDTO = new TaskDTO();
 			
-			taskDTO.setIdtask(task.getIdtask());
+			taskDTO.setIdTask(task.getIdtask());
 			taskDTO.setTask(task.getTask());
 			taskDTO.setData_inizio(task.getData_inizio());
 		 	taskDTO.setData_fine(task.getData_fine());
@@ -27,7 +27,7 @@ public class ConverterTask {
 		if (taskDTO != null) {
 			task = new Task();
 			
-			task.setIdtask(taskDTO.getIdtask());
+			task.setIdTask(taskDTO.getIdTask());
 			task.setTask(taskDTO.getTask());;
 			task.setData_inizio(taskDTO.getData_inizio());
 			task.setData_fine(taskDTO.getData_fine());
