@@ -36,12 +36,12 @@ public class Task implements Serializable {
 	//bi-directional one-to-many association to Dipendenti
 	@OneToMany
 	@JoinColumn(name="idTask")
-	private Dipendenti dipendenti;
+	private List<Dipendenti> dipendentis;
 	
 	//bi-directional one-to-many association to Material
 	@OneToMany
 	@JoinColumn(name="idTask")
-	private Material material;
+	private List<Material> materials;
 	
 	public Task() {
 	}
@@ -94,19 +94,33 @@ public class Task implements Serializable {
 		this.project = project;
 	}
 
-	public Dipendenti getDipendenti() {
+	public List<Dipendenti> getDipendentis() {
+		return dipendentis;
+	}
+
+	public void setDipendentis(List<Dipendenti> dipendentis) {
+		this.dipendentis = dipendentis;
+	}
+	
+	public Dipendenti addDipendenti(Dipendenti dipendenti) {
+		getDipendentis().add(dipendenti);
+		dipendenti.setTask(this);
+
 		return dipendenti;
 	}
-
-	public void setDipendenti(Dipendenti dipendenti) {
-		this.dipendenti = dipendenti;
+	
+	public List<Material> getMaterials() {
+		return materials;
 	}
 
-	public Material getMaterial() {
+	public void setMaterials(List<Material> materials) {
+		this.materials = materials;
+	}
+	
+	public Material addMaterial(Material material) {
+		getMaterials().add(material);
+		material.setTask(this);
+
 		return material;
-	}
-
-	public void setMaterial(Material material) {
-		this.material = material;
 	}
 }
