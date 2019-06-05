@@ -32,7 +32,6 @@ public class Material implements Serializable {
 	@JoinColumn(name="idTask")
 	private List<Task> task;
 
-
 	public Material() {
 	}
 
