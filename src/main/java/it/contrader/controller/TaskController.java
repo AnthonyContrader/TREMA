@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.contrader.dto.TaskDTO;
+import it.contrader.services.TaskService;
 import it.contrader.dto.ProjectDTO;
-import it.contrader.service.ProjectService;
-import it.contrader.service.TaskService;
+import it.contrader.services.ProjectService;
 
 import java.util.List;
 
+@Controller
+@RequestMapping("/Task")
 public class TaskController {
 	private final TaskService taskService;
 	private final ProjectService projectService;
@@ -30,8 +32,8 @@ public class TaskController {
 	}
 
 	private void visualTask(HttpServletRequest request) {
-		//UserDTO userDTO = (UserDTO) session.getAttribute("utente");
-		//List<TaskDTO> allTask = this.taskService.getListaTaskDTOByUser(userDTO);
+		ProjectDTO projectDTO = (ProjectDTO) session.getAttribute("idproject");
+		List<TaskDTO> allTask = this.taskService.getListaTaskDTOByProject(projectDTO);
 		request.setAttribute("allTaskDTO", allTask);
 	}
 
@@ -52,36 +54,30 @@ public class TaskController {
 	
 	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
 	public String insertRedirect(HttpServletRequest request, HttpSession session) {
-		//UserDTO userLogged = (UserDTO) session.getAttribute("utente");
-		int idproject = Integer.parseInt(request.getParameter("idproject"));
-		List<ProjectDTO> projectList = projectService.findProjectDTOByProject(idproject);
-		request.setAttribute("resourceList", projectList);
-		// visualTask(request);
-		// request.setAttribute("option", "insert");
+		List<ProjectDTO> projectList = projectService.getListProjectDTO();
+		request.setAttribute("projectList", projectList);
 		return "task/insertTask";
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(HttpServletRequest request, HttpSession session) {
-
-		
-		//UserDTO userLogged = (UserDTO) session.getAttribute("utente");
 		ProjectDTO projectInsertDTO = new ProjectDTO();
 		
-		String taskTask = request.getParameter("task").toString();
-		String taskDataInizio = request.getParameter("data_inizio").toString();
-		String taskDataFine = request.getParameter("data_fine").toString();
-		String taskObjective = request.getParameter("objective").toString();
-		int projectInsertId = Integer.parseInt(request.getParameter("idproject"));
-		projectInsertDTO.setProjectId(projectInsertId);
-		
+		String taskInsert = request.getParameter("task").toString();
+		String datainizioInsert = request.getParameter("data_inizio").toString();
+		String datafineInsert = request.getParameter("data_fine").toString();
+		String objectiveInsert = request.getParameter("objective").toString();
+		int idproject = Integer.parseInt(request.getParameter("idproject"));
+		projectInsertDTO.setIdProject(idproject);
 		
 		TaskDTO taskObj = new TaskDTO();
-		taskObj.setTaskTask(taskTask);
-		taskObj.setTaskDataInizio(taskDataInizio);
-		taskObj.setTaskDataFine(taskDataFine);
-		taskObj.setTaskObjective(taskObjective);
-		taskObj.setProjectDTO(projectInsertId);
+		
+		taskObj.setTask(taskInsert);
+		taskObj.setData_inizio(datainizioInsert);
+		taskObj.setData_inizio(datafineInsert);
+		taskObj.setData_fine(objectiveInsert);
+		taskObj.setProjectDTO(projectInsertDTO);
+		
 		taskService.insertTask(taskObj);
 
 		visualTask(request);
@@ -90,18 +86,15 @@ public class TaskController {
 	
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request, HttpSession session) {
-		//UserDTO userLogged = (UserDTO) session.getAttribute("utente");
-		ProjectDTO projectdto = (ProjectDTO) session.getAttribute("idproject");
+		List<ProjectDTO> projectList = projectService.getListProjectDTO();
+		
 		TaskDTO taskUpdate = new TaskDTO();
 		
-		//List<ResourceDTO> resourceList = resourceService.findResourceDTOByUser(userLogged);
-		
-		int idproject = Integer.parseInt(request.getParameter("idproject"));
-		
-		taskUpdate = this.taskService.getTaskDTOByProject(idproject);
+		int idtask = Integer.parseInt(request.getParameter("idtask"));
+		taskUpdate = this.taskService.getTaskDTOByIdTask(idtask);
 		
 		request.setAttribute("taskUpdate", taskUpdate);
-		//request.setAttribute("resourceList", resourceList);
+		request.setAttribute("projectList", projectList);
 		
 		return "task/updateTask";
 	}
@@ -116,19 +109,19 @@ public class TaskController {
 		Integer projectUpdateId = Integer.parseInt(request.getParameter("idproject"));
 		
 		ProjectDTO projectUpdateDTO = new ProjectDTO();
-		projectUpdateDTO.setProjectId(projectUpdateDTO);
+		projectUpdateDTO.setIdProject(projectUpdateId);
 		
 		TaskDTO task = new TaskDTO();
-		task.setTaskId(idtaskUpdate);
-		task.setTaskTask(taskUpdate);
-		task.setTaskDataInizio(datainizioUpdate);
-		task.setTaskDataFine(datafineUpdate);
-		task.setTaskObjective(objectiveUpdate);
-		task.setProjectDTO(projectUpdateDTO);
 		
+		task.setIdtask(idtaskUpdate);
+		task.setTask(taskUpdate);
+		task.setData_inizio(datainizioUpdate);
+		task.setData_fine(datafineUpdate);
+		task.setObjective(objectiveUpdate);
+		task.setProjectDTO(projectUpdateDTO);
 
 		taskService.updateTask(task);
 		visualTask(request);
 		return "task/manageTask";
-	
+	}
 }
