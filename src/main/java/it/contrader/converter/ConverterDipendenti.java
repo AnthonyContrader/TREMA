@@ -50,7 +50,7 @@ public class ConverterDipendenti {
 			dipendenti.setSurname(dipendentiDTO.getSurname());
 			
 			
-			List<MaterialDTO> materialListDTO= materialDTO.getMaterialDTO();
+			List<MaterialDTO> materialListDTO= dipendentiDTO.getMaterialsDTO();
 			List<Material> materialList= new ArrayList<Material>();
 	
 			

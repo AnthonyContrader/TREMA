@@ -60,11 +60,11 @@ public class DipendentiDTO {
 		this.userDTO = userDTO;
 	}
 
-	public List<MaterialDTO> getMaterials() {
+	public List<MaterialDTO> getMaterialsDTO() {
 		return this.materialsDTO;
 	}
 
-	public void setMaterials(List<MaterialDTO> materialsDTO) {
+	public void setMaterialsDTO(List<MaterialDTO> materialsDTO) {
 		this.materialsDTO = materialsDTO;
 	}
 
