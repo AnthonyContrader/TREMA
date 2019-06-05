@@ -45,7 +45,7 @@ public class TaskController {
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
-		int idTask = Integer.parseInt(request.getParameter("idtask"));
+		int idTask = Integer.parseInt(request.getParameter("idTask"));
 		request.setAttribute("idTask", idTask);
 		this.taskService.deleteTaskById(idTask);
 		visualTask(request);
