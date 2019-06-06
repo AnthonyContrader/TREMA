@@ -94,7 +94,7 @@ public class UserController {
 
 		final String content = request.getParameter("search");
 
-		List<UserDTO> allUser = this.userService.findUserDTOByUserUser(content);
+		List<UserDTO> allUser = this.userService.findUserDTOByUser(content);
 		request.setAttribute("allUserDTO", allUser);
 
 		return "user/manageUser";
@@ -135,12 +135,7 @@ public class UserController {
 		if (!StringUtils.isEmpty(userType)) {
 
 			session.setAttribute("utente", userDTO);
-
-			/*
-			 * if (userType.equals("admin")) { return "home"; } else if
-			 * (userType.equals("bo")) { return "home"; }
-			 */
-			switch (userType.toLowerCase()) {
+			switch (userType.toLowerCase()) {				//da mettere le varie 
 			case "admin":
 				return "redirect:/Home/homeAdmin";
 			case "bo":
