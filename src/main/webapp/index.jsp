@@ -3,120 +3,125 @@
 
 <html lang="en">
 <head>
-
-<!-- Required meta tags-->
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="au theme template">
-<meta name="author" content="Hau Nguyen">
-<meta name="keywords" content="au theme template">
-
-<title>LOGIN PAGE</title>
-
-<!-- Fontfaces CSS-->
-<link href="/css/font-face.css" re l="stylesheet" media="all">
-<link href="/vendor/font-awesome-4.7/css/font-awesome.min.css"
-	rel="stylesheet" media="all">
-<link href="/vendor/font-awesome-5/css/fontawesome-all.min.css"
-	rel="stylesheet" media="all">
-<link href="/vendor/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all">
-
-<!-- Bootstrap CSS-->
-<link href="/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet"
-	media="all">
-
-<!-- Vendor CSS-->
-<link href="/vendor/animsition/animsition.min.css" rel="stylesheet"
-	media="all">
-<link
-	href="/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"
-	rel="stylesheet" media="all">
-<link href="/vendor/wow/animate.css" rel="stylesheet" media="all">
-<link href="/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet"
-	media="all">
-<link href="/vendor/slick/slick.css" rel="stylesheet" media="all">
-<link href="/vendor/select2/select2.min.css" rel="stylesheet"
-	media="all">
-<link href="/vendor/perfect-scrollbar/perfect-scrollbar.css"
-	rel="stylesheet" media="all">
-
-<!-- Main CSS-->
-<link href="/css/theme.css" rel="stylesheet" media="all">
-
-
+	<title>Trema</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg-02.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-10">
+						TREMA
+					</span>
 
-<body class="animsition">
-	<div class="page-wrapper">
-		<div class="page-content--bge5">
-			<div class="container">
-				<div class="login-wrap">
-					<div class="login-content">
-						<div class="login-logo">
-							<a href="#"> <img src="/images/icon/WMES1.png"
-								alt="CoolAdmin">
-							</a>
-						</div>
-						<div class="login-form">
-							<form action="/User/login" method="post">
-								<div class="form-group">
-									<label>Username</label> <input class="au-input au-input--full"
-										type="username" name="username" placeholder="Username">
-								</div>
-								<div class="form-group">
-									<label>Password</label> <input class="au-input au-input--full"
-										type="password" name="password" placeholder="Password">
-								</div>
-								<div class="login-checkbox">
-									<label> <input type="checkbox" name="remember">Remember
-										Me
-									</label>
-
-								</div>
-								<button class="au-btn au-btn--block au-btn--green m-b-20"
-									type="submit">sign in</button>
-							</form>
-						</div>
-
-
+					<div class="wrap-input100 validate-input m-b-15" data-validate = "Username is reauired">
+						<span class="label-input100"></span>
+						<input class="input100" type="text" name="username" placeholder="Username">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-				</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<span class="label-input100"></span>
+						<input class="input100" type="password" name="pass" placeholder="Password">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					
+					<div class="text-right p-t-7 p-b-15">
+						<a href="#">
+							Forgot password?
+						</a>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+
+					<div class="txt1 text-center p-t-20 p-b-5">
+						<span>
+							or Login using
+						</span>
+					</div>
+
+					<div class="flex-c-m">
+						<a href="https://www.facebook.com/" class="login100-social-item bg1">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="https://twitter.com/" class="login100-social-item bg2">
+							<i class="fa fa-twitter"></i>
+						</a>
+
+						<a href="https://www.google.com/" class="login100-social-item bg3">
+							<i class="fa fa-google"></i>
+						</a>
+                        <a href="https://www.linkedin.com/" class="login100-social-item bg4">
+							<i class="fa fa-linkedin"></i>
+						</a>
+					</div>
+
+					<div class="flex-col-c p-t-10">
+						<span class="txt1 p-b-5">
+							or
+						</span>
+
+						<a href="#" class="txt2">
+							Sign Up
+						</a>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
+	
 
-
-
-	<!-- Jquery JS-->
-	<script src="/vendor/jquery-3.2.1.min.js"></script>
-	<!-- Bootstrap JS-->
-	<script src="/vendor/bootstrap-4.1/popper.min.js"></script>
-	<script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-	<!-- Vendor JS       -->
-	<script src="/vendor/slick/slick.min.js">
-		
-	</script>
-	<script src="/vendor/wow/wow.min.js"></script>
-	<script src="/vendor/animsition/animsition.min.js"></script>
-	<script
-		src="/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-		
-	</script>
-	<script src="/vendor/counter-up/jquery.waypoints.min.js"></script>
-	<script src="/vendor/counter-up/jquery.counterup.min.js">
-		
-	</script>
-	<script src="/vendor/circle-progress/circle-progress.min.js"></script>
-	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-	<script src="/vendor/chartjs/Chart.bundle.min.js"></script>
-	<script src="/vendor/select2/select2.min.js">
-		
-	</script>
-
-	<!-- Main JS-->
-	<script src="/js/main.js"></script>
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
 </body>
 </html>
