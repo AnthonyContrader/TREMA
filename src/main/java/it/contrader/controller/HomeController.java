@@ -27,8 +27,8 @@ public class HomeController {
 	public String homeAdmin(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
-		return "index";
-		//return "homeAdmin";
+		//return "index";
+		return "homeAdmin";
 	}
 
 	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)

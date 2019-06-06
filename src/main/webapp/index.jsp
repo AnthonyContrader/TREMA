@@ -38,7 +38,7 @@
 					<span class="login100-form-title p-b-10">
 						TREMA
 					</span>
-
+<form action="/User/login" method="post" class="login">
 					<div class="wrap-input100 validate-input m-b-15" data-validate = "Username is reauired">
 						<span class="label-input100"></span>
 						<input class="input100" type="text" name="username" placeholder="Username">
@@ -60,12 +60,12 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<button class="login100-form-btn" type="submit">
 								Login
 							</button>
 						</div>
 					</div>
-
+</form>
 					<div class="txt1 text-center p-t-20 p-b-5">
 						<span>
 							or Login using
