@@ -16,7 +16,7 @@ import it.contrader.model.User;
 public class UserService {
 
 	private final UserRepository userRepository;
-
+	
 	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -49,13 +49,12 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 
-	public List<UserDTO> findAllUserDTO() {
-
-		List<User> list = userRepository.findAll();
-		List<UserDTO> userDTOs = new ArrayList<>();
+	public List<UserDTO> findUserDTOByUserUser(String username) {
+		
+		final List<User> list = userRepository.findAllByUserUser(username);
+		final List<UserDTO> userDTOs = new ArrayList<>();
 		list.forEach(i -> userDTOs.add(ConverterUser.toDTO(i)));
 		return userDTOs;
-
 	}
 	
 }

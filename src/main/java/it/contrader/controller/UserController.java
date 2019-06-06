@@ -70,14 +70,20 @@ public class UserController {
 		Integer idUpdate = Integer.parseInt(request.getParameter("idUser"));
 		String usernameUpdate = request.getParameter("user");
 		String passwordUpdate = request.getParameter("password");
+		String nameUpdate = request.getParameter("name_user");
+		String surnameUpdate = request.getParameter("surname_user");
+		String aziendaUpdate = request.getParameter("azienda");
 		String usertypeUpdate = request.getParameter("type");
 		
 		UserDTO user = new UserDTO();
 		user.setUser(usernameUpdate);
 		user.setPassword(passwordUpdate);
+		user.setName_user(nameUpdate);
+		user.setSurname_user(surnameUpdate);
+		user.setAzienda(aziendaUpdate);
 		user.setUsertype(usertypeUpdate);
 		user.setIdUser(idUpdate);
-
+		
 		userService.updateUser(user);
 		visualUser(request);
 		return "user/manageUser";
@@ -88,7 +94,7 @@ public class UserController {
 
 		final String content = request.getParameter("search");
 
-		List<UserDTO> allUser = this.userService.getUserDTOById(content);
+		List<UserDTO> allUser = this.userService.findUserDTOByUserUser(content);
 		request.setAttribute("allUserDTO", allUser);
 
 		return "user/manageUser";
@@ -98,13 +104,19 @@ public class UserController {
 	// TODO da modificare nella view ruolo con usertype
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(HttpServletRequest request) {
-		String username = request.getParameter("user_user").toString();
-		String password = request.getParameter("user_pass").toString();
-		String userType = request.getParameter("user_type").toString();
+		String username = request.getParameter("user").toString();
+		String password = request.getParameter("password").toString();
+		String name = request.getParameter("name_user").toString();
+		String surname = request.getParameter("surname_user").toString();
+		String azienda = request.getParameter("azienda").toString();
+		String userType = request.getParameter("usertype").toString();
 
 		UserDTO userObj = new UserDTO();
 		userObj.setUser(username);
 		userObj.setPassword(password);
+		userObj.setName_user(name);
+		userObj.setSurname_user(surname);
+		userObj.setAzienda(azienda);
 		userObj.setUsertype(userType);
 		userService.insertUser(userObj);
 
@@ -116,7 +128,7 @@ public class UserController {
 	public String loginControl(HttpServletRequest request) {
 
 		session = request.getSession();
-		final String username = request.getParameter("username");
+		final String username = request.getParameter("user");
 		final String password = request.getParameter("password");
 		final UserDTO userDTO = userService.getUserByUserUserAndUserPass(username, password);
 		final String userType = userDTO.getUsertype();

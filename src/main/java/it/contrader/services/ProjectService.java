@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.converter.ConverterProject;
+import it.contrader.converter.ConverterTask;
 import it.contrader.converter.ConverterUser;
 import it.contrader.dao.ProjectRepository;
 import it.contrader.dto.ProjectDTO;
@@ -56,7 +57,7 @@ public class ProjectService {
 
 	public List<TaskDTO> findTaskDTOByUser(ProjectDTO projectDTO) {
 		List<TaskDTO> taskList = new ArrayList<TaskDTO>();
-		taskList = taskService.findTaskDTOByProject(ConverterProject.toEntity(projectDTO));
+		taskList = taskService.findTaskDTOByProject(ConverterTask.toEntity(projectDTO));
 		return taskList;
 	}
 }
