@@ -45,13 +45,13 @@ public class TaskService {
 	}
 	
 	public void deleteTaskByIdTask(Integer idtask) {
-		taskRepository.deleteByIdTask(idtask);
+		taskRepository.deleteById(idtask);
 	}
 	
-	public List<TaskDTO> findTaskDTOByProject(ProjectDTO projectDTO) {
-		final List<Task> list = taskRepository.findAllByProject(ConverterProject.toEntity(projectDTO));
+	public List<TaskDTO> findTaskDTOByProject(Project project) {
+		final List<Task> listTask = taskRepository.findAllByProject(project);
 		final List<TaskDTO> taskDTOs = new ArrayList<>();
-		list.forEach(i -> taskDTOs.add(ConverterTask.toDTO(i)));
+		listTask.forEach(i -> taskDTOs.add(ConverterTask.toDTO(i)));
 		return taskDTOs;
 	}
 }

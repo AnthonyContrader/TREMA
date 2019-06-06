@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,7 +31,12 @@ public class TaskController {
 	}
 	
 	private void visualTask(HttpServletRequest request) {
-		ProjectDTO projectDTO = (ProjectDTO) session.getAttribute("idProject");
+		//ProjectDTO projectDTO = (ProjectDTO) session.getAttribute("idProject");
+		
+		int idproject = Integer.parseInt(request.getParameter("idProject"));
+		ProjectDTO projectDTO = new ProjectDTO();
+		projectDTO.setIdProject(idproject);
+		
 		List<TaskDTO> allTask = this.taskService.getListaTaskDTOByProject(projectDTO);
 		request.setAttribute("allTaskDTO", allTask);
 	}
@@ -54,8 +58,9 @@ public class TaskController {
 	
 	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
 	public String insertRedirect(HttpServletRequest request, HttpSession session) {
-		List<ProjectDTO> projectList = projectService.getListProjectDTO();
-		request.setAttribute("projectList", projectList);
+		int idProject = Integer.parseInt(request.getParameter("idProject"));
+		//List<ProjectDTO> projectList = projectService.getProjectDTOById(idProject);
+		request.setAttribute("idProject", idProject);
 		// visualTask(request);
 		// request.setAttribute("option", "insert");
 		return "task/insertTask";
