@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import it.contrader.converter.ConverterProject;
-import it.contrader.dto.ProjectDTO;
+import org.springframework.stereotype.Service;
 
 import it.contrader.converter.ConverterTask;
 import it.contrader.dao.TaskRepository;
 import it.contrader.dto.TaskDTO;
 import it.contrader.model.Task;
+
+import it.contrader.converter.ConverterProject;
+import it.contrader.dao.ProjectRepository;
+import it.contrader.dto.ProjectDTO;
+import it.contrader.model.Project;
 
 public class TaskService {
 	private final TaskRepository taskRepository;
@@ -34,19 +37,7 @@ public class TaskService {
 	}
 	
 	public boolean insertTask(TaskDTO taskDTO) {
-		//return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
-		int taskFatherId = 0;
-
-		if (taskDTO.getTaskFather() != null && taskDTO.getTaskFather().getIdTask() != 0) {
-			taskFatherId = taskDTO.getTaskFather().getIdTask();
-			taskRepository.insertTask(taskDTO.getTask(), taskDTO.getData_inizio(), taskDTO.getData_fine(), 
-					taskDTO.getObjective(), taskDTO.getProjectDTO().getIdProject());
-		} else {
-			taskRepository.insertTask(taskDTO.getTask(), taskDTO.getData_inizio(), taskDTO.getData_fine(), 
-					taskDTO.getObjective(), taskDTO.getProjectDTO().getIdProject());
-		}
-		return true;
-		// return taskRepository.saveAndFlush(ConverterTask.toEntity(taskDTO)) != null;
+		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
 	}
 
 	public boolean updateTask(TaskDTO taskDTO) {
@@ -54,7 +45,7 @@ public class TaskService {
 	}
 	
 	public void deleteTaskByIdTask(Integer idtask) {
-		taskRepository.deleteById(idtask);
+		taskRepository.deleteByIdTask(idtask);
 	}
 	
 	public List<TaskDTO> findTaskDTOByProject(ProjectDTO projectDTO) {
@@ -62,11 +53,5 @@ public class TaskService {
 		final List<TaskDTO> taskDTOs = new ArrayList<>();
 		list.forEach(i -> taskDTOs.add(ConverterTask.toDTO(i)));
 		return taskDTOs;
-	}
-	
-	// Tree methods... (Creo que hace lo mismo que el metodo anterior...
-	public TaskDTO findProjectTaskRoot(ProjectDTO projectDTO) {
-		Task taskRoot = taskRepository.findAllByProjectAndTaskFatherIsNull(ConverterProject.toEntity(projectDTO));
-		return ConverterTask.toDTO(taskRoot);
 	}
 }

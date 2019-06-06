@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import it.contrader.dto.TaskDTO;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,8 +21,4 @@ public class TaskDTO {
 	private String objective;
 
 	private ProjectDTO projectDTO;
-	
-	private TaskDTO taskFather;
-
-	private List<TaskDTO> childsListDTO;
 }
