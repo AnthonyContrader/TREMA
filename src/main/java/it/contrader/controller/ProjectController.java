@@ -58,10 +58,10 @@ public class ProjectController {
 		int id = Integer.parseInt(request.getParameter("idProject"));
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 
-		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);
-		List<TaskDTO> taskList = projectService.findTaskDTOByProject(projectUpdate);
+		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id); // ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);
+	//	List<TaskDTO> taskList = projectService.findTaskDTOByProject(projectUpdate);
 
-		request.setAttribute("taskList", taskList);
+	//	request.setAttribute("taskList", taskList);
 		request.setAttribute("projectUpdate", projectUpdate);
 
 		return "project/updateProject";
@@ -71,7 +71,7 @@ public class ProjectController {
 	public String update(HttpServletRequest request, HttpSession session) {
 		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
 		Integer idUpdate = Integer.parseInt(request.getParameter("idProject"));
-		int tipologia = Integer.parseInt(request.getParameter("tipologia"));
+		String tipologia = request.getParameter("tipologia");
 		String project = request.getParameter("project");
 
 		List<TaskDTO> taskList = new ArrayList<TaskDTO>();
@@ -86,6 +86,7 @@ public class ProjectController {
 		project1.setUserDTO(userLogged);
 		project1.setIdProject(idUpdate);
 		project1.setProject(project);
+		project1.setTipologia(tipologia);
 		project1.setTaskDTO(taskList);
 		projectService.updateProject(project1);
 		visualProject(request);
