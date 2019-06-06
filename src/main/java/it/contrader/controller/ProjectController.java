@@ -58,7 +58,7 @@ public class ProjectController {
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 
 		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);
-		List<TaskDTO> taskList = projectService.findTaskDTOByProject(userDTO);  //possibile errore
+		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);
 
 		request.setAttribute("taskList", taskList);
 		request.setAttribute("projectUpdate", projectUpdate);

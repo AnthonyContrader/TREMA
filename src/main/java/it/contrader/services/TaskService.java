@@ -16,9 +16,21 @@ import it.contrader.dao.ProjectRepository;
 import it.contrader.dto.ProjectDTO;
 import it.contrader.model.Project;
 
+import it.contrader.converter.ConverterDipendenti;
+import it.contrader.dao.DipendentiRepository;
+import it.contrader.dto.DipendentiDTO;
+import it.contrader.model.Dipendenti;
+
+import it.contrader.converter.ConverterMaterial;
+import it.contrader.dao.MaterialRepository;
+import it.contrader.dto.MaterialDTO;
+import it.contrader.model.Material;
+
 public class TaskService {
 	private final TaskRepository taskRepository;
-
+	//
+	//private final MaterialRepository materialRepository;
+	
 	@Autowired
 	public TaskService(TaskRepository taskRepository) {
 		this.taskRepository = taskRepository;
@@ -54,4 +66,12 @@ public class TaskService {
 		listTask.forEach(i -> taskDTOs.add(ConverterTask.toDTO(i)));
 		return taskDTOs;
 	}
+	
+	/*
+	 * public List<DipendentiDTO> findDipendentiDTOByTask(Task task) { private final
+	 * DipendentiRepository dipendentiRepository; final List<Dipendenti>
+	 * listDipendenti = dipendentiRepository. final List<DipendentiDTO>
+	 * DipendentiDTOs = new ArrayList<>(); listDipendenti.forEach(i ->
+	 * DipendentiDTOs.add(ConverterDipendenti.toDTO(i))); return DipendentiDTOs; }
+	 */
 }
