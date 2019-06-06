@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.contrader.dto.ProjectDTO;
 import it.contrader.dto.TaskDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.model.Project;
 import it.contrader.services.ProjectService;
 
 @Controller
@@ -44,8 +45,8 @@ public class ProjectController {
 	// Delete
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("id"));
-		request.setAttribute("id", id);
+		int id = Integer.parseInt(request.getParameter("idProject"));
+		request.setAttribute("idProject", id);
 		this.projectService.deleteProjectById(id);
 		visualProject(request);
 		return "project/manageProject";
@@ -54,11 +55,11 @@ public class ProjectController {
 
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request, HttpSession session) {
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("idProject"));
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 
 		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);
-		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);
+		List<TaskDTO> taskList = projectService.findTaskDTOByProject(projectUpdate);
 
 		request.setAttribute("taskList", taskList);
 		request.setAttribute("projectUpdate", projectUpdate);
@@ -94,8 +95,8 @@ public class ProjectController {
 	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request, HttpSession session) {
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
-		List<TaskDTO> taskList = projectService.findTaskDTOByUser(userDTO);   //possibile errore per project e non per user
-		request.setAttribute("taskList", taskList);
+		List<ProjectDTO> projectlist=projectService.findProjectDTOByUser(userDTO);	//mi trovo i project in base ai user
+		request.setAttribute("projectList", projectlist);
 		return "project/insertProject";
 	}	
 	
