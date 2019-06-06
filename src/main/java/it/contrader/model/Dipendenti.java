@@ -9,9 +9,11 @@ import org.springframework.lang.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
+@NoArgsConstructor
 @Entity	
 @Table(name="dipendenti")
 
@@ -33,6 +35,4 @@ public class Dipendenti implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="task")
 	private Task task;
-
-
 }

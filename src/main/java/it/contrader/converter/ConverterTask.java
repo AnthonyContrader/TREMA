@@ -11,7 +11,6 @@ public class ConverterTask {
 		TaskDTO taskDTO = null;
 		if (task != null) {
 			taskDTO = new TaskDTO();
-			
 			taskDTO.setIdTask(task.getIdTask());
 			taskDTO.setTask(task.getTask());
 			taskDTO.setData_inizio(task.getData_inizio());
