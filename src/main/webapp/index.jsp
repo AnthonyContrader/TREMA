@@ -34,14 +34,13 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-02.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="/User/login" method="post">
 					<span class="login100-form-title p-b-10">
 						TREMA
 					</span>
-<form action="/User/login" method="post" class="login">
 					<div class="wrap-input100 validate-input m-b-15" data-validate = "Username is reauired">
 						<span class="label-input100"></span>
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="user" placeholder="Username">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
