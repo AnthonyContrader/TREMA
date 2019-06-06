@@ -23,10 +23,12 @@ public class HomeController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value = "/chatManagement", method = RequestMethod.GET)
-	public String chatManagement(HttpServletRequest request) {
-		return "homeChatbot";
-
+	@RequestMapping(value = "/homeAdmin", method = RequestMethod.GET)
+	public String homeAdmin(HttpServletRequest request) {
+		List<UserDTO> allUser = this.userService.getListaUserDTO();
+		request.setAttribute("allUserDTO", allUser);
+		return "index";
+		//return "homeAdmin";
 	}
 
 	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
