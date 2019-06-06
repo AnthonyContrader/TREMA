@@ -1,8 +1,6 @@
 package it.contrader.model;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.*;
 
 import org.springframework.lang.Nullable;
@@ -11,12 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
-
-/**
- * The persistent class for the clients database table.
- * 
- */
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor

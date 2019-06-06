@@ -4,16 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.model.Dipendenti;
-import it.contrader.model.Task;
-import it.contrader.dao.DipendentiRepository;
 import it.contrader.dto.DipendentiDTO;
-import it.contrader.dto.ProjectDTO;
-import it.contrader.dto.TaskDTO;
+import it.contrader.dao.DipendentiRepository;
 import it.contrader.converter.ConverterDipendenti;
-import it.contrader.converter.ConverterProject;
+
+import it.contrader.model.Task;
+import it.contrader.dto.TaskDTO;
 import it.contrader.converter.ConverterTask;
-import it.contrader.converter.ConverterUser;
-import it.contrader.dto.UserDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +28,8 @@ public class DipendentiService {
 		return ConverterDipendenti.toListDTO((List<Dipendenti>) dipendentiRepository.findAll());
 	}
 	
-	public DipendentiDTO getDipendentiDTOById(Integer id) {
-		return ConverterDipendenti.toDTO(dipendentiRepository.findById(id).get());
+	public DipendentiDTO getDipendentiDTOById(Integer idDipendenti) {
+		return ConverterDipendenti.toDTO(dipendentiRepository.findById(idDipendenti).get());
 	}
 	
 	public List<DipendentiDTO> getListaDipendentiDTOByTask(TaskDTO taskDTO) {
@@ -47,12 +44,11 @@ public class DipendentiService {
 		return dipendentiRepository.save(ConverterDipendenti.toEntity(dipendentiDTO)) != null;
 	}
 	
-	public void deleteDipendentiById(Integer id) {
-		dipendentiRepository.deleteById(id);
+	public void deleteDipendentiById(Integer idDipendenti) {
+		dipendentiRepository.deleteById(idDipendenti);
 	}
 
 	public List<DipendentiDTO> findDipendentiDTOByTask(Task task) {
-		
 		final List<Dipendenti> listDipendenti = dipendentiRepository.findAllByTask(task);
 		final List<DipendentiDTO> listDipendentiDTO = new ArrayList<>();
 		listDipendenti.forEach(i -> listDipendentiDTO.add(ConverterDipendenti.toDTO(i)));
