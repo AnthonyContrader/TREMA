@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import it.contrader.model.Dipendenti;
-import it.contrader.model.User;
+import it.contrader.model.Task;
 
 public interface DipendentiRepository extends CrudRepository<Dipendenti, Integer> {
 
-	public List<Dipendenti> findAllByUser(User user);
+	public List<Dipendenti> findAllByTask(Task task);
 }
  
