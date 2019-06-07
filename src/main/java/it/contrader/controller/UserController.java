@@ -129,7 +129,7 @@ public class UserController {
 
 		session = request.getSession();
 		final String username = request.getParameter("user");
-		final String password = request.getParameter("password");
+		final String password = request.getParameter("password");		//da controllare sempre l'index per le etichette, se non corrispondono ritornano null..
 		final UserDTO userDTO = userService.getUserByUserUserAndUserPass(username, password);
 		final String userType = userDTO.getUsertype();
 		if (!StringUtils.isEmpty(userType)) {
