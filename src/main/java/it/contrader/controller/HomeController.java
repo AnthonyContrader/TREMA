@@ -30,11 +30,11 @@ public class HomeController {
 		return "homeAdmin";
 	}
 
-	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
+	@RequestMapping(value = "/homePM", method = RequestMethod.GET)
 	public String userManagement(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
-		return "homeResource"; //tramite la view resolver(bean istanziato da spring)
+		return "homePM"; //tramite la view resolver(bean istanziato da spring)
 
 	}
 
