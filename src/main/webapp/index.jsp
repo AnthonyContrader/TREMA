@@ -64,7 +64,7 @@
 							</button>
 						</div>
 					</div>
-</form>
+
 					<div class="txt1 text-center p-t-20 p-b-5">
 						<span>
 							or Login using

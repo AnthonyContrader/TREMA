@@ -27,15 +27,14 @@ public class HomeController {
 	public String homeAdmin(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
-		return "index";
-		//return "homeAdmin";
+		return "homeAdmin";
 	}
 
 	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
 	public String userManagement(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
-		return "homeUser"; //tramite la view resolver(bean istanziato da spring)
+		return "homeResource"; //tramite la view resolver(bean istanziato da spring)
 
 	}
 

@@ -1,5 +1,5 @@
-<%@ include file="header.jsp"%>
-<html lang="en">
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <head>
     <!-- Required meta tags-->
