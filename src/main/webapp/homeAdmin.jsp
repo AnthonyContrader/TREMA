@@ -231,8 +231,6 @@
                                                     <td>Username</td>
                                                     <td>Password</td>    
                                                     <td>Role</td>
-                                                    <td>Type</td>
-                                                    <td></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -263,15 +261,16 @@
 														</div>
 													</td>
 													<td><%=convertUserType(userDTO.getUsertype()) %></td>
-													<td>
-														<div class="rs-select2--trans rs-select2--sm">
-															<select class="js-select2" name="property">
-																<option selected="selected" value="admin">Admin</option>
-																<option value="user">User</option>
-															</select>
-															<div class="dropDownSelect2"></div>
-														</div>
-													</td>
+													  <td>
+                                                        <div class="table-data-feature">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                    <i class="zmdi zmdi-edit"></i>
+                                                            </button>
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                    <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
 
 												</tr>
 												
