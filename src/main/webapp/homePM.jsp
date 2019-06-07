@@ -36,7 +36,7 @@
 
 </head>
 
-<body class="animsition">
+<body>
     <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar2">
@@ -1067,7 +1067,7 @@
     <script src="/vendor/vector-map/jquery.vmap.world.js"></script>
 
     <!-- Main JS-->
-    
+    <script src="js/main.js"></script>
 
 </body>
 
