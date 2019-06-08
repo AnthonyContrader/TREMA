@@ -79,7 +79,7 @@
                         <img src="/images/icon/avatar-big-01.jpg" alt="John Doe" />
                     </div>
                     <h4 class="name">Gianluca Di Nanna</h4>
-                    <a href="#">Sign out</a>
+                    <a href="/User/logout">Sign out</a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
                     <div class="table table-top-campaign">
@@ -218,9 +218,9 @@
                                 <div class="user-data m-b-30">
                                     <h3 class="title-3 m-b-30">
                                         <i class="title-3 m-b-30"></i>user data</h3>
-                                            <button class="au-btn au-btn-icon au-btn--blue">
-                                                    <i class="zmdi zmdi-plus"></i>
-                                            </button> 
+                                            	<li><a href="/User/insertRedirect"> <i
+															class="fas fa-user"></i>Users
+													</a></li> 
                                     
                                     <div class="table-responsive table-data">
                                         <table class="table">
@@ -262,13 +262,14 @@
 													</td>
 													<td><%=convertUserType(userDTO.getUsertype()) %></td>
 													  <td>
-                                                        <div class="table-data-feature">
-                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                    <i class="zmdi zmdi-edit"></i>
-                                                            </button>
-                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                    <i class="zmdi zmdi-delete"></i>
-                                                            </button>
+													  <div class="table-data-feature">
+                                                        <a href="/User/updateRedirect?id=<%=userDTO.getIdUser()%>"
+																class="item" data-toggle="tooltip" data-placement="top"
+																title="Edit"> <i class="zmdi zmdi-edit"></i>
+															</a> <a href="/User/delete?id=<%=userDTO.getIdUser()%>"
+																class="item" data-toggle="tooltip" data-placement="top"
+																title="Delete"> <i class="zmdi zmdi-delete"></i>
+															</a>
                                                         </div>
                                                     </td>
 
@@ -321,7 +322,7 @@
     <script src="/vendor/vector-map/jquery.vmap.world.js"></script>
 
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 
 </body>
 

@@ -7,7 +7,7 @@
 	String selected = "selected=\"selected\"";
 	String adminSelected = "";
 	String boSelected = "";
-	if (updateUser.getUserType().equals("admin")) {
+	if (updateUser.getUsertype().equals("admin")) {
 		adminSelected = selected;
 	} else
 		boSelected = selected;
@@ -67,16 +67,16 @@
 	<div class="page-wrapper">
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar2">
-			<div class="logo">
+		<!-- 	<div class="logo">
 				<a href="#"> <img src="/images/icon/wmeslogo2.png"
 					alt="Cool Admin" />
 				</a>
-			</div>
+			</div> -->
 			<div class="menu-sidebar2__content js-scrollbar1">
 				<div class="account2">
-					<div class="image img-cir img-120">
+				<!-- <div class="image img-cir img-120">
 						<img src="/images/icon/avatarAdmin2.png" alt="Admin" />
-					</div>
+					</div>  -->
 					<h4 class="name">Admin</h4>
 					<a href="/User/logout">Sign out</a>
 				</div>
@@ -140,17 +140,17 @@
 						<div class="card-body card-block">
 							<form action="/User/update" method="post">
 								<input type="hidden" name="user_id"
-									value="<%=updateUser.getUserId()%>" />
+									value="<%=updateUser.getIdUser()%>" />
 								<div class="form-group">
 									<label>Username</label> <input class="au-input au-input--full"
 										type="text" name="user_user" placeholder="Username"
-										value="<%=updateUser.getUserUser()%>">
+										value="<%=updateUser.getUser()%>">
 								</div>
 
 								<div class="form-group">
 									<label>Password</label> <input class="au-input au-input--full"
 										type="password" name="user_pass" placeholder="Password"
-										value="<%=updateUser.getUserPass()%>">
+										value="<%=updateUser.getPassword()%>">
 								</div>
 
 								<div class="form-group">
@@ -197,8 +197,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="copyright">
-								<p>Copyright © 2019 Wmes. All rights reserved. Template by
-									Wmes Team</p>
+								<p>Copyright © 2019 Trema. All rights reserved. Template by
+									Trema Team</p>
 							</div>
 						</div>
 					</div>

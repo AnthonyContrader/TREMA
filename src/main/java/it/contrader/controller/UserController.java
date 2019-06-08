@@ -42,8 +42,8 @@ public class UserController {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("idUser"));
-		request.setAttribute("idUser", id);
+		int id = Integer.parseInt(request.getParameter("id"));
+		request.setAttribute("id", id);
 		this.userService.deleteUserById(id);
 		visualUser(request);
 		return "user/manageUser";
@@ -56,7 +56,7 @@ public class UserController {
 
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("idUser"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		UserDTO userUpdate = new UserDTO();
 		// userUpdate.setUserId(id);
 

@@ -160,15 +160,15 @@
 
 												<tr class="tr-shadow">
 
-													<td><%=user.getUserUser()%></td>
-													<td><%=convertUserType(user.getUserType())%></td>
+													<td><%=user.getUser()%></td>
+													<td><%=convertUserType(user.getUsertype())%></td>
 													<td>
 														<div class="table-data-feature">
 
-															<a href="/User/updateRedirect?id=<%=user.getUserId()%>"
+															<a href="/User/updateRedirect?id=<%=user.getIdUser()%>"
 																class="item" data-toggle="tooltip" data-placement="top"
 																title="Edit"> <i class="zmdi zmdi-edit"></i>
-															</a> <a href="/User/delete?id=<%=user.getUserId()%>"
+															</a> <a href="/User/delete?id=<%=user.getIdUser()%>"
 																class="item" data-toggle="tooltip" data-placement="top"
 																title="Delete"> <i class="zmdi zmdi-delete"></i>
 															</a>
