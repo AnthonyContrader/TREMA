@@ -48,7 +48,6 @@ public class ProjectService {
 	}
 
 	public List<ProjectDTO> findProjectDTOByUser(UserDTO userDTO) {
-
 		final List<Project> listProject = projectRepository.findAllByUser(ConverterUser.toEntity(userDTO));
 		final List<ProjectDTO> listProjectDTO = new ArrayList<>();
 		listProject.forEach(i -> listProjectDTO.add(ConverterProject.toDTO(i)));

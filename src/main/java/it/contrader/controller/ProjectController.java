@@ -1,8 +1,5 @@
 package it.contrader.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,16 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.contrader.dto.ProjectDTO;
-import it.contrader.dto.TaskDTO;
-import it.contrader.dto.UserDTO;
-import it.contrader.model.Project;
 import it.contrader.services.ProjectService;
 
-@Controller
+import it.contrader.dto.UserDTO;
+import it.contrader.dto.TaskDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
 @RequestMapping("/Project")
 public class ProjectController {
 	private final ProjectService projectService;
+	
 	@Autowired
 	private HttpSession session;
 
@@ -34,9 +34,6 @@ public class ProjectController {
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 		List<ProjectDTO> allProject = this.projectService.findProjectDTOByUser(userDTO);
 		request.setAttribute("allProjectDTO", allProject);
-		for(ProjectDTO projectDto : allProject) {
-			System.out.println(" "+projectDto.getProject()+" "+projectDto.getUserDTO().getIdUser());
-		}
 	}
 
 	@RequestMapping(value = "/projectManagement", method = RequestMethod.GET)
@@ -53,16 +50,15 @@ public class ProjectController {
 		this.projectService.deleteProjectById(id);
 		visualProject(request);
 		return "project/manageProject";
-
 	}
 
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request, HttpSession session) {
 		int id = Integer.parseInt(request.getParameter("idProject"));
-		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
+		//UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 
 		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id); // ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);
-	//	List<TaskDTO> taskList = projectService.findTaskDTOByProject(projectUpdate);
+		//List<TaskDTO> taskList = projectService.findTaskDTOByProject(projectUpdate);
 
 	//	request.setAttribute("taskList", taskList);
 		request.setAttribute("projectUpdate", projectUpdate);
@@ -74,7 +70,7 @@ public class ProjectController {
 	public String update(HttpServletRequest request, HttpSession session) {
 		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
 		Integer idUpdate = Integer.parseInt(request.getParameter("idProject"));
-		String tipologia = request.getParameter("tipologia");
+		String tipologie = request.getParameter("tipologie");
 		String project = request.getParameter("project");
 
 		List<TaskDTO> taskList = new ArrayList<TaskDTO>();
@@ -89,7 +85,7 @@ public class ProjectController {
 		project1.setUserDTO(userLogged);
 		project1.setIdProject(idUpdate);
 		project1.setProject(project);
-		project1.setTipologia(tipologia);
+		project1.setTipologie(tipologie);
 		project1.setTaskDTO(taskList);
 		projectService.updateProject(project1);
 		visualProject(request);

@@ -1,9 +1,10 @@
 package it.contrader.converter;
 
-import java.util.*;
-
 import it.contrader.dto.*;
 import it.contrader.model.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConverterProject {
 		
@@ -14,15 +15,17 @@ public class ConverterProject {
 				projectDTO = new ProjectDTO();
 				projectDTO.setIdProject(project.getIdProject());
 				projectDTO.setProject(project.getProject());
-				projectDTO.setTipologia(project.getTipologie());
+				projectDTO.setTipologie(project.getTipologie());
+				projectDTO.setUserDTO(ConverterUser.toDTO(project.getUser()));
+				/*
 				List<Task> taskList= project.getTasks();
-				List<TaskDTO> taskListDTO= new ArrayList<TaskDTO>();
+				//List<TaskDTO> taskListDTO= new ArrayList<TaskDTO>();
 				
 				for (Task task: taskList) {
 					taskListDTO.add(ConverterTask.toDTO(task));
-				}
+				} 
 				
-				projectDTO.setTaskDTO(taskListDTO); 
+				projectDTO.setTaskDTO(taskListDTO); */
 			}
 		
 			return projectDTO;
@@ -32,13 +35,13 @@ public class ConverterProject {
 			Project project = null;
 			
 			if (projectDTO != null) {
-				project = new Project(0, null, null, null, null);
+				project = new Project();
 				
 				project.setIdProject(projectDTO.getIdProject());
 				project.setProject(projectDTO.getProject());
-				project.setTipologie(projectDTO.getTipologia());; 
+				project.setTipologie(projectDTO.getTipologie());; 
 				project.setUser(ConverterUser.toEntity(projectDTO.getUserDTO()));
-				
+				/*
 				List<TaskDTO> taskListDTO= projectDTO.getTaskDTO();
 				List<Task> taskList= new ArrayList<Task>();
 				
@@ -46,10 +49,10 @@ public class ConverterProject {
 					taskList.add(ConverterTask.toEntity(taskDTO));
 				}
 				
-				project.setTasks(taskList); 
+				project.setTasks(taskList); */
 			}
 			
-			return project;	
+			return project;
 			}
 		
 		public static List<ProjectDTO> toListDTO(List<Project> list) {
