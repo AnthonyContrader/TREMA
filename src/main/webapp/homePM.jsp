@@ -1,8 +1,15 @@
+<<<<<<< HEAD
+<%@ include file="header.jsp"%>
+<%
+	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
+%>
+=======
 ﻿<%@ include file="header.jsp"%>
 <%
 	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
 %>
 
+>>>>>>> 315dc6a0cf7cc88735691c392da3f564c992e267
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,8 +60,8 @@
                     <div class="image img-cir img-120">
                         <img src="/images/icon/avatar-big-01.jpg" alt="John Doe" />
                     </div>
-                    <h4 class="name">Gianluca Di Nanna</h4>
-                    <a href="#">Sign out</a>
+                    <h4 class="name">User XXX</h4>
+                    <a href="/User/logout">Sign out</a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
                             <button class="au-btn au-btn-icon au-btn--blue">
@@ -63,6 +70,26 @@
                 
                     <div class="table table-top-campaign">
                         <table class="table">
+<<<<<<< HEAD
+                            <thead>
+                                <tr>
+                                    <td align="left">PROJECTS</td>
+                                </tr>
+                            </thead>
+	                        <tbody>
+	                        	<% for (ProjectDTO projectDTO: allProject) { %>
+	                                <tr>
+	                                    <td>
+	                                        <div class="table-data__info">
+	                                            <h2><%=projectDTO.getProject() %></h2>
+	                                        </div>
+	                                    </td>
+	                                </tr>
+	                            <% } %>
+	                        </tbody>
+                        </table>
+                        
+=======
                                            
                         <tbody>
                           <%for (ProjectDTO projectDTO : allProject) {	%>
@@ -76,6 +103,7 @@
                              <% } %>
                         </tbody>
                   </table>
+>>>>>>> 315dc6a0cf7cc88735691c392da3f564c992e267
                     </div>
                 </div>
                

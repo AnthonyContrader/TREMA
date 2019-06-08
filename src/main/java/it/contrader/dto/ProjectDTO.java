@@ -13,7 +13,7 @@ public class ProjectDTO {
 	
 	private String project;
 	
-	private String tipologia;
+	private String tipologie;
 	
 	private UserDTO userDTO;
 
