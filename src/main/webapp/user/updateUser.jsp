@@ -153,6 +153,11 @@
 										value="<%=updateUser.getPassword()%>">
 								</div>
 								<div class="form-group">
+									<label>Usertype</label> <input class="au-input au-input--full"
+										type="text" name="usertype" placeholder="usertype"
+										value="<%=updateUser.getUsertype()%>">
+								</div>
+								<div class="form-group">
 									<label>Password</label> <input class="au-input au-input--full"
 										type="text" name="name_user" placeholder="name_user"
 										value="<%=updateUser.getName_user()%>">
@@ -166,16 +171,6 @@
 									<label>Password</label> <input class="au-input au-input--full"
 										type="text" name="azienda" placeholder="azienda"
 										value="<%=updateUser.getAzienda()%>">
-								</div>
-
-								<div class="form-group">
-									<label>UserType</label> <select class="form-control"
-										name="usertype">
-										<option <%=adminSelected%> value="admin">Admin</option>
-										<option <%=boSelected%> value="user">Project Manager</option>
-									</select>
-									<!-- <input class="au-input au-input--full" type="text" name="usertype" placeholder="UserType">
- -->
 								</div>
 								<div class="login-checkbox"></div>
 								<button type="submit" class="btn btn-secondary btn-sm">Update</button>

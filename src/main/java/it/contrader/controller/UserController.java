@@ -73,7 +73,7 @@ public class UserController {
 		String nameUpdate = request.getParameter("name_user");
 		String surnameUpdate = request.getParameter("surname_user");
 		String aziendaUpdate = request.getParameter("azienda");
-		String usertypeUpdate = request.getParameter("type");
+		String usertypeUpdate = request.getParameter("usertype");
 		
 		UserDTO user = new UserDTO();
 		user.setUser(usernameUpdate);
@@ -86,7 +86,7 @@ public class UserController {
 		
 		userService.updateUser(user);
 		visualUser(request);
-		return "user/manageUser";
+		return "homeAdmin";
 	}
 
 	@RequestMapping(value = "/cercaUser", method = RequestMethod.GET)
