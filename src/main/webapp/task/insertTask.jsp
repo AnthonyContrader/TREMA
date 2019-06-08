@@ -1,4 +1,10 @@
 <%@ include file="/header.jsp"%>
+<%@ page import="it.contrader.dto.*"%>
+<%@ page import="it.contrader.dao.*"%>
+<%@ page import="it.contrader.model.*"%>
+<%@ page import="it.contrader.service.*"%>
+<%@ page import="it.contrader.servlets.*"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +33,7 @@
 	line-height: 2px;
 }
 </style>
+
 </head>
 <body>
 	<div class="pre_contenitore">
@@ -40,7 +47,35 @@
 		Descrizione: <input type="text" size="40" maxlength="40" name="descrizione_task" />
 		<br>
 		<br>
-		ID Project: <input type="text" size="40" maxlength="40" name="idproject" />
+		<!-- ID Project: <input type="text" size="40" maxlength="40" name="idproject" />
+		<br>
+		<br> -->
+		Project:
+		<%
+			//RequestDispatcher rd= getServletContext().getRequestDispatcher("ProjectServlet?richiesta=project_manager"); 
+			//List<ProjectDTO> allProjects = (List<ProjectDTO>) request.getAttribute("allProjects");
+			
+			//request.getRequestDispatcher("ProjectServlet?richiesta=project_manager").forward(request, response);
+			//RequestDispatcher rd= request.getRequestDispatcher("ProjectServlet?richiesta=project_manager").forward(request, response);
+			//List<ProjectDTO> allProjects = (List<ProjectDTO>) request.getAttribute("allProjects");
+			
+			ProjectDAO pdao = new ProjectDAO();
+			pdao.getAllProject();
+			ArrayList allProjects = (ArrayList) pdao.getAllProject();
+		%>
+		<select name="idproject" id="idproject">
+            <option>Select project ...</option>
+            <% for (int i = 0; i < allProjects.size(); i++) { %>
+            <option value="<%=allProjects.get(i) %>"></option>
+            <% } %>
+        </select>
+        <%-- 
+		<select name="idproject" id="idproject">
+            <option>Select project ...</option>
+            <% for (ArrayList x : allProjects) { %>
+            <option value="<%=allProjects.getprojectName() %>"></option>
+            <% } %>
+        </select> --%>
 		<br>
 		<br>
 		ID HR: <input type="text" size="40" maxlength="40" name="idhr" />
