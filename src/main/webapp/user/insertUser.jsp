@@ -137,12 +137,24 @@
 									<label>Password</label> <input class="au-input au-input--full"
 										type="password" name="password" placeholder="Password">
 								</div>
+								<div class="form-group">
+									<label>Name</label> <input class="au-input au-input--full"
+										type="text" name="name_user" placeholder="name_user">
+								</div>
+								<div class="form-group">
+									<label>Surname</label> <input class="au-input au-input--full"
+										type="text" name="surname_user" placeholder="surname_user">
+								</div>
+								<div class="form-group">
+									<label>Azienda</label> <input class="au-input au-input--full"
+										type="text" name="azienda" placeholder="azienda">
+								</div>
 
 								<div class="form-group">
 									<label>UserType</label> <select class="form-control"
-										name="user_type">
+										name="usertype">
 										<option value="admin">Admin</option>
-										<option value="bo">Business Owner</option>
+										<option value="user">User</option>
 									</select>
 									<!-- <input class="au-input au-input--full" type="text" name="usertype" placeholder="UserType">
  -->
