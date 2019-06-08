@@ -44,8 +44,8 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar2">
             <div class="logo">
-                <a href="#">
-                    <img src="/images/icon/logo-white.png" alt="Cool Admin" />
+                <a href="/User/login">
+                    <img src="/images/icon/TremaLogo.png" alt="Trema Logo" />
                 </a>
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
@@ -79,19 +79,7 @@
 	                                </tr>
 	                            <% } %>
 	                        </tbody>
-                        </table>                                 
-                        <tbody>
-                          <%for (ProjectDTO projectDTO : allProject) {	%>
-							 <tr>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h2><%=projectDTO.getProject()%></h2>  
-                                        </div>
-                                    </td>
-                                </tr>
-                             <% } %>
-                        </tbody>
-                  </table>
+                        </table>
                     </div>
                 </div>
                

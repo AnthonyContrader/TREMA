@@ -6,14 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.contrader.converter.ConverterProject;
-import it.contrader.converter.ConverterTask;
-import it.contrader.converter.ConverterUser;
-import it.contrader.dao.ProjectRepository;
 import it.contrader.dto.ProjectDTO;
-import it.contrader.dto.TaskDTO;
-import it.contrader.dto.UserDTO;
+import it.contrader.converter.ConverterProject;
+import it.contrader.dao.ProjectRepository;
 import it.contrader.model.Project;
+
+import it.contrader.converter.ConverterUser;
+import it.contrader.dto.UserDTO;
+
+import it.contrader.dto.TaskDTO;
+import it.contrader.converter.ConverterTask;
 
 @Service
 public class ProjectService {
