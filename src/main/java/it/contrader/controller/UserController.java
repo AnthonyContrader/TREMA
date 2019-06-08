@@ -46,7 +46,7 @@ public class UserController {
 		request.setAttribute("id", id);
 		this.userService.deleteUserById(id);
 		visualUser(request);
-		return "user/manageUser";
+		return "homeAdmin";
 	}
 
 	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
@@ -121,7 +121,7 @@ public class UserController {
 		userService.insertUser(userObj);
 
 		visualUser(request);
-		return "user/manageUser";
+		return "homeAdmin";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
