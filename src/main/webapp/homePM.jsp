@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 <%@ include file="header.jsp"%>
 <%
 	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
 %>
-=======
-﻿<%@ include file="header.jsp"%>
-<%
-	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
-%>
 
->>>>>>> 315dc6a0cf7cc88735691c392da3f564c992e267
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +63,6 @@
                 
                     <div class="table table-top-campaign">
                         <table class="table">
-<<<<<<< HEAD
                             <thead>
                                 <tr>
                                     <td align="left">PROJECTS</td>
@@ -87,10 +79,7 @@
 	                                </tr>
 	                            <% } %>
 	                        </tbody>
-                        </table>
-                        
-=======
-                                           
+                        </table>                                 
                         <tbody>
                           <%for (ProjectDTO projectDTO : allProject) {	%>
 							 <tr>
@@ -103,7 +92,6 @@
                              <% } %>
                         </tbody>
                   </table>
->>>>>>> 315dc6a0cf7cc88735691c392da3f564c992e267
                     </div>
                 </div>
                
