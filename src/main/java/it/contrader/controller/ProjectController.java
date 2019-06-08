@@ -34,6 +34,9 @@ public class ProjectController {
 		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 		List<ProjectDTO> allProject = this.projectService.findProjectDTOByUser(userDTO);
 		request.setAttribute("allProjectDTO", allProject);
+		for(ProjectDTO projectDto : allProject) {
+			System.out.println(" "+projectDto.getProject()+" "+projectDto.getUserDTO().getIdUser());
+		}
 	}
 
 	@RequestMapping(value = "/projectManagement", method = RequestMethod.GET)

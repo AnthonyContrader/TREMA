@@ -1,4 +1,7 @@
 ﻿<%@ include file="header.jsp"%>
+<%
+	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,43 +63,19 @@
                 
                     <div class="table table-top-campaign">
                         <table class="table">
-                            <thead>
-                                <tr>
-                                    <td align="left">PROJECT</td>
-                                </tr>
-                            </thead>
+                                           
                         <tbody>
-                                <tr>
+                          <%for (ProjectDTO projectDTO : allProject) {	%>
+							 <tr>
                                     <td>
                                         <div class="table-data__info">
-                                            <h2>TREMA</h2>
+                                            <h2><%=projectDTO.getProject()%></h2>  
                                         </div>
                                     </td>
                                 </tr>
-                                 <tr>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h2>ROSER</h2>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h2>DOSER</h2>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h2>WESER</h2>
-                                        </div>
-                                    </td>
-                                </tr>
+                             <% } %>
                         </tbody>
-                        </table>
-                        
+                  </table>
                     </div>
                 </div>
                
