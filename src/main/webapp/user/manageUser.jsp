@@ -58,7 +58,7 @@
 
 </head>
 
-<body class="animsition">
+<body>
 	<div class="page-wrapper">
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar2">

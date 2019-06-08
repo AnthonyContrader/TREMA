@@ -67,7 +67,7 @@ public class UserController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request) {
-		Integer idUpdate = Integer.parseInt(request.getParameter("idUser"));
+		Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 		String usernameUpdate = request.getParameter("user");
 		String passwordUpdate = request.getParameter("password");
 		String nameUpdate = request.getParameter("name_user");

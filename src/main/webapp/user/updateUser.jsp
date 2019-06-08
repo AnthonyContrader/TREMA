@@ -63,7 +63,7 @@
 
 </head>
 
-<body class="animsition">
+<body>
 	<div class="page-wrapper">
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar2">
@@ -139,25 +139,40 @@
 						<div class="card-header">EDIT USER</div>
 						<div class="card-body card-block">
 							<form action="/User/update" method="post">
-								<input type="hidden" name="user_id"
+								<input type="hidden" name="id"
 									value="<%=updateUser.getIdUser()%>" />
 								<div class="form-group">
 									<label>Username</label> <input class="au-input au-input--full"
-										type="text" name="user_user" placeholder="Username"
+										type="text" name="user" placeholder="Username"
 										value="<%=updateUser.getUser()%>">
 								</div>
 
 								<div class="form-group">
 									<label>Password</label> <input class="au-input au-input--full"
-										type="password" name="user_pass" placeholder="Password"
+										type="password" name="password" placeholder="Password"
 										value="<%=updateUser.getPassword()%>">
+								</div>
+								<div class="form-group">
+									<label>Password</label> <input class="au-input au-input--full"
+										type="text" name="name_user" placeholder="name_user"
+										value="<%=updateUser.getName_user()%>">
+								</div>
+								<div class="form-group">
+									<label>Password</label> <input class="au-input au-input--full"
+										type="text" name="surname_user" placeholder="surname_user"
+										value="<%=updateUser.getSurname_user()%>">
+								</div>
+								<div class="form-group">
+									<label>Password</label> <input class="au-input au-input--full"
+										type="text" name="azienda" placeholder="azienda"
+										value="<%=updateUser.getAzienda()%>">
 								</div>
 
 								<div class="form-group">
 									<label>UserType</label> <select class="form-control"
-										name="user_type">
+										name="usertype">
 										<option <%=adminSelected%> value="admin">Admin</option>
-										<option <%=boSelected%> value="bo">Business Owner</option>
+										<option <%=boSelected%> value="user">Project Manager</option>
 									</select>
 									<!-- <input class="au-input au-input--full" type="text" name="usertype" placeholder="UserType">
  -->
