@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity	
 @Table(name="task")
-
+@NamedQuery(name="Task.findAll", query="SELECT u FROM Task u")  //preleva tutto da user
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

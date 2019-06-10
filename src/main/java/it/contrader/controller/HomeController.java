@@ -14,20 +14,22 @@ import it.contrader.dto.*;
 import it.contrader.dto.UserDTO;
 import it.contrader.services.UserService;
 import it.contrader.services.ProjectService;
+import it.contrader.services.TaskService;
 
 @Controller
 @RequestMapping("/Home")
 public class HomeController {
 
 	private final UserService userService;
-	//private ProjectService projectService;
+	private TaskService taskService;
 	
 	@Autowired
 	private ProjectService projectService;
-	
+		
 	@Autowired//si crea il server all'avvio e tramite la injection si richiama il service
-	public HomeController(UserService userService) {
+	public HomeController(UserService userService, TaskService taskService) {
 		this.userService = userService;
+		this.taskService = taskService;
 	}
 
 	@RequestMapping(value = "/homeAdmin", method = RequestMethod.GET)
@@ -41,7 +43,9 @@ public class HomeController {
 	public String homePM(HttpServletRequest request, HttpSession session) {
 		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
 		List<ProjectDTO> allProject = this.projectService.findProjectDTOByUser(userLogged);
+		List<TaskDTO> allTask = this.taskService.getListaTaskDTO();
 		request.setAttribute("allProjectDTO", allProject);
+		request.setAttribute("allTaskDTO", allTask);
 		return "homePM"; //tramite la view resolver(bean istanziato da spring)
 
 	}

@@ -19,6 +19,10 @@ public class TaskService {
 	private final TaskRepository taskRepository;
 	
 	@Autowired
+	private DipendentiService dipendentiService;
+	private MaterialService materialService;
+	
+	@Autowired
 	public TaskService(TaskRepository taskRepository) {
 		this.taskRepository = taskRepository;
 	}
@@ -30,11 +34,7 @@ public class TaskService {
 	public TaskDTO getTaskDTOById(Integer idTask) {
 		return ConverterTask.toDTO(taskRepository.findById(idTask).get());
 	}
-	/*
-	public List<TaskDTO> getListaTaskDTOByProject(ProjectDTO projectDTO) {
-		return ConverterTask.toListDTO((List<Task>) taskRepository.findAllByProject(ConverterProject.toEntity(projectDTO)));
-	} */
-	
+		
 	public boolean insertTask(TaskDTO taskDTO) {
 		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
 	}

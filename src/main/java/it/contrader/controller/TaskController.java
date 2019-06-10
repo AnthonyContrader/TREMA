@@ -12,7 +12,6 @@ import it.contrader.dto.TaskDTO;
 import it.contrader.services.TaskService;
 
 import it.contrader.dto.ProjectDTO;
-import it.contrader.services.ProjectService;
 
 import java.util.List;
 
@@ -32,11 +31,17 @@ public class TaskController {
 	}
 	
 	private void visualTask(HttpServletRequest request) {
-		int idproject = Integer.parseInt(request.getParameter("id_project"));
-		ProjectDTO projectDTO = new ProjectDTO();
-		projectDTO.setIdProject(idproject);
+		//int idproject = Integer.parseInt(request.getParameter("id_project"));
+		//ProjectDTO projectDTO = new ProjectDTO();
+		///projectDTO.setIdProject(idproject);
 		
-		List<TaskDTO> allTask = this.taskService.findTaskDTOByProject(projectDTO);
+		//List<TaskDTO> allTask = this.taskService.findTaskDTOByProject(projectDTO);
+		
+		List<TaskDTO> allTask = this.taskService.getListaTaskDTO();
+		/*
+		 * allTask.forEach(taskDTO -> { System.out.println(taskDTO); });
+		 * System.out.print(allTask.isEmpty());
+		 */
 		request.setAttribute("allTaskDTO", allTask);
 	}
 	

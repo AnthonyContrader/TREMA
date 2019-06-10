@@ -27,11 +27,13 @@ public class ConverterTask {
 			taskDTO.setObjective(task.getObjective());
 			taskDTO.setProjectDTO(ConverterProject.toDTO(task.getProject()));
 			
-			List<Dipendenti> dipendentiList = task.getDipendentis();
-			List<DipendentiDTO> dipendentiListDTO = new ArrayList<DipendentiDTO>();
-			
-			List<Material> materialList = task.getMaterials();
-			List<MaterialDTO> materialListDTO= new ArrayList<MaterialDTO>();
+			/*
+			 * List<Dipendenti> dipendentiList = task.getDipendentis(); List<DipendentiDTO>
+			 * dipendentiListDTO = new ArrayList<DipendentiDTO>();
+			 * 
+			 * List<Material> materialList = task.getMaterials(); List<MaterialDTO>
+			 * materialListDTO= new ArrayList<MaterialDTO>();
+			 */
 		}
 		
 		return taskDTO;
@@ -49,11 +51,13 @@ public class ConverterTask {
 			task.setObjective(taskDTO.getObjective());
 			task.setProject(ConverterProject.toEntity(taskDTO.getProjectDTO()));
 			
-			List<DipendentiDTO> dipendentiListDTO = taskDTO.getDipendentiDTO();
-			List<Dipendenti> dipendentiList= new ArrayList<Dipendenti>();
-			
-			List<MaterialDTO> materialListDTO = taskDTO.getMaterialDTO();
-			List<Material> materialList= new ArrayList<Material>();
+			/*
+			 * List<DipendentiDTO> dipendentiListDTO = taskDTO.getDipendentiDTO();
+			 * List<Dipendenti> dipendentiList= new ArrayList<Dipendenti>();
+			 * 
+			 * List<MaterialDTO> materialListDTO = taskDTO.getMaterialDTO(); List<Material>
+			 * materialList= new ArrayList<Material>();
+			 */
 		}
 		
 		return task;
