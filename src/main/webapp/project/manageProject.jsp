@@ -1,6 +1,7 @@
 <%@ include file="../header.jsp"%>
 <%
 	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
+	List<UserDTO>	allUser=(List<UserDTO>) request.getAttribute("allUser");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -155,7 +156,7 @@
 												<tr class="tr-shadow">
 
 													<td><%=user.getUser()%></td>
-													<td><%=convertUserType(user.getUsertype())%></td>
+													<!--  <td><%=convertUsertype(user.getUsertype())%></td>-->
 													<td>
 														<div class="table-data-feature">
 

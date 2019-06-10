@@ -45,8 +45,8 @@ public class ProjectController {
 	// Delete
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("idProject"));
-		request.setAttribute("idProject", id);
+		int id = Integer.parseInt(request.getParameter("id"));
+		request.setAttribute("id", id);
 		this.projectService.deleteProjectById(id);
 		visualProject(request);
 		return "project/manageProject";
@@ -54,7 +54,7 @@ public class ProjectController {
 
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request, HttpSession session) {
-		int id = Integer.parseInt(request.getParameter("idProject"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		//UserDTO userDTO = (UserDTO) session.getAttribute("utente");
 
 		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id); // ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);

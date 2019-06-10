@@ -1,9 +1,8 @@
 <%@ include file="../header.jsp"%>
 <%
-	ProjectDTO updateProject = (ProjectDTO) request.getAttribute("projectUpdate");
-List<TaskDTO> taskList = (List<TaskDTO>) request.getAttribute("taskList");
+	ProjectDTO projectDTO = (ProjectDTO) request.getAttribute("project");
+	List<TaskDTO> taskList=(List<TaskDTO>)  request.getAttribute("taskList");
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +15,10 @@ List<TaskDTO> taskList = (List<TaskDTO>) request.getAttribute("taskList");
 <meta name="author" content="Hau Nguyen">
 <meta name="keywords" content="au theme template">
 
+
 <!-- Title Page-->
-<title>Update User</title>
+<title>Insert Project Template</title>
+
 
 <!-- Fontfaces CSS-->
 <link href="/css/font-face.css" rel="stylesheet" media="all">
@@ -58,27 +59,40 @@ List<TaskDTO> taskList = (List<TaskDTO>) request.getAttribute("taskList");
 	<div class="page-wrapper">
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar2">
-		<!-- 	<div class="logo">
+			<div class="logo">
 				<a href="#"> <img src="/images/icon/wmeslogo2.png"
 					alt="Cool Admin" />
 				</a>
-			</div> -->
+			</div>
 			<div class="menu-sidebar2__content js-scrollbar1">
 				<div class="account2">
-				<!-- <div class="image img-cir img-120">
-						<img src="/images/icon/avatarAdmin2.png" alt="Admin" />
-					</div>  -->
-					<h4 class="name">User</h4>
+					<div class="image img-cir img-120">
+						<img src="/images/icon/avatarBo.jpg" alt="Business Owner" />
+					</div>
+					<h4 class="name">Business Owner</h4>
 					<a href="/User/logout">Sign out</a>
 				</div>
 				<nav class="navbar-sidebar2">
 					<ul class="list-unstyled navbar__list">
-						<li><a href="/Home/homePM"> <i
-								class="fas fa-chart-bar"></i>Dashboard
+						<li><a href="/Home/homeBO"> <i class="fas fa-chart-bar"></i>Dashboard
 						</a></li>
-
+						<li><a href="/Client/clientManagement"> <i
+								class="fas fa-user"></i>Clients
+						</a></li>
+						<li><a href="/Resource/resourceManagement"> <i
+								class="fas fa-user"></i>Resources
+						</a></li>
+						<li><a href="/Order/orderManagement"> <i
+								class="fas fa-boxes"></i>Orders
+						</a></li>
 						<li><a href="/Project/projectManagement"> <i
-								class="fas fa-user"></i>Users
+								class="fas fa-sitemap"></i>Projects
+						</a></li>
+						<li><a href="/ProjectTemplate/projectTemplateManagement">
+								<i class="fas fa-chart-pie"></i>Project Templates
+						</a></li>
+						<li><a href="/Task/taskManagement"> <i
+								class="fas fa-tasks"></i>Tasks
 						</a></li>
 
 					</ul>
@@ -111,9 +125,9 @@ List<TaskDTO> taskList = (List<TaskDTO>) request.getAttribute("taskList");
 										<span class="au-breadcrumb-span">You are here:</span>
 										<ul class="list-unstyled list-inline au-breadcrumb__list">
 											<li class="list-inline-item active"><a
-												href="/Home/homePM">Dashboard</a></li>
+												href="/Home/homeBO">Dashboard</a></li>
 											<li class="list-inline-item seprate"><span>/</span></li>
-											<li class="list-inline-item">Edit User</li>
+											<li class="list-inline-item">Insert Project</li>
 										</ul>
 									</div>
 								</div>
@@ -124,28 +138,48 @@ List<TaskDTO> taskList = (List<TaskDTO>) request.getAttribute("taskList");
 			</section>
 			<!-- END BREADCRUMB-->
 
+			<!-- START statistic -->
 			<section>
 				<div class="col-lg-6 center-block">
 					<div class="card">
-						<div class="card-header">EDIT TEMPLATE</div>
+						<div class="card-header">NEW PROJECT</div>
 						<div class="card-body card-block">
-							<form action="/Project/update" method="post">
-								<input type="hidden" name="project_id"
-									value="<%=updateProject.getIdProject()%>" />
+							<form action="/Project/insert" method="post">
 								<div class="form-group">
-									<label>Name</label> <input class="au-input au-input--full"
-										type="text" name="project_name" placeholder="Name"
-										value="<%=updateProject.getProject()%>">
+									<label>Nome</label> <input class="au-input au-input--full"
+										type="text" name="project" placeholder="Name">
 								</div>
-								
+								<div class="form-group">
+									<label>Tipologia</label> <input class="au-input au-input--full"
+										type="text" name="tipologie" placeholder="Tipologie">
+								</div>
+
+								<div class="form-group">
+									<label>Task list</label> <br /> <select class="custom-select"
+										name="task" multiple="multiple">
+										<%
+											for (TaskDTO taskDTO : taskList) {
+										%>
+										<option value="<%=taskDTO.getIdTask()%>"><%=taskDTO.getIdTask()%></option>
+										<option value="<%=taskDTO.getTask()%>"><%=taskDTO.getTask()%></option>
+										<option value="<%=taskDTO.getData_inizio()%>"><%=taskDTO.getData_inizio()%></option>
+										<option value="<%=taskDTO.getData_fine()%>"><%=taskDTO.getData_fine()%></option>
+										<option value="<%=taskDTO.getObjective()%>"><%=taskDTO.getObjective()%></option>
+										<%
+											}
+										%>
+									</select>
+								</div>
+
 								<div class="login-checkbox"></div>
-								<button type="submit" class="btn btn-secondary btn-sm">Update</button>
+								<button type="submit" class="btn btn-secondary btn-sm">Submit</button>
 							</form>
 						</div>
 
 					</div>
 				</div>
 			</section>
+			<!-- END Statistic -->
 			<section>
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
@@ -182,7 +216,6 @@ List<TaskDTO> taskList = (List<TaskDTO>) request.getAttribute("taskList");
 			</section>
 			<!-- END PAGE CONTAINER-->
 		</div>
-
 	</div>
 
 	<!-- Jquery JS-->

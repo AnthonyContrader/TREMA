@@ -3,7 +3,8 @@
 	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
 	List<TaskDTO> allTask=(List<TaskDTO>) request.getAttribute("allTask");
 	List<DipendentiDTO> allDipendenti=(List<DipendentiDTO>) request.getAttribute("allDipendenti");
-	List<MaterialDTO> allMaterial=(List<MaterialDTO>) request.getAttribute("allMaterial");
+	List<MaterialDTO> allMaterial=(List<MaterialDTO>) request.getAttribute("allTask");
+	List<UserDTO> allUser=(List<UserDTO>) request.getAttribute("allUser");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +60,9 @@
                     <a href="/User/logout">Sign out</a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
+                	<a href="/Project/insertRedirect">
                      	<button class="au-btn au-btn-icon au-btn--blue" title="Insert project"><i class="zmdi zmdi-plus"></i></button>
+                     	</a>
                 	<div class="table table-top-campaign">
                         <table class="table">
                             <thead>
