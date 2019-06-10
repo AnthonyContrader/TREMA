@@ -70,13 +70,13 @@
         <aside class="menu-sidebar2">
             <div class="logo">
                 <a href="#">
-                    <img src="/images/icon/Trema_Logo-09.svg" alt="Cool Admin" />
+                    <img src="/images/icon/TremaLogo.jpg" alt="Trema Project" />
                 </a>
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
                 <div class="account2">
                     <div class="image img-cir img-120">
-                        <img src="/images/icon/avatar-big-01.jpg" alt="John Doe" />
+                        <img src="/images/icon/avatar01.jpg" alt="Gianluca Di Nanna" />
                     </div>
                     <h4 class="name">Gianluca Di Nanna</h4>
                     <a href="/User/logout">Sign out</a>
@@ -102,7 +102,7 @@
                         <div class="header-wrap2">
                             <div class="logo d-block d-lg-none">
                                 <a href="#">
-                                    <img src="/images/icon/logo-white.png" alt="CoolAdmin" />
+                                    <img src="/images/icon/TremaLogo.jpg" alt="CoolAdmin" />
                                 </a>
                             </div>
                             <div id=”ombra”>
