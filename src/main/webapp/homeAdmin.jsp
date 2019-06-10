@@ -218,10 +218,7 @@
                                 <div class="user-data m-b-30">
                                     <h3 class="title-3 m-b-30">
                                         <i class="title-3 m-b-30"></i>user data</h3>
-                                            	<li><a href="/User/insertRedirect"> <i
-															class="fas fa-user"></i>Users
-													</a></li> 
-                                    
+                                            	<a href="/User/insertRedirect"> <i class="fas fa-user"></i>Users</a>                                   
                                     <div class="table-responsive table-data">
                                         <table class="table">
                                             <thead>
