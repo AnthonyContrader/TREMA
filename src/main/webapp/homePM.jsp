@@ -2,7 +2,6 @@
 <%
 	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,11 +56,8 @@
                     <a href="/User/logout">Sign out</a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
-                            <button class="au-btn au-btn-icon au-btn--blue">
-                                <i class="zmdi zmdi-plus"></i></button>
-                
-                
-                    <div class="table table-top-campaign">
+                     	<button class="au-btn au-btn-icon au-btn--blue" title="Insert project"><i class="zmdi zmdi-plus"></i></button>
+                	<div class="table table-top-campaign">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -73,9 +69,20 @@
 	                                <tr>
 	                                    <td>
 	                                        <div class="table-data__info">
-	                                            <h2><%=projectDTO.getProject() %></h2>
+	                                            <h3><%=projectDTO.getProject() %></h3>
+	                                            <h6>(<%=projectDTO.getTipologie() %>)</h6>
 	                                        </div>
 	                                    </td>
+	                                    <td>
+											<div class="table-data-feature">
+                                            	<a href="/Project/updateRedirect?id=<%=projectDTO.getIdProject()%>" class="item" 
+                                            	data-toggle="tooltip" data-placement="top" title="Edit project"> 
+                                            	<i class="zmdi zmdi-edit"></i></a>
+                                            	<a href="/Project/delete?id=<%=projectDTO.getIdProject()%>" class="item" 
+                                            	data-toggle="tooltip" data-placement="top" title="Delete project"> 
+                                            	<i class="zmdi zmdi-delete"></i></a>
+                                            </div>
+                                        </td>
 	                                </tr>
 	                            <% } %>
 	                        </tbody>

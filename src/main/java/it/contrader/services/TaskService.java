@@ -6,11 +6,10 @@ import org.springframework.stereotype.Service;
 import it.contrader.model.Task;
 import it.contrader.dao.TaskRepository;
 import it.contrader.dto.TaskDTO;
+import it.contrader.converter.ConverterProject;
 import it.contrader.converter.ConverterTask;
 
-import it.contrader.model.Project;
 import it.contrader.dto.ProjectDTO;
-import it.contrader.converter.ConverterProject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +30,10 @@ public class TaskService {
 	public TaskDTO getTaskDTOByIdTask(Integer idTask) {
 		return ConverterTask.toDTO(taskRepository.findById(idTask).get());
 	}
-	
+	/*
 	public List<TaskDTO> getListaTaskDTOByProject(ProjectDTO projectDTO) {
 		return ConverterTask.toListDTO((List<Task>) taskRepository.findAllByProject(ConverterProject.toEntity(projectDTO)));
-	}
+	} */
 	
 	public boolean insertTask(TaskDTO taskDTO) {
 		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
@@ -48,10 +47,10 @@ public class TaskService {
 		taskRepository.deleteById(idtask);
 	}
 	
-	public List<TaskDTO> findTaskDTOByProject(Project project) {
-		final List<Task> listTask = taskRepository.findAllByProject(project);
-		final List<TaskDTO> taskDTOs = new ArrayList<>();
-		listTask.forEach(i -> taskDTOs.add(ConverterTask.toDTO(i)));
-		return taskDTOs;
+	public List<TaskDTO> findTaskDTOByProject(ProjectDTO projectDTO) {
+		final List<Task> listTask = taskRepository.findAllByProject(ConverterProject.toEntity(projectDTO));
+		final List<TaskDTO> taskDTO = new ArrayList<>();
+		listTask.forEach(i -> taskDTO.add(ConverterTask.toDTO(i)));
+		return taskDTO;
 	}
 }

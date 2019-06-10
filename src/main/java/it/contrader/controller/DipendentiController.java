@@ -36,7 +36,7 @@ public class DipendentiController {
 		TaskDTO taskDTO = new TaskDTO();
 		taskDTO.setIdTask(idtask);
 		
-		List<DipendentiDTO> allDipendenti = this.dipendentiService.getListaDipendentiDTOByTask(taskDTO);
+		List<DipendentiDTO> allDipendenti = this.dipendentiService.findDipendentiDTOByTask(taskDTO);
 		request.setAttribute("allDipendentiDTO", allDipendenti);
 	}
 
@@ -70,7 +70,6 @@ public class DipendentiController {
 		taskInsertDTO.setIdTask(idtaskInsert);
 		
 		DipendentiDTO dipendentiDTO = new DipendentiDTO();
-		
 		dipendentiDTO.setName(nameInsert);
 		dipendentiDTO.setSurname(surnameInsert);
 		dipendentiDTO.setTaskDTO(taskInsertDTO);
@@ -83,13 +82,14 @@ public class DipendentiController {
 	
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request) {
-		List<TaskDTO> taskList = taskService.getListaTaskDTO();
+		//List<TaskDTO> taskList = taskService.getListaTaskDTO();
 		
 		DipendentiDTO dipendentiDTOUpdate = new DipendentiDTO();
 		int idDipendenti = Integer.parseInt(request.getParameter("id_dipendenti"));
 		dipendentiDTOUpdate = this.dipendentiService.getDipendentiDTOById(idDipendenti);
+		
 		request.setAttribute("dipendentiUpdate", dipendentiDTOUpdate);
-		request.setAttribute("taskList", taskList);
+		//request.setAttribute("taskList", taskList);
 		return "dipendenti/updateDipendenti";
 	}		
 	
@@ -111,6 +111,7 @@ public class DipendentiController {
 		
 		dipendentiService.updateDipendenti(dipendentiUpdateDTO);
 		visualDipendenti(request);
+		
 		return "dipendenti/manageDipendenti";
 	}
 	

@@ -8,8 +8,8 @@ import it.contrader.dto.DipendentiDTO;
 import it.contrader.dao.DipendentiRepository;
 import it.contrader.converter.ConverterDipendenti;
 
-import it.contrader.model.Task;
 import it.contrader.dto.TaskDTO;
+import it.contrader.dao.TaskRepository;
 import it.contrader.converter.ConverterTask;
 
 import java.util.ArrayList;
@@ -20,20 +20,19 @@ public class DipendentiService {
 	private final DipendentiRepository dipendentiRepository;
 	
 	@Autowired
+	public TaskRepository taskRepository;
+	
+	@Autowired
 	public DipendentiService(DipendentiRepository dipendentiRepository) {
 		this.dipendentiRepository = dipendentiRepository;
 	}
 	
-	public List<DipendentiDTO> getListaDipendentiDTO(){
+	public List<DipendentiDTO> getListDipendentiDTO(){
 		return ConverterDipendenti.toListDTO((List<Dipendenti>) dipendentiRepository.findAll());
 	}
 	
 	public DipendentiDTO getDipendentiDTOById(Integer idDipendenti) {
 		return ConverterDipendenti.toDTO(dipendentiRepository.findById(idDipendenti).get());
-	}
-	
-	public List<DipendentiDTO> getListaDipendentiDTOByTask(TaskDTO taskDTO) {
-		return ConverterDipendenti.toListDTO((List<Dipendenti>) dipendentiRepository.findAllByTask(ConverterTask.toEntity(taskDTO)));
 	}
 	
 	public boolean insertDipendenti(DipendentiDTO dipendentiDTO) {
@@ -48,8 +47,8 @@ public class DipendentiService {
 		dipendentiRepository.deleteById(idDipendenti);
 	}
 
-	public List<DipendentiDTO> findDipendentiDTOByTask(Task task) {
-		final List<Dipendenti> listDipendenti = dipendentiRepository.findAllByTask(task);
+	public List<DipendentiDTO> findDipendentiDTOByTask(TaskDTO taskDTO) {
+		final List<Dipendenti> listDipendenti = dipendentiRepository.findAllByTask(ConverterTask.toEntity(taskDTO));
 		final List<DipendentiDTO> listDipendentiDTO = new ArrayList<>();
 		listDipendenti.forEach(i -> listDipendentiDTO.add(ConverterDipendenti.toDTO(i)));
 		return listDipendentiDTO;

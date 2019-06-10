@@ -20,15 +20,15 @@ import java.util.List;
 @RequestMapping("/Task")
 public class TaskController {
 	private final TaskService taskService;
-	private final ProjectService projectService;
+	//private final ProjectService projectService;
 	
 	@Autowired
 	private HttpSession session;
 
 	@Autowired
-	public TaskController(TaskService taskService, ProjectService projectService) {
+	public TaskController(TaskService taskService) {
 		this.taskService = taskService;
-		this.projectService = projectService;
+		//this.projectService = projectService;
 	}
 	
 	private void visualTask(HttpServletRequest request) {
@@ -36,7 +36,7 @@ public class TaskController {
 		ProjectDTO projectDTO = new ProjectDTO();
 		projectDTO.setIdProject(idproject);
 		
-		List<TaskDTO> allTask = this.taskService.getListaTaskDTOByProject(projectDTO);
+		List<TaskDTO> allTask = this.taskService.findTaskDTOByProject(projectDTO);
 		request.setAttribute("allTaskDTO", allTask);
 	}
 	
@@ -92,13 +92,13 @@ public class TaskController {
 
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request, HttpSession session) {
-		List<ProjectDTO> projectList = projectService.getListProjectDTO();
+		//List<ProjectDTO> projectList = projectService.getListProjectDTO();
 		TaskDTO taskUpdate = new TaskDTO();
 		int idtask = Integer.parseInt(request.getParameter("id_task"));
 		taskUpdate = this.taskService.getTaskDTOByIdTask(idtask);
 		
 		request.setAttribute("taskUpdate", taskUpdate);
-		request.setAttribute("resourceList", projectList);
+		//request.setAttribute("resourceList", projectList);
 		
 		return "task/updateTask";
 	}

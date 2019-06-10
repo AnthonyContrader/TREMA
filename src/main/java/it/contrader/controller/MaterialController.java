@@ -36,7 +36,7 @@ public class MaterialController {
 		TaskDTO taskDTO = new TaskDTO();
 		taskDTO.setIdTask(idtask);
 		
-		List<MaterialDTO> allMaterial = this.materialService.getListaMaterialDTOByTask(taskDTO);
+		List<MaterialDTO> allMaterial = this.materialService.findMaterialDTOByTask(taskDTO);
 		request.setAttribute("allMaterialDTO", allMaterial);
 	}
 
@@ -50,7 +50,7 @@ public class MaterialController {
 	public String delete(HttpServletRequest request) {
 		int idmaterial = Integer.parseInt(request.getParameter("id_material"));
 		request.setAttribute("id_material", idmaterial);
-		this.materialService.deletematerialByIdmaterial(idmaterial);
+		this.materialService.deleteMaterialById(idmaterial);
 		visualMaterial(request);
 		return "material/manageMaterial";
 	}
@@ -81,13 +81,14 @@ public class MaterialController {
 	}
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request) {
-		List<TaskDTO> taskList = taskService.getListaTaskDTO();
+		//List<TaskDTO> taskList = taskService.findTaskDTOByProject(projectDTO);
 		
 		MaterialDTO materialUpdate = new MaterialDTO();
 		int idmaterial = Integer.parseInt(request.getParameter("id_material"));
-		materialUpdate = this.materialService.getMaterialDTOByIdmaterial(idmaterial);
+		materialUpdate = this.materialService.getMaterialDTOById(idmaterial);
+		
 		request.setAttribute("materialUpdate", materialUpdate);
-		request.setAttribute("taskList", taskList);
+		//request.setAttribute("taskList", taskList);
 		return "material/updateMaterial";
 	}		
 	
