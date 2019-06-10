@@ -1,17 +1,9 @@
 <%@ include file="header.jsp"%>
 <%
-<<<<<<< Updated upstream
-	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
-	List<TaskDTO> allTask=(List<TaskDTO>) request.getAttribute("allTask");
-	List<DipendentiDTO> allDipendenti=(List<DipendentiDTO>) request.getAttribute("allDipendenti");
-	List<MaterialDTO> allMaterial=(List<MaterialDTO>) request.getAttribute("allTask");
-	List<UserDTO> allUser=(List<UserDTO>) request.getAttribute("allUser");
-=======
 	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");	
 	List<TaskDTO> allTask = (List<TaskDTO>) request.getAttribute("allTaskDTO");	
 	/*  */List<DipendentiDTO> allDipendenti=(List<DipendentiDTO>) request.getAttribute("allDipendenti");
 	/*  */List<MaterialDTO> allMaterial=(List<MaterialDTO>) request.getAttribute("allMaterial");
->>>>>>> Stashed changes
 %>
 <!DOCTYPE html>
 <html lang="en">
