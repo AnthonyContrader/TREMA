@@ -1,6 +1,9 @@
 <%@ include file="header.jsp"%>
 <%
 	List<ProjectDTO> allProject = (List<ProjectDTO>) request.getAttribute("allProjectDTO");
+	List<TaskDTO> allTask=(List<TaskDTO>) request.getAttribute("allTask");
+	List<DipendentiDTO> allDipendenti=(List<DipendentiDTO>) request.getAttribute("allDipendenti");
+	List<MaterialDTO> allMaterial=(List<MaterialDTO>) request.getAttribute("allMaterial");
 %>
 <!DOCTYPE html>
 <html lang="en">
