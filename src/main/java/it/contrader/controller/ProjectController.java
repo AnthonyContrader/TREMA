@@ -55,12 +55,7 @@ public class ProjectController {
 	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
 	public String updateRedirect(HttpServletRequest request, HttpSession session) {
 		int id = Integer.parseInt(request.getParameter("id"));
-		//UserDTO userDTO = (UserDTO) session.getAttribute("utente");
-
-		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id); // ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id);
-		//List<TaskDTO> taskList = projectService.findTaskDTOByProject(projectUpdate);
-
-	//	request.setAttribute("taskList", taskList);
+		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id); 
 		request.setAttribute("projectUpdate", projectUpdate);
 
 		return "project/updateProject";
@@ -72,24 +67,16 @@ public class ProjectController {
 		Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 		String tipologie = request.getParameter("tipologie");
 		String project = request.getParameter("project");
-
-		List<TaskDTO> taskList = new ArrayList<TaskDTO>();
-		String taskListString[] = (String[]) request.getParameterValues("taskList");
-		for (String taskString : taskListString) {
-			TaskDTO taskDTO = new TaskDTO();
-			taskDTO.setIdTask(Integer.parseInt(taskString));
-			taskList.add(taskDTO);
-		}
+		
 
 		ProjectDTO project1 = new ProjectDTO();
 		project1.setUserDTO(userLogged);
 		project1.setIdProject(idUpdate);
 		project1.setProject(project);
 		project1.setTipologie(tipologie);
-		project1.setTaskDTO(taskList);
 		projectService.updateProject(project1);
 		visualProject(request);
-		return "project/manageProject";
+		return "homePM";
 	}
 
 	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
