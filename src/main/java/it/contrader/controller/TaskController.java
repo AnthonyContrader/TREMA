@@ -95,7 +95,7 @@ public class TaskController {
 		//List<ProjectDTO> projectList = projectService.getListProjectDTO();
 		TaskDTO taskUpdate = new TaskDTO();
 		int idtask = Integer.parseInt(request.getParameter("id_task"));
-		taskUpdate = this.taskService.getTaskDTOByIdTask(idtask);
+		taskUpdate = this.taskService.getTaskDTOById(idtask);
 		
 		request.setAttribute("taskUpdate", taskUpdate);
 		//request.setAttribute("resourceList", projectList);
