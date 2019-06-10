@@ -32,11 +32,12 @@ public class DipendentiController {
 	}
 
 	private void visualDipendenti(HttpServletRequest request) {
-		int idtask = Integer.parseInt(request.getParameter("id_task"));
-		TaskDTO taskDTO = new TaskDTO();
-		taskDTO.setIdTask(idtask);
+		//int idtask = Integer.parseInt(request.getParameter("id_task"));
+		//TaskDTO taskDTO = new TaskDTO();
+		//taskDTO.setIdTask(idtask);
 		
-		List<DipendentiDTO> allDipendenti = this.dipendentiService.findDipendentiDTOByTask(taskDTO);
+		//List<DipendentiDTO> allDipendenti = this.dipendentiService.findDipendentiDTOByTask(taskDTO);
+		List<DipendentiDTO> allDipendenti = this.dipendentiService.getListDipendentiDTO();
 		request.setAttribute("allDipendentiDTO", allDipendenti);
 	}
 

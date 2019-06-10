@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity	
 @Table(name="dipendenti")
-
+@NamedQuery(name="Dipendenti.findAll", query="SELECT u FROM Dipendenti u")
 public class Dipendenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 

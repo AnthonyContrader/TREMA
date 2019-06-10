@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity	
 @Table(name="material")
-
+@NamedQuery(name="Material.findAll", query="SELECT u FROM Material u")
 public class Material implements Serializable {
 	private static final long serialVersionUID = 1L;
 

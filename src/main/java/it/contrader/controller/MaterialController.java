@@ -32,11 +32,12 @@ public class MaterialController {
 	}
 
 	private void visualMaterial(HttpServletRequest request) {
-		int idtask = Integer.parseInt(request.getParameter("id_task"));
-		TaskDTO taskDTO = new TaskDTO();
-		taskDTO.setIdTask(idtask);
+		//int idtask = Integer.parseInt(request.getParameter("id_task"));
+		//TaskDTO taskDTO = new TaskDTO();
+		//taskDTO.setIdTask(idtask);
 		
-		List<MaterialDTO> allMaterial = this.materialService.findMaterialDTOByTask(taskDTO);
+		//List<MaterialDTO> allMaterial = this.materialService.findMaterialDTOByTask(taskDTO);
+		List<MaterialDTO> allMaterial = this.materialService.getListMaterialDTO();
 		request.setAttribute("allMaterialDTO", allMaterial);
 	}
 
