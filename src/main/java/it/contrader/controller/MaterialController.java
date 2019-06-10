@@ -49,8 +49,8 @@ public class MaterialController {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
-		int idmaterial = Integer.parseInt(request.getParameter("id_material"));
-		request.setAttribute("id_material", idmaterial);
+		int idmaterial = Integer.parseInt(request.getParameter("id"));
+		request.setAttribute("id", idmaterial);
 		this.materialService.deleteMaterialById(idmaterial);
 		visualMaterial(request);
 		return "material/manageMaterial";
@@ -63,17 +63,16 @@ public class MaterialController {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(HttpServletRequest request,HttpSession session) {
-		TaskDTO taskInsertDTO = new TaskDTO();
+
 		
 		String materialInsert = request.getParameter("material");
 		int quantitaInsert = Integer.parseInt(request.getParameter("quantita"));
-		Integer idtaskInsert = Integer.parseInt(request.getParameter("id_task"));
-		taskInsertDTO.setIdTask(idtaskInsert);
+	
 		
 		MaterialDTO materialDTO = new MaterialDTO();
 		materialDTO.setMaterial(materialInsert);
 		materialDTO.setQuantita(quantitaInsert);
-		materialDTO.setTaskDTO(taskInsertDTO);
+	
 		
 		materialService.insertMaterial(materialDTO);
 		
@@ -85,7 +84,7 @@ public class MaterialController {
 		//List<TaskDTO> taskList = taskService.findTaskDTOByProject(projectDTO);
 		
 		MaterialDTO materialUpdate = new MaterialDTO();
-		int idmaterial = Integer.parseInt(request.getParameter("id_material"));
+		int idmaterial = Integer.parseInt(request.getParameter("id"));
 		materialUpdate = this.materialService.getMaterialDTOById(idmaterial);
 		
 		request.setAttribute("materialUpdate", materialUpdate);
@@ -95,19 +94,17 @@ public class MaterialController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request, HttpSession session) {
-		Integer idmaterialUpdate = Integer.parseInt(request.getParameter("id_material"));
+		Integer idmaterialUpdate = Integer.parseInt(request.getParameter("id"));
 		String materialUpdate = request.getParameter("material");
 		int quantitaUpdate = Integer.parseInt(request.getParameter("quantita"));
-		int idtaskUpdate = Integer.parseInt(request.getParameter("id_task"));
+	
 		
-		TaskDTO taskUpdateDTO = new TaskDTO();
-		taskUpdateDTO.setIdTask(idtaskUpdate);
+	
 		
 		MaterialDTO materialUpdateDTO = new MaterialDTO();
 		materialUpdateDTO.setIdmaterial(idmaterialUpdate);
 		materialUpdateDTO.setMaterial(materialUpdate);
 		materialUpdateDTO.setQuantita(quantitaUpdate);
-		materialUpdateDTO.setTaskDTO(taskUpdateDTO);
 		
 		materialService.updateMaterial(materialUpdateDTO);
 		visualMaterial(request);

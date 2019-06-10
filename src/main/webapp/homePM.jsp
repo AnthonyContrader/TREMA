@@ -364,14 +364,9 @@
 													<i class="title-3 m-b-30"></i>Materials
 												</h5>
 												<div class="table-data-feature">
-													<button class="item" data-toggle="tooltip"
-														data-placement="top" title="Send">
-														<i class="zmdi zmdi-mail-send"></i>
-													</button>
-													<button class="item" data-toggle="tooltip"
-														data-placement="top" title="More">
-														<i class="zmdi zmdi-more"></i>
-													</button>
+														<a href="/Material/insertRedirect">
+                     										<button class="au-btn au-btn-icon au-btn--blue" title="Insert material"><i class="zmdi zmdi-plus"></i></button>
+                     									</a>
 												</div>
 												<table class="table">
 													<thead>
@@ -396,16 +391,15 @@
 																<div class="table-data__info">
 																	<h6><%=materialDTO.getQuantita()%></h6>
 																</div>
-																<div class="table-data-feature">
-																	<button class="item" data-toggle="tooltip"
-																		data-placement="top" title="Edit">
-																		<i class="zmdi zmdi-edit"></i>
-																	</button>
-																	<button class="item" data-toggle="tooltip"
-																		data-placement="top" title="Delete">
-																		<i class="zmdi zmdi-delete"></i>
-																	</button>
-																</div>
+																 <div class="table-data-feature">
+                                                        <a href="/Material/updateRedirect?id=<%=materialDTO.getIdmaterial()%>"
+																class="item" data-toggle="tooltip" data-placement="top"
+																title="Edit"> <i class="zmdi zmdi-edit"></i>
+															</a> <a href="/Material/delete?id=<%=materialDTO.getIdmaterial()%>"
+																class="item" data-toggle="tooltip" data-placement="top"
+																title="Delete"> <i class="zmdi zmdi-delete"></i>
+															</a>
+                                                        </div>
 															</td>
 														</tr>
 														<%
