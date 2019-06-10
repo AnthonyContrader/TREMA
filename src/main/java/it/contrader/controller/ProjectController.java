@@ -69,7 +69,7 @@ public class ProjectController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(HttpServletRequest request, HttpSession session) {
 		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
-		Integer idUpdate = Integer.parseInt(request.getParameter("idProject"));
+		Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 		String tipologie = request.getParameter("tipologie");
 		String project = request.getParameter("project");
 

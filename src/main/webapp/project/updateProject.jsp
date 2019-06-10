@@ -130,14 +130,18 @@ List<TaskDTO> taskList = (List<TaskDTO>) request.getAttribute("taskList");
 						<div class="card-header">EDIT TEMPLATE</div>
 						<div class="card-body card-block">
 							<form action="/Project/update" method="post">
-								<input type="hidden" name="project_id"
+								<input type="hidden" name="id"
 									value="<%=updateProject.getIdProject()%>" />
 								<div class="form-group">
 									<label>Name</label> <input class="au-input au-input--full"
-										type="text" name="project_name" placeholder="Name"
+										type="text" name="project" placeholder="Name"
 										value="<%=updateProject.getProject()%>">
 								</div>
-								
+								<div class="form-group">
+									<label>Name</label> <input class="au-input au-input--full"
+										type="text" name="tipologie" placeholder="Name"
+										value="<%=updateProject.getTipologie()%>">
+								</div>
 								<div class="login-checkbox"></div>
 								<button type="submit" class="btn btn-secondary btn-sm">Update</button>
 							</form>
