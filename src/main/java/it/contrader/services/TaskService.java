@@ -39,7 +39,7 @@ public class TaskService {
 		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
 	}
 	
-	public void deleteTaskByIdTask(Integer idTask) {
+	public void deleteTaskById(Integer idTask) {
 		taskRepository.deleteById(idTask);
 	}
 	
