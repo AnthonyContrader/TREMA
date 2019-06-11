@@ -31,15 +31,15 @@ public class SubTaskService {
 		return ConverterSubTask.toListDTO((List<SubTask>) subTaskRepository.findAll());
 	}
 	
-	public TaskDTO getSubTaskDTOById(Integer idSubTask) {
-		return ConverterTask.toDTO(subTaskRepository.findById(idSubTask).get());
+	public SubTaskDTO getSubTaskDTOById(Integer idSubTask) {
+		return ConverterSubTask.toDTO(subTaskRepository.findById(idSubTask).get());
 	}
 		
-	public boolean insertSubTask(TaskDTO subTaskDTO) {
+	public boolean insertSubTask(SubTaskDTO subTaskDTO) {
 		return subTaskRepository.save(ConverterSubTask.toEntity(subTaskDTO)) != null;
 	}
 
-	public boolean updateSubTask(TaskDTO taskDTO) {
+	public boolean updateSubTask(SubTaskDTO subTaskDTO) {
 		return subTaskRepository.save(ConverterSubTask.toEntity(subTaskDTO)) != null;
 	}
 	
@@ -47,9 +47,10 @@ public class SubTaskService {
 		subTaskRepository.deleteById(idTask);
 	}
 	
-	public List<SubTaskDTO> findSubTaskDTOByTask(SubTaskDTO subTaskDTO) {
-		final List<SubTask> listSubTask = subTaskRepository.findAllByTask(ConverterTask.toEntity(subTaskDTO));
+	public List<SubTaskDTO> findSubTaskDTOByTask(TaskDTO taskDTO) {
+		final List<SubTask> listSubTask = subTaskRepository.findAllByTask(ConverterTask.toEntity(taskDTO));
 		final List<SubTaskDTO> listSubTaskDTO = new ArrayList<>();
-		listSubTask.forEach(i -> listSubTaskDTO.add(ConverterTask.toDTO(i)));
+		listSubTask.forEach(i -> listSubTaskDTO.add(ConverterSubTask.toDTO(i)));
 		return listSubTaskDTO;
+	}
 }
