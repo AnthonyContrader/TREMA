@@ -71,7 +71,7 @@ public class ProjectController {
 		}
 		
 		// Tree management methods
-		@RequestMapping(value = "/insertTaskNode", method = RequestMethod.POST)  // errori(causa non c'è taskmodeldto), e lavoro con i model... (non funzionerà)
+	/*	@RequestMapping(value = "/insertTaskNode", method = RequestMethod.POST)  // errori(causa non c'è taskmodeldto), e lavoro con i model... (non funzionerà)
 		public void insertTaskNode(@RequestParam(value = "IdUser") String userId,
 				@RequestParam(value = "IdProject") String projectId,
 				@RequestParam(value = "TaskModelId") String TaskModelId, 
@@ -85,7 +85,7 @@ public class ProjectController {
 			ProjectDTO projectDTO = projectService.getProjectDTOById(Integer.parseInt(projectId));
 			
 			// Create a task from taskModel
-			TaskDTO taskNode = new TaskDTO();			//Non può 
+			TaskDTO taskNode = new TaskDTO();			//Non può   
 			// taskRootDTO.setTaskId(task.getTaskId());
 			taskNode.setTask(taskDTO.getTask());
 			taskNode.setDataInizio(taskDTO.getDataInizio());
@@ -111,5 +111,5 @@ public class ProjectController {
 			ProjectDTO projectDTO = new ProjectDTO();
 			projectDTO.setIdProject(Integer.parseInt(projectId));
 			return taskService.findProjectTaskRoot(projectDTO);
-		}
+		}*/
 }
