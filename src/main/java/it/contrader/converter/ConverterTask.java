@@ -3,87 +3,73 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.dto.TaskDTO;
-import it.contrader.model.Task;
-
-import it.contrader.dto.DipendentiDTO;
-import it.contrader.model.Dipendenti; 
-
-import it.contrader.dto.MaterialDTO;
-import it.contrader.dto.ProjectDTO;
-import it.contrader.model.Material;
 import it.contrader.model.Project;
+import it.contrader.dto.ProjectDTO;
+
+import it.contrader.model.Task;
+import it.contrader.dto.TaskDTO;
+
+import it.contrader.model.SubTask;
+import it.contrader.dto.SubTaskDTO;
 
 public class ConverterTask {
 	public static TaskDTO toDTO(Task task) {
 		TaskDTO taskDTO = null;
-		
+
 		if (task != null) {
 			taskDTO = new TaskDTO();
 			taskDTO.setIdTask(task.getIdTask());
 			taskDTO.setTask(task.getTask());
-			taskDTO.setData_inizio(task.getData_inizio());
-		 	taskDTO.setData_fine(task.getData_fine());
-			taskDTO.setObjective(task.getObjective());
+			taskDTO.setDataInizio(task.getDataInizio());
+			taskDTO.setDataFine(task.getDataFine());
 			taskDTO.setProjectDTO(ConverterProject.toDTO(task.getProject()));
-			
-			/*
-			 * List<Dipendenti> dipendentiList = task.getDipendentis(); List<DipendentiDTO>
-			 * dipendentiListDTO = new ArrayList<DipendentiDTO>();
-			 * 
-			 * List<Material> materialList = task.getMaterials(); List<MaterialDTO>
-			 * materialListDTO= new ArrayList<MaterialDTO>();
-			 */
+
+			List<SubTask> subTaskList = task.getSubTasks();
+			List<SubTaskDTO> subTaskListDTO = new ArrayList<SubTaskDTO>();
 		}
-		
+
 		return taskDTO;
 	}
 
 	public static Task toEntity(TaskDTO taskDTO) {
 		Task task = null;
-		
+
 		if (taskDTO != null) {
 			task = new Task();
 			task.setIdTask(taskDTO.getIdTask());
-			task.setTask(taskDTO.getTask());;
-			task.setData_inizio(taskDTO.getData_inizio());
-			task.setData_fine(taskDTO.getData_fine());
-			task.setObjective(taskDTO.getObjective());
+			task.setTask(taskDTO.getTask());
+			task.setDataInizio(taskDTO.getDataInizio());
+			task.setDataFine(taskDTO.getDataFine());
 			task.setProject(ConverterProject.toEntity(taskDTO.getProjectDTO()));
 			
-			/*
-			 * List<DipendentiDTO> dipendentiListDTO = taskDTO.getDipendentiDTO();
-			 * List<Dipendenti> dipendentiList= new ArrayList<Dipendenti>();
-			 * 
-			 * List<MaterialDTO> materialListDTO = taskDTO.getMaterialDTO(); List<Material>
-			 * materialList= new ArrayList<Material>();
-			 */
+			List<SubTaskDTO> subTaskListDTO = taskDTO.getSubTasksDTO();
+			List<SubTask> subTaskList = new ArrayList<SubTask>();
 		}
-		
+
 		return task;
 	}
 
 	public static List<TaskDTO> toListDTO(List<Task> list) {
 		List<TaskDTO> listTaskDTO = new ArrayList<>();
-		
+
 		if (!list.isEmpty()) {
 			for (Task task : list) {
 				listTaskDTO.add(ConverterTask.toDTO(task));
 			}
 		}
-		
+
 		return listTaskDTO;
 	}
 
 	public static List<Task> toListEntity(List<TaskDTO> listTaskDTO) {
 		List<Task> list = new ArrayList<>();
-		
+
 		if (!listTaskDTO.isEmpty()) {
 			for (TaskDTO taskDTO : listTaskDTO) {
 				list.add(ConverterTask.toEntity(taskDTO));
 			}
 		}
-		
+
 		return list;
 	}
 }

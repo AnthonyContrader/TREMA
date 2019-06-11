@@ -3,13 +3,13 @@ package it.contrader.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.contrader.dto.ProjectDTO;
+import it.contrader.converter.ConverterProject;
+
 import it.contrader.model.Task;
 import it.contrader.dao.TaskRepository;
 import it.contrader.dto.TaskDTO;
-import it.contrader.converter.ConverterProject;
 import it.contrader.converter.ConverterTask;
-
-import it.contrader.dto.ProjectDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,6 @@ import java.util.List;
 @Service
 public class TaskService {
 	private final TaskRepository taskRepository;
-	
-	@Autowired
-	private DipendentiService dipendentiService;
-	private MaterialService materialService;
 	
 	@Autowired
 	public TaskService(TaskRepository taskRepository) {
@@ -43,14 +39,14 @@ public class TaskService {
 		return taskRepository.save(ConverterTask.toEntity(taskDTO)) != null;
 	}
 	
-	public void deleteTaskByIdTask(Integer idtask) {
-		taskRepository.deleteById(idtask);
+	public void deleteTaskByIdTask(Integer idTask) {
+		taskRepository.deleteById(idTask);
 	}
 	
 	public List<TaskDTO> findTaskDTOByProject(ProjectDTO projectDTO) {
 		final List<Task> listTask = taskRepository.findAllByProject(ConverterProject.toEntity(projectDTO));
-		final List<TaskDTO> taskDTO = new ArrayList<>();
-		listTask.forEach(i -> taskDTO.add(ConverterTask.toDTO(i)));
-		return taskDTO;
+		final List<TaskDTO> listTaskDTO = new ArrayList<>();
+		listTask.forEach(i -> listTaskDTO.add(ConverterTask.toDTO(i)));
+		return listTaskDTO;
 	}
 }
