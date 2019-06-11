@@ -72,7 +72,7 @@
 					<div class="image img-cir img-120">
 						<img src="/images/icon/avatar-03.jpg" alt="Admin" />
 					</div>
-					<h4 class="name">Admin</h4>
+					<h4 class="name">Project Manager</h4>
 					<a href="/User/logout">Sign out</a>
 				</div>
 				<nav class="navbar-sidebar2">
@@ -82,7 +82,7 @@
 						</a></li>
 
 						<li><a href="/Material/materialManagement"> <i
-								class="fas fa-user"></i>Users
+								class="fas fa-user"></i>Material
 						</a></li>
 
 					</ul>
@@ -117,7 +117,7 @@
 											<li class="list-inline-item active"><a
 												href="/Home/homePM">Dashboard</a></li>
 											<li class="list-inline-item seprate"><span>/</span></li>
-											<li class="list-inline-item">User Management</li>
+											<li class="list-inline-item">Project Management</li>
 										</ul>
 									</div>
 								</div>
@@ -136,12 +136,12 @@
 							<div class="col-lg-12">
 
 								<!-- USER TABLE -->
-								<h3 class="title-5 m-b-35">User Table</h3>
+								<h3 class="title-5 m-b-35">Material Table</h3>
 
 								<div class="table-data__tool-right">
 									<a href="/Material/insertRedirect"
 										class="au-btn au-btn-icon au-btn--green au-btn--small"> <i
-										class="zmdi zmdi-plus"></i>ADD USER
+										class="zmdi zmdi-plus"></i>ADD Material
 									</a>
 
 									<div class="table-responsive table-responsive-data2">
@@ -222,8 +222,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="copyright">
-								<p>Copyright © 2019 Wmes. All rights reserved. Template by
-									Wmes Team</p>
+								<p>Copyright © 2019 Trema. All rights reserved. Template by
+									Trema Team</p>
 							</div>
 						</div>
 					</div>

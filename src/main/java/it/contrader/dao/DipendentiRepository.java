@@ -7,6 +7,6 @@ import it.contrader.model.Dipendenti;
 import java.util.List;
 
 public interface DipendentiRepository extends CrudRepository<Dipendenti, Integer> {
-	public List<Dipendenti> findAllByTask(Task task);
+	public List<Dipendenti> findAllByIdDipMaterial(IdDipMaterial IdDipMaterial);
 }
  

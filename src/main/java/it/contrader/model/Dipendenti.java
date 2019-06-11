@@ -15,24 +15,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor
 @Entity	
-@Table(name="dipendenti")
+@Table(name="Dipendenti")
 @NamedQuery(name="Dipendenti.findAll", query="SELECT u FROM Dipendenti u")
 public class Dipendenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idDipendente")
-	private int idDipendente;
+	@Column(name="IdDipendenti")
+	private int iddipendente;
 
-	@Column(name="name")
-	private String name;
+	@Column(name="NameDip")
+	private String namedip;
 	
-	@Column(name="surname")
-	private String surname;
+	@Column(name="CognomeDip")
+	private String cognomedip;
 
-	//bi-directional many-to-one association to User
-	@ManyToOne
-	@JoinColumn(name="task")
-	private Task task;
+	//bi-directional one-to-many association to DipMateriale
+	@OneToMany
+	@JoinColumn(name="DipMaterial")
+	private List<DipMaterial> DipMaterial;
 }

@@ -16,104 +16,47 @@ import it.contrader.services.TaskService;
 
 import java.util.List;
 
-@Controller
+
+@CrossOrigin
+@RestController
 @RequestMapping("/Dipendenti")
 public class DipendentiController {
-	private final TaskService taskService;
-	private final DipendentiService dipendentiService;
+
+	private final DipendentiService dipendentitService;
 	
 	@Autowired
-	private HttpSession session;
-	
-	@Autowired
-	public DipendentiController(DipendentiService dipendentiService, TaskService taskservice) {
-		this.taskService = taskservice;
+	public DipendentiController(DipendentiService dipendentiService) {
 		this.dipendentiService = dipendentiService;
 	}
 
-	private void visualDipendenti(HttpServletRequest request) {
-		//int idtask = Integer.parseInt(request.getParameter("id_task"));
-		//TaskDTO taskDTO = new TaskDTO();
-		//taskDTO.setIdTask(idtask);
-		
-		//List<DipendentiDTO> allDipendenti = this.dipendentiService.findDipendentiDTOByTask(taskDTO);
-		List<DipendentiDTO> allDipendenti = this.dipendentiService.getListDipendentiDTO();
-		request.setAttribute("allDipendentiDTO", allDipendenti);
-	}
 
 	@RequestMapping(value = "/dipendentiManagement", method = RequestMethod.GET)
-	public String dipendentiManagement(HttpServletRequest request) {
-		visualDipendenti(request);
-		return "dipendenti/manageDipendenti";
+	public List<DipendentiDTO> dipendentiManagement(@RequestParam(value = "IdDipendenti") int IdDipendenti) { 
+		dipendentiDTO dipendentiDTODipendentiList = new DipendentiDTO();
+		dipendentiDTODipendentiList.setIdDipendenti(IdDipendenti);
+		return this.dipendentiService.findDipendentiDTOByDipendenti(ConverterDipendenti.toEntity(DipendentiDTODipendentiList));
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(HttpServletRequest request) {
-		int idDipendente = Integer.parseInt(request.getParameter("id_dipendente"));
-		request.setAttribute("id_dipendente", idDipendente);
-		this.dipendentiService.deleteDipendentiById(idDipendente);
-		visualDipendenti(request);
-		return "dipendenti/manageDipendenti";
-	}
-
-	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
-	public String insertRedirect(HttpServletRequest request) {
-		return "dipendenti/insertDipendenti";
-	}
-
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(HttpServletRequest request,HttpSession session) {
-		TaskDTO taskInsertDTO = new TaskDTO();
-		
-		String nameInsert = request.getParameter("name").toString();
-		String surnameInsert = request.getParameter("surname").toString();
-		Integer idtaskInsert = Integer.parseInt(request.getParameter("id_task"));
-		taskInsertDTO.setIdTask(idtaskInsert);
-		
-		DipendentiDTO dipendentiDTO = new DipendentiDTO();
-		dipendentiDTO.setName(nameInsert);
-		dipendentiDTO.setSurname(surnameInsert);
-		dipendentiDTO.setTaskDTO(taskInsertDTO);
-		
-		dipendentiService.insertDipendenti(dipendentiDTO);
-		
-		visualDipendenti(request);
-		return "dipendenti/manageDipendenti";
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)	
+	public void delete(@RequestParam(value ="IdDipendenti") int id) {
+		this.dipendentiService.deleteDipendentiById(id);
 	}
 	
-	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
-	public String updateRedirect(HttpServletRequest request) {
-		//List<TaskDTO> taskList = taskService.getListaTaskDTO();
-		
-		DipendentiDTO dipendentiDTOUpdate = new DipendentiDTO();
-		int idDipendenti = Integer.parseInt(request.getParameter("id_dipendenti"));
-		dipendentiDTOUpdate = this.dipendentiService.getDipendentiDTOById(idDipendenti);
-		
-		request.setAttribute("dipendentiUpdate", dipendentiDTOUpdate);
-		//request.setAttribute("taskList", taskList);
-		return "dipendenti/updateDipendenti";
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void insert(@RequestBody DipendentilDTO dipendenti) {
+		dipendentiService.insertDipendenti(dipendenti);
+
+	}
+	
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public DipendentiDTO read(@RequestParam(value = "IdDipendenti") int id) {
+		MaterialDTO dipendentiUpdate = new DipendentiDTO();
+		dipendentiUpdate = this.dipendentiService.getDipendentiDTOByIdDipendenti(id);
+		return dipendentiUpdate;
 	}		
 	
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(HttpServletRequest request, HttpSession session) {
-		Integer idDipendentiUpdate = Integer.parseInt(request.getParameter("id_dipendenti"));
-		String nameUpdate = request.getParameter("name");
-		String surnameUpdate = request.getParameter("surname");
-		int idtaskUpdate = Integer.parseInt(request.getParameter("id_task"));
-		
-		TaskDTO taskDTOUpdate = new TaskDTO();
-		taskDTOUpdate.setIdTask(idtaskUpdate);
-		
-		DipendentiDTO dipendentiUpdateDTO = new DipendentiDTO();
-		dipendentiUpdateDTO.setIdDipendente(idDipendentiUpdate);
-		dipendentiUpdateDTO.setName(nameUpdate);
-		dipendentiUpdateDTO.setSurname(surnameUpdate);
-		dipendentiUpdateDTO.setTaskDTO(taskDTOUpdate);
-		
-		dipendentiService.updateDipendenti(dipendentiUpdateDTO);
-		visualDipendenti(request);
-		
-		return "dipendenti/manageDipendenti";
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public void update(@RequestBody DipendentitDTO dipendenti) {
+		dipendentiService.updateDipendenti(dipendenti);
 	}
-	
 }

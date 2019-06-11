@@ -15,7 +15,6 @@ public class ConverterDipendenti {
 			dipendentiDTO.setIdDipendente(dipendenti.getIdDipendente());
 			dipendentiDTO.setName(dipendenti.getName());
 			dipendentiDTO.setSurname(dipendenti.getSurname());
-			dipendentiDTO.setTaskDTO(ConverterTask.toDTO(dipendenti.getTask()));
 		}
 		
 		return dipendentiDTO;
@@ -28,8 +27,7 @@ public class ConverterDipendenti {
 			dipendenti = new Dipendenti();
 			dipendenti.setIdDipendente(dipendentiDTO.getIdDipendente());
 			dipendenti.setName(dipendentiDTO.getName());
-			dipendenti.setSurname(dipendentiDTO.getSurname());	
-			dipendenti.setTask(ConverterTask.toEntity(dipendentiDTO.getTaskDTO()));
+			dipendenti.setSurname(dipendentiDTO.getSurname());
 		}
 		
 		return dipendenti;	

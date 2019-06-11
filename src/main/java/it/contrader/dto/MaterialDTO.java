@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MaterialDTO {
 
-	private int Idmaterial;
+	private int IdMaterial;
 
-	private String material;
+	private String Material;
 	
-	private int quantita;
+	private int Quantita;
 	
-	private TaskDTO	taskDTO;
+	private MaterialDTO	materialDTO;
 
 }

@@ -5,111 +5,62 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.TaskDTO;
 import it.contrader.services.TaskService;
-
+import it.contrader.wmesspring.dto.ClientDTO;
+import it.contrader.wmesspring.dto.OrderDTO;
+import it.contrader.wmesspring.dto.UserDTO;
 import it.contrader.dto.MaterialDTO;
 import it.contrader.services.MaterialService;
 
 import java.util.List;
 
-@Controller
+@CrossOrigin
+@RestController
 @RequestMapping("/Material")
 public class MaterialController {
-	private final TaskService taskService;
+
 	private final MaterialService materialService;
 	
 	@Autowired
-	private HttpSession session;
-	
-	@Autowired
-	public MaterialController(MaterialService materialService, TaskService taskservice) {
+	public MaterialController(MaterialService materialService) {
 		this.materialService = materialService;
-		this.taskService = taskservice;
 	}
 
-	private void visualMaterial(HttpServletRequest request) {
-		//int idtask = Integer.parseInt(request.getParameter("id_task"));
-		//TaskDTO taskDTO = new TaskDTO();
-		//taskDTO.setIdTask(idtask);
-		
-		//List<MaterialDTO> allMaterial = this.materialService.findMaterialDTOByTask(taskDTO);
-		List<MaterialDTO> allMaterial = this.materialService.getListMaterialDTO();
-		request.setAttribute("allMaterialDTO", allMaterial);
-	}
 
 	@RequestMapping(value = "/materialManagement", method = RequestMethod.GET)
-	public String materialManagement(HttpServletRequest request) {
-		visualMaterial(request);
-		return "material/manageMaterial";
+	public List<MaterialDTO> materialManagement(@RequestParam(value = "IdMaterial") int IdMaterial) { 
+		materialDTO materialDTOMaterialList = new MaterialDTO();
+		materialDTOMaterialList.setIdMaterial(IdMaterial);
+		return this.materialService.findMaterialDTOByMaterial(ConverterMaterial.toEntity(MaterialDTOMaterialList));
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(HttpServletRequest request) {
-		int idmaterial = Integer.parseInt(request.getParameter("id"));
-		request.setAttribute("id", idmaterial);
-		this.materialService.deleteMaterialById(idmaterial);
-		visualMaterial(request);
-		return "material/manageMaterial";
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)	
+	public void delete(@RequestParam(value ="IdMaterial") int id) {
+		this.materialService.deleteMaterialById(id);
 	}
-
-	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
-	public String insertRedirect(HttpServletRequest request) {
-		return "material/insertMaterial";
-	}
-
+	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(HttpServletRequest request,HttpSession session) {
+	public void insert(@RequestBody MaterialDTO material) {
+		materialService.insertMaterial(material);
 
-		
-		String materialInsert = request.getParameter("material");
-		int quantitaInsert = Integer.parseInt(request.getParameter("quantita"));
-	
-		
-		MaterialDTO materialDTO = new MaterialDTO();
-		materialDTO.setMaterial(materialInsert);
-		materialDTO.setQuantita(quantitaInsert);
-	
-		
-		materialService.insertMaterial(materialDTO);
-		
-		visualMaterial(request);
-		return "material/manageMaterial";
 	}
-	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
-	public String updateRedirect(HttpServletRequest request) {
-		//List<TaskDTO> taskList = taskService.findTaskDTOByProject(projectDTO);
-		
+	
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public MaterialDTO read(@RequestParam(value = "IdMaterial") int id) {
 		MaterialDTO materialUpdate = new MaterialDTO();
-		int idmaterial = Integer.parseInt(request.getParameter("id"));
-		materialUpdate = this.materialService.getMaterialDTOById(idmaterial);
-		
-		request.setAttribute("materialUpdate", materialUpdate);
-		//request.setAttribute("taskList", taskList);
-		return "material/updateMaterial";
+		materialUpdate = this.materialService.getMaterialDTOByIdMaterial(id);
+		return materialUpdate;
 	}		
 	
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(HttpServletRequest request, HttpSession session) {
-		Integer idmaterialUpdate = Integer.parseInt(request.getParameter("id"));
-		String materialUpdate = request.getParameter("material");
-		int quantitaUpdate = Integer.parseInt(request.getParameter("quantita"));
-	
-		
-	
-		
-		MaterialDTO materialUpdateDTO = new MaterialDTO();
-		materialUpdateDTO.setIdmaterial(idmaterialUpdate);
-		materialUpdateDTO.setMaterial(materialUpdate);
-		materialUpdateDTO.setQuantita(quantitaUpdate);
-		
-		materialService.updateMaterial(materialUpdateDTO);
-		visualMaterial(request);
-		
-		return "material/manageMaterial";
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public void update(@RequestBody MaterialtDTO material) {
+		materialService.updateMaterial(material);
 	}
-	
 }

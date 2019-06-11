@@ -5,8 +5,8 @@ import java.util.List;
 
 import it.contrader.dto.MaterialDTO;
 import it.contrader.model.Material;
-
 public class ConverterMaterial {
+	
 	public static MaterialDTO toDTO(Material material) {
 		MaterialDTO materialDTO = null;
 			
@@ -15,10 +15,9 @@ public class ConverterMaterial {
 			materialDTO.setMaterial(material.getMaterial());
 			materialDTO.setQuantita(material.getQuantita());
 			materialDTO.setIdmaterial(material.getIdMaterial());
-			materialDTO.setTaskDTO(ConverterTask.toDTO(material.getTask()));
 		}
 		
-		return materialDTO;
+		return MaterialDTO;
 	}
 	 
 	public static Material toEntity(MaterialDTO materialDTO) {
@@ -29,7 +28,6 @@ public class ConverterMaterial {
 			material.setIdMaterial(materialDTO.getIdmaterial());
 			material.setMaterial(materialDTO.getMaterial());
 			material.setQuantita(materialDTO.getQuantita());
-			material.setTask(ConverterTask.toEntity(materialDTO.getTaskDTO()));
 		}
 		
 		return material;	

@@ -15,6 +15,6 @@ public class DipendentiDTO {
 	
 	private String surname;
 	
-	private TaskDTO taskDTO;
+	private List<DipMaterialDTO> DipMaterialDTO;
 
 }

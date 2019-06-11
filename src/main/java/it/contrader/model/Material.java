@@ -15,26 +15,26 @@ import java.util.List;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor
 @Entity	
-@Table(name="material")
+@Table(name="Material")
 @NamedQuery(name="Material.findAll", query="SELECT u FROM Material u")
 public class Material implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idMaterial")
-	private int idMaterial;
+	@Column(name="IdMaterial")
+	private int idmaterial;
 
-	@Column(name="material")
+	@Column(name="Material")
 	private String material;
 	
-	@Column(name="quantita")
+	@Column(name="Quantita")
 	private int quantita;
 
-	//bi-directional many-to-one association to Task
-	@ManyToOne
-	@JoinColumn(name="task")
-	private Task task;
+	//bi-directional one-to-many association to DipMaterial
+	@OneToMany
+	@JoinColumn(name="DipMaterial")
+	private List<DipMaterial> DipMaterial; // capital or small ?
 
 
 }
