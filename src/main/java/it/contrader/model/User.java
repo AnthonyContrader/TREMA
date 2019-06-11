@@ -21,42 +21,42 @@ import lombok.*;
 @AllArgsConstructor//genera il construct[lib lombok]
 @NoArgsConstructor
 @Entity			//associa classe tab db
-@Table(name="user")
+@Table(name="User")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")  //preleva tutto da user
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "idUser")
+	@Column(name = "IdUser")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idUser;
+	private Integer IdUser;
 
-	@Column(name = "user")
+	@Column(name = "UserLogin")		//username
 	@NotNull
-	private String user;
+	private String UserLogin;		//username
 
-	@Column(name = "password")
+	@Column(name = "Password")
 	@NotNull
-	private String password;
+	private String Password;
 	
 	@Nullable
-	@Column(name = "name_user")
-	private String name_user;
+	@Column(name = "NameUser")
+	private String NameUser;
 
 	@Nullable
-	@Column(name = "surname_user")
-	private String surname_user;
+	@Column(name = "SurnameUser")
+	private String SurnameUser;
 	
 	@NotNull
-	@Column(name = "azienda")
-	private String azienda;
+	@Column(name = "Azienda")
+	private String Azienda;
 
 	@NotNull
-	@Column(name = "usertype")
-	private String usertype;
+	@Column(name = "UserType")
+	private String UserType;
 	
-	@OneToMany(mappedBy="user")
-	private List<Project> projects;
+	@OneToMany(mappedBy="User")
+	private List<Project> Projects;
 		
 }
