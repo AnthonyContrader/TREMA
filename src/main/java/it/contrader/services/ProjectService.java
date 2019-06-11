@@ -20,9 +20,9 @@ import it.contrader.converter.ConverterTask;
 @Service
 public class ProjectService {
 
-	private final ProjectRepository projectRepository;
-	@Autowired
-	private TaskService taskService;
+	private final ProjectRepository projectRepository;		//DA FAREE!!
+	//@Autowired
+	//private TaskService taskService;
 
 	@Autowired
 	public ProjectService(ProjectRepository projectRepository) {
@@ -50,7 +50,7 @@ public class ProjectService {
 	}
 
 	public List<ProjectDTO> findProjectDTOByUser(UserDTO userDTO) {
-		final List<Project> listProject = projectRepository.findAllByUser(ConverterUser.toEntity(userDTO));
+		final List<Project> listProject = projectRepository.findAllByUserLogin(ConverterUser.toEntity(userDTO));
 		final List<ProjectDTO> listProjectDTO = new ArrayList<>();
 		listProject.forEach(i -> listProjectDTO.add(ConverterProject.toDTO(i)));
 		return listProjectDTO;

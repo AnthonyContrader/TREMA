@@ -18,8 +18,8 @@ public class ConverterProject {
 				projectDTO.setTipologie(project.getTipologie());
 				projectDTO.setUserDTO(ConverterUser.toDTO(project.getUser()));
 				
-				List<Task> taskList= project.getTasks();
-				List<TaskDTO> taskListDTO= new ArrayList<TaskDTO>();
+			//	List<Task> taskList= project.getTasks();
+				//List<TaskDTO> taskListDTO= new ArrayList<TaskDTO>();
 				/*
 				for (Task task: taskList) {
 					taskListDTO.add(ConverterTask.toDTO(task));
@@ -42,8 +42,8 @@ public class ConverterProject {
 				project.setTipologie(projectDTO.getTipologie());; 
 				project.setUser(ConverterUser.toEntity(projectDTO.getUserDTO()));
 				
-				List<TaskDTO> taskListDTO= projectDTO.getTaskDTO();
-				List<Task> taskList= new ArrayList<Task>();
+				//List<TaskDTO> taskListDTO= projectDTO.getTaskDTO();
+			//	List<Task> taskList= new ArrayList<Task>();
 				/*
 				for (TaskDTO taskDTO: taskListDTO) {
 					taskList.add(ConverterTask.toEntity(taskDTO));
