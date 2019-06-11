@@ -5,110 +5,111 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.ProjectDTO;
 import it.contrader.services.ProjectService;
-
 import it.contrader.dto.UserDTO;
+import it.contrader.model.Task;
 import it.contrader.dto.TaskDTO;
+import it.contrader.services.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@CrossOrigin
+@RestController
 @RequestMapping("/Project")
 public class ProjectController {
-	private final ProjectService projectService;
 	
 	@Autowired
-	private HttpSession session;
+	private UserService userService;
 
+	@Autowired
+	private TaskService taskService;
+	
+	private final ProjectService projectService;
+	
 	@Autowired
 	public ProjectController(ProjectService projectService) {
 		this.projectService = projectService;
 	}
 
-	private void visualProject(HttpServletRequest request) {
-		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
-		List<ProjectDTO> allProject = this.projectService.findProjectDTOByUser(userDTO);
-		request.setAttribute("allProjectDTO", allProject);
-	}
-
 	@RequestMapping(value = "/projectManagement", method = RequestMethod.GET)
-	public String prjectManagement(HttpServletRequest request) {
-		visualProject(request);
-		return "project/manageProject";
+	public List<ProjectDTO> projectManagement(@RequestParam(value = "IdUser") int userId) {
+		UserDTO userDTOProjectList = new UserDTO();
+		userDTOProjectList.setIdUser(userId);
+		return this.projectService.findProjectDTOByUserLogin(userDTOProjectList);
 	}
 
 	// Delete
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("id"));
-		request.setAttribute("id", id);
-		this.projectService.deleteProjectById(id);
-		visualProject(request);
-		return "project/manageProject";
-	}
-
-	@RequestMapping(value = "/updateRedirect", method = RequestMethod.GET)
-	public String updateRedirect(HttpServletRequest request, HttpSession session) {
-		int id = Integer.parseInt(request.getParameter("id"));
-		ProjectDTO projectUpdate = this.projectService.getProjectDTOById(id); 
-		request.setAttribute("projectUpdate", projectUpdate);
-
-		return "project/updateProject";
-	}
-
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(HttpServletRequest request, HttpSession session) {
-		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
-		Integer idUpdate = Integer.parseInt(request.getParameter("id"));
-		String tipologie = request.getParameter("tipologie");
-		String project = request.getParameter("project");
-		
-
-		ProjectDTO project1 = new ProjectDTO();
-		project1.setUserDTO(userLogged);
-		project1.setIdProject(idUpdate);
-		project1.setProject(project);
-		project1.setTipologie(tipologie);
-		projectService.updateProject(project1);
-		visualProject(request);
-		return "homePM";
-	}
-
-	@RequestMapping(value = "/insertRedirect", method = RequestMethod.GET)
-	public String insert(HttpServletRequest request, HttpSession session) {
-		UserDTO userDTO = (UserDTO) session.getAttribute("utente");
-		List<ProjectDTO> projectlist=projectService.findProjectDTOByUser(userDTO);	//mi trovo i project in base ai user
-		request.setAttribute("projectList", projectlist);
-		return "project/insertProject";
-	}	
-	
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insertProject(HttpServletRequest request, HttpSession session) {
-		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
-		String name = request.getParameter("project").toString();
-		
-		List<TaskDTO> taskList = new ArrayList<TaskDTO>();
-		String taskListString[] =(String []) request.getParameterValues("taskList");
-		
-		for(String taskString : taskListString) {
-			TaskDTO taskDTO=new TaskDTO();
-			taskDTO.setIdTask(Integer.parseInt(taskString));
-			taskList.add(taskDTO);
+		@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+		public void delete(@RequestParam(value = "IdProject") int projectId) {
+			this.projectService.deleteProjectById(projectId);
 		}
 		
-		ProjectDTO projectObj = new ProjectDTO();
-		projectObj.setProject(name);
-		projectObj.setUserDTO(userLogged);
-		projectObj.setTaskDTO(taskList);
-		
-		projectService.insertProject(projectObj);
-		visualProject(request);
-		return "project/manageProject";
+		@RequestMapping(value = "/read", method = RequestMethod.GET)
+		public ProjectDTO read(@RequestParam(value = "IdProject") int id) {
+			ProjectDTO projectUpdate = new ProjectDTO();
+			projectUpdate = this.projectService.getProjectDTOById(id);
+			return projectUpdate;
+		}
 
-	}
+		@RequestMapping(value = "/update", method = RequestMethod.PUT)
+		public void update(@RequestBody ProjectDTO project) {
+			projectService.updateProject(project);
+		}
+
+		@RequestMapping(value = "/insert", method = RequestMethod.POST)
+		public void insert(@RequestBody ProjectDTO project) {
+			projectService.insertProject(project);
+		}
+		
+		// Tree management methods
+		@RequestMapping(value = "/insertTaskNode", method = RequestMethod.POST)  // errori(causa non c'è taskmodeldto), e lavoro con i model... (non funzionerà)
+		public void insertTaskNode(@RequestParam(value = "IdUser") String userId,
+				@RequestParam(value = "IdProject") String projectId,
+				@RequestParam(value = "TaskModelId") String TaskModelId, 
+				@RequestParam(value = "TaskFatherId") String TaskFatherId) {
+
+			UserDTO userDTO = new UserDTO();
+			userDTO = userService.getUserDTOById(Integer.parseInt(userId));
+
+			TaskDTO taskDTO = taskService.getTaskDTOById(Integer.parseInt(TaskModelId));
+
+			ProjectDTO projectDTO = projectService.getProjectDTOById(Integer.parseInt(projectId));
+			
+			// Create a task from taskModel
+			TaskDTO taskNode = new TaskDTO();			//Non può funzionare
+			// taskRootDTO.setTaskId(task.getTaskId());
+			taskNode.setTask(taskDTO.getTask());
+			taskNode.setDataInizio(taskDTO.getDataInizio());
+			taskNode.setDataFine(taskDTO.getDataFine());
+			taskNode.setProjectDTO(projectDTO);
+			
+			List<TaskDTO> listTaskChild = new ArrayList<TaskDTO>();
+			taskNode.setChildsListDTO(listTaskChild);
+			
+			if (Integer.parseInt(taskFatherId) != 0) {
+				TaskDTO taskFather = new TaskDTO();
+				taskFather = taskService.getTaskDTOById(Integer.parseInt(taskFatherId));
+				//taskFather.setTaskId(Integer.parseInt(taskFatherId));
+				taskNodeDTO.setTaskFather(taskFather);
+			}
+			
+			// taskRootDTO.setTaskFather(ConverterTask.toDTO(task.getTaskFather()));
+			taskService.insertTask(taskNodeDTO);
+		}
+		
+		@RequestMapping(value = "/findRootNode", method = RequestMethod.GET)
+		public TaskDTO findRootNode(@RequestParam(value = "projectId") String projectId) {
+			ProjectDTO projectDTO = new ProjectDTO();
+			projectDTO.setIdProject(Integer.parseInt(projectId));
+			return taskService.findProjectTaskRoot(projectDTO);
+		}
 }

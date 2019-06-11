@@ -39,8 +39,8 @@ public class Project implements Serializable {
 	private User User;
 	
 	//bi-directional many-to-one association to Project
-	/*@OneToMany(mappedBy = "Project")
-	private List<Task> Tasks;*/
+	@OneToMany(mappedBy = "Project")
+	private List<Task> Tasks;
 		
 		
 }

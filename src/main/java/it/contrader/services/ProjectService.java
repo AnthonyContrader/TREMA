@@ -20,9 +20,9 @@ import it.contrader.converter.ConverterTask;
 @Service
 public class ProjectService {
 
-	private final ProjectRepository projectRepository;		//DA FAREE!!
-	//@Autowired
-	//private TaskService taskService;
+	private final ProjectRepository projectRepository;		
+	@Autowired
+	private TaskService taskService;
 
 	@Autowired
 	public ProjectService(ProjectRepository projectRepository) {
@@ -49,10 +49,21 @@ public class ProjectService {
 		projectRepository.deleteById(id);
 	}
 
-	public List<ProjectDTO> findProjectDTOByUser(UserDTO userDTO) {
+	public List<ProjectDTO> findProjectDTOByUserLogin(UserDTO userDTO) {
 		final List<Project> listProject = projectRepository.findAllByUserLogin(ConverterUser.toEntity(userDTO));
 		final List<ProjectDTO> listProjectDTO = new ArrayList<>();
 		listProject.forEach(i -> listProjectDTO.add(ConverterProject.toDTO(i)));
 		return listProjectDTO;
 	}
+	
+	public List<TaskDTO> findTaskDTOByProject(ProjectDTO projectDTO) {
+		List<TaskDTO> taskList = new ArrayList<TaskDTO>();
+		taskList = taskService.findTaskDTOByProject(projectDTO);
+		return taskList;
+	}
+	
+	/* Tree management
+	public TaskDTO findTaskRoot(ProjectDTO projectDTO) {
+		return taskService.findProjectTaskRoot(projectDTO);
+	}*/
 }
