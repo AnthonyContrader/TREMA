@@ -14,15 +14,11 @@ public class TaskDTO {
 
 	private String task;
 
-	private String data_inizio;
+	private String dataInizio;
 
-	private String data_fine;
-
-	private String objective;
+	private String dataFine;
 
 	private ProjectDTO projectDTO;
 	
-	private List<DipendentiDTO> dipendentiDTO;
-	
-	private List<MaterialDTO> materialDTO;
+	private List<SubTaskDTO> subTasksDTO;
 }
