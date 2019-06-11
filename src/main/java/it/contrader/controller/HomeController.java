@@ -47,7 +47,7 @@ public class HomeController {
 	@RequestMapping(value = "/homePM", method = RequestMethod.GET)
 	public String homePM(HttpServletRequest request, HttpSession session) {
 		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
-		List<ProjectDTO> allProject = this.projectService.findProjectDTOByUser(userLogged);
+		List<ProjectDTO> allProject = this.projectService.findProjectDTOByUserLogin(userLogged);
 		List<TaskDTO> allTask = this.taskService.getListaTaskDTO();
 		List<DipendentiDTO> allDipendenti = this.dipendentiService.getListDipendentiDTO();
 		List<MaterialDTO> allMaterial = this.materialService.getListMaterialDTO();
