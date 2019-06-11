@@ -43,8 +43,8 @@ public class SubTaskService {
 		return subTaskRepository.save(ConverterSubTask.toEntity(subTaskDTO)) != null;
 	}
 	
-	public void deleteSubTaskByIdTask(Integer idTask) {
-		subTaskRepository.deleteById(idTask);
+	public void deleteSubTaskById(Integer idSubTask) {
+		subTaskRepository.deleteById(idSubTask);
 	}
 	
 	public List<SubTaskDTO> findSubTaskDTOByTask(TaskDTO taskDTO) {
