@@ -85,7 +85,7 @@ public class ProjectController {
 			ProjectDTO projectDTO = projectService.getProjectDTOById(Integer.parseInt(projectId));
 			
 			// Create a task from taskModel
-			TaskDTO taskNode = new TaskDTO();			//Non può funzionare
+			TaskDTO taskNode = new TaskDTO();			//Non può 
 			// taskRootDTO.setTaskId(task.getTaskId());
 			taskNode.setTask(taskDTO.getTask());
 			taskNode.setDataInizio(taskDTO.getDataInizio());
