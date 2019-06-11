@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor
 @Entity	
-@Table(name="task")
+@Table(name="Task")
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +23,7 @@ public class Task implements Serializable {
 	private int IdTask;
 
 	@Column(name="Task")
-	private String task;
+	private String Task;
 
 	@Column(name="DataInizio")
 	private String DataInizio;
@@ -34,7 +34,7 @@ public class Task implements Serializable {
 	//bi-directional many-to-one association to Project
 	@ManyToOne
 	@JoinColumn(name="IdProject")
-	private Project project;
+	private Project Project;
 	
 	//bi-directional many-to-one association to SubTask
 	@OneToMany(mappedBy="Task")

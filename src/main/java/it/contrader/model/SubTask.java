@@ -32,5 +32,9 @@ public class SubTask implements Serializable{
 	//bi-directional many-to-one association to Task
 	@ManyToOne
 	@JoinColumn(name="IdTask")
-	private Task task;
+	private Task Task;
+	
+	//bi-directional many-to-one association to SubTask
+	@OneToMany(mappedBy="SubTask")
+	private List<Team> Teams;
 }
