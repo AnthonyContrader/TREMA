@@ -10,20 +10,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDTO {
 
-	private Integer idUser;
+	private Integer IdUser;
 
-	private String user;
+	private String UserLogin;
 	
-	private String password;
+	private String Password;
 
-	private String name_user;
+	private String NameUser;
 	
-	private String surname_user;
+	private String SurnameUser;
 	
-	private String azienda;
+	private String Azienda;
 	
-	private String usertype;
+	private String UserType;
 	
-	private List<ProjectDTO> projectsDTO;
+	private List<ProjectDTO> ProjectsDTO;
 	
 }

@@ -32,7 +32,7 @@ public class UserService {
 
 	public UserDTO getUserByUserUserAndUserPass(String username, String password) {
 
-		final User user = userRepository.findUserByUserAndPassword(username, password);
+		final User user = userRepository.findUserByUserLoginAndPassword(username, password);
 
 		return ConverterUser.toDTO(user);
 	}
