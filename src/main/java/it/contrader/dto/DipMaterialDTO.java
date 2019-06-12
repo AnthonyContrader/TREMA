@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DipMaterialDTO {
+	
     private int IdDipMaterial;
     
     private int Quantita;

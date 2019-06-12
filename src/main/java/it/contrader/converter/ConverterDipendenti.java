@@ -7,7 +7,7 @@ import it.contrader.dto.DipendentiDTO;
 import it.contrader.model.Dipendenti;
 
 public class ConverterDipendenti {
-	public static Dipendenti toDTO(Dipendenti dipendenti) {
+	public static DipendentiDTO toDTO(Dipendenti dipendenti) {
 		DipendentiDTO dipendentiDTO = null;
 		
 		if (dipendenti != null) {

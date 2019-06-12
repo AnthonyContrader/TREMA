@@ -12,14 +12,14 @@ import it.contrader.dto.DipendentiDTO;
 
 public class ConverterDipMaterial {
 
-	public static DipMaterialDTO toDTO(DipMaterialDTO dipMaterial) {
+	public static DipMaterialDTO toDTO(DipMaterial dipMaterial) {
 
 		DipMaterialDTO dipMaterialDTO = null;
 		
 		if (dipMaterial != null) {
 			dipMaterialDTO = new DipMaterialDTO();
-			dipMaterialDTO.setDipendenti(ConverterDipendenti.toDTO(dipMaterial.getDipendenti()));
-			dipMaterialDTO.setMaterialDTO(ConverterMaterial.toDTO(dipMaterial.getMaterial()));
+			dipMaterialDTO.setDipendenti(dipMaterial.getDipendenti());
+			dipMaterialDTO.setMaterial(dipMaterial.getMaterial());
 			dipMaterialDTO.setQuantita(dipMaterial.getQuantita());
 			dipMaterialDTO.setIdDipMaterial(dipMaterial.getIdDipMaterial());	
 		}
@@ -28,24 +28,24 @@ public class ConverterDipMaterial {
 	
 	}
 	
-	public static DipMaterialDTO toEntity(DipMaterialDTO dipMaterialDTO) {
+	public static DipMaterial toEntity(DipMaterialDTO dipMaterialDTO) {
 		
 		DipMaterial dipMaterial = null;
 		
 		if (dipMaterialDTO != null) {
 			dipMaterial = new DipMaterial();
-			dipMaterial.setDipendenti(ConverterDipendenti.toEntity(dipMaterialDTO.getDipendentiDTO()));
-			dipMaterial.setMaterial(ConverterMaterial.toEntity(dipMaterialDTO.getMaterialDTO()));
-			dipMaterialDTO.setQuantita(dipMaterial.getQuantita());
-			dipMaterialDTO.setIdDipMaterial(dipMaterial.getIdDipMaterial());
+			dipMaterial.setDipendenti(dipMaterialDTO.getDipendenti());
+			dipMaterial.setMaterial(dipMaterialDTO.getMaterial());
+			dipMaterial.setQuantita(dipMaterial.getQuantita());
+			dipMaterial.setIdDipMaterial(dipMaterial.getIdDipMaterial());
 		}
-		return dipMaterialDTO;	
+		return dipMaterial;	
 		}
 	
-	public static List<DipMaterialDTO> toListDTO(List<DipMaterialDTO> list) {
+	public static List<DipMaterialDTO> toListDTO(List<DipMaterial> list) {
 		List<DipMaterialDTO> listDipMaterialDTO = new ArrayList<>();
 		if (!list.isEmpty()) {
-			for (DipMaterialDTO dipMaterial : list) {
+			for (DipMaterial dipMaterial : list) {
 				listDipMaterialDTO.add(ConverterDipMaterial.toDTO(dipMaterial));
 			}
 		}

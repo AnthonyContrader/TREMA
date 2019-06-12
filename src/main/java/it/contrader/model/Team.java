@@ -33,4 +33,5 @@ public class Team implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="SubTask")
     private SubTask SubTask;
+}
     
