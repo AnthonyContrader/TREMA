@@ -10,9 +10,6 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
 
     }
 
-    getAllBy(id: number): Observable<DTO[]> {       //possibili errori
-        return this.http.get<DTO[]>('http://localhost:8080/' + this.type + '/getallby?id=' + id);
-    }
     getAll(): Observable<DTO[]> {
         return this.http.get<DTO[]>('http://localhost:8080/' + this.type + '/getall');
     }
