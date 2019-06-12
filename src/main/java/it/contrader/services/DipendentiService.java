@@ -17,15 +17,11 @@ import java.util.List;
 
 @Service
 public class DipendentiService {
-	private final DipendentiRepository dipendentiRepository;
+	@Autowired
+	private DipendentiRepository dipendentiRepository;
 	
 	@Autowired
 	public TaskRepository taskRepository;
-	
-	@Autowired
-	public DipendentiService(DipendentiRepository dipendentiRepository) {
-		this.dipendentiRepository = dipendentiRepository;
-	}
 	
 	public List<DipendentiDTO> getListDipendentiDTO(){
 		return ConverterDipendenti.toListDTO((List<Dipendenti>) dipendentiRepository.findAll());

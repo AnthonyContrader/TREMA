@@ -14,14 +14,11 @@ import it.contrader.model.User;
 
 @Service
 public class UserService {
-
-	private final UserRepository userRepository;
 	
 	@Autowired
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-
+	private UserRepository userRepository;
+	
+	
 	public List<UserDTO> getListaUserDTO() {
 		return ConverterUser.toListDTO((List<User>) userRepository.findAll());
 	}

@@ -17,16 +17,12 @@ import java.util.List;
 
 @Service
 public class MaterialService {
-	private final MaterialRepository materialRepository;
+	@Autowired
+	private  MaterialRepository materialRepository;
 	
 	@Autowired
 	public TaskRepository taskRepository;
-	
-	@Autowired
-	public MaterialService(MaterialRepository materialRepository) {
-		this.materialRepository = materialRepository;
-	}
-	
+		
 	public List<MaterialDTO> getListMaterialDTO(){
 		return ConverterMaterial.toListDTO((List<Material>) materialRepository.findAll());
 	}

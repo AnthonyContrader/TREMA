@@ -20,12 +20,9 @@ import java.util.List;
 
 @Service
 public class SubTaskService {
-	private final SubTaskRepository subTaskRepository;
-	
 	@Autowired
-	public SubTaskService(SubTaskRepository subTaskRepository) {
-		this.subTaskRepository = subTaskRepository;
-	}
+	private SubTaskRepository subTaskRepository;
+	
 
 	public List<SubTaskDTO> getListaSubTaskDTO() {
 		return ConverterSubTask.toListDTO((List<SubTask>) subTaskRepository.findAll());

@@ -19,15 +19,10 @@ import it.contrader.converter.ConverterTask;
 
 @Service
 public class ProjectService {
-
-	private final ProjectRepository projectRepository;		
 	@Autowired
+	private ProjectRepository projectRepository;		
+	
 	private TaskService taskService;
-
-	@Autowired
-	public ProjectService(ProjectRepository projectRepository) {
-		this.projectRepository = projectRepository;
-	}
 
 	public List<ProjectDTO> getListProjectDTO() {
 		return ConverterProject.toListDTO((List<Project>) projectRepository.findAll());

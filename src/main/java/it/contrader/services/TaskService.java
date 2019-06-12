@@ -16,13 +16,9 @@ import java.util.List;
 
 @Service
 public class TaskService {
-	private final TaskRepository taskRepository;
-	
 	@Autowired
-	public TaskService(TaskRepository taskRepository) {
-		this.taskRepository = taskRepository;
-	}
-
+	private TaskRepository taskRepository;
+	
 	public List<TaskDTO> getListaTaskDTO() {
 		return ConverterTask.toListDTO((List<Task>) taskRepository.findAll());
 	}
