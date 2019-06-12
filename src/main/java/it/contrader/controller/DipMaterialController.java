@@ -33,9 +33,9 @@ public class DipMaterialController {
 	}
 
 	@RequestMapping(value = "dipMaterialManagement", method = RequestMethod.GET)
-	public List<DipMaterialDTO> dipMaterialManagement(@RequestParam(value = "IdDipMaterial") int IdDipMaterial) {
+	public List<DipMaterialDTO> dipMaterialManagement(@RequestParam(value = "IdDipMaterial") DipMaterialDTO IdDipMaterial) {
 		TeamDTO teamDTODipMaterialList = new TeamDTO();
-		teamDTODipMaterialList.setIdDipMaterial(IdDipMaterial);
+		teamDTODipMaterialList.setDipMaterialDTO(IdDipMaterial);
 		// return
 		// this.orderService.findOrderDTOByUser(ConverterUser.toEntity(userDTOOrderList));
 		return this.dipMaterialService.findDipMaterialDTOByTeam(teamDTODipMaterialList);
@@ -90,14 +90,14 @@ public class DipMaterialController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
     public List<DipMaterialDTO> update(@RequestParam(value = "IdDipMaterial") int idUpdate,
             @RequestParam(value = "Quantita") int Quantita,
-			@RequestParam(value = "IdDipendenti") int IdDipendenti,
-			@RequestParam(value = "IdMaterial") int IdMaterial) {
+			@RequestParam(value = "IdDipendenti") DipendentiDTO IdDipendenti,
+			@RequestParam(value = "IdMaterial") MaterialDTO IdMaterial) {
 
 		DipMaterialDTO dipMaterial = new DipMaterialDTO();
         dipMaterial.setIdDipMaterial(idUpdate);
         dipMaterial.setQuantita(Quantita);
-		dipMaterial.setIdDipendenti(IdDipendenti);
-		dipMaterial.setIdMaterial(IdMaterial);
+		dipMaterial.setDipendentiDTO(IdDipendenti);
+		dipMaterial.setMaterialDTO(IdMaterial);
 		dipMaterialService.updateDipMaterial(dipMaterial);
 //			visualOrder(request);
 

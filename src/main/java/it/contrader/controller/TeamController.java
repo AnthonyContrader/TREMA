@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.contrader.dto.DipMaterialDTO;
 import it.contrader.dto.SubTaskDTO;
 import it.contrader.dto.TeamDTO;
 import it.contrader.services.TeamService;
@@ -86,13 +87,13 @@ public class TeamController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public List<TeamDTO> update(@RequestParam(value = "IdTeam") int idUpdate,
-			@RequestParam(value = "IdSubTask") int IdSubTask,
-			@RequestParam(value = "IdDipMaterial") int IdDipMaterial) {
+			@RequestParam(value = "IdSubTask") SubTaskDTO IdSubTask,
+			@RequestParam(value = "IdDipMaterial") DipMaterialDTO DipMaterial) {
 
 		TeamDTO team = new TeamDTO();
 		team.setIdTeam(idUpdate);
 		team.setSubTaskDTO(IdSubTask);
-		team.setIdDipMaterial(IdDipMaterial);
+		team.setDipMaterialDTO(DipMaterial);
 		teamService.updateTeam(team);
 //			visualOrder(request);
 

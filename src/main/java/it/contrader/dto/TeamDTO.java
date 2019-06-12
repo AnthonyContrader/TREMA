@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeamDTO {
+	
 	private int IdTeam;
 
     private DipMaterialDTO DipMaterialDTO;
