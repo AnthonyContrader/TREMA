@@ -45,4 +45,11 @@ public class TeamService {
 		listTeam.forEach(i -> listTeamDTO.add(ConverterTeam.toDTO(i)));
 		return listTeamDTO;
 	}
+	
+	public List<TeamDTO> findTeamDTOByDipMaterial(DipMaterialDTO dipMaterialDTO) {
+		final List<Team> listTeam = teamRepository.findAllByDipMaterial(ConverterDipMaterial.toEntity(dipMaterialDTO));
+		final List<TeamDTO> listTeamDTO = new ArrayList<>();
+		listTeam.forEach(i -> listTeamDTO.add(ConverterTeam.toDTO(i)));
+		return listTeamDTO;
+	}
 }

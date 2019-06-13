@@ -23,10 +23,21 @@ public class TeamController {
 	private TeamService teamService;
 	
 	@RequestMapping(value = "teamManagement", method = RequestMethod.GET)
-	public List<TeamDTO> teamManagement(@RequestParam(value = "IdTeam") int IdTeam) {
-		SubTaskDTO subTaskDTOTeamList = new SubTaskDTO();
-		subTaskDTOTeamList.setIdSubTask(IdTeam);
-		return this.teamService.findTeamDTOBySubTask(subTaskDTOTeamList);
+	public List<TeamDTO> teamManagement(@RequestParam(value = "Entity") String entity,
+										@RequestParam(value = "Id") Integer id) {
+		
+		switch (entity) {
+			case "SubTask":
+				SubTaskDTO subTaskDTOTeamList = new SubTaskDTO();
+				subTaskDTOTeamList.setIdSubTask(id);
+				return this.teamService.findTeamDTOBySubTask(subTaskDTOTeamList);
+			case "DipMaterial":
+				DipMaterialDTO dipMaterialDTOTeamList = new DipMaterialDTO();
+				dipMaterialDTOTeamList.setIdDipMaterial(id);
+				return this.teamService.findTeamDTOByDipMaterial(dipMaterialDTOTeamList);
+			default:
+				return null;
+		}
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)

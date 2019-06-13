@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.contrader.dto.DipMaterialDTO;
 import it.contrader.services.DipMaterialService;
 import it.contrader.dto.DipendentiDTO;
+import it.contrader.dto.MaterialDTO;
 
 @CrossOrigin
 @RestController
@@ -26,10 +27,21 @@ public class DipMaterialController {
 	}
 
 	@RequestMapping(value = "/taskManagement", method = RequestMethod.GET)
-	public List<DipMaterialDTO> taskManagement(@RequestParam(value = "IdDipendente") Integer idDipendente) {
-		DipendentiDTO dipendentiDTOList = new DipendentiDTO();
-		dipendentiDTOList.setIdDipendente(idDipendente);
-		return this.dipMaterialService.findDipMaterialDTOByDipendenti(dipendentiDTOList);
+	public List<DipMaterialDTO> taskManagement(@RequestParam(value = "Entity") String entity,
+											   @RequestParam(value = "Id") Integer id) {
+		
+		switch (entity) {
+			case "Dipendenti":
+				DipendentiDTO dipendentiDTOList = new DipendentiDTO();
+				dipendentiDTOList.setIdDipendente(id);
+				return this.dipMaterialService.findDipMaterialDTOByDipendenti(dipendentiDTOList);
+			case "Material":
+				MaterialDTO materialDTOTeamList = new MaterialDTO();
+				materialDTOTeamList.setIdMaterial(id);
+				return this.dipMaterialService.findDipMaterialDTOByMaterial(materialDTOTeamList);
+			default:
+				return null;
+		}
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
