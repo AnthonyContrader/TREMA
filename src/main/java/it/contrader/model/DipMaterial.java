@@ -29,9 +29,9 @@ public class DipMaterial implements Serializable {
 	private int Quantita;
 
 	//bi-directional many-to-one association to Project
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name="Material")
-    private Material Material;
+    private List<Material> Material;
     
     @ManyToOne
 	@JoinColumn(name="Dipendenti")
