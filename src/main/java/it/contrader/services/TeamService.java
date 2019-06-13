@@ -15,37 +15,34 @@ import java.util.List;
 
 @Service
 public class TeamService {
+
 	@Autowired
-	private TeamRepository teamRepository;
-
-	public List<TeamDTO> findTeamDTOBySubTask(SubTaskDTO subTaskDTOTeamList) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void insertTeam(TeamDTO teamDTO) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public TeamDTO getTeamDTOById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void updateTeam(TeamDTO team) {
-		// TODO Auto-generated method stub
-		
-	}
+	private TeamRepository teamRepository;		
 
 	public List<TeamDTO> getListTeamDTO() {
-		// TODO Auto-generated method stub
-		return null;
+		return ConverterTeam.toListDTO((List<Team>) teamRepository.findAll());
 	}
 
-	public void deleteTeamById(int id) {
-		// TODO Auto-generated method stub
-		
+	public TeamDTO getTeamDTOById(Integer id) {
+		return ConverterTeam.toDTO(teamRepository.findById(id).get());
 	}
-	
+
+	public boolean insertTeam(TeamDTO TeamDTO) {
+		return teamRepository.save(ConverterTeam.toEntity(TeamDTO)) != null;
+	}
+
+	public boolean updateTeam(TeamDTO TeamDTO) {
+		return teamRepository.save(ConverterTeam.toEntity(TeamDTO)) != null;
+	}
+
+	public void deleteTeamById(Integer id) {
+		teamRepository.deleteById(id);
+	}
+
+	public List<TeamDTO> findTeamDTOBySubTask(SubTaskDTO subTaskDTO) {
+		final List<Team> listTeam = teamRepository.findAllBySubTask(ConverterSubTask.toEntity(subTaskDTO));
+		final List<TeamDTO> listTeamDTO = new ArrayList<>();
+		listTeam.forEach(i -> listTeamDTO.add(ConverterTeam.toDTO(i)));
+		return listTeamDTO;
+	}
 }

@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Table(name="Team")
 @NamedQuery(name="Team.findAll", query="SELECT u FROM Team u")  //preleva tutto da Team
 public class Team implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -27,11 +28,11 @@ public class Team implements Serializable {
     
 	//bi-directional many-to-one association to Project
 	@ManyToOne
-	@JoinColumn(name="DipMaterial")
+	@JoinColumn(name="IdDipMaterial")
 	private DipMaterial DipMaterial;
 	
 	@ManyToOne
-	@JoinColumn(name="SubTask")
+	@JoinColumn(name="IdSubTask")
     private SubTask SubTask;
 }
     

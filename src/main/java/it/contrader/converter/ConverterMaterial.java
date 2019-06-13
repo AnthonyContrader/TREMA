@@ -12,10 +12,8 @@ public class ConverterMaterial {
 			
 		if (material != null) {
 			materialDTO = new MaterialDTO();
+			materialDTO.setIdMaterial(material.getIdMaterial());
 			materialDTO.setMaterial(material.getMaterial());
-			materialDTO.setQuantita(material.getQuantita());
-			materialDTO.setIdmaterial(material.getIdMaterial());
-			materialDTO.setTaskDTO(ConverterTask.toDTO(material.getTask()));
 		}
 		
 		return materialDTO;
@@ -26,10 +24,8 @@ public class ConverterMaterial {
 		
 		if (materialDTO != null) {
 			material = new Material();
-			material.setIdMaterial(materialDTO.getIdmaterial());
+			material.setIdMaterial(materialDTO.getIdMaterial());
 			material.setMaterial(materialDTO.getMaterial());
-			material.setQuantita(materialDTO.getQuantita());
-			material.setTask(ConverterTask.toEntity(materialDTO.getTaskDTO()));
 		}
 		
 		return material;	

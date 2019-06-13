@@ -19,6 +19,7 @@ import it.contrader.converter.ConverterTask;
 
 @Service
 public class ProjectService {
+
 	@Autowired
 	private ProjectRepository projectRepository;		
 	

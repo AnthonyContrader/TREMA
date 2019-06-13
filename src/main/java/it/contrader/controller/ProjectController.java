@@ -33,12 +33,8 @@ public class ProjectController {
 	@Autowired
 	private TaskService taskService;
 	
-	private final ProjectService projectService;
-	
 	@Autowired
-	public ProjectController(ProjectService projectService) {
-		this.projectService = projectService;
-	}
+	private ProjectService projectService;
 
 	@RequestMapping(value = "/projectManagement", method = RequestMethod.GET)
 	public List<ProjectDTO> projectManagement(@RequestParam(value = "IdUser") int userId) {

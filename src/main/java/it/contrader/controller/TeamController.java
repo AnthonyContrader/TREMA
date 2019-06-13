@@ -19,19 +19,13 @@ import it.contrader.services.TeamService;
 @RestController
 @RequestMapping("/Team")
 public class TeamController {
-
-	private static final int IdSubTask = 0;
-	private final TeamService teamService;
-
 	@Autowired
-	public TeamController(TeamService teamService) {
-		this.teamService = teamService;
-	}
-
+	private TeamService teamService;
+	
 	@RequestMapping(value = "teamManagement", method = RequestMethod.GET)
 	public List<TeamDTO> teamManagement(@RequestParam(value = "IdTeam") int IdTeam) {
 		SubTaskDTO subTaskDTOTeamList = new SubTaskDTO();
-		subTaskDTOTeamList.setIdSubTask(IdSubTask);
+		subTaskDTOTeamList.setIdSubTask(IdTeam);
 		return this.teamService.findTeamDTOBySubTask(subTaskDTOTeamList);
 	}
 

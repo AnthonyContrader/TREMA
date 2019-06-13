@@ -20,15 +20,12 @@ public class MaterialService {
 	@Autowired
 	private  MaterialRepository materialRepository;
 	
-	@Autowired
-	public TaskRepository taskRepository;
-		
-	public List<MaterialDTO> getListMaterialDTO(){
+	public List<MaterialDTO> getListaMaterialDTO(){
 		return ConverterMaterial.toListDTO((List<Material>) materialRepository.findAll());
 	}
 	
-	public MaterialDTO getMaterialDTOById(Integer idmaterial) {
-		return ConverterMaterial.toDTO(materialRepository.findById(idmaterial).get());
+	public MaterialDTO getMaterialDTOById(Integer idMaterial) {
+		return ConverterMaterial.toDTO(materialRepository.findById(idMaterial).get());
 	}
 
 	public boolean insertMaterial(MaterialDTO materialDTO) {
@@ -41,12 +38,5 @@ public class MaterialService {
 	
 	public void deleteMaterialById(Integer idmaterial) {
 		materialRepository.deleteById(idmaterial);
-	}
-	
-	public List<MaterialDTO> findMaterialDTOByTask(TaskDTO taskDTO) {
-		final List<Material> listMaterial = materialRepository.findAllByTask(ConverterTask.toEntity(taskDTO));
-		final List<MaterialDTO> listMaterialDTO = new ArrayList<>();
-		listMaterial.forEach(i -> listMaterialDTO.add(ConverterMaterial.toDTO(i)));
-		return listMaterialDTO;
 	}
 }

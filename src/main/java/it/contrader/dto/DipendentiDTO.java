@@ -11,10 +11,8 @@ public class DipendentiDTO {
 
 	private int idDipendente;
 
-	private String name;
+	private String NomeDip;
 	
-	private String surname;
-	
-	private TaskDTO taskDTO;
+	private String CognomeDip;
 
 }

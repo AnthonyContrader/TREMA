@@ -20,9 +20,6 @@ public class DipendentiService {
 	@Autowired
 	private DipendentiRepository dipendentiRepository;
 	
-	@Autowired
-	public TaskRepository taskRepository;
-	
 	public List<DipendentiDTO> getListDipendentiDTO(){
 		return ConverterDipendenti.toListDTO((List<Dipendenti>) dipendentiRepository.findAll());
 	}
@@ -41,12 +38,5 @@ public class DipendentiService {
 	
 	public void deleteDipendentiById(Integer idDipendenti) {
 		dipendentiRepository.deleteById(idDipendenti);
-	}
-
-	public List<DipendentiDTO> findDipendentiDTOByTask(TaskDTO taskDTO) {
-		final List<Dipendenti> listDipendenti = dipendentiRepository.findAllByTask(ConverterTask.toEntity(taskDTO));
-		final List<DipendentiDTO> listDipendentiDTO = new ArrayList<>();
-		listDipendenti.forEach(i -> listDipendentiDTO.add(ConverterDipendenti.toDTO(i)));
-		return listDipendentiDTO;
 	}
 }

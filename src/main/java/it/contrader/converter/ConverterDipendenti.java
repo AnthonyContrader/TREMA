@@ -13,9 +13,8 @@ public class ConverterDipendenti {
 		if (dipendenti != null) {
 			dipendentiDTO = new DipendentiDTO();
 			dipendentiDTO.setIdDipendente(dipendenti.getIdDipendente());
-			dipendentiDTO.setName(dipendenti.getName());
-			dipendentiDTO.setSurname(dipendenti.getSurname());
-			dipendentiDTO.setTaskDTO(ConverterTask.toDTO(dipendenti.getTask()));
+			dipendentiDTO.setNomeDip(dipendenti.getNomeDip());
+			dipendentiDTO.setCognomeDip(dipendenti.getCognomeDip());
 		}
 		
 		return dipendentiDTO;
@@ -27,9 +26,8 @@ public class ConverterDipendenti {
 		if (dipendentiDTO != null) {
 			dipendenti = new Dipendenti();
 			dipendenti.setIdDipendente(dipendentiDTO.getIdDipendente());
-			dipendenti.setName(dipendentiDTO.getName());
-			dipendenti.setSurname(dipendentiDTO.getSurname());	
-			dipendenti.setTask(ConverterTask.toEntity(dipendentiDTO.getTaskDTO()));
+			dipendenti.setNomeDip(dipendentiDTO.getNomeDip());
+			dipendenti.setCognomeDip(dipendentiDTO.getCognomeDip());
 		}
 		
 		return dipendenti;	
