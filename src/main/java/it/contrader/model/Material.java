@@ -24,7 +24,18 @@ public class Material implements Serializable {
 	private String Material;
 	
 	//bi-directional many-to-one association to Task
-	@ManyToOne
-	@JoinColumn(name="IdMaterial", insertable = false, updatable = false)
-	private DipMaterial DipMaterial;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="IdMaterial") private DipMaterial DipMaterial;
+	 * 
+	 * @ManyToOne(optional=false)
+	 * 
+	 * @JoinColumn(name="IdMaterial",referencedColumnName="IdMaterial",
+	 * insertable=false, updatable=false) private Material material;
+	 
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "IdMaterial", insertable=false, updatable=false)
+	private DipMaterial dipMaterial;*/
 }
