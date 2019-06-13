@@ -29,7 +29,7 @@ public class DipMaterial implements Serializable {
     
     // bi-directional one-to-many association to Team
 	@OneToMany
-	@JoinColumn(name="DipMaterial")
+	@JoinColumn(name="IdDipMaterial")
 	private List<Team> Team;
 	
 	// bi-directional many-to-one association to Material

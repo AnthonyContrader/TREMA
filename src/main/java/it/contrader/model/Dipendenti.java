@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity	
 @Table(name="Dipendenti")
+@NamedQuery(name="Dipendenti.findAll", query="SELECT u FROM Dipendenti u")
 public class Dipendenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +31,6 @@ public class Dipendenti implements Serializable {
 
 	// bi-directional one-to-many association to DipMaterial
 	@OneToMany
-	@JoinColumn(name="Dipendenti")
+	@JoinColumn(name="IdDipendenti")
 	private List<DipMaterial> DipMaterial;
 }
