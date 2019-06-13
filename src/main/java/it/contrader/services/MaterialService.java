@@ -36,7 +36,7 @@ public class MaterialService {
 		return materialRepository.save(ConverterMaterial.toEntity(materialDTO)) != null;
 	}
 	
-	public void deleteMaterialById(Integer idmaterial) {
-		materialRepository.deleteById(idmaterial);
+	public void deleteMaterialById(Integer idMaterial) {
+		materialRepository.deleteById(idMaterial);
 	}
 }
