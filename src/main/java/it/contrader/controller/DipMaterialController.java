@@ -37,7 +37,7 @@ public class DipMaterialController {
 				return this.dipMaterialService.findDipMaterialDTOByDipendenti(dipendentiDTOList);
 			case "Material":
 				MaterialDTO materialDTOTeamList = new MaterialDTO();
-				materialDTOTeamList.setIdMaterial(id);
+	            materialDTOTeamList.setIdMaterial(id);
 				return this.dipMaterialService.findDipMaterialDTOByMaterial(materialDTOTeamList);
 			default:
 				return null;
