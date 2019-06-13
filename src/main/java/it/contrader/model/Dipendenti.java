@@ -1,6 +1,8 @@
 package it.contrader.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -26,8 +28,8 @@ public class Dipendenti implements Serializable {
 	@Column(name="CognomeDip")
 	private String CognomeDip;
 
-	//bi-directional many-to-one association to User
-	@ManyToOne
-	@JoinColumn(name="IdMaterial")
-	private Task DipMaterial;
+	// bi-directional one-to-many association to DipMaterial
+	@OneToMany
+	@JoinColumn(name="Dipendenti")
+	private List<DipMaterial> DipMaterial;
 }

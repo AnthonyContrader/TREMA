@@ -8,10 +8,6 @@ import it.contrader.dto.MaterialDTO;
 import it.contrader.dao.MaterialRepository;
 import it.contrader.converter.ConverterMaterial;
 
-import it.contrader.dto.TaskDTO;
-import it.contrader.dao.TaskRepository;
-import it.contrader.converter.ConverterTask;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +34,12 @@ public class MaterialService {
 	
 	public void deleteMaterialById(Integer idMaterial) {
 		materialRepository.deleteById(idMaterial);
+	}
+	
+	public List<MaterialDTO> findAllMaterialDTO() {
+		List<Material> listMaterial = materialRepository.findAll();
+		List<MaterialDTO> listMaterialDTO = new ArrayList<>();
+		listMaterial.forEach(i -> listMaterialDTO.add(ConverterMaterial.toDTO(i)));
+		return listMaterialDTO;
 	}
 }

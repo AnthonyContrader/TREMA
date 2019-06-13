@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity	
 @Table(name="DipMaterial")
-@NamedQuery(name="DipMaterial.findAll", query="SELECT u FROM DipMaterial u")  //preleva tutto da DipMaterial
 public class DipMaterial implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -27,18 +26,19 @@ public class DipMaterial implements Serializable {
     
     @Column(name="Quantita")
 	private int Quantita;
-
-	//bi-directional many-to-one association to Project
-	@OneToMany
-	@JoinColumn(name="Material")
-    private List<Material> Material;
     
-    @ManyToOne
-	@JoinColumn(name="Dipendenti")
-	private Dipendenti Dipendenti;
-	
-	//bi-directional one-to-many association to Dipendenti
+    // bi-directional one-to-many association to Team
 	@OneToMany
-	@JoinColumn(name="Team")
-	private List<Team> team;	
+	@JoinColumn(name="DipMaterial")
+	private List<Team> Team;
+	
+	// bi-directional many-to-one association to Material
+	@ManyToOne
+	@JoinColumn(name="IdMaterial")
+	private Material Material;
+	
+	// bi-directional many-to-one association to Dipendenti
+	@ManyToOne
+	@JoinColumn(name="IdDipendenti")
+	private Dipendenti Dipendenti;
 }

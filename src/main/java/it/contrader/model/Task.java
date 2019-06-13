@@ -38,7 +38,7 @@ public class Task implements Serializable {
 	@JoinColumn(name = "IdProject")
 	private Project Project;
 
-	// bi-directional many-to-one association to SubTask
+	// bi-directional one-to-many association to SubTask
 	@OneToMany(mappedBy = "Task")
 	private List<SubTask> subTasks;
 

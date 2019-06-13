@@ -29,7 +29,7 @@ public class DipendentiController {
 
 	@RequestMapping(value = "/dipendentiManagement", method = RequestMethod.GET)
 	public List<DipendentiDTO> dipendentiManagement() {
-		return this.dipendentiService.getListDipendentiDTO();
+		return this.dipendentiService.getListaDipendentiDTO();
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)

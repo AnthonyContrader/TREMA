@@ -49,7 +49,7 @@ public class HomeController {
 		UserDTO userLogged = (UserDTO) session.getAttribute("utente");
 		List<ProjectDTO> allProject = this.projectService.findProjectDTOByUserLogin(userLogged);
 		List<TaskDTO> allTask = this.taskService.getListaTaskDTO();
-		List<DipendentiDTO> allDipendenti = this.dipendentiService.getListDipendentiDTO();
+		List<DipendentiDTO> allDipendenti = this.dipendentiService.getListaDipendentiDTO();
 		List<MaterialDTO> allMaterial = this.materialService.getListaMaterialDTO();
 		
 		request.setAttribute("allProjectDTO", allProject);

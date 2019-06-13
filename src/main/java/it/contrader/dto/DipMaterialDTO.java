@@ -1,11 +1,10 @@
 package it.contrader.dto;
 
-import java.util.List;
-import it.contrader.model.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,9 +15,9 @@ public class DipMaterialDTO {
     
     private int Quantita;
 
-    private Dipendenti Dipendenti;
+    private DipendentiDTO DipendentiDTO;
 	
-    private Material Material;
+    private MaterialDTO MaterialDTO;
 
 	private List<TeamDTO> TeamDTO;
 

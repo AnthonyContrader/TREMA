@@ -1,40 +1,57 @@
 package it.contrader.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import it.contrader.dto.DipendentiDTO;
+import it.contrader.converter.ConverterDipendenti;
+
+import it.contrader.dto.MaterialDTO;
+import it.contrader.converter.ConverterMaterial;
+import it.contrader.model.DipMaterial;
+import it.contrader.dao.DipMaterialRepository;
+import it.contrader.dto.DipMaterialDTO;
+import it.contrader.converter.ConverterDipMaterial;
+
+import java.util.ArrayList;
 import java.util.List;
 
-import it.contrader.dto.DipMaterialDTO;
-import it.contrader.dto.TeamDTO;
-
+@Service
 public class DipMaterialService {
-
-	public List<DipMaterialDTO> findDipMaterialDTOByTeam(TeamDTO teamDTODipMaterialList) {
-		// TODO Auto-generated method stub
-		return null;
+	@Autowired
+	private DipMaterialRepository dipMaterialRepository;
+	
+	public List<DipMaterialDTO> getListaTaskDTO() {
+		return ConverterDipMaterial.toListDTO((List<DipMaterial>) dipMaterialRepository.findAll());
 	}
-
-	public void deleteDipMaterialById(int id) {
-		// TODO Auto-generated method stub
+	
+	public DipMaterialDTO getDipMaterialDTOById(Integer idDipMaterial) {
+		return ConverterDipMaterial.toDTO(dipMaterialRepository.findById(idDipMaterial).get());
+	}
 		
+	public boolean insertDipMaterial(DipMaterialDTO dipMaterialDTO) {
+		return dipMaterialRepository.save(ConverterDipMaterial.toEntity(dipMaterialDTO)) != null;
 	}
 
-	public void insertDipMaterial(DipMaterialDTO dipMaterialDTO) {
-		// TODO Auto-generated method stub
-		
+	public boolean updateTask(DipMaterialDTO dipMaterialDTO) {
+		return dipMaterialRepository.save(ConverterDipMaterial.toEntity(dipMaterialDTO)) != null;
 	}
-
-	public DipMaterialDTO getDipMaterialDTOById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public void deleteDipMaterialById(Integer dipMaterial) {
+		dipMaterialRepository.deleteById(dipMaterial);
 	}
-
-	public void updateDipMaterial(DipMaterialDTO dipMaterial) {
-		// TODO Auto-generated method stub
-		
+	
+	public List<DipMaterialDTO> findDipMaterialDTOByDipendenti(DipendentiDTO dipendentiDTO) {
+		final List<DipMaterial> listDipMaterial = dipMaterialRepository.findAllByDipendenti(ConverterDipendenti.toEntity(dipendentiDTO));
+		final List<DipMaterialDTO> listDipMaterialDTO = new ArrayList<>();
+		listDipMaterial.forEach(i -> listDipMaterialDTO.add(ConverterDipMaterial.toDTO(i)));
+		return listDipMaterialDTO;
 	}
-
-	public List<DipMaterialDTO> getListDipMaterialDTO() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<DipMaterialDTO> findDipMaterialDTOByMaterial(MaterialDTO materialDTO) {
+		final List<DipMaterial> listDipMaterial = dipMaterialRepository.findAllByMaterial(ConverterMaterial.toEntity(materialDTO));
+		final List<DipMaterialDTO> listDipMaterialDTO = new ArrayList<>();
+		listDipMaterial.forEach(i -> listDipMaterialDTO.add(ConverterDipMaterial.toDTO(i)));
+		return listDipMaterialDTO;
 	}
-
 }

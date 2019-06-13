@@ -8,10 +8,6 @@ import it.contrader.dto.DipendentiDTO;
 import it.contrader.dao.DipendentiRepository;
 import it.contrader.converter.ConverterDipendenti;
 
-import it.contrader.dto.TaskDTO;
-import it.contrader.dao.TaskRepository;
-import it.contrader.converter.ConverterTask;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +16,7 @@ public class DipendentiService {
 	@Autowired
 	private DipendentiRepository dipendentiRepository;
 	
-	public List<DipendentiDTO> getListDipendentiDTO(){
+	public List<DipendentiDTO> getListaDipendentiDTO(){
 		return ConverterDipendenti.toListDTO((List<Dipendenti>) dipendentiRepository.findAll());
 	}
 	
@@ -38,5 +34,12 @@ public class DipendentiService {
 	
 	public void deleteDipendentiById(Integer idDipendenti) {
 		dipendentiRepository.deleteById(idDipendenti);
+	}
+	
+	public List<DipendentiDTO> findAllDipendentiDTO() {
+		List<Dipendenti> listDipendenti = dipendentiRepository.findAll();
+		List<DipendentiDTO> listDipendentiDTO = new ArrayList<>();
+		listDipendenti.forEach(i -> listDipendentiDTO.add(ConverterDipendenti.toDTO(i)));
+		return listDipendentiDTO;
 	}
 }

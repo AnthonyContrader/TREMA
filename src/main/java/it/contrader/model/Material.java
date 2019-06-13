@@ -1,6 +1,8 @@
 package it.contrader.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -23,19 +25,8 @@ public class Material implements Serializable {
 	@Column(name="Material")
 	private String Material;
 	
-	//bi-directional many-to-one association to Task
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="IdMaterial") private DipMaterial DipMaterial;
-	 * 
-	 * @ManyToOne(optional=false)
-	 * 
-	 * @JoinColumn(name="IdMaterial",referencedColumnName="IdMaterial",
-	 * insertable=false, updatable=false) private Material material;
-	 
-	
-	@ManyToOne(optional=false)
-	@JoinColumn(name = "IdMaterial", insertable=false, updatable=false)
-	private DipMaterial dipMaterial;*/
+	// bi-directional one-to-many association to DipMaterial
+	@OneToMany
+	@JoinColumn(name="Material")
+	private List<DipMaterial> DipMaterial;
 }
