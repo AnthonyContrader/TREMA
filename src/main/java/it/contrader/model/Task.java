@@ -7,53 +7,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Date;
 
 @Data // genera get e set
 @AllArgsConstructor // genera il construct[lib lombok]
 @NoArgsConstructor
 @Entity
-@Table(name = "Task")
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IdTask")
-	private int IdTask;
+	private long id;
 
-	@Column(name = "Task")
-	private String Task;
+	private String task;
 
-	@Column(name = "DataInizio")
-	private String DataInizio;
+	private Date dataInizio;
 
-	@Column(name = "DataFine")
-	private String DataFine;
+	private Date dataFine;
 
-	// bi-directional many-to-one association to Project
 	@ManyToOne
-	@JoinColumn(name = "IdProject")
-	private Project Project;
+	@JoinColumn
+	private Project project;
 
-	// bi-directional one-to-many association to SubTask
-	@OneToMany(mappedBy = "Task")
-	private List<SubTask> subTasks;
-
-	/*
-	 * // Tree implementation
-	 * 
-	 * @Nullable
-	 * 
-	 * @ManyToOne(cascade= {CascadeType.ALL})
-	 * 
-	 * @JoinColumn(name="father_id") private Task taskFather;
-	 * 
-	 * @JoinTable(name = "projects_wbs", joinColumns = @JoinColumn(name =
-	 * "task_id_father"), inverseJoinColumns = @JoinColumn(name = "task_id_child"))
-	 * 
-	 * @OnDelete(action = OnDeleteAction.CASCADE)
-	 * 
-	 * @OneToMany(mappedBy = "taskFather") private List<Task> childsList;
-	 */
 }

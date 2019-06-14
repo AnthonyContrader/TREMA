@@ -1,75 +1,44 @@
 package it.contrader.converter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import it.contrader.model.Project;
-import it.contrader.dto.ProjectDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import it.contrader.model.Task;
 import it.contrader.dto.TaskDTO;
 
-import it.contrader.model.SubTask;
-import it.contrader.dto.SubTaskDTO;
-
-public class ConverterTask {
-	public static TaskDTO toDTO(Task task) {
+@Component
+public class ConverterTask extends AbstractConverter<Task, TaskDTO> {
+	@Autowired
+	private ConverterProject converter;
+	
+	public TaskDTO toDTO(Task task) {
 		TaskDTO taskDTO = null;
 
 		if (task != null) {
 			taskDTO = new TaskDTO();
-			taskDTO.setIdTask(task.getIdTask());
+			taskDTO.setId(task.getId());
 			taskDTO.setTask(task.getTask());
 			taskDTO.setDataInizio(task.getDataInizio());
 			taskDTO.setDataFine(task.getDataFine());
-			taskDTO.setProjectDTO(ConverterProject.toDTO(task.getProject()));
-
-			List<SubTask> subTaskList = task.getSubTasks();
-			List<SubTaskDTO> subTaskListDTO = new ArrayList<SubTaskDTO>();
+			taskDTO.setProjectDTO(converter.toDTO(task.getProject()));
 		}
 
 		return taskDTO;
 	}
 
-	public static Task toEntity(TaskDTO taskDTO) {
+	public Task toEntity(TaskDTO taskDTO) {
 		Task task = null;
 
 		if (taskDTO != null) {
 			task = new Task();
-			task.setIdTask(taskDTO.getIdTask());
+			task.setId(taskDTO.getId());
 			task.setTask(taskDTO.getTask());
 			task.setDataInizio(taskDTO.getDataInizio());
 			task.setDataFine(taskDTO.getDataFine());
-			task.setProject(ConverterProject.toEntity(taskDTO.getProjectDTO()));
-			
-			List<SubTaskDTO> subTaskListDTO = taskDTO.getSubTasksDTO();
-			List<SubTask> subTaskList = new ArrayList<SubTask>();
+			task.setProject(converter.toEntity(taskDTO.getProjectDTO()));
 		}
 
 		return task;
 	}
 
-	public static List<TaskDTO> toListDTO(List<Task> list) {
-		List<TaskDTO> listTaskDTO = new ArrayList<>();
-
-		if (!list.isEmpty()) {
-			for (Task task : list) {
-				listTaskDTO.add(ConverterTask.toDTO(task));
-			}
-		}
-
-		return listTaskDTO;
-	}
-
-	public static List<Task> toListEntity(List<TaskDTO> listTaskDTO) {
-		List<Task> list = new ArrayList<>();
-
-		if (!listTaskDTO.isEmpty()) {
-			for (TaskDTO taskDTO : listTaskDTO) {
-				list.add(ConverterTask.toEntity(taskDTO));
-			}
-		}
-
-		return list;
-	}
 }

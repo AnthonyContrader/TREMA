@@ -1,11 +1,14 @@
- package it.contrader.dao;
+package it.contrader.dao;
  
- import org.springframework.data.repository.CrudRepository;
- import it.contrader.model.*;
+import javax.transaction.Transactional;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ProjectRepository extends CrudRepository<Project, Integer>{
+import it.contrader.model.Project;
 
-	public List<Project> findAllByUserLogin(User user);  
+@Repository
+@Transactional
+public interface ProjectRepository extends CrudRepository<Project, Long>{
+
 }

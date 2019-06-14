@@ -18,29 +18,19 @@ import java.util.List;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor
 @Entity
-@Table(name="Project")
-
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="IdProject")
-	private int IdProject;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	
+	private String project;
 
-	@Column(name="Project")
-	private String Project;
-
-	@Column(name="Tipologie")
-	private String Tipologie;
+	private String tipologie;
 	
 	@ManyToOne
-	@JoinColumn(name="User")
-	private User User;
-	
-	//bi-directional many-to-one association to Project
-	@OneToMany(mappedBy = "Project")
-	private List<Task> Tasks;
-		
-		
+	@JoinColumn
+	private User user;
+			
 }

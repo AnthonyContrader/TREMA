@@ -2,78 +2,46 @@ package it.contrader.converter;
 
 import it.contrader.dto.*;
 import it.contrader.model.*;
+import it.contrader.converter.ConverterUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+@Component
+public class ConverterProject extends AbstractConverter<Project, ProjectDTO> {
 
-public class ConverterProject {
-		
-		public static ProjectDTO toDTO(Project project) {
-			ProjectDTO projectDTO=null;
+	@Autowired
+	private ConverterUser converter;
+
+	public ProjectDTO toDTO(Project project) {
+		ProjectDTO projectDTO = null;
+
+		if (project != null) {
+			projectDTO = new ProjectDTO();
 			
-			if(project != null) {
-				projectDTO = new ProjectDTO();
-				projectDTO.setIdProject(project.getIdProject());
-				projectDTO.setProject(project.getProject());
-				projectDTO.setTipologie(project.getTipologie());
-				projectDTO.setUserDTO(ConverterUser.toDTO(project.getUser()));
-				
-				List<Task> taskList= project.getTasks();
-				List<TaskDTO> taskListDTO= new ArrayList<TaskDTO>();
-				
-				for (Task task: taskList) {
-					taskListDTO.add(ConverterTask.toDTO(task));
-				} 
-				
-				projectDTO.setTaskDTO(taskListDTO); 
-			}
-		
-			return projectDTO;
+			projectDTO.setId(project.getId());
+			projectDTO.setProject(project.getProject());
+			projectDTO.setTipologie(project.getTipologie());
+			projectDTO.setUserDTO(converter.toDTO(project.getUser()));
+		}
+
+		return projectDTO;
 	}
-		public static Project toEntity(ProjectDTO projectDTO) {
-			
-			Project project = null;
-			
-			if (projectDTO != null) {
-				project = new Project();
-				
-				project.setIdProject(projectDTO.getIdProject());
-				project.setProject(projectDTO.getProject());
-				project.setTipologie(projectDTO.getTipologie());; 
-				project.setUser(ConverterUser.toEntity(projectDTO.getUserDTO()));
-				
-				List<TaskDTO> taskListDTO= projectDTO.getTaskDTO();
-				List<Task> taskList= new ArrayList<Task>();
-				
-				if (taskListDTO!= null && taskListDTO.size() != 0) {
-					for (TaskDTO taskDTO : taskListDTO) {
-						taskList.add(ConverterTask.toEntity(taskDTO));
-					}
-				}
-				
-				project.setTasks(taskList); 
-			}
-			
-			return project;
-			}
-		
-		public static List<ProjectDTO> toListDTO(List<Project> list) {
-			List<ProjectDTO> listProjectDTO = new ArrayList<>();
-			if (!list.isEmpty()) {
-				for (Project project : list) {
-					listProjectDTO.add(ConverterProject.toDTO(project));
-				}
-			}
-			return listProjectDTO;
+
+	public Project toEntity(ProjectDTO projectDTO) {
+
+		Project project = null;
+
+		if (projectDTO != null) {
+			project = new Project();
+
+			project.setId(projectDTO.getId());
+			project.setProject(projectDTO.getProject());
+			project.setTipologie(projectDTO.getTipologie());
+			project.setUser(converter.toEntity(projectDTO.getUserDTO()));
 		}
-		
-		public static List<Project> toListEntity(List<ProjectDTO> listProjectDTO) {
-			List<Project> list = new ArrayList<>();
-			if (!listProjectDTO.isEmpty()) {
-				for (ProjectDTO projectDTO : listProjectDTO) {
-					list.add(ConverterProject.toEntity(projectDTO));
-				}
-			}
-			return list;
-		}
+
+		return project;
+	}
+
+
 }

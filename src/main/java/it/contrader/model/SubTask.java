@@ -11,30 +11,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data   //genera get e set
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor
-@Entity	
-@Table(name="SubTask")
+@Entity
 public class SubTask implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="IdSubTask")
-	private int IdSubTask;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-	@Column(name="SubTask")
-	private String SubTask;
-
-	//bi-directional many-to-one association to Task
-	@ManyToOne
-	@JoinColumn(name="IdTask")
-	private Task Task;
+	private String subTask;
 	
-	//bi-directional many-to-one association to Team
-	@OneToMany(mappedBy="SubTask")
-	private List<Team> Teams;
+	private Date dataInizio;
+
+	private Date dataFine;
+	
+	@ManyToOne
+	@JoinColumn
+	private Task task;
+	
 }

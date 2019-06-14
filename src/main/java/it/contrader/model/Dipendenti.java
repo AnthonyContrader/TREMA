@@ -1,7 +1,6 @@
 package it.contrader.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -13,24 +12,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor	//genera il construct[lib lombok]
 @NoArgsConstructor
 @Entity	
-@Table(name="Dipendenti")
-@NamedQuery(name="Dipendenti.findAll", query="SELECT u FROM Dipendenti u")
 public class Dipendenti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="IdDipendente")
-	private int IdDipendente;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-	@Column(name="NomeDip")
-	private String NomeDip;
+	private String nomeDip;
 	
-	@Column(name="CognomeDip")
-	private String CognomeDip;
-
-	// bi-directional one-to-many association to DipMaterial
-	@OneToMany
-	@JoinColumn(name="IdDipendenti")
-	private List<DipMaterial> DipMaterial;
+	private String cognomeDip;
+	
 }

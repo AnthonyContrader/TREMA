@@ -1,7 +1,5 @@
 package it.contrader.dto;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,12 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DipendentiDTO {
 
-	private int idDipendente;
+	private long id;
 
-	private String NomeDip;
+	private String nomeDip;
 	
-	private String CognomeDip;
-	
-	private List<DipMaterialDTO> dipMaterialsDTO;
+	private String cognomeDip;
 
 }

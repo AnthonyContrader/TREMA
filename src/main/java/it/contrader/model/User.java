@@ -1,62 +1,52 @@
 package it.contrader.model;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+
+import javax.persistence.*;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import org.springframework.lang.Nullable;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data   //genera get e set
-@AllArgsConstructor//genera il construct[lib lombok]
+/**
+ * 
+ * Model dell'entità User. Contiene l'enum che definisce gli usertype (salvati come interi
+ * a partire da 0 sul db).
+ * 
+ * @author Vittorio Valent & Girolamo Murdaca
+ * 
+ * @see UserDTO
+ */
+@Data
+@Entity
+@AllArgsConstructor
 @NoArgsConstructor
-@Entity			//associa classe tab db
-@Table(name="User")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")  //preleva tutto da user
-public class User implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class User {
+	
+	public enum Usertype {
+		ADMIN,
+		USER
+	}
 
 	@Id
-	@Column(name = "IdUser")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer IdUser;
-
-	@Column(name = "UserLogin")		//username
-	@NotNull
-	private String UserLogin;		//username
-
-	@Column(name = "Password")
-	@NotNull
-	private String Password;
+	private long id;
 	
-	@Nullable
-	@Column(name = "NameUser")
-	private String NameUser;
-
-	@Nullable
-	@Column(name = "SurnameUser")
-	private String SurnameUser;
+	@Column(unique = true)
 	
-	@NotNull
-	@Column(name = "Azienda")
-	private String Azienda;
-
-	@NotNull
-	@Column(name = "UserType")
-	private String UserType;
+	private String nameUser;
 	
-	@OneToMany(mappedBy="User")
-	private List<Project> Projects;
-		
+	private String surnameUser;
+	
+	private String username;
+	
+	private String password;
+	
+	private String azienda;
+	
+	private Usertype usertype;
+	
 }

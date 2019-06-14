@@ -1,7 +1,6 @@
 package it.contrader.dto;
 
-import java.util.List;
-
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,19 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskDTO {
-	private int idTask;
+	private long id;
 
 	private String task;
 
-	private String dataInizio;
+	private Date dataInizio;
 
-	private String dataFine;
+	private Date dataFine;
 
 	private ProjectDTO projectDTO;
-	
-	private List<SubTaskDTO> subTasksDTO;
-	
-	//private TaskDTO taskFather;
-
-	//private List<TaskDTO> childsListDTO;
 }

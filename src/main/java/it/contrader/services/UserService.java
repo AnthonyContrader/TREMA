@@ -1,57 +1,28 @@
 package it.contrader.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.contrader.converter.ConverterUser;
 import it.contrader.dao.UserRepository;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.User;
 
-
+/**
+ * Estende AbstractService con parametri User e UserDTO. 
+ * Implementa il metodo di login ed eredita quelli Abstract. 
+ * 
+ * @author Vittorio Valent & Girolamo Murdaca
+ * 
+ * @see AbstractService
+ * @see ServiceDTO
+ */
 @Service
-public class UserService {
+public class UserService extends AbstractService<User,UserDTO> {
 	
-	@Autowired
-	private UserRepository userRepository;
+	//ALL crud methods in AbstractService
 	
-	
-	public List<UserDTO> getListaUserDTO() {
-		return ConverterUser.toListDTO((List<User>) userRepository.findAll());
+	//LOGIN method
+	public UserDTO findByUsernameAndPassword(String username, String password) {
+		return converter.toDTO(((UserRepository)repository).findByUsernameAndPassword(username, password));
 	}
 
-	public UserDTO getUserDTOById(Integer id) {
-		return ConverterUser.toDTO(userRepository.findById(id).get());
-	}
-
-	public UserDTO getUserByUserLoginAndPassword(String username, String password) {
-
-		final User user = userRepository.findUserByUserLoginAndPassword(username, password);
-
-		return ConverterUser.toDTO(user);
-	}
-
-	public boolean insertUser(UserDTO userDTO) {
-		return userRepository.save(ConverterUser.toEntity(userDTO)) != null;
-	}
-
-	public boolean updateUser(UserDTO userDTO) {
-		return userRepository.save(ConverterUser.toEntity(userDTO)) != null;
-	}
-
-	public void deleteUserById(Integer id) {
-		userRepository.deleteById(id);
-	}
-
-	public List<UserDTO> findAllUserDTO() {
-		List<User> list = userRepository.findAll();
-		List<UserDTO> userDTOs = new ArrayList<>();
-		list.forEach(i -> userDTOs.add(ConverterUser.toDTO(i)));
-		return userDTOs;
-	}
-	
 }
-

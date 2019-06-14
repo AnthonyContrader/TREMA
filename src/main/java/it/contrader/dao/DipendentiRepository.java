@@ -1,10 +1,15 @@
 package it.contrader.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import it.contrader.model.Dipendenti;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
-public interface DipendentiRepository extends CrudRepository<Dipendenti, Integer> {
-	public List<Dipendenti> findAll();
+import it.contrader.model.Dipendenti;
+
+import javax.transaction.Transactional;
+
+@Repository
+@Transactional
+public interface DipendentiRepository extends CrudRepository<Dipendenti, Long> {
+
 }
  

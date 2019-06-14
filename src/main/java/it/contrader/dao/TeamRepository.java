@@ -1,13 +1,14 @@
 package it.contrader.dao;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 import it.contrader.model.Team;
-import it.contrader.model.SubTask;
-import it.contrader.model.DipMaterial;
 
-import java.util.List;
+@Repository
+@Transactional
+public interface TeamRepository extends CrudRepository<Team, Long> {
 
-public interface TeamRepository extends CrudRepository<Team, Integer> {
-    public List<Team> findAllBySubTask(SubTask subTask);
-    public List<Team> findAllByDipMaterial(DipMaterial dipMaterial);
 }

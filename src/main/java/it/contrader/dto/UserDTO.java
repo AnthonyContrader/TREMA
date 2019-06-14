@@ -1,29 +1,32 @@
 package it.contrader.dto;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import it.contrader.model.User.Usertype;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO della classe User. Ha gli stessi attributi di User
+ * 
+ * @author Vittorio Valent & Girolamo Murdaca
+ * 
+ *@see User
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class UserDTO {
 
-	private Integer IdUser;
+	private long id;
+	
+	private String username;
+	
+	private String password;
 
-	private String UserLogin;
+	private Usertype usertype;
 	
-	private String Password;
 
-	private String NameUser;
-	
-	private String SurnameUser;
-	
-	private String Azienda;
-	
-	private String UserType;
-	
-	private List<ProjectDTO> ProjectsDTO;
-	
 }
