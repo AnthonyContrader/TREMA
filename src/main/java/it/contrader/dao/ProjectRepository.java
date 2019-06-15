@@ -12,5 +12,5 @@ import it.contrader.model.User;
 @Repository
 @Transactional
 public interface ProjectRepository extends CrudRepository<Project, Long>{
-	public List<Project> findByUserLogin(User userLogin);
+	//public List<Project> findByUserLogin(User userLogin);
 }
