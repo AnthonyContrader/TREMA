@@ -22,9 +22,15 @@ public class UserDTO {
 
 	private long id;
 	
+	private String nameUser;
+	
+	private String surnameUser;
+	
 	private String username;
 	
 	private String password;
+	
+	private String azienda;
 
 	private Usertype usertype;
 	
