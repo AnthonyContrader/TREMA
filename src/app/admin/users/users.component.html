@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-1">
+    <div class="col-md-5">
 
     </div>
     <div class="col-md-10">
@@ -13,13 +13,16 @@
             Password
           </th>
           <th>
-            Usertype
+              Azienda
           </th>
           <th>
-            Edit
+           Nome
           </th>
           <th>
-            User
+            Cognome
+          </th>
+          <th>
+            UserType
           </th>
         </tr>
         <tr>
@@ -28,6 +31,15 @@
           </td>
           <td>
             <input placeholder="password" [(ngModel)]="usertoinsert.password">
+          </td>
+          <td>
+            <input placeholder="azienda" [(ngModel)]="usertoinsert.azienda">
+          </td>
+          <td>
+            <input placeholder="nameUser" [(ngModel)]="usertoinsert.nameUser">
+          </td>
+          <td>
+            <input placeholder="surnameUser" [(ngModel)]="usertoinsert.surnameUser">
           </td>
           <td>
             <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
@@ -48,6 +60,15 @@
           </td>
           <td>
             <input [(ngModel)]="user.password">
+          </td>
+          <td>
+            <input [(ngModel)]="user.azienda">
+          </td>
+          <td>
+            <input [(ngModel)]="user.nameUser">
+          </td>
+          <td>
+            <input [(ngModel)]="user.surnameUser">
           </td>
           <td>
             <select [(ngModel)]="user.usertype">

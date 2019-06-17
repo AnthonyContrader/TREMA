@@ -18,5 +18,10 @@ export class UserDTO {
 
    usertype: Usertype;
 
+   azienda: string;
+
+   nameUser: string;
+
+   surnameUser: string;
 }
 
