@@ -1,6 +1,5 @@
 package it.contrader.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,8 @@ import it.contrader.model.SubTask;
 
 @Service
 public class SubTaskService extends AbstractService<SubTask, SubTaskDTO> {
-	private final SubTaskRepository subTaskRepository;
+	@Autowired
+	private SubTaskRepository subTaskRepository;
 	
 	@Autowired
 	private ConverterSubTask converterSubTask;
@@ -23,15 +23,7 @@ public class SubTaskService extends AbstractService<SubTask, SubTaskDTO> {
 	@Autowired
 	private ConverterTask converterTask;
 	
-	@Autowired
-	public SubTaskService(SubTaskRepository subTaskRepository) {
-		this.subTaskRepository = subTaskRepository;
-	}
-	
-	public List<SubTaskDTO> findByTask(TaskDTO taskDTO) {
-		final List<SubTask> list = subTaskRepository.findByTask(converterTask.toEntity(taskDTO));
-		final List<SubTaskDTO> listDTOs = new ArrayList<>();
-		list.forEach(i -> listDTOs.add(converterSubTask.toDTO(i)));
-		return listDTOs;
+	public List<SubTaskDTO> findAllByTask(TaskDTO taskDTO) {
+		return converterSubTask.toDTOList(subTaskRepository.findAllByTask(converterTask.toEntity(taskDTO)));
 	}
 }

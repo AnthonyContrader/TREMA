@@ -1,6 +1,5 @@
 package it.contrader.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class ProjectService extends AbstractService<Project, ProjectDTO> {
 	@Autowired
 	private ConverterUser converterUser;
 
-	public List<ProjectDTO> findByUserLogin(UserDTO userDTO) {
+	public List<ProjectDTO> findAllByUser(UserDTO userDTO) {
 		return converterProject.toDTOList(projectRepository.findAllByUser(converterUser.toEntity(userDTO)));
 	}
 }

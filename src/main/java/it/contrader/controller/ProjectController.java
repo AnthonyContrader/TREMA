@@ -17,15 +17,12 @@ import it.contrader.services.ProjectService;
 @RestController
 @RequestMapping("/Project")
 public class ProjectController extends AbstractController<ProjectDTO> {
-
 	@Autowired
 	private ProjectService projectService;
 
 	// POST Angular a ProjectDTO
-
 	@PostMapping("/projectManagement")
 	public List<ProjectDTO> projectManagement(@RequestBody UserDTO userDTO) {
-		return projectService.findByUserLogin(userDTO);
+		return projectService.findAllByUser(userDTO);
 	}
-
 }

@@ -17,7 +17,8 @@ import it.contrader.model.DipMaterial;
 
 @Service
 public class DipMaterialService extends AbstractService<DipMaterial, DipMaterialDTO> {
-	private final DipMaterialRepository dipMaterialRepository;
+	@Autowired
+	private DipMaterialRepository dipMaterialRepository;
 	
 	@Autowired
 	private ConverterDipMaterial converterDM;
@@ -28,22 +29,11 @@ public class DipMaterialService extends AbstractService<DipMaterial, DipMaterial
 	@Autowired
 	private ConverterMaterial converterM;
 	
-	@Autowired
-	public DipMaterialService(DipMaterialRepository dipMaterialRepository) {
-		this.dipMaterialRepository = dipMaterialRepository;
+	public List<DipMaterialDTO> findAllByDipendenti(DipendentiDTO dipendentiDTO) {
+		return converterDM.toDTOList(dipMaterialRepository.findAllByDipendenti(converterD.toEntity(dipendentiDTO)));
 	}
 	
-	public List<DipMaterialDTO> findByDipendenti(DipendentiDTO dipendentiDTO) {
-		final List<DipMaterial> list = dipMaterialRepository.findByDipendenti(converterD.toEntity(dipendentiDTO));
-		final List<DipMaterialDTO> listDTOs = new ArrayList<>();
-		list.forEach(i -> listDTOs.add(converterDM.toDTO(i)));
-		return listDTOs;
-	}
-	
-	public List<DipMaterialDTO> findByMaterial(MaterialDTO materialDTO) {
-		final List<DipMaterial> list = dipMaterialRepository.findByMaterial(converterM.toEntity(materialDTO));
-		final List<DipMaterialDTO> listDTOs = new ArrayList<>();
-		list.forEach(i -> listDTOs.add(converterDM.toDTO(i)));
-		return listDTOs;
+	public List<DipMaterialDTO> findAllByMaterial(MaterialDTO materialDTO) {
+		return converterDM.toDTOList(dipMaterialRepository.findAllByMaterial(converterM.toEntity(materialDTO)));
 	}
 }

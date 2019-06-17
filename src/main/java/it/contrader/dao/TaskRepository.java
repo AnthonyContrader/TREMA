@@ -12,5 +12,5 @@ import it.contrader.model.Task;
 @Repository
 @Transactional
 public interface TaskRepository extends CrudRepository<Task,  Long> {
-	public List<Task> findByProject(Project project);
+	public List<Task> findAllByProject(Project project);
 }

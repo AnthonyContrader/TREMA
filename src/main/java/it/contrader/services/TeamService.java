@@ -1,6 +1,5 @@
 package it.contrader.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,8 @@ import it.contrader.model.Team;
 
 @Service
 public class TeamService extends AbstractService<Team, TeamDTO> {
-	private final TeamRepository teamRepository;
+	@Autowired
+	private TeamRepository teamRepository;
 	
 	@Autowired
 	private ConverterTeam converterTeam;
@@ -28,22 +28,11 @@ public class TeamService extends AbstractService<Team, TeamDTO> {
 	@Autowired
 	private ConverterDipMaterial converterDM;
 	
-	@Autowired
-	public TeamService(TeamRepository teamRepository) {
-		this.teamRepository = teamRepository;
+	public List<TeamDTO> findAllBySubTask(SubTaskDTO subTaskDTO) {
+		return converterTeam.toDTOList(teamRepository.findAllBySubTask(converterST.toEntity(subTaskDTO)));
 	}
 	
-	public List<TeamDTO> findBySubTask(SubTaskDTO subTaskDTO) {
-		final List<Team> list = teamRepository.findBySubTask(converterST.toEntity(subTaskDTO));
-		final List<TeamDTO> listDTOs = new ArrayList<>();
-		list.forEach(i -> listDTOs.add(converterTeam.toDTO(i)));
-		return listDTOs;
-	}
-	
-	public List<TeamDTO> findByDipMaterial(DipMaterialDTO dipMaterialDTO) {
-		final List<Team> list = teamRepository.findByDipMaterial(converterDM.toEntity(dipMaterialDTO));
-		final List<TeamDTO> listDTOs = new ArrayList<>();
-		list.forEach(i -> listDTOs.add(converterTeam.toDTO(i)));
-		return listDTOs;
+	public List<TeamDTO> findAllByDipMaterial(DipMaterialDTO dipMaterialDTO) {
+		return converterTeam.toDTOList(teamRepository.findAllByDipMaterial(converterDM.toEntity(dipMaterialDTO)));
 	}
 }

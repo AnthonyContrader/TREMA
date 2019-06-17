@@ -13,6 +13,6 @@ import it.contrader.model.Team;
 @Repository
 @Transactional
 public interface TeamRepository extends CrudRepository<Team, Long> {
-	public List<Team> findBySubTask(SubTask subTask);
-	public List<Team> findByDipMaterial(DipMaterial dipMaterial);
+	public List<Team> findAllBySubTask(SubTask subTask);
+	public List<Team> findAllByDipMaterial(DipMaterial dipMaterial);
 }

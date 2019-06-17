@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface DipMaterialRepository extends CrudRepository<DipMaterial, Long> {
-	public List<DipMaterial> findByDipendenti(Dipendenti dipendenti);
-	public List<DipMaterial> findByMaterial(Material material);
+	public List<DipMaterial> findAllByDipendenti(Dipendenti dipendenti);
+	public List<DipMaterial> findAllByMaterial(Material material);
 }
  
