@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 public class ProjectDTO {
 	
-	private Long id;
+	private long id;
 	
 	private String project;
 	
