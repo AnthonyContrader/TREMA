@@ -1,5 +1,5 @@
 import {UserDTO} from './userdto';
-export class ProjectDto {
+export class ProjectDTO {
   id: number;
 
   project: string;

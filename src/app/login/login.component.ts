@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       if (user != null) {
         localStorage.setItem('currentUser', JSON.stringify(user));
 
-        switch (user.userType.toString()) {
+        switch (user.usertype.toString()) {
           case 'ADMIN': {
             this.router.navigate(['/admin-dashboard']);
             break;
