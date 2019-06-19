@@ -18,7 +18,7 @@ import { WorkInProgressComponent } from './work-in-progress/work-in-progress.com
  * @see layout
  */
 const routes: Routes = [
-  { path: 'admin-dashboard', component: AdminLayoutComponent, children:[
+  { path: 'admin-dashboard', component: AdminLayoutComponent, children: [
     { path: '', component: AdminDashboardComponent},
     { path: 'users', component: UsersComponent},
     { path: 'work-in-progress', component: WorkInProgressComponent}

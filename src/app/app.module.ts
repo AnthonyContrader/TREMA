@@ -7,8 +7,6 @@ import { LoginModule } from './login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
 import { AdminModule } from './admin/admin.module';
-import { ProjectComponent } from './admin/project/project.component';
-import {FormsModule} from '@angular/forms';
 
 /** 
  * Modulo principale dell'applicazione. Qui vengono importati i moduli secondari. L'UNICA component
@@ -19,8 +17,7 @@ import {FormsModule} from '@angular/forms';
 */
 @NgModule({
   declarations: [
-    AppComponent,
-    ProjectComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +25,7 @@ import {FormsModule} from '@angular/forms';
     LoginModule,
     HttpClientModule,
     LayoutModule,
-    AdminModule,
-    FormsModule
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
