@@ -24,6 +24,9 @@
           <th>
             UserType
           </th>
+          <th>
+           Operazioni
+          </th>
         </tr>
         <tr>
           <td>
@@ -47,12 +50,10 @@
               <option value="USER">USER</option>
             </select>
           </td>
-          <td>
-            <button (click)="insert(usertoinsert)">Insert</button>
-          </td>
-          <td>
-            <button (click)="clear()">Clear</button>
-          </td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" (click)="insert(usertoinsert)">Insert</button>
+              <button type="button" class="btn btn-primary"(click)="clear()">Clear</button>
+            </div>
         </tr>
         <tr *ngFor="let user of users">
           <td>
@@ -76,17 +77,15 @@
               <option [selected]="user.usertype===USER" value="USER">USER</option>
             </select>
           </td>
-          <td>
-            <button (click)=update(user)>Save</button>
-          </td>
-          <td>
-            <button (click)="delete(user)">Delete</button>
-          </td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" (click)=update(user)>Update</button>
+            <button type="button" class="btn btn-primary"(click)="delete(user)">Delete</button>
+          </div>
         </tr>
       </table>
-    </div>
-    <div class="col-md-1">
+      <div class="col-md-1">
 
+      </div>
     </div>
   </div>
 </div>

@@ -22,16 +22,4 @@ export class AdminMenuComponent implements OnInit {
     localStorage.clear();
     this.router.navigateByUrl('');
   }
-
-  userscollapse() {
-    if (this.isUserCollapsed === false) {
-      this.isUserCollapsed = true;
-    } else { this.isUserCollapsed = false; }
-  }
-
-  accountcollapse() {
-    if (this.isAccountCollapsed === false) {
-      this.isAccountCollapsed = true;
-    } else { this.isAccountCollapsed = false; }
-  }
 }
