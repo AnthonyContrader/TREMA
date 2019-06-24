@@ -35,4 +35,7 @@ public class SubTask implements Serializable{
 	@JoinColumn
 	private Task task;
 	
+	@OneToMany
+	@JoinColumn
+	private List<Team> team;
 }

@@ -1,6 +1,7 @@
 package it.contrader.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -28,4 +29,8 @@ public class DipMaterial implements Serializable {
 	@ManyToOne
 	@JoinColumn
 	private Dipendenti dipendenti;
+	
+	@OneToMany
+	@JoinColumn
+	private List<Team> team;
 }
