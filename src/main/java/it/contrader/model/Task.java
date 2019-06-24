@@ -27,7 +27,7 @@ public class Task implements Serializable {
 	private Date dataFine;
 
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "project_id")
 	private Project project;
 
 }

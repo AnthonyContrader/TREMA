@@ -32,10 +32,9 @@ public class SubTask implements Serializable{
 	private Date dataFine;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "task_id")
 	private Task task;
 	
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy = "subTask")
 	private List<Team> team;
 }

@@ -21,11 +21,11 @@ public class Team implements Serializable {
 	private long id;
     
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "dip_material_id")
 	private DipMaterial dipMaterial;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "sub_task_id")
     private SubTask subTask;
 }
     

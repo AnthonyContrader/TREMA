@@ -30,7 +30,7 @@ public class Project implements Serializable {
 	private String tipologie;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "user_id")
 	private User user;
 			
 }

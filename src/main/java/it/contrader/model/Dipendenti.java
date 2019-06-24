@@ -1,6 +1,7 @@
 package it.contrader.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -22,5 +23,8 @@ public class Dipendenti implements Serializable {
 	private String nomeDip;
 	
 	private String cognomeDip;
+	
+	@OneToMany(mappedBy = "dipendenti")		
+	private List<DipMaterial> dipMaterial;		
 	
 }

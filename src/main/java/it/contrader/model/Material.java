@@ -21,4 +21,7 @@ public class Material implements Serializable {
 	private long id;
 
 	private String material;
+	
+	@OneToMany(mappedBy = "material")
+	private List<Material> materiali;
 }

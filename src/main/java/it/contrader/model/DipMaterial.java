@@ -23,14 +23,13 @@ public class DipMaterial implements Serializable {
     private int quantita;
     
     @ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "material_id")
 	private Material material;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "dipendenti_id")
 	private Dipendenti dipendenti;
 	
-	@OneToMany
-	@JoinColumn
+	@OneToMany(mappedBy = "dipMaterial")
 	private List<Team> team;
 }
