@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-5">
+
+    </div>
+    <div class="col-md-10">
+      <table>
+        <tr>
+          <th>
+            Username
+          </th>
+          <th>
+            Password
+          </th>
+          <th>
+            Azienda
+          </th>
+          <th>
+            Nome
+          </th>
+          <th>
+            Cognome
+          </th>
+          <th>
+            UserType
+          </th>
+          <th>
+           Operazioni
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="username" [(ngModel)]="usertoinsert.username">
+          </td>
+          <td>
+            <input placeholder="password" [(ngModel)]="usertoinsert.password">
+          </td>
+          <td>
+            <input placeholder="azienda" [(ngModel)]="usertoinsert.azienda">
+          </td>
+          <td>
+            <input placeholder="nameUser" [(ngModel)]="usertoinsert.nameUser">
+          </td>
+          <td>
+            <input placeholder="surnameUser" [(ngModel)]="usertoinsert.surnameUser">
+          </td>
+          <td>
+            <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" (click)="insert(usertoinsert)">Insert</button>
+              <button type="button" class="btn btn-primary"(click)="clear()">Clear</button>
+            </div>
+        </tr>
+        <tr *ngFor="let user of users">
+          <td>
+            <input [(ngModel)]="user.username">
+          </td>
+          <td>
+            <input [(ngModel)]="user.password">
+          </td>
+          <td>
+            <input [(ngModel)]="user.azienda">
+          </td>
+          <td>
+            <input [(ngModel)]="user.nameUser">
+          </td>
+          <td>
+            <input [(ngModel)]="user.surnameUser">
+          </td>
+          <td>
+            <select [(ngModel)]="user.usertype">
+              <option [selected]="user.usertype===ADMIN" value="ADMIN">ADMIN</option>
+              <option [selected]="user.usertype===USER" value="USER">USER</option>
+            </select>
+          </td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" (click)=update(user)>Update</button>
+            <button type="button" class="btn btn-primary"(click)="delete(user)">Delete</button>
+          </div>
+        </tr>
+      </table>
+      <div class="col-md-1">
+
+      </div>
+    </div>
+  </div>
+</div>

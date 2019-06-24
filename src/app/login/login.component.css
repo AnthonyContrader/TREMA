@@ -1,0 +1,90 @@
+form{
+  margin-top:270px;
+  width: 55%;
+  padding: 10px;
+  border-radius:0;
+  border-color: crimson;
+  background: #fffcd3;
+}
+
+img{
+    position: inherit;
+    width:50%;
+    margin: 12%;
+  /* background-color: #fffcd3; */
+  }
+
+input, input:hover, input::selection, input:checked, input:focus{
+    border: 0;
+    background-color: #1e282d;
+    border-radius: 0;
+    color: white;
+    border-bottom: 1px solid crimson;
+    margin: 0px; 
+}
+
+.container-fluid{
+  background-image: url(../../assets/wallpaper-white.svg);
+  background-size: cover;
+    height: 100vh;
+}
+input::placeholder{
+    color: white;
+}
+.form-control{
+border: none;
+background-color: #ffffff;
+color: white;
+border-bottom: 1px solid white;
+  padding: 16px 20px;
+}
+
+.login{
+border: none;
+background-color: white;
+color: white;
+border: 1px solid white;
+border-radius: 2px;
+padding-top: 10px;
+padding-right: auto;
+padding-bottom: 10px;
+padding-left: auto;
+}
+
+p{
+font-size: 14px;
+color: black;
+}
+
+h1{
+  font-size: 62px;
+  color: rgba(92, 92, 123, 0.98);
+  text-align: center;
+}
+
+button {
+
+  background-color: #13b0a5;
+  border: none;
+  padding: auto;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+button:hover {
+  background-color: #13b0a5;
+  color: white;
+
+}
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #f26261;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
