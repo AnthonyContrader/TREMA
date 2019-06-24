@@ -12,9 +12,9 @@ import it.contrader.converter.ConverterDipendenti;
 import it.contrader.dto.DipendentiDTO;
 import it.contrader.services.DipendentiService;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/Dipendenti")
+@RequestMapping("/dipendenti")
 public class DipendentiController extends AbstractController<DipendentiDTO>{
 	@Autowired
 	DipendentiService dipendentiService;

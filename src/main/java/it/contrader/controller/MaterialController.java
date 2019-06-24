@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import it.contrader.dto.MaterialDTO;
 import it.contrader.services.MaterialService;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/Material")
+@RequestMapping("/material")
 public class MaterialController extends AbstractController<MaterialDTO> {
 	@Autowired
 	MaterialService materialService;

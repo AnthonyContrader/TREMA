@@ -15,9 +15,9 @@ import it.contrader.dto.SubTaskDTO;
 import it.contrader.dto.TaskDTO;
 import it.contrader.services.SubTaskService;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/SubTask")
+@RequestMapping("/subtask")
 public class SubTaskController extends AbstractController<SubTaskDTO> {
 	@Autowired
 	private SubTaskService subTaskService;
