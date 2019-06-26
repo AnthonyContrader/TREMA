@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "project",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipologia",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190626145132",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "project",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no",
+    "microserviceName": "Project"
+}
