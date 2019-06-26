@@ -1,0 +1,22 @@
+<div class="container" id="dashboard">
+  <table class="table">
+    <thead>
+    <tr>
+      <td align="left"><h2>TASK</h2></td>
+    </tr>
+    </thead>
+    <div *ngFor="let task of tasklist" >
+
+      <tr>
+        <td>
+
+          <button ng-click="task.id" class="menubtn">
+            <a [routerLink]="['/user-dashboard/task/', task.id ]" > <i style="margin-right: 10px"> </i><h2>{{task.task}}</h2>
+            </a>
+          </button>
+        </td>
+      </tr>
+    </div>
+  </table>
+</div>
+<router-outlet></router-outlet>
