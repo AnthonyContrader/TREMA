@@ -6,12 +6,12 @@ import { LoginDTO } from 'src/dto/logindto';
 import { Observable } from 'rxjs';
 
 /**
- * I service sono decorati da @Injectable. 
+ * I service sono decorati da @Injectable.
  * Qui trovate, oltre ai metodi ereditati dall'Abstract,
  *  il metodo per il login (in mirror con il backend).
- * 
+ *
  * @author Vittorio Valent
- * 
+ *
  * @see AbstractService
  */
 @Injectable({
@@ -24,11 +24,11 @@ export class UserService extends AbstractService<UserDTO> {
     this.type = 'user';
   }
   auth() {
-    var user = JSON.parse(localStorage.getItem('currentUser')) as UserDTO;
+    const user = JSON.parse(localStorage.getItem('currentUser')) as UserDTO;
 
-    console.log(user);
-    if (user) {
-      return 'Bearer ' + user.usertype;
+    console.log(user.authorities);
+    if (user.authorities) {
+      return 'Bearer ' + user.authorities;
     } else {
       return '';
     }
@@ -38,12 +38,12 @@ export class UserService extends AbstractService<UserDTO> {
     return this.http.post<any>('http://localhost:8080/api/authenticate', loginDTO);
   }
 
-  userLogged(username: string){
-    console.log('qua: ', this.auth())
+  userLogged(username: string) {
+    console.log('qua: ', this.auth());
     console.log(this.auth());
     return this.http.get('http://localhost:8080/api/users/' + username, {
       headers: {
-        "Authorization": this.auth()
+        Authorization: this.auth()
       }
     });
   }

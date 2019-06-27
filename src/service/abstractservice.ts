@@ -27,20 +27,20 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
 
     console.log(user);
     if (user) {
-      return "Bearer" + user.usertype;
+      return 'Bearer' + user.authorities;
     } else {
       return '';
     }
   }
 
   getAllBy(id: number): Observable<DTO[]> {
-    return this.http.get<DTO[]>('http://localhost:' + this.port + '/' + this.type + '/getallby?id=' + id);
+    return this.http.get<DTO[]>('http://localhost:' + this.port + '/' +this.micro1 + '/api/' + this.entityName + '/read?id=' + id);
   }
 
   getAll(): Observable<DTO[]> {
     return this.http.get<DTO[]>('http://localhost:' + this.port + '/' + this.micro1 + '/api/' + this.entityName , {
       headers: {
-        "Authorization": this.auth()
+        Authorization: this.auth()
       }
     }) ;
   }
