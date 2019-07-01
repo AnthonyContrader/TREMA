@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="user-data m-b-30">
+        <h1 class="title-3 m-b-30">
+          <i class="title-3 m-b-30"></i>Task
+        </h1>
+        <table class="table">
+          <div *ngFor="let task of tasklist" >
+
+            <tr>
+              <td>
+                <a> <i style="margin-right: 10px"> </i><h2>{{task.task}}</h2>
+                </a>
+
+              </td>
+            </tr>
+          </div>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-sm-3">
+      <div class="user-data m-b-30">
+        <h1 class="title-3 m-b-30">
+          <i class="title-3 m-b-30"></i>Sub Task
+        </h1>
+        <table class="table">
+          <tr>
+            <td>
+
+              <app-task></app-task>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="user-data m-b-30">
+          <h1 class="title-3 m-b-30">
+            <i class="title-3 m-b-30"></i>Dipendenti
+          </h1>
+          <table class="table">
+            <tr>
+              <td>
+
+                <app-team></app-team>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="user-data m-b-30">
+      <h1 class="title-3 m-b-30">
+        <i class="title-3 m-b-30"></i>Materiali
+      </h1>
+      <table class="table">
+        <tr>
+          <td>
+            <app-material></app-material>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
