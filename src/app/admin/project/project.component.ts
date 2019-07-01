@@ -21,7 +21,7 @@ export class ProjectComponent implements OnInit {
   }
 
   getProjects() {
-    return this.projectservice.getAllBy(this.user.id).subscribe(projects => this.projects = projects);
+    return this.projectservice.getAll().subscribe(projects => this.projects = projects);
   }
   delete(project: ProjectDTO) {
     this.projectservice.delete(project.id).subscribe(() => this.getProjects());
